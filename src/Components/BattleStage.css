@@ -1,0 +1,61 @@
+.battleContainer {
+  margin: 50px;
+  background-color: white;
+  height: 500px;
+  width: 600px;
+  border: 2px dashed black;
+  border-radius: 15px;
+  margin-left: 17vw;
+}
+
+.player1Sprite > img {
+  height: 150px;
+  width: 150px;
+}
+.player2Sprite > img {
+  height: 150px;
+  width: 150px;
+}
+
+.side > p > img {
+  height: 18px;
+  width: 18px;
+}
+
+.side {
+  padding: 5px;
+}
+
+.player1Sprite {
+  margin-right: 300px;
+}
+
+.player2Sprite {
+  margin-left: 300px;
+}
+
+.player1Moves {
+  border: 2px solid blue;
+  border-radius: 5px;
+}
+
+.player2Moves {
+  border: 2px solid red;
+  border-radius: 5px;
+}
+
+.faded {
+  opacity: 0.5;
+}
+
+.fullhp {
+  background-color: #28a745 !important;
+}
+
+.halfhp {
+  background-color: #f3e001 !important;
+}
+
+.onefifthhp {
+  background-color: #cc0101 !important;
+}
