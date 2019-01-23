@@ -356,7 +356,7 @@ const CreateMoves = moveName => {
       type: "normal",
       accuracy: 85,
       pp: 20,
-      statusEff: ""
+      statusEff: "recoil"
     }; //user receives recoil (10% of damage dealt)
   }
   if (moveName === "Thrash") {
@@ -372,12 +372,12 @@ const CreateMoves = moveName => {
   if (moveName === "Double Edge") {
     return {
       name: moveName,
-      power: 40,
+      power: 120,
       type: "normal",
       accuracy: 100,
-      pp: 35,
-      statusEff: ""
-    };
+      pp: 15,
+      statusEff: "recoil"
+    }; //causes recoil (10% damage)
   }
   if (moveName === "Tail Whip") {
     return {
@@ -656,7 +656,7 @@ const CreateMoves = moveName => {
       type: "fighting",
       accuracy: 80,
       pp: 20,
-      statusEff: ""
+      statusEff: "recoil"
     }; //cause recoil
   }
   if (moveName === "Low Kick") {
@@ -952,11 +952,11 @@ const CreateMoves = moveName => {
   if (moveName === "Meditate") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
+      power: 0,
+      type: "psychic",
       accuracy: 100,
-      pp: 35,
-      statusEff: ""
+      pp: 40,
+      statusEff: "raisesUserAtk"
     };
   }
   if (moveName === "Agility") {
@@ -992,12 +992,12 @@ const CreateMoves = moveName => {
   if (moveName === "Teleport") {
     return {
       name: moveName,
-      power: 40,
+      power: 0,
       type: "normal",
       accuracy: 100,
       pp: 35,
       statusEff: ""
-    };
+    }; //Does nothing in battle
   }
   if (moveName === "Night Shade") {
     return {
@@ -1096,7 +1096,7 @@ const CreateMoves = moveName => {
       type: "water",
       accuracy: 100,
       pp: 35,
-      statusEff: ""
+      statusEff: "raisesUserDef"
     }; //raises defense
   }
   if (moveName === "Defense Curl") {
@@ -1106,7 +1106,7 @@ const CreateMoves = moveName => {
       type: "normal",
       accuracy: 100,
       pp: 35,
-      statusEff: ""
+      statusEff: "raisesUserDef"
     }; //raises defense
   }
   if (moveName === "Barrier") {
@@ -1156,7 +1156,7 @@ const CreateMoves = moveName => {
       type: "normal",
       accuracy: 100,
       pp: 35,
-      statusEff: ""
+      statusEff: "raisesUserAtk"
     };
   }
   if (moveName === "Bide") {
@@ -1322,21 +1322,21 @@ const CreateMoves = moveName => {
   if (moveName === "Amnesia") {
     return {
       name: moveName,
-      power: 40,
+      power: 0,
       type: "normal",
       accuracy: 100,
       pp: 35,
-      statusEff: ""
+      statusEff: "raisesUserSpc"
     };
   }
   if (moveName === "Kinesis") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
+      power: 0,
+      type: "psychic",
       accuracy: 100,
-      pp: 35,
-      statusEff: ""
+      pp: 15,
+      statusEff: "lowersTargetAcc"
     };
   }
   if (moveName === "Soft Boiled") {
@@ -1362,12 +1362,12 @@ const CreateMoves = moveName => {
   if (moveName === "Glare") {
     return {
       name: moveName,
-      power: 40,
+      power: 0,
       type: "normal",
-      accuracy: 100,
+      accuracy: 75,
       pp: 35,
       statusEff: ""
-    };
+    }; //causes PARALYZE
   }
   if (moveName === "Dream Eater") {
     return {
@@ -1382,7 +1382,7 @@ const CreateMoves = moveName => {
   if (moveName === "Poison Gas") {
     return {
       name: moveName,
-      power: 20,
+      power: 0,
       type: "poison",
       accuracy: 100,
       pp: 35,
@@ -1402,12 +1402,12 @@ const CreateMoves = moveName => {
   if (moveName === "Leech Life") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
+      power: 80,
+      type: "bug",
       accuracy: 100,
-      pp: 35,
+      pp: 10,
       statusEff: ""
-    };
+    }; //add 1/2 damage back to hp
   }
   if (moveName === "Lovely Kiss") {
     return {
@@ -1434,7 +1434,7 @@ const CreateMoves = moveName => {
       name: moveName,
       power: 120,
       type: "normal",
-      accuracy: 100,
+      accuracy: 80,
       pp: 35,
       statusEff: ""
     };
@@ -1446,7 +1446,7 @@ const CreateMoves = moveName => {
       type: "water",
       accuracy: 100,
       pp: 30,
-      statusEff: ""
+      statusEff: "lowerTargetSpd"
     }; //may lower speed
   }
   if (moveName === "Dizzy Punch") {
@@ -1497,7 +1497,7 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: ""
-    }; //does nothing...
+    }; //does nothing in battle
   }
   if (moveName === "Acid Armor") {
     return {
@@ -1557,13 +1557,13 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: ""
-    };
+    }; //recovers all HP, puts user to sleep
   }
   if (moveName === "Rock Slide") {
     return {
       name: moveName,
       power: 40,
-      type: "normal",
+      type: "rock",
       accuracy: 100,
       pp: 35,
       statusEff: ""
@@ -1572,10 +1572,10 @@ const CreateMoves = moveName => {
   if (moveName === "Hyper Fang") {
     return {
       name: moveName,
-      power: 40,
+      power: 80,
       type: "normal",
-      accuracy: 100,
-      pp: 35,
+      accuracy: 90,
+      pp: 15,
       statusEff: ""
     };
   }
@@ -1612,10 +1612,10 @@ const CreateMoves = moveName => {
   if (moveName === "Super Fang") {
     return {
       name: moveName,
-      power: 40,
+      power: 70,
       type: "normal",
-      accuracy: 100,
-      pp: 35,
+      accuracy: 90,
+      pp: 10,
       statusEff: ""
     };
   }
@@ -1642,7 +1642,7 @@ const CreateMoves = moveName => {
   if (moveName === "Struggle") {
     return {
       name: moveName,
-      power: 40,
+      power: 10,
       type: "normal",
       accuracy: 100,
       pp: 35,
@@ -1823,7 +1823,7 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       power: 40,
-      type: "normal",
+      type: "fighting",
       accuracy: 100,
       pp: 35,
       statusEff: ""
@@ -1832,11 +1832,11 @@ const CreateMoves = moveName => {
   if (moveName === "Scary Face") {
     return {
       name: moveName,
-      power: 40,
+      power: 0,
       type: "normal",
       accuracy: 100,
       pp: 35,
-      statusEff: ""
+      statusEff: "lowersUserAtk"
     };
   }
   if (moveName === "Feint Attack") {
@@ -1892,11 +1892,11 @@ const CreateMoves = moveName => {
   if (moveName === "Mud Slap") {
     return {
       name: moveName,
-      power: 40,
+      power: 20,
       type: "ground",
       accuracy: 100,
-      pp: 35,
-      statusEff: ""
+      pp: 10,
+      statusEff: "lowersTargetAcc"
     };
   }
   if (moveName === "Octazooka") {
@@ -1962,11 +1962,11 @@ const CreateMoves = moveName => {
   if (moveName === "Icy Wind") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
-      accuracy: 100,
-      pp: 35,
-      statusEff: ""
+      power: 55,
+      type: "ice",
+      accuracy: 95,
+      pp: 15,
+      statusEff: "lowersTargetSpd"
     };
   }
   if (moveName === "Detect") {
@@ -2022,12 +2022,12 @@ const CreateMoves = moveName => {
   if (moveName === "Giga Drain") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
+      power: 75,
+      type: "grass",
       accuracy: 100,
-      pp: 35,
+      pp: 10,
       statusEff: ""
-    };
+    }; //adds 1/2 damage back to hp
   }
   if (moveName === "Endure") {
     return {
@@ -2092,12 +2092,12 @@ const CreateMoves = moveName => {
   if (moveName === "Spark") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
+      power: 65,
+      type: "eletric",
       accuracy: 100,
-      pp: 35,
+      pp: 20,
       statusEff: ""
-    };
+    }; //may cause PARALYZE
   }
   if (moveName === "Fury Cutter") {
     return {
@@ -2112,11 +2112,11 @@ const CreateMoves = moveName => {
   if (moveName === "Steel Wing") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
-      accuracy: 100,
-      pp: 35,
-      statusEff: ""
+      power: 70,
+      type: "steel",
+      accuracy: 90,
+      pp: 25,
+      statusEff: "raisesUserDef"
     };
   }
   if (moveName === "Mean Look") {
@@ -2232,12 +2232,12 @@ const CreateMoves = moveName => {
   if (moveName === "Dynamic Punch") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
-      accuracy: 100,
-      pp: 35,
+      power: 100,
+      type: "fighting",
+      accuracy: 50,
+      pp: 5,
       statusEff: ""
-    };
+    }; //may CONFUSION user
   }
   if (moveName === "Megahorn") {
     return {
@@ -2493,10 +2493,10 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       power: 40,
-      type: "normal",
+      type: "fighting",
       accuracy: 100,
-      pp: 35,
-      statusEff: ""
+      pp: 15,
+      statusEff: "lowersTargetDef"
     };
   }
   if (moveName === "Whirlpool") {
@@ -2572,12 +2572,12 @@ const CreateMoves = moveName => {
   if (moveName === "Heat Wave") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
-      accuracy: 100,
-      pp: 35,
+      power: 95,
+      type: "fire",
+      accuracy: 90,
+      pp: 10,
       statusEff: ""
-    };
+    }; //may cause BURN
   }
   if (moveName === "Hail") {
     return {
@@ -2642,10 +2642,10 @@ const CreateMoves = moveName => {
   if (moveName === "Focus Punch") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
+      power: 150,
+      type: "fighting",
       accuracy: 100,
-      pp: 35,
+      pp: 20,
       statusEff: ""
     };
   }
@@ -3052,12 +3052,12 @@ const CreateMoves = moveName => {
   if (moveName === "Poison Fang") {
     return {
       name: moveName,
-      power: 40,
+      power: 50,
       type: "poison",
       accuracy: 100,
-      pp: 35,
+      pp: 15,
       statusEff: ""
-    };
+    }; //causes POISON
   }
   if (moveName === "Crush Claw") {
     return {
@@ -3252,10 +3252,10 @@ const CreateMoves = moveName => {
   if (moveName === "Shadow Punch") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
-      accuracy: 100,
-      pp: 35,
+      power: 60,
+      type: "ghost",
+      accuracy: 999,
+      pp: 20,
       statusEff: ""
     };
   }
@@ -3522,12 +3522,12 @@ const CreateMoves = moveName => {
   if (moveName === "Water Pulse") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
+      power: 60,
+      type: "water",
       accuracy: 100,
-      pp: 35,
+      pp: 20,
       statusEff: ""
-    };
+    }; //may CONFUSION target
   }
   if (moveName === "Doom Desire") {
     return {
@@ -4213,51 +4213,51 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       power: 40,
-      type: "normal",
+      type: "ice",
       accuracy: 100,
-      pp: 35,
+      pp: 30,
       statusEff: ""
     };
   }
   if (moveName === "Shadow Claw") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
+      power: 70,
+      type: "ghost",
       accuracy: 100,
-      pp: 35,
+      pp: 15,
       statusEff: ""
     };
   }
   if (moveName === "Thunder Fang") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
-      accuracy: 100,
-      pp: 35,
+      power: 65,
+      type: "eletric",
+      accuracy: 95,
+      pp: 15,
       statusEff: ""
-    };
+    }; //may cause PARALYZE
   }
   if (moveName === "Ice Fang") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
-      accuracy: 100,
-      pp: 35,
+      power: 65,
+      type: "ice",
+      accuracy: 95,
+      pp: 15,
       statusEff: ""
-    };
+    }; //may cause FRZN
   }
   if (moveName === "Fire Fang") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
-      accuracy: 100,
-      pp: 35,
+      power: 65,
+      type: "fire",
+      accuracy: 95,
+      pp: 15,
       statusEff: ""
-    };
+    }; //may cause BURN
   }
   if (moveName === "Shadow Sneak") {
     return {
