@@ -1082,7 +1082,7 @@ const CreateMoves = moveName => {
   if (moveName === "Confuse Ray") {
     return {
       name: moveName,
-      power: 20,
+      power: 0,
       type: "psychic",
       accuracy: 100,
       pp: 35,
@@ -1092,7 +1092,7 @@ const CreateMoves = moveName => {
   if (moveName === "Withdraw") {
     return {
       name: moveName,
-      power: 20,
+      power: 0,
       type: "water",
       accuracy: 100,
       pp: 35,
@@ -1102,7 +1102,7 @@ const CreateMoves = moveName => {
   if (moveName === "Defense Curl") {
     return {
       name: moveName,
-      power: 20,
+      power: 0,
       type: "normal",
       accuracy: 100,
       pp: 35,

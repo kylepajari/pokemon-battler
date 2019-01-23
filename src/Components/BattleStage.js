@@ -25,6 +25,7 @@ class BattleStage extends Component {
     $(document.querySelector(".player1Moves")).fadeOut(10);
     $(document.querySelector(".player2Moves")).fadeOut(10);
     $(document.querySelector(".message")).fadeOut(10);
+    $(document.querySelector(".playermessage")).fadeOut(10);
   }
 
   componentWillReceiveProps(props) {
@@ -111,13 +112,7 @@ class BattleStage extends Component {
     Pokeball.addClass("faded");
 
     //if pokemon fainted is not last in party
-    console.log(
-      "Pokemon was number ",
-      Team[PKMN],
-      "length of team is: " + Team.length
-    );
-
-    if (Team[PKMN] + 1 < Team.length) {
+    if (PKMN + 1 < Team.length) {
       //increase currentPokemon number for team to send out next in party
       if (PlayersTurn === "Player One") {
         setTimeout(
@@ -140,56 +135,73 @@ class BattleStage extends Component {
       //fade sprite back in
       setTimeout(() => Sprite.fadeIn(1000), 3000);
       setTimeout(
-        () => $(document.querySelector(".message")).fadeOut(300),
+        () => $(document.querySelector(".message")).fadeOut(500),
+        1500
+      );
+      setTimeout(() => $(document.querySelector(".message")).fadeIn(500), 2000);
+
+      setTimeout(
+        () =>
+          $(document.querySelector(".message")).text(
+            this.state.playersTurn + " sent out " + Team[PKMN + 1].name
+          ),
         2000
       );
-      // setTimeout(() => $(document.querySelector(".message")).fadeIn(300), 3000);
-
-      // setTimeout(
-      //   $(document.querySelector(".message")).text(
-      //     this.state.playersTurn + " sent out " + Team[PKMN + 1].name
-      //   ),
-      //   3000
-      // );
-      // setTimeout(
-      //   () => $(document.querySelector(".message")).fadeOut(300),
-      //   5000
-      // );
+      setTimeout(
+        () => $(document.querySelector(".message")).fadeOut(500),
+        4000
+      );
       setTimeout(() => HPbar.css("width", "100%"), 2000);
       HPbar.removeClass("halfhp");
       HPbar.removeClass("onefifthhp");
       HPbar.addClass("fullhp");
       setTimeout(
-        () => $(document.querySelector(".fightButton")).fadeIn(300),
-        3000
+        () => $(document.querySelector(".fightButton")).fadeIn(500),
+        4000
       );
     } else {
       setTimeout(
-        () => $(document.querySelector(".fightButton")).fadeOut(300),
+        () => $(document.querySelector(".fightButton")).fadeOut(500),
         500
       );
-      // if (PlayersTurn === "Player One") {
-      //   setTimeout(
-      //     $(document.querySelector(".message")).text(
-      //       "Player One is out of Pokémon! "
-      //     ),
-      //     3000
-      //   );
-      // } else {
-      //   setTimeout(
-      //     $(document.querySelector(".message")).text(
-      //       "Player Two is out of Pokémon! "
-      //     ),
-      //     3000
-      //   );
-      // }
+      setTimeout(
+        () => $(document.querySelector(".playermessage")).fadeIn(500),
+        500
+      );
+      setTimeout(() => $(document.querySelector(".message")).fadeOut(500), 500);
+      if (PlayersTurn === "Player One") {
+        setTimeout(
+          () =>
+            $(document.querySelector(".playermessage")).text(
+              "Player One is out of Pokémon! "
+            ),
+          2000
+        );
+      } else {
+        setTimeout(
+          () =>
+            $(document.querySelector(".playermessage")).text(
+              "Player Two is out of Pokémon! "
+            ),
+          2000
+        );
+      }
+      setTimeout(
+        () => $(document.querySelector(".playermessage")).fadeOut(500),
+        3000
+      );
 
-      // setTimeout(
-      //   $(document.querySelector(".message")).text(
-      //     "Player One defeated Player Two!"
-      //   ),
-      //   5000
-      // );
+      setTimeout(
+        () =>
+          $(document.querySelector(".playermessage")).text(
+            "Player One defeated Player Two!"
+          ),
+        4500
+      );
+      setTimeout(
+        () => $(document.querySelector(".playermessage")).fadeIn(500),
+        4500
+      );
     }
   };
 
@@ -213,7 +225,6 @@ class BattleStage extends Component {
     }
 
     //does move have PP remaining?
-    console.log(moveName + " PP: " + pp);
     if (pp === 0) {
       //out of pp for move
       console.log("out of PP!");
@@ -227,7 +238,7 @@ class BattleStage extends Component {
       //subtract 1 pp from move used
       PKMNuser.moves[index].pp = pp - 1;
 
-      console.log(PKMNuser.name + " used move " + moveName);
+      console.log(PKMNuser.name + " used " + moveName);
       moves.fadeOut(300);
       $(document.querySelector(".message")).text(
         PKMNuser.name + " used " + moveName
@@ -301,14 +312,10 @@ class BattleStage extends Component {
 
           //RECOIL//////////////////////////////////////
           if (statusEff === "recoil") {
-            console.log(PKMNuser.hp, " HP");
-
-            let Damage = PKMNuser.hp / 4;
+            let RecoilAmount = 3; //Adjust this to change amount of hp depleted
+            let Damage = PKMNuser.hp / RecoilAmount;
             let origHealth = parseInt(HPbar.css("width"));
             let asPercentage = Damage / PKMNuser.hp;
-            console.log("hp: " + PKMNuser.hp);
-            console.log("recoil dmg: " + Damage);
-            console.log("as percentage: " + asPercentage + " of total HP");
 
             //update target pokemon hp after damage dealt
             PKMNuser.hp = PKMNuser.hp - Damage;
@@ -318,11 +325,11 @@ class BattleStage extends Component {
             //update health bar to reflect damage
             setTimeout(() => HPbar.css("width", updatedBarHP), 3000);
             if (updatedBarHP <= 260 && updatedBarHP >= 104) {
-              HPbar.removeClass("fullhp");
-              HPbar.addClass("halfhp");
+              setTimeout(() => HPbar.removeClass("fullhp"), 3000);
+              setTimeout(() => HPbar.addClass("halfhp"), 3000);
             } else if (updatedBarHP <= 104 && updatedBarHP >= 0) {
-              HPbar.removeClass("halfhp");
-              HPbar.addClass("onefifthhp");
+              setTimeout(() => HPbar.removeClass("halfhp"), 3000);
+              setTimeout(() => HPbar.addClass("onefifthhp"), 3000);
             }
             setTimeout(
               () =>
@@ -438,6 +445,33 @@ class BattleStage extends Component {
             $(document.querySelector(".fightButton")).fadeIn(300);
           }
         }
+
+        if (power <= 0 && statusEff === "") {
+          //move does nothing
+          console.log(moveName + " did nothing...");
+          setTimeout(
+            () => $(document.querySelector(".message")).fadeIn(300),
+            2300
+          );
+          setTimeout(
+            () =>
+              $(document.querySelector(".message")).text(
+                moveName + " did nothing..."
+              ),
+            2300
+          );
+          setTimeout(
+            () => $(document.querySelector(".message")).fadeOut(1000),
+            3300
+          );
+          //switch to next player
+          if (this.state.playersTurn === "Player One") {
+            this.setState({ playersTurn: "Player Two" });
+          } else {
+            this.setState({ playersTurn: "Player One" });
+          }
+          $(document.querySelector(".fightButton")).fadeIn(300);
+        }
       }
     }
   };
@@ -476,11 +510,11 @@ class BattleStage extends Component {
       targetType2 = PKMNTarget.types[0][1];
     }
     console.log(
-      "move Type: " + moveType,
-      "user Type 1: " + userType1,
-      "user Type 2: " + userType2,
-      "target Type 1: " + targetType1,
-      "target Type 2: " + targetType2
+      "moves Type is: " + moveType,
+      ", users Type 1 is: " + userType1,
+      ", users Type 2 is: " + userType2,
+      ", target Type 1 is: " + targetType1,
+      ", and target Type 2 is: " + targetType2
     );
 
     //calc STAB(Same-Type-Attack-Bonus) 1.5, if user is same as move type
@@ -550,12 +584,28 @@ class BattleStage extends Component {
       TargetHP.addClass("onefifthhp");
     }
 
+    //if move does not do any damage, do not flash sprite
+    if (Damage !== 0) {
+      if (this.state.playersTurn === "Player One") {
+        this.rapidFlash($(document.querySelector(".player2Sprite")));
+      } else {
+        this.rapidFlash($(document.querySelector(".player1Sprite")));
+      }
+    } else {
+      $(document.querySelector(".message")).fadeIn(500);
+      $(document.querySelector(".message")).text(
+        PKMNTarget.name + " is unaffected..."
+      );
+      setTimeout(
+        () => $(document.querySelector(".message")).fadeOut(500),
+        1500
+      );
+    }
+
     //switch to next player
     if (this.state.playersTurn === "Player One") {
-      this.rapidFlash($(document.querySelector(".player2Sprite")));
       this.setState({ playersTurn: "Player Two" });
     } else {
-      this.rapidFlash($(document.querySelector(".player1Sprite")));
       this.setState({ playersTurn: "Player One" });
     }
   };
@@ -590,7 +640,7 @@ class BattleStage extends Component {
 
               {this.state.player2Team[this.state.player2CurrentPokemon].name}
               <span className="badge badge-info">
-                Level{" "}
+                Lv.{" "}
                 {this.state.player2Team[this.state.player2CurrentPokemon].lv}
               </span>
               {this.Types(
@@ -630,7 +680,7 @@ class BattleStage extends Component {
               })}
               {this.state.player1Team[this.state.player1CurrentPokemon].name}
               <span className="badge badge-info">
-                Level{" "}
+                Lv.{" "}
                 {this.state.player1Team[this.state.player1CurrentPokemon].lv}
               </span>
               {this.Types(
@@ -663,6 +713,7 @@ class BattleStage extends Component {
           </div>
           <div className="battleMessages">
             <p className="message" />
+            <p className="playermessage" />
           </div>
           <div className="battleInputs container">
             <div className="fight row">

@@ -37,11 +37,13 @@
 .player1Moves {
   border: 2px solid blue;
   border-radius: 5px;
+  width: 90%;
 }
 
 .player2Moves {
   border: 2px solid red;
   border-radius: 5px;
+  width: 90%;
 }
 
 .faded {
