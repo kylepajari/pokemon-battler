@@ -18,8 +18,25 @@ class BattleStage extends Component {
       player1PokemonCurrentHP: 0,
       player2PokemonCurrentHP: 0,
       recoilDamage: 0,
-      statMultiplierUp: 1,
-      statMultiplierDown: 1
+      //stat multipliers for player 1
+      atkMultiplierUp1: 1,
+      defMultiplierUp1: 1,
+      spdMultiplierUp1: 1,
+      spcMultiplierUp1: 1,
+      atkMultiplierDown1: 1,
+      defMultiplierDown1: 1,
+      spdMultiplierDown1: 1,
+      spcMultiplierDown1: 1,
+
+      //stat multiplier for player 2
+      atkMultiplierUp2: 1,
+      defMultiplierUp2: 1,
+      spdMultiplierUp2: 1,
+      spcMultiplierUp2: 1,
+      atkMultiplierDown2: 1,
+      defMultiplierDown2: 1,
+      spdMultiplierDown2: 1,
+      spcMultiplierDown2: 1
     };
   }
 
@@ -356,8 +373,35 @@ class BattleStage extends Component {
     recoilDamage
   ) => {
     console.log(statusEff, PKMNuser, PKMNtarget, HPbar, power, recoilDamage);
-    let multiplierUp = this.state.multiplier + 0.5;
-    let multiplierDown = this.state.multiplier - 0.12;
+    let atkMultiplierUp = 0;
+    let atkMultiplierDown = 0;
+    let defMultiplierUp = 0;
+    let defMultiplierDown = 0;
+    let spdMultiplierUp = 0;
+    let spdMultiplierDown = 0;
+    let spcMultiplierUp = 0;
+    let spcMultiplierDown = 0;
+    if (this.PlayersTurn === "Player One") {
+      atkMultiplierUp = this.state.atkMultiplierUp1 + 0.5;
+      atkMultiplierDown = this.state.atkMultiplierDown1 - 0.12;
+      defMultiplierUp = this.state.defMultiplierUp1 + 0.5;
+      defMultiplierDown = this.state.defMultiplierDown1 - 0.12;
+      spdMultiplierUp = this.state.spdMultiplierUp1 + 0.5;
+      spdMultiplierDown = this.state.spdMultiplierDown1 - 0.12;
+      spcMultiplierUp = this.state.spcMultiplierUp1 + 0.5;
+      spcMultiplierDown = this.state.scpMultiplierDown1 - 0.12;
+    } else {
+      //is player two turn
+      atkMultiplierUp = this.state.atkMultiplierUp2 + 0.5;
+      atkMultiplierDown = this.state.atkMultiplierDown2 - 0.12;
+      defMultiplierUp = this.state.defMultiplierUp2 + 0.5;
+      defMultiplierDown = this.state.defMultiplierDown2 - 0.12;
+      spdMultiplierUp = this.state.spdMultiplierUp2 + 0.5;
+      spdMultiplierDown = this.state.spdMultiplierDown2 - 0.12;
+      spcMultiplierUp = this.state.spcMultiplierUp2 + 0.5;
+      spcMultiplierDown = this.state.scpMultiplierDown2 - 0.12;
+    }
+
     //STATUS MODIFIERS: raisesUserAtk, raisesUserDef,raisesUserSpd,raisesUserSpc,raisesUserAcc,raisesUserEva
     // lowersTargetAtk, lowersTargetDef,lowersTargetSpd,lowersTargetSpc,lowersTargetAcc,lowersTargetEva
     console.log("move has status effect: " + statusEff);
@@ -399,7 +443,7 @@ class BattleStage extends Component {
 
     //RAISES////////////////////////////////////////////////////////////
     if (statusEff === "raisesUserAtk") {
-      PKMNuser.attack = PKMNuser.attack * multiplierUp;
+      PKMNuser.attack = PKMNuser.attack * atkMultiplierUp;
       setTimeout(
         () =>
           $(document.querySelector(".message")).text(
@@ -418,8 +462,13 @@ class BattleStage extends Component {
           2300
         );
       }
+      if (this.state.PlayersTurn === "Player One") {
+        this.setState({ atkMultiplierUp1: atkMultiplierUp });
+      } else {
+        this.setState({ atkMultiplierUp2: atkMultiplierUp });
+      }
     } else if (statusEff === "raisesUserDef") {
-      PKMNuser.defense = PKMNuser.defense * multiplierUp;
+      PKMNuser.defense = PKMNuser.defense * defMultiplierUp;
       setTimeout(
         () =>
           $(document.querySelector(".message")).text(
@@ -438,8 +487,13 @@ class BattleStage extends Component {
           2300
         );
       }
+      if (this.state.PlayersTurn === "Player One") {
+        this.setState({ defMultiplierUp1: defMultiplierUp });
+      } else {
+        this.setState({ defMultiplierUp2: defMultiplierUp });
+      }
     } else if (statusEff === "raisesUserSpd") {
-      PKMNuser.speed = PKMNuser.speed * multiplierUp;
+      PKMNuser.speed = PKMNuser.speed * spdMultiplierUp;
       setTimeout(
         () =>
           $(document.querySelector(".message")).text(
@@ -458,8 +512,13 @@ class BattleStage extends Component {
           2300
         );
       }
+      if (this.state.PlayersTurn === "Player One") {
+        this.setState({ spdMultiplierUp1: spdMultiplierUp });
+      } else {
+        this.setState({ spdMultiplierUp2: spdMultiplierUp });
+      }
     } else if (statusEff === "raisesUserSpc") {
-      PKMNuser.special = PKMNuser.special * multiplierUp;
+      PKMNuser.special = PKMNuser.special * spcMultiplierUp;
       setTimeout(
         () =>
           $(document.querySelector(".message")).text(
@@ -477,6 +536,11 @@ class BattleStage extends Component {
             ),
           2300
         );
+      }
+      if (this.state.PlayersTurn === "Player One") {
+        this.setState({ spcMultiplierUp1: spcMultiplierUp });
+      } else {
+        this.setState({ spcMultiplierUp2: spcMultiplierUp });
       }
     } else if (statusEff === "raisesUserAcc") {
       PKMNuser.accuracy = PKMNuser.accuracy + 0.1;
@@ -522,7 +586,7 @@ class BattleStage extends Component {
 
     //LOWERS////////////////////////////////////////////////////////////////
     if (statusEff === "lowersTargetAtk") {
-      PKMNtarget.attack = PKMNtarget.attack * multiplierDown;
+      PKMNtarget.attack = PKMNtarget.attack * atkMultiplierDown;
       setTimeout(
         () =>
           $(document.querySelector(".message")).text(
@@ -541,8 +605,13 @@ class BattleStage extends Component {
           2300
         );
       }
+      if (this.state.PlayersTurn === "Player One") {
+        this.setState({ atkMultiplierDown1: atkMultiplierDown });
+      } else {
+        this.setState({ atkMultiplierDown2: atkMultiplierDown });
+      }
     } else if (statusEff === "lowersTargetDef") {
-      PKMNtarget.defense = PKMNtarget.defense * multiplierDown;
+      PKMNtarget.defense = PKMNtarget.defense * defMultiplierDown;
       setTimeout(
         () =>
           $(document.querySelector(".message")).text(
@@ -561,8 +630,13 @@ class BattleStage extends Component {
           2300
         );
       }
+      if (this.state.PlayersTurn === "Player One") {
+        this.setState({ defMultiplierDown1: defMultiplierDown });
+      } else {
+        this.setState({ defMultiplierDown2: defMultiplierDown });
+      }
     } else if (statusEff === "lowersTargetSpd") {
-      PKMNtarget.speed = PKMNtarget.speed * multiplierDown;
+      PKMNtarget.speed = PKMNtarget.speed * spdMultiplierDown;
       setTimeout(
         () =>
           $(document.querySelector(".message")).text(
@@ -581,8 +655,13 @@ class BattleStage extends Component {
           2300
         );
       }
+      if (this.state.PlayersTurn === "Player One") {
+        this.setState({ spdMultiplierDown1: spdMultiplierDown });
+      } else {
+        this.setState({ spdMultiplierDown2: spdMultiplierDown });
+      }
     } else if (statusEff === "lowersTargetSpc") {
-      PKMNtarget.special = PKMNtarget.special * multiplierDown;
+      PKMNtarget.special = PKMNtarget.special * spcMultiplierDown;
       setTimeout(
         () =>
           $(document.querySelector(".message")).text(
@@ -600,6 +679,11 @@ class BattleStage extends Component {
             ),
           2300
         );
+      }
+      if (this.state.PlayersTurn === "Player One") {
+        this.setState({ spcMultiplierDown1: spcMultiplierDown });
+      } else {
+        this.setState({ spcMultiplierDown2: spcMultiplierDown });
       }
     } else if (statusEff === "lowersTargetAcc") {
       PKMNtarget.accuracy = PKMNtarget.accuracy - 0.1;

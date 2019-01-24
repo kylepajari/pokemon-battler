@@ -1446,7 +1446,7 @@ const CreateMoves = moveName => {
       type: "water",
       accuracy: 100,
       pp: 30,
-      statusEff: "lowerTargetSpd"
+      statusEff: "lowersTargetSpd"
     }; //may lower speed
   }
   if (moveName === "Dizzy Punch") {
