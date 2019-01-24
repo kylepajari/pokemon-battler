@@ -14,10 +14,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // fetch("https://pokeapi.co/api/v2/pokemon/1")
-    //   .then(response => response.json())
-    //   .then(data => this.setState({ data }));
-
     fetch(
       "https://pokeapi-215911.firebaseapp.com/api/v2/pokemon/?offset=0&limit=151"
     )

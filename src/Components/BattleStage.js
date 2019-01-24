@@ -16,14 +16,15 @@ class BattleStage extends Component {
       player1CurrentPokemon: 0,
       player2CurrentPokemon: 0,
       player1PokemonCurrentHP: 0,
-      player2PokemonCurrentHP: 0
+      player2PokemonCurrentHP: 0,
+      recoilDamage: 0,
+      statMultiplierUp: 1,
+      statMultiplierDown: 1
     };
   }
 
   componentDidMount() {
     $(document.querySelector(".fightButton")).fadeIn(10);
-    $(document.querySelector(".player1Moves")).fadeOut(10);
-    $(document.querySelector(".player2Moves")).fadeOut(10);
     $(document.querySelector(".message")).fadeOut(10);
     $(document.querySelector(".playermessage")).fadeOut(10);
   }
@@ -57,11 +58,15 @@ class BattleStage extends Component {
     if (playersTurn === "Player One") {
       //show moves for current battling pokemon
       $(document.querySelector(".player1Moves")).fadeIn(300);
+      $(document.querySelector(".player1Moves")).show();
       $(document.querySelector(".player2Moves")).fadeOut(10);
+      $(document.querySelector(".player2Moves")).hide();
     } else if (playersTurn === "Player Two") {
       //show moves for current battling pokemon
       $(document.querySelector(".player2Moves")).fadeIn(300);
+      $(document.querySelector(".player2Moves")).show();
       $(document.querySelector(".player1Moves")).fadeOut(10);
+      $(document.querySelector(".player1Moves")).hide();
     }
 
     $(document.querySelector(".fightButton")).fadeOut(300);
@@ -294,156 +299,20 @@ class BattleStage extends Component {
         //does move have power, if so deal damage
         if (power > 0) {
           //if move lands, continue with deal damage
-          setTimeout(() => this.dealDamage(power, lv, moveType), 2000);
+          setTimeout(
+            () => this.dealDamage(power, lv, moveType, statusEff),
+            2000
+          );
         }
-        if (statusEff !== "") {
-          //move also has status modifier
-          //STATUS MODIFIERS: raisesUserAtk, raisesUserDef,raisesUserSpd,raisesUserSpc,raisesUserAcc,raisesUserEva
-          // lowersTargetAtk, lowersTargetDef,lowersTargetSpd,lowersTargetSpc,lowersTargetAcc,lowersTargetEva
-          console.log("move has status effect: " + statusEff);
-          setTimeout(
-            () => $(document.querySelector(".message")).fadeIn(300),
-            2300
+
+        if (power === 0 && statusEff !== "") {
+          this.checkForStatusEffect(
+            statusEff,
+            PKMNuser,
+            PKMNtarget,
+            HPbar,
+            power
           );
-          setTimeout(
-            () => $(document.querySelector(".message")).fadeOut(1000),
-            3300
-          );
-
-          //RECOIL//////////////////////////////////////
-          if (statusEff === "recoil") {
-            let RecoilAmount = 3; //Adjust this to change amount of hp depleted
-            let Damage = PKMNuser.hp / RecoilAmount;
-            let origHealth = parseInt(HPbar.css("width"));
-            let asPercentage = Damage / PKMNuser.hp;
-
-            //update target pokemon hp after damage dealt
-            PKMNuser.hp = PKMNuser.hp - Damage;
-
-            let dmgDone = origHealth * asPercentage;
-            let updatedBarHP = origHealth - dmgDone;
-            //update health bar to reflect damage
-            setTimeout(() => HPbar.css("width", updatedBarHP), 3000);
-            if (updatedBarHP <= 260 && updatedBarHP >= 104) {
-              setTimeout(() => HPbar.removeClass("fullhp"), 3000);
-              setTimeout(() => HPbar.addClass("halfhp"), 3000);
-            } else if (updatedBarHP <= 104 && updatedBarHP >= 0) {
-              setTimeout(() => HPbar.removeClass("halfhp"), 3000);
-              setTimeout(() => HPbar.addClass("onefifthhp"), 3000);
-            }
-            setTimeout(
-              () =>
-                $(document.querySelector(".message")).text(
-                  PKMNuser.name + " was hit with recoil!"
-                ),
-              2300
-            );
-          }
-
-          //RAISES////////////////////////////////////////////////////////////
-          if (statusEff === "raisesUserAtk") {
-          } else if (statusEff === "raisesUserAtk") {
-          } else if (statusEff === "raisesUserDef") {
-          } else if (statusEff === "raisesUserSpd") {
-          } else if (statusEff === "raisesUserSpc") {
-          } else if (statusEff === "raisesUserAcc") {
-            PKMNuser.accuracy = PKMNuser.accuracy + 0.1;
-            setTimeout(
-              () =>
-                $(document.querySelector(".message")).text(
-                  PKMNuser.name + "'s accuracy went up!"
-                ),
-              2300
-            );
-
-            if (PKMNuser.accuracy > 1.5) {
-              PKMNuser.accuracy = 1.5;
-              setTimeout(
-                () =>
-                  $(document.querySelector(".message")).text(
-                    PKMNuser.name + "'s accuracy wont go any higher!"
-                  ),
-                2300
-              );
-            }
-          } else if (statusEff === "raisesUserEva") {
-            PKMNuser.evasion = PKMNuser.evasion + 0.1;
-            setTimeout(
-              () =>
-                $(document.querySelector(".message")).text(
-                  PKMNuser.name + "'s evasion went up!"
-                ),
-              2300
-            );
-
-            if (PKMNuser.evasion > 1.5) {
-              PKMNuser.evasion = 1.5;
-              setTimeout(
-                () =>
-                  $(document.querySelector(".message")).text(
-                    PKMNuser.name + "'s evasion wont go any higher!"
-                  ),
-                2300
-              );
-            }
-          }
-
-          //LOWERS////////////////////////////////////////////////////////////////
-          if (statusEff === "lowersTargetAtk") {
-          } else if (statusEff === "lowersTargetAtk") {
-          } else if (statusEff === "lowersTargetDef") {
-          } else if (statusEff === "lowersTargetSpd") {
-          } else if (statusEff === "lowersTargetSpc") {
-          } else if (statusEff === "lowersTargetAcc") {
-            PKMNtarget.accuracy = PKMNtarget.accuracy - 0.1;
-            setTimeout(
-              () =>
-                $(document.querySelector(".message")).text(
-                  PKMNtarget.name + "'s accuracy fell!"
-                ),
-              2300
-            );
-
-            if (PKMNtarget.accuracy < 0.5) {
-              PKMNtarget.accuracy = 0.5;
-              setTimeout(
-                () =>
-                  $(document.querySelector(".message")).text(
-                    PKMNtarget.name + "'s accuracy wont go any lower!"
-                  ),
-                2300
-              );
-            }
-          } else if (statusEff === "lowersTargetEva") {
-            PKMNtarget.evasion = PKMNtarget.evasion - 0.1;
-            setTimeout(
-              () =>
-                $(document.querySelector(".message")).text(
-                  PKMNtarget.name + "'s evasion fell!"
-                ),
-              2300
-            );
-
-            if (PKMNtarget.evasion < 0.5) {
-              PKMNtarget.evasion = 0.5;
-              setTimeout(
-                () =>
-                  $(document.querySelector(".message")).text(
-                    PKMNtarget.name + "'s evasion wont go any lower!"
-                  ),
-                2300
-              );
-            }
-          }
-          if (power === 0) {
-            //switch to next player
-            if (this.state.playersTurn === "Player One") {
-              this.setState({ playersTurn: "Player Two" });
-            } else {
-              this.setState({ playersTurn: "Player One" });
-            }
-            $(document.querySelector(".fightButton")).fadeIn(300);
-          }
         }
 
         if (power <= 0 && statusEff === "") {
@@ -476,19 +345,330 @@ class BattleStage extends Component {
     }
   };
 
+  //CHECK FOR STATUS EFFECT FUNCTION ////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////
+  checkForStatusEffect = (
+    statusEff,
+    PKMNuser,
+    PKMNtarget,
+    HPbar,
+    power,
+    recoilDamage
+  ) => {
+    console.log(statusEff, PKMNuser, PKMNtarget, HPbar, power, recoilDamage);
+    let multiplierUp = this.state.multiplier + 0.5;
+    let multiplierDown = this.state.multiplier - 0.12;
+    //STATUS MODIFIERS: raisesUserAtk, raisesUserDef,raisesUserSpd,raisesUserSpc,raisesUserAcc,raisesUserEva
+    // lowersTargetAtk, lowersTargetDef,lowersTargetSpd,lowersTargetSpc,lowersTargetAcc,lowersTargetEva
+    console.log("move has status effect: " + statusEff);
+    setTimeout(() => $(document.querySelector(".message")).fadeIn(300), 2300);
+    setTimeout(() => $(document.querySelector(".message")).fadeOut(1000), 3300);
+
+    //RECOIL//////////////////////////////////////
+    if (statusEff === "recoil") {
+      //damage should be 1/4 damage dealt to target
+      let Damage = recoilDamage;
+      console.log("recoil damage is: " + Damage);
+
+      // let Damage = PKMNuser.hp / RecoilAmount;
+      let origHealth = parseInt(HPbar.css("width"));
+      let asPercentage = Damage / PKMNuser.hp;
+
+      //update target pokemon hp after damage dealt
+      PKMNuser.hp = PKMNuser.hp - Damage;
+
+      let dmgDone = origHealth * asPercentage;
+      let updatedBarHP = origHealth - dmgDone;
+      //update health bar to reflect damage
+      setTimeout(() => HPbar.css("width", updatedBarHP), 2500);
+      if (updatedBarHP <= 260 && updatedBarHP >= 104) {
+        setTimeout(() => HPbar.removeClass("fullhp"), 2500);
+        setTimeout(() => HPbar.addClass("halfhp"), 2500);
+      } else if (updatedBarHP <= 104 && updatedBarHP >= 0) {
+        setTimeout(() => HPbar.removeClass("halfhp"), 2500);
+        setTimeout(() => HPbar.addClass("onefifthhp"), 2500);
+      }
+      setTimeout(
+        () =>
+          $(document.querySelector(".message")).text(
+            PKMNuser.name + " was hit with recoil!"
+          ),
+        1800
+      );
+    }
+
+    //RAISES////////////////////////////////////////////////////////////
+    if (statusEff === "raisesUserAtk") {
+      PKMNuser.attack = PKMNuser.attack * multiplierUp;
+      setTimeout(
+        () =>
+          $(document.querySelector(".message")).text(
+            PKMNuser.name + "'s attack rose!"
+          ),
+        2300
+      );
+
+      if (PKMNuser.attack > PKMNuser.attack * 4) {
+        PKMNuser.attack = PKMNuser.attack * 4;
+        setTimeout(
+          () =>
+            $(document.querySelector(".message")).text(
+              PKMNuser.name + "'s attack wont go higher!"
+            ),
+          2300
+        );
+      }
+    } else if (statusEff === "raisesUserDef") {
+      PKMNuser.defense = PKMNuser.defense * multiplierUp;
+      setTimeout(
+        () =>
+          $(document.querySelector(".message")).text(
+            PKMNuser.name + "'s defense rose!"
+          ),
+        2300
+      );
+
+      if (PKMNuser.defense > PKMNuser.defense * 4) {
+        PKMNuser.defense = PKMNuser.defense * 4;
+        setTimeout(
+          () =>
+            $(document.querySelector(".message")).text(
+              PKMNuser.name + "'s defense wont go higher!"
+            ),
+          2300
+        );
+      }
+    } else if (statusEff === "raisesUserSpd") {
+      PKMNuser.speed = PKMNuser.speed * multiplierUp;
+      setTimeout(
+        () =>
+          $(document.querySelector(".message")).text(
+            PKMNuser.name + "'s speed rose!"
+          ),
+        2300
+      );
+
+      if (PKMNuser.speed > PKMNuser.speed * 4) {
+        PKMNuser.speed = PKMNuser.speed * 4;
+        setTimeout(
+          () =>
+            $(document.querySelector(".message")).text(
+              PKMNuser.name + "'s speed wont go higher!"
+            ),
+          2300
+        );
+      }
+    } else if (statusEff === "raisesUserSpc") {
+      PKMNuser.special = PKMNuser.special * multiplierUp;
+      setTimeout(
+        () =>
+          $(document.querySelector(".message")).text(
+            PKMNuser.name + "'s special rose!"
+          ),
+        2300
+      );
+
+      if (PKMNuser.special > PKMNuser.special * 4) {
+        PKMNuser.special = PKMNuser.special * 4;
+        setTimeout(
+          () =>
+            $(document.querySelector(".message")).text(
+              PKMNuser.name + "'s special wont go higher!"
+            ),
+          2300
+        );
+      }
+    } else if (statusEff === "raisesUserAcc") {
+      PKMNuser.accuracy = PKMNuser.accuracy + 0.1;
+      setTimeout(
+        () =>
+          $(document.querySelector(".message")).text(
+            PKMNuser.name + "'s accuracy went up!"
+          ),
+        2300
+      );
+
+      if (PKMNuser.accuracy > 1.5) {
+        PKMNuser.accuracy = 1.5;
+        setTimeout(
+          () =>
+            $(document.querySelector(".message")).text(
+              PKMNuser.name + "'s accuracy wont go higher!"
+            ),
+          2300
+        );
+      }
+    } else if (statusEff === "raisesUserEva") {
+      PKMNuser.evasion = PKMNuser.evasion + 0.1;
+      setTimeout(
+        () =>
+          $(document.querySelector(".message")).text(
+            PKMNuser.name + "'s evasion went up!"
+          ),
+        2300
+      );
+
+      if (PKMNuser.evasion > 1.5) {
+        PKMNuser.evasion = 1.5;
+        setTimeout(
+          () =>
+            $(document.querySelector(".message")).text(
+              PKMNuser.name + "'s evasion wont go higher!"
+            ),
+          2300
+        );
+      }
+    }
+
+    //LOWERS////////////////////////////////////////////////////////////////
+    if (statusEff === "lowersTargetAtk") {
+      PKMNtarget.attack = PKMNtarget.attack * multiplierDown;
+      setTimeout(
+        () =>
+          $(document.querySelector(".message")).text(
+            PKMNtarget.name + "'s attack fell!"
+          ),
+        2300
+      );
+
+      if (PKMNtarget.attack > PKMNtarget.attack * 4) {
+        PKMNtarget.attack = PKMNtarget.attack * 4;
+        setTimeout(
+          () =>
+            $(document.querySelector(".message")).text(
+              PKMNtarget.name + "'s attack wont go lower!"
+            ),
+          2300
+        );
+      }
+    } else if (statusEff === "lowersTargetDef") {
+      PKMNtarget.defense = PKMNtarget.defense * multiplierDown;
+      setTimeout(
+        () =>
+          $(document.querySelector(".message")).text(
+            PKMNtarget.name + "'s defense fell!"
+          ),
+        2300
+      );
+
+      if (PKMNtarget.defense > PKMNtarget.defense * 4) {
+        PKMNtarget.defense = PKMNtarget.defense * 4;
+        setTimeout(
+          () =>
+            $(document.querySelector(".message")).text(
+              PKMNtarget.name + "'s defense wont go lower!"
+            ),
+          2300
+        );
+      }
+    } else if (statusEff === "lowersTargetSpd") {
+      PKMNtarget.speed = PKMNtarget.speed * multiplierDown;
+      setTimeout(
+        () =>
+          $(document.querySelector(".message")).text(
+            PKMNtarget.name + "'s speed fell!"
+          ),
+        2300
+      );
+
+      if (PKMNtarget.speed > PKMNtarget.speed * 4) {
+        PKMNtarget.speed = PKMNtarget.speed * 4;
+        setTimeout(
+          () =>
+            $(document.querySelector(".message")).text(
+              PKMNtarget.name + "'s speed wont go lower!"
+            ),
+          2300
+        );
+      }
+    } else if (statusEff === "lowersTargetSpc") {
+      PKMNtarget.special = PKMNtarget.special * multiplierDown;
+      setTimeout(
+        () =>
+          $(document.querySelector(".message")).text(
+            PKMNtarget.name + "'s special fell!"
+          ),
+        2300
+      );
+
+      if (PKMNtarget.special > PKMNtarget.special * 4) {
+        PKMNtarget.special = PKMNtarget.special * 4;
+        setTimeout(
+          () =>
+            $(document.querySelector(".message")).text(
+              PKMNtarget.name + "'s special wont go lower!"
+            ),
+          2300
+        );
+      }
+    } else if (statusEff === "lowersTargetAcc") {
+      PKMNtarget.accuracy = PKMNtarget.accuracy - 0.1;
+      setTimeout(
+        () =>
+          $(document.querySelector(".message")).text(
+            PKMNtarget.name + "'s accuracy fell!"
+          ),
+        2300
+      );
+
+      if (PKMNtarget.accuracy < 0.5) {
+        PKMNtarget.accuracy = 0.5;
+        setTimeout(
+          () =>
+            $(document.querySelector(".message")).text(
+              PKMNtarget.name + "'s accuracy wont go lower!"
+            ),
+          2300
+        );
+      }
+    } else if (statusEff === "lowersTargetEva") {
+      PKMNtarget.evasion = PKMNtarget.evasion - 0.1;
+      setTimeout(
+        () =>
+          $(document.querySelector(".message")).text(
+            PKMNtarget.name + "'s evasion fell!"
+          ),
+        2300
+      );
+
+      if (PKMNtarget.evasion < 0.5) {
+        PKMNtarget.evasion = 0.5;
+        setTimeout(
+          () =>
+            $(document.querySelector(".message")).text(
+              PKMNtarget.name + "'s evasion wont go lower!"
+            ),
+          2300
+        );
+      }
+    }
+    if (power === 0) {
+      //switch to next player
+      if (this.state.playersTurn === "Player One") {
+        this.setState({ playersTurn: "Player Two" });
+      } else {
+        this.setState({ playersTurn: "Player One" });
+      }
+      $(document.querySelector(".fightButton")).fadeIn(300);
+    }
+  };
+
   //DEAL DAMAGE FUNCTION ////////////////////////////////////////////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  dealDamage = (power, lv, moveType) => {
+  dealDamage = (power, lv, moveType, statusEff) => {
     let PKMNUser = "";
     let PKMNTarget = "";
+    let UserHP = "";
     let TargetHP = "";
     if (this.state.playersTurn === "Player One") {
       PKMNUser = this.state.player1Team[this.state.player1CurrentPokemon];
       PKMNTarget = this.state.player2Team[this.state.player2CurrentPokemon];
+      UserHP = $(document.querySelector(".player1HP"));
       TargetHP = $(document.querySelector(".player2HP"));
     } else {
       PKMNUser = this.state.player2Team[this.state.player2CurrentPokemon];
       PKMNTarget = this.state.player1Team[this.state.player1CurrentPokemon];
+      UserHP = $(document.querySelector(".player2HP"));
       TargetHP = $(document.querySelector(".player1HP"));
     }
 
@@ -540,7 +720,8 @@ class BattleStage extends Component {
     console.log("modifier: " + modifier);
     //formula taken from pokemon wiki, level * 2 / 5 + 2 * "move power" + (attack of attacker / defense of target) / 50 + 2 * modifier
     let Damage = ((((lv * 2) / 5 + 2) * power * (A / D)) / 50 + 2) * modifier;
-
+    //set up recoil damage
+    let recoilDamage = Damage / 4;
     //store original bar percent
     let origHealth = parseInt(TargetHP.css("width"));
     console.log("origHealthBarPercent: ", origHealth);
@@ -599,6 +780,18 @@ class BattleStage extends Component {
       setTimeout(
         () => $(document.querySelector(".message")).fadeOut(500),
         1500
+      );
+    }
+
+    //Check for and apply status effect after damage
+    if (statusEff !== "") {
+      this.checkForStatusEffect(
+        statusEff,
+        PKMNUser,
+        PKMNTarget,
+        UserHP,
+        power,
+        recoilDamage
       );
     }
 

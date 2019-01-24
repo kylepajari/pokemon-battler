@@ -69,6 +69,12 @@ class TeamBuilder extends Component {
       let name = this.formatName(item.move.name);
       return CreateMoves(name);
     });
+    let newMoves = [];
+    for (let i = 0; i < 4; i++) {
+      let randomMove = movesList[Math.floor(Math.random() * movesList.length)];
+      newMoves.push(randomMove);
+    }
+    //use return newMoves to get 4 random ones instead of all moves
     return movesList;
   };
 
