@@ -291,7 +291,7 @@ class BattleStage extends Component {
       //subtract 1 pp from move used
       PKMNuser.moves[index].pp = pp - 1;
 
-      //check if user is afflicted with confusion or sleep
+      //check if user is afflicted with sleep
       if (PKMNuser.isAsleep && PKMNuser.turnsAsleep > 0) {
         console.log(PKMNuser.name + " is fast asleep...");
         console.log(
@@ -377,43 +377,20 @@ class BattleStage extends Component {
           );
         }
 
-        //handle confusion
-        let hurtitself = false;
-        if (PKMNuser.isConfused) {
-          console.log(PKMNuser.name + " is confused...");
+        //handle paralyze
+        let paralysis = false;
+        if (PKMNuser.statusCondition === "Paralyze") {
+          //user is paralyzed
           let rand = Math.random();
-          if (rand > 0.5) {
-            console.log(
-              PKMNuser.name + " is confused, it hurt itself in confusion..."
-            );
-
-            //deal 1/8 of max HP as damage to user
-            let damage = PKMNuser.hp / 16;
-            //store original bar percent
-            let origHealth = parseInt(HPbar.css("width"));
-
-            // calculate percent difference of hp / dmg
-            let asPercentage = damage / PKMNtarget.hp;
-
-            //update target pokemon hp after damage dealt
-            PKMNtarget.hp = PKMNtarget.hp - damage;
-
-            let dmgDone = origHealth * asPercentage;
-            let updatedBarHP = origHealth - dmgDone;
-
-            //update health bar to reflect damage
-            HPbar.css("width", updatedBarHP);
-            if (updatedBarHP <= 260 && updatedBarHP >= 104) {
-              HPbar.removeClass("fullhp");
-              HPbar.addClass("halfhp");
-            } else if (updatedBarHP <= 104 && updatedBarHP >= 0) {
-              HPbar.removeClass("halfhp");
-              HPbar.addClass("onefifthhp");
-            }
+          //25% chance of paralysis
+          if (rand < 0.25) {
+            //blocked by paralysis
+            console.log(PKMNuser.name + " is paralyzed...");
+            paralysis = true;
 
             $(document.querySelector(".message")).fadeIn(500);
             $(document.querySelector(".message")).text(
-              PKMNuser.name + " hurt itself in confusion!"
+              PKMNuser.name + " is paralyzed!"
             );
 
             setTimeout(
@@ -431,6 +408,71 @@ class BattleStage extends Component {
               this.setState({ playersTurn: "Player One" });
             }
             $(document.querySelector(".fightButton")).fadeIn(300);
+          }
+        }
+
+        //handle confusion
+        let hurtitself = false;
+        if (PKMNuser.isConfused) {
+          if (PKMNuser.turnsConfused > 0) {
+            //subtract one turn from confused
+            PKMNuser.turnsConfused = PKMNuser.turnsConfused - 1;
+
+            console.log(PKMNuser.name + " is confused...");
+            let rand = Math.random();
+            //50% chance of hurting itself
+            if (rand > 0.5) {
+              console.log(PKMNuser.name + " hurt itself in confusion...");
+              hurtitself = true;
+
+              //deal 1/8 of max HP as damage to user
+              let damage = PKMNuser.hp / 8;
+              console.log("confusion damage: " + damage);
+
+              //store original bar percent
+              let origHealth = parseInt(HPbar.css("width"));
+
+              // calculate percent difference of hp / dmg
+              let asPercentage = damage / PKMNuser.hp;
+
+              //update target pokemon hp after damage dealt
+              PKMNuser.hp = PKMNuser.hp - damage;
+
+              let dmgDone = origHealth * asPercentage;
+              let updatedBarHP = origHealth - dmgDone;
+              console.log(origHealth, asPercentage, dmgDone, updatedBarHP);
+
+              //update health bar to reflect damage
+              HPbar.css("width", updatedBarHP);
+              if (updatedBarHP <= 260 && updatedBarHP >= 104) {
+                HPbar.removeClass("fullhp");
+                HPbar.addClass("halfhp");
+              } else if (updatedBarHP <= 104 && updatedBarHP >= 0) {
+                HPbar.removeClass("halfhp");
+                HPbar.addClass("onefifthhp");
+              }
+
+              $(document.querySelector(".message")).fadeIn(500);
+              $(document.querySelector(".message")).text(
+                PKMNuser.name + " hurt itself in confusion!"
+              );
+
+              setTimeout(
+                () => $(document.querySelector(".message")).fadeOut(500),
+                1500
+              );
+              setTimeout(
+                () => $(document.querySelector(".message")).text(""),
+                2000
+              );
+              //switch to next player
+              if (this.state.playersTurn === "Player One") {
+                this.setState({ playersTurn: "Player Two" });
+              } else {
+                this.setState({ playersTurn: "Player One" });
+              }
+              $(document.querySelector(".fightButton")).fadeIn(300);
+            }
           } else {
             console.log(PKMNuser.name + " snapped out of confusion...");
             PKMNuser.isConfused = false;
@@ -450,8 +492,8 @@ class BattleStage extends Component {
           }
         }
 
-        //if pokemon was hurt from confusion, skip rest of move
-        if (!hurtitself) {
+        //if pokemon was hurt from confusion or blocked by paralysis, skip rest of move
+        if (!hurtitself && !paralysis) {
           //if so, does move land hit (accuracy check)
           //formula: percentChance = moveAcc * (attacker accuracy / target evasion)
           console.log(
@@ -605,6 +647,14 @@ class BattleStage extends Component {
           3000
         );
         PKMNuser.isConfused = true;
+        let amountTurnsConfused = Math.round(this.randomNumberGenerator(1, 4));
+        console.log(
+          PKMNuser.name +
+            " will be confused for " +
+            amountTurnsConfused +
+            " turns..."
+        );
+        PKMNuser.turnsConfused = amountTurnsConfused;
 
         setTimeout(
           () =>
@@ -646,6 +696,14 @@ class BattleStage extends Component {
           3000
         );
         PKMNtarget.isConfused = true;
+        let amountTurnsConfused = Math.round(this.randomNumberGenerator(1, 4));
+        console.log(
+          PKMNtarget.name +
+            " will be confused for " +
+            amountTurnsConfused +
+            " turns..."
+        );
+        PKMNtarget.turnsConfused = amountTurnsConfused;
 
         setTimeout(
           () =>
@@ -814,32 +872,68 @@ class BattleStage extends Component {
           );
         }
       } else if (statusEff === "Burn") {
-        PKMNtarget.statusCondition = "Burn";
-        setTimeout(
-          () =>
-            $(document.querySelector(".message")).text(
-              PKMNtarget.name + " was Burned!"
-            ),
-          2300
-        );
+        if (targetType1 === "fire" || targetType2 === "fire") {
+          //fire types not effected by burn
+          //do nothing...
+          setTimeout(
+            () =>
+              $(document.querySelector(".message")).text(
+                PKMNtarget.name + " was unaffected"
+              ),
+            2300
+          );
+        } else {
+          PKMNtarget.statusCondition = "Burn";
+          setTimeout(
+            () =>
+              $(document.querySelector(".message")).text(
+                PKMNtarget.name + " was Burned!"
+              ),
+            2300
+          );
+        }
       } else if (statusEff === "Paralyze") {
-        PKMNtarget.statusCondition = "Paralyze";
-        setTimeout(
-          () =>
-            $(document.querySelector(".message")).text(
-              PKMNtarget.name + " was Paralyzed!"
-            ),
-          2300
-        );
+        if (targetType1 === "electric" || targetType2 === "electric") {
+          //electric types not effected by paralyze
+          //do nothing...
+          setTimeout(
+            () =>
+              $(document.querySelector(".message")).text(
+                PKMNtarget.name + " was unaffected"
+              ),
+            2300
+          );
+        } else {
+          PKMNtarget.statusCondition = "Paralyze";
+          setTimeout(
+            () =>
+              $(document.querySelector(".message")).text(
+                PKMNtarget.name + " was Paralyzed!"
+              ),
+            2300
+          );
+        }
       } else if (statusEff === "Frozen") {
-        PKMNtarget.statusCondition = "Frozen";
-        setTimeout(
-          () =>
-            $(document.querySelector(".message")).text(
-              PKMNtarget.name + " was Frozen solid!"
-            ),
-          2300
-        );
+        if (targetType1 === "ice" || targetType2 === "ice") {
+          //ice types not effected by frozen
+          //do nothing...
+          setTimeout(
+            () =>
+              $(document.querySelector(".message")).text(
+                PKMNtarget.name + " was unaffected"
+              ),
+            2300
+          );
+        } else {
+          PKMNtarget.statusCondition = "Frozen";
+          setTimeout(
+            () =>
+              $(document.querySelector(".message")).text(
+                PKMNtarget.name + " was Frozen solid!"
+              ),
+            2300
+          );
+        }
       }
     }
 
@@ -1384,171 +1478,161 @@ class BattleStage extends Component {
 
   //CONDITIONS FUNCTION ///////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////
-  Conditions = string => {
-    if (string === "Poison") {
-      return (
-        <span className="badge badge-pill badge-success" key={string}>
+  Conditions = (status, isAsleep, isConfused) => {
+    let StatusDiv = [];
+    if (status === "Poison") {
+      StatusDiv.push(
+        <span className="badge badge-pill badge-success" key={status}>
           PSN
         </span>
       );
-    } else if (string === "Paralyze") {
-      return (
-        <span className="badge badge-pill badge-warning" key={string}>
+    } else if (status === "Paralyze") {
+      StatusDiv.push(
+        <span className="badge badge-pill badge-warning" key={status}>
           PAR
         </span>
       );
-    } else if (string === "Burn") {
-      return (
-        <span className="badge badge-pill badge-danger" key={string}>
-          BURN
+    } else if (status === "Burn") {
+      StatusDiv.push(
+        <span className="badge badge-pill badge-danger" key={status}>
+          BRN
         </span>
       );
-    } else if (string === "Frozen") {
-      return (
-        <span className="badge badge-pill badge-primary" key={string}>
-          FRZN
+    } else if (status === "Frozen") {
+      StatusDiv.push(
+        <span className="badge badge-pill badge-primary" key={status}>
+          FRZ
         </span>
       );
     }
-  };
 
-  //SLEEP CHECK FUNCTION ///////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////
-  SleepCheck = bool => {
-    if (bool === true) {
-      return (
+    if (isAsleep === true) {
+      StatusDiv.push(
         <span className="badge badge-pill badge-secondary" key="sleep">
-          SLEEP
+          SLP
         </span>
       );
     }
-  };
-
-  //CONFUSE CHECK FUNCTION ///////////////////////////////////////////////////////////////////////////////
-  ////////////////////////////////////////////////////////////////////////////////////////////////
-  ConfuseCheck = bool => {
-    if (bool === true) {
-      return (
+    if (isConfused === true) {
+      StatusDiv.push(
         <span className="badge badge-pill badge-secondary" key="confuse">
-          CONFUSE
+          CON
         </span>
       );
     }
+
+    return StatusDiv;
   };
 
   render() {
     if (this.props.battleReady) {
       return (
-        <div className="battleContainer container">
-          <div>{this.state.playersTurn}'s Turn</div>
-          <div className="side side1 col">
-            <p className="row">
-              {this.state.player2Team.map((item, i) => {
-                return (
-                  <img id={"p2" + i} key={i} src={pokeball} alt="pokeball" />
-                );
-              })}
+        <div className="battleWindow">
+          <div className="battleContainer container">
+            <div>{this.state.playersTurn}'s Turn</div>
+            <div className="side side1 col">
+              <p className="row">
+                {this.state.player2Team.map((item, i) => {
+                  return (
+                    <img id={"p2" + i} key={i} src={pokeball} alt="pokeball" />
+                  );
+                })}
 
-              {this.state.player2Team[this.state.player2CurrentPokemon].name}
-              <span className="badge badge-info">
-                Lv.{" "}
-                {this.state.player2Team[this.state.player2CurrentPokemon].lv}
-              </span>
-              {this.Types(
-                this.state.player2Team[this.state.player2CurrentPokemon].types
-              )}
-              {this.Conditions(
-                this.state.player2Team[this.state.player2CurrentPokemon]
-                  .statusCondition
-              )}
-              {this.SleepCheck(
-                this.state.player2Team[this.state.player2CurrentPokemon]
-                  .isAsleep
-              )}
-              {this.ConfuseCheck(
-                this.state.player2Team[this.state.player2CurrentPokemon]
-                  .isConfused
-              )}
-            </p>
-
-            <div className="progress">
-              HP:
-              <div
-                className="progress-bar player2HP fullhp"
-                role="progressbar"
-                aria-valuenow="41"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                style={{ width: "100%" }}
-              />
-            </div>
-            <div className="player2Sprite">
-              <img
-                src={
+                {this.state.player2Team[this.state.player2CurrentPokemon].name}
+                <span className="badge badge-info">
+                  Lv.
+                  {this.state.player2Team[this.state.player2CurrentPokemon].lv}
+                </span>
+                {this.Types(
+                  this.state.player2Team[this.state.player2CurrentPokemon].types
+                )}
+                {this.Conditions(
                   this.state.player2Team[this.state.player2CurrentPokemon]
-                    .frontSprite
-                }
-                alt={
-                  this.state.player2Team[this.state.player2CurrentPokemon].name
-                }
-              />
-            </div>
-          </div>
-          <div className="side side2 col">
-            <p className="row offset-2">
-              {this.state.player1Team.map((item, i) => {
-                return (
-                  <img id={"p1" + i} key={i} src={pokeball} alt="pokeball" />
-                );
-              })}
-              {this.state.player1Team[this.state.player1CurrentPokemon].name}
-              <span className="badge badge-info">
-                Lv.{" "}
-                {this.state.player1Team[this.state.player1CurrentPokemon].lv}
-              </span>
-              {this.Types(
-                this.state.player1Team[this.state.player1CurrentPokemon].types
-              )}
-              {this.Conditions(
-                this.state.player1Team[this.state.player1CurrentPokemon]
-                  .statusCondition
-              )}
-              {this.SleepCheck(
-                this.state.player1Team[this.state.player1CurrentPokemon]
-                  .isAsleep
-              )}
-              {this.ConfuseCheck(
-                this.state.player1Team[this.state.player1CurrentPokemon]
-                  .isConfused
-              )}
-            </p>
+                    .statusCondition,
+                  this.state.player2Team[this.state.player2CurrentPokemon]
+                    .isAsleep,
+                  this.state.player2Team[this.state.player2CurrentPokemon]
+                    .isConfused
+                )}
+              </p>
 
-            <div className="progress">
-              HP:
-              <div
-                className="progress-bar player1HP fullhp"
-                role="progressbar"
-                aria-valuenow="41"
-                aria-valuemin="0"
-                aria-valuemax="100"
-                style={{ width: "100%" }}
-              />
+              <div className="progress">
+                HP:
+                <div
+                  className="progress-bar player2HP fullhp"
+                  role="progressbar"
+                  aria-valuenow="41"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style={{ width: "100%" }}
+                />
+              </div>
+              <div className="player2Sprite">
+                <img
+                  src={
+                    this.state.player2Team[this.state.player2CurrentPokemon]
+                      .frontSprite
+                  }
+                  alt={
+                    this.state.player2Team[this.state.player2CurrentPokemon]
+                      .name
+                  }
+                />
+              </div>
             </div>
-            <div className="player1Sprite">
-              <img
-                src={
+            <div className="side side2 col">
+              <p className="row offset-2">
+                {this.state.player1Team.map((item, i) => {
+                  return (
+                    <img id={"p1" + i} key={i} src={pokeball} alt="pokeball" />
+                  );
+                })}
+                {this.state.player1Team[this.state.player1CurrentPokemon].name}
+                <span className="badge badge-info">
+                  Lv.
+                  {this.state.player1Team[this.state.player1CurrentPokemon].lv}
+                </span>
+                {this.Types(
+                  this.state.player1Team[this.state.player1CurrentPokemon].types
+                )}
+                {this.Conditions(
                   this.state.player1Team[this.state.player1CurrentPokemon]
-                    .backSprite
-                }
-                alt={
-                  this.state.player1Team[this.state.player1CurrentPokemon].name
-                }
-              />
+                    .statusCondition,
+                  this.state.player1Team[this.state.player1CurrentPokemon]
+                    .isAsleep,
+                  this.state.player1Team[this.state.player1CurrentPokemon]
+                    .isConfused
+                )}
+              </p>
+
+              <div className="progress">
+                HP:
+                <div
+                  className="progress-bar player1HP fullhp"
+                  role="progressbar"
+                  aria-valuenow="41"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  style={{ width: "100%" }}
+                />
+              </div>
+              <div className="player1Sprite">
+                <img
+                  src={
+                    this.state.player1Team[this.state.player1CurrentPokemon]
+                      .backSprite
+                  }
+                  alt={
+                    this.state.player1Team[this.state.player1CurrentPokemon]
+                      .name
+                  }
+                />
+              </div>
             </div>
-          </div>
-          <div className="battleMessages">
-            <p className="message" />
-            <p className="playermessage" />
+            <div className="battleMessages">
+              <p className="message" />
+              <p className="playermessage" />
+            </div>
           </div>
           <div className="battleInputs container">
             <div className="fight row">

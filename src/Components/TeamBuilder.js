@@ -133,7 +133,8 @@ class TeamBuilder extends Component {
       isAsleep: false,
       isBound: false,
       statusCondition: "",
-      turnsAsleep: 0
+      turnsAsleep: 0,
+      turnsConfused: 0
     };
 
     let player = null; //default to player one
