@@ -13,7 +13,7 @@ class TeamBuilder extends Component {
       data: null,
       isOpen: false, //to keep track of whether dropdown is open
       currentPlayer: "Player One", //player who starts the game
-      teamSize: 2, //max number of pokemon per team, adjust to allow more/less
+      teamSize: 1, //max number of pokemon per team, adjust to allow more/less
       player1Team: [], //used to hold player one team
       player2Team: [], //used to hold player two team
       battleReady: false, //set when teams are picked
@@ -128,7 +128,12 @@ class TeamBuilder extends Component {
       accuracy: 1,
       evasion: 1,
       inBattle: false,
-      fainted: false
+      fainted: false,
+      isConfused: false,
+      isAsleep: false,
+      isBound: false,
+      statusCondition: "",
+      turnsAsleep: 0
     };
 
     let player = null; //default to player one

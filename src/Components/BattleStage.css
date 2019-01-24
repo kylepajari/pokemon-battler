@@ -34,16 +34,20 @@
   margin-left: 300px;
 }
 
+.moveList {
+  width: 128%;
+}
+
 .player1Moves {
   border: 2px solid blue;
   border-radius: 5px;
-  width: 90%;
+  width: 100%;
 }
 
 .player2Moves {
   border: 2px solid red;
   border-radius: 5px;
-  width: 90%;
+  width: 100%;
 }
 
 .faded {
