@@ -17,7 +17,7 @@ class TeamBuilder extends Component {
       player1Team: [], //used to hold player one team
       player2Team: [], //used to hold player two team
       battleReady: false, //set when teams are picked
-      globalLevel: 100 //level to set all pokemon too, also used to scale stats
+      globalLevel: 100 //level to set all pokemon too, also used to scale stats,
     };
 
     this.toggleOpen = this.toggleOpen.bind(this);
@@ -94,9 +94,19 @@ class TeamBuilder extends Component {
       backSprite: this.state.data.sprites.back_default,
       backSpriteShiny: this.state.data.sprites.back_shiny,
       lv: this.state.globalLevel,
+      OrigHp: this.calcStats(
+        "hp",
+        this.state.data.stats[5].base_stat,
+        this.state.globalLevel
+      ),
       hp: this.calcStats(
         "hp",
         this.state.data.stats[5].base_stat,
+        this.state.globalLevel
+      ),
+      OrigAttack: this.calcStats(
+        "attack",
+        this.state.data.stats[4].base_stat,
         this.state.globalLevel
       ),
       attack: this.calcStats(
@@ -104,9 +114,19 @@ class TeamBuilder extends Component {
         this.state.data.stats[4].base_stat,
         this.state.globalLevel
       ),
+      OrigDefense: this.calcStats(
+        "defense",
+        this.state.data.stats[3].base_stat,
+        this.state.globalLevel
+      ),
       defense: this.calcStats(
         "defense",
         this.state.data.stats[3].base_stat,
+        this.state.globalLevel
+      ),
+      OrigSpeed: this.calcStats(
+        "speed",
+        this.state.data.stats[0].base_stat,
         this.state.globalLevel
       ),
       speed: this.calcStats(
@@ -114,8 +134,23 @@ class TeamBuilder extends Component {
         this.state.data.stats[0].base_stat,
         this.state.globalLevel
       ),
-      special: this.calcStats(
-        "special",
+      OrigSpecialattack: this.calcStats(
+        "specialattack",
+        this.state.data.stats[2].base_stat,
+        this.state.globalLevel
+      ),
+      specialattack: this.calcStats(
+        "specialattack",
+        this.state.data.stats[2].base_stat,
+        this.state.globalLevel
+      ),
+      OrigSpecialdefense: this.calcStats(
+        "specialdefense",
+        this.state.data.stats[1].base_stat,
+        this.state.globalLevel
+      ),
+      specialdefense: this.calcStats(
+        "specialdefense",
         this.state.data.stats[1].base_stat,
         this.state.globalLevel
       ),
@@ -177,12 +212,14 @@ class TeamBuilder extends Component {
   };
 
   startBattle = () => {
-    console.log("starting battle...");
     this.setState({ battleReady: true });
-    $(document.getElementById("BattleButton")).fadeOut(500);
+    console.log("starting battle...");
+    $(document.getElementById("BattleButton")).fadeOut(300);
   };
 
   render() {
+    console.log(this.state.player1Team);
+
     return (
       <div className="teamBuilder">
         <div className="teamsContainer container">

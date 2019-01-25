@@ -1,53 +1,89 @@
 .battleContainer {
-  margin: 50px;
   background-color: white;
-  height: 500px;
-  width: 600px;
+  height: 550px;
+  width: 650px;
   border: 2px dashed black;
   border-radius: 15px;
-  margin-left: 17vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
-.player1Sprite > img {
-  height: 150px;
-  width: 150px;
+.battleInputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
 }
-.player2Sprite > img {
-  height: 150px;
-  width: 150px;
+
+.sprite {
+  height: 100%;
+  width: 100%;
 }
 
 .side > p > img {
-  height: 18px;
-  width: 18px;
+  height: 15px;
+  width: 15px;
 }
 
 .side {
   padding: 5px;
 }
 
+.spriteContainer {
+  height: 160px;
+  width: 160px;
+}
+
 .player1Sprite {
-  margin-right: 300px;
+  margin-right: 350px;
 }
 
 .player2Sprite {
-  margin-left: 300px;
+  margin-left: 350px;
 }
 
 .moveList {
-  width: 128%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  /* background-color: white;
+  border: 2px dashed black; */
+  border-radius: 15px;
 }
 
 .player1Moves {
-  border: 2px solid blue;
-  border-radius: 5px;
+  padding: 3px;
   width: 100%;
 }
 
 .player2Moves {
-  border: 2px solid red;
-  border-radius: 5px;
+  padding: 3px;
   width: 100%;
+}
+
+.battleMessages {
+  border-top: 2px dashed black;
+  height: 30px;
+  width: 106%;
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+  align-items: center;
+}
+
+.message {
+  margin-top: 3px;
+  font-size: 16px;
+}
+.playermessage {
+  margin-top: 3px;
+  font-size: 16px;
 }
 
 .faded {
@@ -64,4 +100,26 @@
 
 .onefifthhp {
   background-color: #cc0101 !important;
+}
+
+.type {
+  height: 30px;
+  width: 65px;
+}
+
+/* status colors */
+.poison {
+  background-color: rgb(154, 39, 196);
+}
+.burn {
+  background-color: rgb(221, 65, 15);
+}
+.paralyze {
+  background-color: rgb(199, 162, 33);
+}
+.frozen {
+  background-color: rgb(11, 79, 233);
+}
+.sleep {
+  background-color: rgb(111, 104, 112);
 }

@@ -3,6 +3,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import pokeball from "./pokeball.png";
 import TeamBuilder from "./Components/TeamBuilder";
+import Music from "./Components/Music";
 
 class App extends Component {
   constructor(props) {
@@ -36,9 +37,11 @@ class App extends Component {
       return (
         <div className="App">
           <div className="title">
+            <Music inBattle={this.state.inBattle} />
             <p>Pokémon Battler</p>
             <img className="pokeball" src={pokeball} alt="Pokeball" />
           </div>
+
           <TeamBuilder
             data={this.state.data}
             allData={this.state.allData}

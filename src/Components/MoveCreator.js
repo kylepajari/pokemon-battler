@@ -2,6 +2,7 @@ const CreateMoves = moveName => {
   if (moveName === "Pound") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -12,6 +13,7 @@ const CreateMoves = moveName => {
   if (moveName === "Karate Chop") {
     return {
       name: moveName,
+      category: "physical",
       power: 50,
       type: "fighting",
       accuracy: 100,
@@ -22,6 +24,7 @@ const CreateMoves = moveName => {
   if (moveName === "Double Slap") {
     return {
       name: moveName,
+      category: "physical",
       power: 15,
       type: "normal",
       accuracy: 100,
@@ -32,6 +35,7 @@ const CreateMoves = moveName => {
   if (moveName === "Comet Punch") {
     return {
       name: moveName,
+      category: "physical",
       power: 18,
       type: "normal",
       accuracy: 100,
@@ -42,6 +46,7 @@ const CreateMoves = moveName => {
   if (moveName === "Mega Punch") {
     return {
       name: moveName,
+      category: "physical",
       power: 80,
       type: "normal",
       accuracy: 100,
@@ -52,6 +57,7 @@ const CreateMoves = moveName => {
   if (moveName === "Pay Day") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -62,6 +68,7 @@ const CreateMoves = moveName => {
   if (moveName === "Fire Punch") {
     return {
       name: moveName,
+      category: "physical",
       power: 75,
       type: "fire",
       accuracy: 100,
@@ -72,6 +79,7 @@ const CreateMoves = moveName => {
   if (moveName === "Ice Punch") {
     return {
       name: moveName,
+      category: "physical",
       power: 75,
       type: "ice",
       accuracy: 100,
@@ -82,6 +90,7 @@ const CreateMoves = moveName => {
   if (moveName === "Thunder Punch") {
     return {
       name: moveName,
+      category: "physical",
       power: 75,
       type: "electric",
       accuracy: 100,
@@ -92,6 +101,7 @@ const CreateMoves = moveName => {
   if (moveName === "Scratch") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -102,6 +112,7 @@ const CreateMoves = moveName => {
   if (moveName === "Vice Grip") {
     return {
       name: moveName,
+      category: "physical",
       power: 55,
       type: "normal",
       accuracy: 100,
@@ -112,6 +123,7 @@ const CreateMoves = moveName => {
   if (moveName === "Guillotine") {
     return {
       name: moveName,
+      category: "physical",
       power: 999,
       type: "normal",
       accuracy: 20,
@@ -122,6 +134,7 @@ const CreateMoves = moveName => {
   if (moveName === "Razor Wind") {
     return {
       name: moveName,
+      category: "special",
       power: 80,
       type: "normal",
       accuracy: 100,
@@ -132,16 +145,18 @@ const CreateMoves = moveName => {
   if (moveName === "Swords Dance") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "normal",
       accuracy: 100,
       pp: 25,
       statusEff: "raisesUserAtk"
-    }; // boosts attack
+    };
   }
   if (moveName === "Cut") {
     return {
       name: moveName,
+      category: "physical",
       power: 50,
       type: "normal",
       accuracy: 95,
@@ -152,6 +167,7 @@ const CreateMoves = moveName => {
   if (moveName === "Gust") {
     return {
       name: moveName,
+      category: "special",
       power: 40,
       type: "flying",
       accuracy: 100,
@@ -162,6 +178,7 @@ const CreateMoves = moveName => {
   if (moveName === "Wing Attack") {
     return {
       name: moveName,
+      category: "physical",
       power: 60,
       type: "flying",
       accuracy: 100,
@@ -172,6 +189,7 @@ const CreateMoves = moveName => {
   if (moveName === "Whirlwind") {
     return {
       name: moveName,
+      category: "special",
       power: 70,
       type: "flying",
       accuracy: 100,
@@ -182,6 +200,7 @@ const CreateMoves = moveName => {
   if (moveName === "Fly") {
     return {
       name: moveName,
+      category: "physical",
       power: 90,
       type: "flying",
       accuracy: 95,
@@ -192,6 +211,7 @@ const CreateMoves = moveName => {
   if (moveName === "Bind") {
     return {
       name: moveName,
+      category: "physical",
       power: 15,
       type: "normal",
       accuracy: 85,
@@ -202,6 +222,7 @@ const CreateMoves = moveName => {
   if (moveName === "Slam") {
     return {
       name: moveName,
+      category: "physical",
       power: 80,
       type: "normal",
       accuracy: 100,
@@ -212,6 +233,7 @@ const CreateMoves = moveName => {
   if (moveName === "Vine Whip") {
     return {
       name: moveName,
+      category: "physical",
       power: 45,
       type: "grass",
       accuracy: 100,
@@ -222,6 +244,7 @@ const CreateMoves = moveName => {
   if (moveName === "Stomp") {
     return {
       name: moveName,
+      category: "physical",
       power: 65,
       type: "normal",
       accuracy: 100,
@@ -232,6 +255,7 @@ const CreateMoves = moveName => {
   if (moveName === "Double Kick") {
     return {
       name: moveName,
+      category: "physical",
       power: 30,
       type: "normal",
       accuracy: 100,
@@ -242,6 +266,7 @@ const CreateMoves = moveName => {
   if (moveName === "Mega Kick") {
     return {
       name: moveName,
+      category: "physical",
       power: 120,
       type: "normal",
       accuracy: 75,
@@ -252,6 +277,7 @@ const CreateMoves = moveName => {
   if (moveName === "Jump Kick") {
     return {
       name: moveName,
+      category: "physical",
       power: 100,
       type: "fighting",
       accuracy: 95,
@@ -262,6 +288,7 @@ const CreateMoves = moveName => {
   if (moveName === "Rolling Kick") {
     return {
       name: moveName,
+      category: "physical",
       power: 60,
       type: "fighting",
       accuracy: 100,
@@ -272,6 +299,7 @@ const CreateMoves = moveName => {
   if (moveName === "Sand Attack") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "ground",
       accuracy: 100,
@@ -282,6 +310,7 @@ const CreateMoves = moveName => {
   if (moveName === "Headbutt") {
     return {
       name: moveName,
+      category: "physical",
       power: 70,
       type: "normal",
       accuracy: 100,
@@ -292,6 +321,7 @@ const CreateMoves = moveName => {
   if (moveName === "Horn Attack") {
     return {
       name: moveName,
+      category: "physical",
       power: 65,
       type: "normal",
       accuracy: 100,
@@ -302,6 +332,7 @@ const CreateMoves = moveName => {
   if (moveName === "Fury Attack") {
     return {
       name: moveName,
+      category: "physical",
       power: 15,
       type: "normal",
       accuracy: 100,
@@ -312,6 +343,7 @@ const CreateMoves = moveName => {
   if (moveName === "Horn Drill") {
     return {
       name: moveName,
+      category: "physical",
       power: 999,
       type: "normal",
       accuracy: 20,
@@ -322,6 +354,7 @@ const CreateMoves = moveName => {
   if (moveName === "Tackle") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -332,6 +365,7 @@ const CreateMoves = moveName => {
   if (moveName === "Body Slam") {
     return {
       name: moveName,
+      category: "physical",
       power: 85,
       type: "normal",
       accuracy: 100,
@@ -342,6 +376,7 @@ const CreateMoves = moveName => {
   if (moveName === "Wrap") {
     return {
       name: moveName,
+      category: "physical",
       power: 15,
       type: "normal",
       accuracy: 100,
@@ -352,6 +387,7 @@ const CreateMoves = moveName => {
   if (moveName === "Take Down") {
     return {
       name: moveName,
+      category: "physical",
       power: 90,
       type: "normal",
       accuracy: 85,
@@ -362,6 +398,7 @@ const CreateMoves = moveName => {
   if (moveName === "Thrash") {
     return {
       name: moveName,
+      category: "physical",
       power: 120,
       type: "normal",
       accuracy: 100,
@@ -372,6 +409,7 @@ const CreateMoves = moveName => {
   if (moveName === "Double Edge") {
     return {
       name: moveName,
+      category: "physical",
       power: 120,
       type: "normal",
       accuracy: 100,
@@ -382,6 +420,7 @@ const CreateMoves = moveName => {
   if (moveName === "Tail Whip") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "normal",
       accuracy: 100,
@@ -392,6 +431,7 @@ const CreateMoves = moveName => {
   if (moveName === "Poison Sting") {
     return {
       name: moveName,
+      category: "physical",
       power: 15,
       type: "poison",
       accuracy: 100,
@@ -402,6 +442,7 @@ const CreateMoves = moveName => {
   if (moveName === "Twineedle") {
     return {
       name: moveName,
+      category: "physical",
       power: 50,
       type: "bug",
       accuracy: 100,
@@ -412,6 +453,7 @@ const CreateMoves = moveName => {
   if (moveName === "Pin Missile") {
     return {
       name: moveName,
+      category: "physical",
       power: 25,
       type: "bug",
       accuracy: 95,
@@ -422,6 +464,7 @@ const CreateMoves = moveName => {
   if (moveName === "Leer") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "normal",
       accuracy: 100,
@@ -432,6 +475,7 @@ const CreateMoves = moveName => {
   if (moveName === "Bite") {
     return {
       name: moveName,
+      category: "physical",
       power: 60,
       type: "dark",
       accuracy: 100,
@@ -442,6 +486,7 @@ const CreateMoves = moveName => {
   if (moveName === "Growl") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "normal",
       accuracy: 100,
@@ -452,6 +497,7 @@ const CreateMoves = moveName => {
   if (moveName === "Roar") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "normal",
       accuracy: 100,
@@ -462,16 +508,18 @@ const CreateMoves = moveName => {
   if (moveName === "Sing") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "normal",
       accuracy: 55,
       pp: 15,
       statusEff: "Sleep"
-    }; //may cause SLEEP
+    };
   }
   if (moveName === "Supersonic") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "normal",
       accuracy: 55,
@@ -482,6 +530,7 @@ const CreateMoves = moveName => {
   if (moveName === "Sonic Boom") {
     return {
       name: moveName,
+      category: "physical",
       power: 20,
       type: "normal",
       accuracy: 90,
@@ -492,6 +541,7 @@ const CreateMoves = moveName => {
   if (moveName === "Disable") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "normal",
       accuracy: 100,
@@ -502,6 +552,7 @@ const CreateMoves = moveName => {
   if (moveName === "Acid") {
     return {
       name: moveName,
+      category: "special",
       power: 40,
       type: "poison",
       accuracy: 100,
@@ -512,6 +563,7 @@ const CreateMoves = moveName => {
   if (moveName === "Ember") {
     return {
       name: moveName,
+      category: "special",
       power: 40,
       type: "fire",
       accuracy: 100,
@@ -522,6 +574,7 @@ const CreateMoves = moveName => {
   if (moveName === "Flamethrower") {
     return {
       name: moveName,
+      category: "special",
       power: 90,
       type: "fire",
       accuracy: 100,
@@ -532,16 +585,18 @@ const CreateMoves = moveName => {
   if (moveName === "Mist") {
     return {
       name: moveName,
-      power: 40,
+      category: "special",
+      power: 0,
       type: "ice",
       accuracy: 100,
       pp: 30,
-      statusEff: ""
+      statusEff: "lowersTargetAcc"
     };
   }
   if (moveName === "Water Gun") {
     return {
       name: moveName,
+      category: "special",
       power: 40,
       type: "water",
       accuracy: 100,
@@ -552,6 +607,7 @@ const CreateMoves = moveName => {
   if (moveName === "Hydro Pump") {
     return {
       name: moveName,
+      category: "special",
       power: 110,
       type: "water",
       accuracy: 80,
@@ -562,6 +618,7 @@ const CreateMoves = moveName => {
   if (moveName === "Surf") {
     return {
       name: moveName,
+      category: "special",
       power: 90,
       type: "water",
       accuracy: 100,
@@ -572,6 +629,7 @@ const CreateMoves = moveName => {
   if (moveName === "Ice Beam") {
     return {
       name: moveName,
+      category: "special",
       power: 90,
       type: "ice",
       accuracy: 100,
@@ -582,6 +640,7 @@ const CreateMoves = moveName => {
   if (moveName === "Blizzard") {
     return {
       name: moveName,
+      category: "special",
       power: 110,
       type: "ice",
       accuracy: 80,
@@ -592,6 +651,7 @@ const CreateMoves = moveName => {
   if (moveName === "Psybeam") {
     return {
       name: moveName,
+      category: "special",
       power: 65,
       type: "psychic",
       accuracy: 100,
@@ -602,6 +662,7 @@ const CreateMoves = moveName => {
   if (moveName === "Bubble Beam") {
     return {
       name: moveName,
+      category: "special",
       power: 65,
       type: "water",
       accuracy: 100,
@@ -612,6 +673,7 @@ const CreateMoves = moveName => {
   if (moveName === "Aurora Beam") {
     return {
       name: moveName,
+      category: "special",
       power: 65,
       type: "ice",
       accuracy: 100,
@@ -622,6 +684,7 @@ const CreateMoves = moveName => {
   if (moveName === "Hyper Beam") {
     return {
       name: moveName,
+      category: "special",
       power: 150,
       type: "normal",
       accuracy: 90,
@@ -632,6 +695,7 @@ const CreateMoves = moveName => {
   if (moveName === "Peck") {
     return {
       name: moveName,
+      category: "physical",
       power: 35,
       type: "flying",
       accuracy: 100,
@@ -642,6 +706,7 @@ const CreateMoves = moveName => {
   if (moveName === "Drill Peck") {
     return {
       name: moveName,
+      category: "physical",
       power: 80,
       type: "flying",
       accuracy: 100,
@@ -652,6 +717,7 @@ const CreateMoves = moveName => {
   if (moveName === "Submission") {
     return {
       name: moveName,
+      category: "physical",
       power: 80,
       type: "fighting",
       accuracy: 80,
@@ -662,6 +728,7 @@ const CreateMoves = moveName => {
   if (moveName === "Low Kick") {
     return {
       name: moveName,
+      category: "physical",
       power: 55,
       type: "fighting",
       accuracy: 100,
@@ -672,6 +739,7 @@ const CreateMoves = moveName => {
   if (moveName === "Counter") {
     return {
       name: moveName,
+      category: "physical",
       power: 50,
       type: "fighting",
       accuracy: 100,
@@ -682,6 +750,7 @@ const CreateMoves = moveName => {
   if (moveName === "Seismic Toss") {
     return {
       name: moveName,
+      category: "physical",
       power: 60,
       type: "fighting",
       accuracy: 100,
@@ -692,6 +761,7 @@ const CreateMoves = moveName => {
   if (moveName === "Strength") {
     return {
       name: moveName,
+      category: "physical",
       power: 80,
       type: "normal",
       accuracy: 100,
@@ -702,46 +772,51 @@ const CreateMoves = moveName => {
   if (moveName === "Absorb") {
     return {
       name: moveName,
+      category: "special",
       power: 20,
       type: "grass",
       accuracy: 100,
       pp: 25,
-      statusEff: ""
+      statusEff: "recoverDamage"
     }; //adds 1/2 damage done back to users HP
   }
   if (moveName === "Mega Drain") {
     return {
       name: moveName,
+      category: "special",
       power: 40,
       type: "grass",
       accuracy: 100,
       pp: 15,
-      statusEff: ""
+      statusEff: "recoverDamage"
     }; //adds 1/2 damage done back to users HP
   }
   if (moveName === "Leech Seed") {
     return {
       name: moveName,
+      category: "special",
       power: 15,
       type: "grass",
       accuracy: 100,
       pp: 35,
-      statusEff: ""
-    }; //adds damage done back to users HP
+      statusEff: "recoverDamage"
+    }; //adds 1/2 damage done back to users HP
   }
   if (moveName === "Growth") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "grass",
       accuracy: 100,
       pp: 40,
-      statusEff: "raisesUserSpc"
+      statusEff: "raisesUserSpcAtk"
     };
   }
   if (moveName === "Razor Leaf") {
     return {
       name: moveName,
+      category: "physical",
       power: 55,
       type: "grass",
       accuracy: 95,
@@ -752,6 +827,7 @@ const CreateMoves = moveName => {
   if (moveName === "Solar Beam") {
     return {
       name: moveName,
+      category: "special",
       power: 120,
       type: "grass",
       accuracy: 100,
@@ -762,6 +838,7 @@ const CreateMoves = moveName => {
   if (moveName === "Poison Powder") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "poison",
       accuracy: 75,
@@ -772,6 +849,7 @@ const CreateMoves = moveName => {
   if (moveName === "Stun Spore") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "grass",
       accuracy: 75,
@@ -782,16 +860,18 @@ const CreateMoves = moveName => {
   if (moveName === "Sleep Powder") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "grass",
       accuracy: 75,
       pp: 15,
       statusEff: "Sleep"
-    }; //causes SLEEP
+    };
   }
   if (moveName === "Petal Dance") {
     return {
       name: moveName,
+      category: "special",
       power: 120,
       type: "grass",
       accuracy: 100,
@@ -802,6 +882,7 @@ const CreateMoves = moveName => {
   if (moveName === "String Shot") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "bug",
       accuracy: 95,
@@ -812,6 +893,7 @@ const CreateMoves = moveName => {
   if (moveName === "Dragon Rage") {
     return {
       name: moveName,
+      category: "special",
       power: 60,
       type: "dragon",
       accuracy: 100,
@@ -822,6 +904,7 @@ const CreateMoves = moveName => {
   if (moveName === "Fire Spin") {
     return {
       name: moveName,
+      category: "special",
       power: 35,
       type: "fire",
       accuracy: 100,
@@ -832,6 +915,7 @@ const CreateMoves = moveName => {
   if (moveName === "Thunder Shock") {
     return {
       name: moveName,
+      category: "special",
       power: 40,
       type: "electric",
       accuracy: 100,
@@ -842,6 +926,7 @@ const CreateMoves = moveName => {
   if (moveName === "Thunderbolt") {
     return {
       name: moveName,
+      category: "special",
       power: 90,
       type: "electric",
       accuracy: 100,
@@ -852,6 +937,7 @@ const CreateMoves = moveName => {
   if (moveName === "Thunder Wave") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "electric",
       accuracy: 90,
@@ -862,6 +948,7 @@ const CreateMoves = moveName => {
   if (moveName === "Thunder") {
     return {
       name: moveName,
+      category: "special",
       power: 110,
       type: "electric",
       accuracy: 100,
@@ -872,6 +959,7 @@ const CreateMoves = moveName => {
   if (moveName === "Rock Throw") {
     return {
       name: moveName,
+      category: "physical",
       power: 50,
       type: "rock",
       accuracy: 100,
@@ -882,6 +970,7 @@ const CreateMoves = moveName => {
   if (moveName === "Earthquake") {
     return {
       name: moveName,
+      category: "physical",
       power: 100,
       type: "ground",
       accuracy: 100,
@@ -892,6 +981,7 @@ const CreateMoves = moveName => {
   if (moveName === "Fissure") {
     return {
       name: moveName,
+      category: "physical",
       power: 999,
       type: "ground",
       accuracy: 20,
@@ -902,6 +992,7 @@ const CreateMoves = moveName => {
   if (moveName === "Dig") {
     return {
       name: moveName,
+      category: "physical",
       power: 80,
       type: "ground",
       accuracy: 100,
@@ -912,6 +1003,7 @@ const CreateMoves = moveName => {
   if (moveName === "Toxic") {
     return {
       name: moveName,
+      category: "special",
       power: 60,
       type: "poison",
       accuracy: 90,
@@ -922,6 +1014,7 @@ const CreateMoves = moveName => {
   if (moveName === "Confusion") {
     return {
       name: moveName,
+      category: "special",
       power: 50,
       type: "psychic",
       accuracy: 100,
@@ -932,6 +1025,7 @@ const CreateMoves = moveName => {
   if (moveName === "Psychic") {
     return {
       name: moveName,
+      category: "special",
       power: 90,
       type: "normal",
       accuracy: 100,
@@ -942,16 +1036,18 @@ const CreateMoves = moveName => {
   if (moveName === "Hypnosis") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "normal",
       accuracy: 60,
       pp: 20,
       statusEff: "Sleep"
-    }; //causes SLEEP
+    };
   }
   if (moveName === "Meditate") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "psychic",
       accuracy: 100,
@@ -962,6 +1058,7 @@ const CreateMoves = moveName => {
   if (moveName === "Agility") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "normal",
       accuracy: 100,
@@ -972,6 +1069,7 @@ const CreateMoves = moveName => {
   if (moveName === "Quick Attack") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -982,6 +1080,7 @@ const CreateMoves = moveName => {
   if (moveName === "Rage") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -992,6 +1091,7 @@ const CreateMoves = moveName => {
   if (moveName === "Teleport") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "normal",
       accuracy: 100,
@@ -1002,6 +1102,7 @@ const CreateMoves = moveName => {
   if (moveName === "Night Shade") {
     return {
       name: moveName,
+      category: "special",
       power: 50,
       type: "ghost",
       accuracy: 100,
@@ -1012,6 +1113,7 @@ const CreateMoves = moveName => {
   if (moveName === "Mimic") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1022,6 +1124,7 @@ const CreateMoves = moveName => {
   if (moveName === "Screech") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "normal",
       accuracy: 85,
@@ -1032,6 +1135,7 @@ const CreateMoves = moveName => {
   if (moveName === "Double Team") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "normal",
       accuracy: 100,
@@ -1042,16 +1146,18 @@ const CreateMoves = moveName => {
   if (moveName === "Recover") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "normal",
       accuracy: 100,
       pp: 35,
-      statusEff: ""
+      statusEff: "recoverHP"
     }; //recovers users hp 20%
   }
   if (moveName === "Harden") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "normal",
       accuracy: 100,
@@ -1062,6 +1168,7 @@ const CreateMoves = moveName => {
   if (moveName === "Minimize") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "normal",
       accuracy: 100,
@@ -1072,6 +1179,7 @@ const CreateMoves = moveName => {
   if (moveName === "Smokescreen") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "normal",
       accuracy: 100,
@@ -1082,6 +1190,7 @@ const CreateMoves = moveName => {
   if (moveName === "Confuse Ray") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "psychic",
       accuracy: 100,
@@ -1092,6 +1201,7 @@ const CreateMoves = moveName => {
   if (moveName === "Withdraw") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "water",
       accuracy: 100,
@@ -1102,6 +1212,7 @@ const CreateMoves = moveName => {
   if (moveName === "Defense Curl") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "normal",
       accuracy: 100,
@@ -1112,56 +1223,62 @@ const CreateMoves = moveName => {
   if (moveName === "Barrier") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
+      category: "physical",
+      power: 0,
+      type: "psychic",
       accuracy: 100,
-      pp: 35,
-      statusEff: ""
+      pp: 20,
+      statusEff: "raisesUserDef"
     };
   }
   if (moveName === "Light Screen") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
+      category: "physical",
+      power: 0,
+      type: "psychic",
       accuracy: 100,
-      pp: 35,
-      statusEff: ""
+      pp: 20,
+      statusEff: "raisesUserSpcDef"
     };
   }
   if (moveName === "Haze") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
+      category: "physical",
+      power: 0,
+      type: "dark",
       accuracy: 100,
-      pp: 35,
-      statusEff: ""
+      pp: 20,
+      statusEff: "lowersTargetAcc"
     };
   }
   if (moveName === "Reflect") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
+      category: "physical",
+      power: 0,
+      type: "psychic",
       accuracy: 100,
-      pp: 35,
-      statusEff: ""
+      pp: 20,
+      statusEff: "raisesUserDef"
     };
   }
   if (moveName === "Focus Energy") {
     return {
       name: moveName,
-      power: 40,
+      category: "physical",
+      power: 0,
       type: "normal",
       accuracy: 100,
-      pp: 35,
+      pp: 30,
       statusEff: "raisesUserAtk"
     };
   }
   if (moveName === "Bide") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1172,16 +1289,18 @@ const CreateMoves = moveName => {
   if (moveName === "Metronome") {
     return {
       name: moveName,
-      power: 120,
+      category: "physical",
+      power: 0,
       type: "normal",
       accuracy: 100,
       pp: 10,
-      statusEff: ""
+      statusEff: "randomMove"
     };
   }
   if (moveName === "Mirror Move") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1192,76 +1311,84 @@ const CreateMoves = moveName => {
   if (moveName === "Self Destruct") {
     return {
       name: moveName,
+      category: "physical",
       power: 200,
       type: "normal",
       accuracy: 100,
       pp: 5,
-      statusEff: ""
-    }; //faints users after use
+      statusEff: "FaintsUser"
+    };
   }
   if (moveName === "Egg Bomb") {
     return {
       name: moveName,
-      power: 40,
+      category: "physical",
+      power: 100,
       type: "normal",
-      accuracy: 100,
-      pp: 35,
+      accuracy: 75,
+      pp: 10,
       statusEff: ""
     };
   }
   if (moveName === "Lick") {
     return {
       name: moveName,
-      power: 35,
+      category: "physical",
+      power: 30,
       type: "ghost",
       accuracy: 100,
-      pp: 35,
+      pp: 30,
       statusEff: ""
     };
   }
   if (moveName === "Smog") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
-      accuracy: 100,
-      pp: 35,
-      statusEff: ""
+      category: "special",
+      power: 30,
+      type: "poison",
+      accuracy: 70,
+      pp: 20,
+      statusEff: "Poison"
     };
   }
   if (moveName === "Sludge") {
     return {
       name: moveName,
+      category: "special",
       power: 65,
       type: "poison",
       accuracy: 100,
       pp: 20,
-      statusEff: ""
+      statusEff: "Poison"
     }; //may cause POISON
   }
   if (moveName === "Bone Club") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
-      accuracy: 100,
-      pp: 35,
+      category: "physical",
+      power: 65,
+      type: "ground",
+      accuracy: 85,
+      pp: 20,
       statusEff: ""
     };
   }
   if (moveName === "Fire Blast") {
     return {
       name: moveName,
+      category: "special",
       power: 110,
       type: "fire",
       accuracy: 85,
       pp: 5,
-      statusEff: ""
+      statusEff: "Burn"
     };
   }
   if (moveName === "Waterfall") {
     return {
       name: moveName,
+      category: "special",
       power: 80,
       type: "water",
       accuracy: 100,
@@ -1272,6 +1399,7 @@ const CreateMoves = moveName => {
   if (moveName === "Clamp") {
     return {
       name: moveName,
+      category: "physical",
       power: 35,
       type: "water",
       accuracy: 85,
@@ -1282,6 +1410,7 @@ const CreateMoves = moveName => {
   if (moveName === "Swift") {
     return {
       name: moveName,
+      category: "physical",
       power: 60,
       type: "normal",
       accuracy: 999,
@@ -1292,6 +1421,7 @@ const CreateMoves = moveName => {
   if (moveName === "Skull Bash") {
     return {
       name: moveName,
+      category: "physical",
       power: 130,
       type: "normal",
       accuracy: 100,
@@ -1302,6 +1432,7 @@ const CreateMoves = moveName => {
   if (moveName === "Spike Cannon") {
     return {
       name: moveName,
+      category: "physical",
       power: 20,
       type: "normal",
       accuracy: 100,
@@ -1312,26 +1443,29 @@ const CreateMoves = moveName => {
   if (moveName === "Constrict") {
     return {
       name: moveName,
+      category: "physical",
       power: 10,
       type: "normal",
       accuracy: 100,
-      pp: 35,
-      statusEff: ""
+      pp: 30,
+      statusEff: "Bound"
     }; //hits 4-5 times
   }
   if (moveName === "Amnesia") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "normal",
       accuracy: 100,
-      pp: 35,
-      statusEff: "raisesUserSpc"
+      pp: 20,
+      statusEff: "raisesUserSpcDef"
     };
   }
   if (moveName === "Kinesis") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "psychic",
       accuracy: 100,
@@ -1342,16 +1476,18 @@ const CreateMoves = moveName => {
   if (moveName === "Soft Boiled") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
-      pp: 35,
-      statusEff: ""
-    };
+      pp: 10,
+      statusEff: "recoverHP"
+    }; //recovers 1/2 max HP
   }
   if (moveName === "High Jump-kick") {
     return {
       name: moveName,
+      category: "physical",
       power: 130,
       type: "fighting",
       accuracy: 100,
@@ -1362,16 +1498,18 @@ const CreateMoves = moveName => {
   if (moveName === "Glare") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "normal",
-      accuracy: 75,
-      pp: 35,
-      statusEff: ""
+      accuracy: 100,
+      pp: 30,
+      statusEff: "Paralyze"
     }; //causes PARALYZE
   }
   if (moveName === "Dream Eater") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1382,16 +1520,18 @@ const CreateMoves = moveName => {
   if (moveName === "Poison Gas") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "poison",
-      accuracy: 100,
-      pp: 35,
-      statusEff: ""
+      accuracy: 90,
+      pp: 40,
+      statusEff: "Poison"
     }; //causes poison
   }
   if (moveName === "Barrage") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1402,86 +1542,95 @@ const CreateMoves = moveName => {
   if (moveName === "Leech Life") {
     return {
       name: moveName,
+      category: "physical",
       power: 80,
       type: "bug",
       accuracy: 100,
       pp: 10,
-      statusEff: ""
+      statusEff: "recoverDamage"
     }; //add 1/2 damage back to hp
   }
   if (moveName === "Lovely Kiss") {
     return {
       name: moveName,
-      power: 40,
+      category: "physical",
+      power: 0,
       type: "normal",
-      accuracy: 100,
-      pp: 35,
-      statusEff: ""
+      accuracy: 75,
+      pp: 10,
+      statusEff: "Sleep"
     };
   }
   if (moveName === "Sky Attack") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
-      accuracy: 100,
-      pp: 35,
+      category: "physical",
+      power: 140,
+      type: "flying",
+      accuracy: 90,
+      pp: 5,
       statusEff: ""
     };
   }
   if (moveName === "Transform") {
     return {
       name: moveName,
-      power: 120,
+      category: "physical",
+      power: 0,
       type: "normal",
-      accuracy: 80,
-      pp: 35,
+      accuracy: 100,
+      pp: 10,
       statusEff: ""
     };
   }
   if (moveName === "Bubble") {
     return {
       name: moveName,
+      category: "special",
       power: 40,
       type: "water",
       accuracy: 100,
       pp: 30,
       statusEff: "lowersTargetSpd"
-    }; //may lower speed
+    };
   }
   if (moveName === "Dizzy Punch") {
     return {
       name: moveName,
-      power: 40,
-      type: "fighting",
+      category: "physical",
+      power: 70,
+      type: "normal",
       accuracy: 100,
-      pp: 35,
-      statusEff: ""
+      pp: 10,
+      statusEff: "ConfusionTarget"
     };
   }
   if (moveName === "Spore") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
+      category: "physical",
+      power: 0,
+      type: "grass",
       accuracy: 100,
-      pp: 35,
-      statusEff: ""
+      pp: 15,
+      statusEff: "Sleep"
     };
   }
   if (moveName === "Flash") {
     return {
       name: moveName,
-      power: 40,
+      category: "physical",
+      power: 0,
       type: "normal",
       accuracy: 100,
-      pp: 35,
-      statusEff: ""
+      pp: 20,
+      statusEff: "lowersTargetAcc"
     };
   }
   if (moveName === "Psywave") {
     return {
       name: moveName,
+      category: "special",
       power: 65,
       type: "psychic",
       accuracy: 80,
@@ -1492,86 +1641,95 @@ const CreateMoves = moveName => {
   if (moveName === "Splash") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
-      type: "normal",
+      type: "water",
       accuracy: 100,
-      pp: 35,
+      pp: 40,
       statusEff: ""
     }; //does nothing in battle
   }
   if (moveName === "Acid Armor") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
+      category: "physical",
+      power: 0,
+      type: "poison",
       accuracy: 100,
-      pp: 35,
-      statusEff: ""
+      pp: 20,
+      statusEff: "raisesUserDef"
     };
   }
   if (moveName === "Crabhammer") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
-      accuracy: 100,
-      pp: 35,
+      category: "physical",
+      power: 100,
+      type: "water",
+      accuracy: 90,
+      pp: 10,
       statusEff: ""
     };
   }
   if (moveName === "Explosion") {
     return {
       name: moveName,
-      power: 40,
+      category: "physical",
+      power: 250,
       type: "normal",
       accuracy: 100,
-      pp: 35,
-      statusEff: ""
+      pp: 5,
+      statusEff: "FaintsUser"
     };
   }
   if (moveName === "Fury Swipes") {
     return {
       name: moveName,
-      power: 40,
+      category: "physical",
+      power: 18,
       type: "normal",
-      accuracy: 100,
-      pp: 35,
+      accuracy: 80,
+      pp: 15,
       statusEff: ""
     };
   }
   if (moveName === "Bonemerang") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
-      accuracy: 100,
-      pp: 35,
+      category: "physical",
+      power: 100,
+      type: "ground",
+      accuracy: 90,
+      pp: 10,
       statusEff: ""
     };
   }
   if (moveName === "Rest") {
     return {
       name: moveName,
-      power: 40,
+      category: "physical",
+      power: 0,
       type: "normal",
       accuracy: 100,
-      pp: 35,
-      statusEff: ""
+      pp: 10,
+      statusEff: "Rest"
     }; //recovers all HP, puts user to sleep
   }
   if (moveName === "Rock Slide") {
     return {
       name: moveName,
-      power: 40,
+      category: "physical",
+      power: 75,
       type: "rock",
-      accuracy: 100,
-      pp: 35,
+      accuracy: 90,
+      pp: 10,
       statusEff: ""
     };
   }
   if (moveName === "Hyper Fang") {
     return {
       name: moveName,
+      category: "physical",
       power: 80,
       type: "normal",
       accuracy: 90,
@@ -1582,36 +1740,40 @@ const CreateMoves = moveName => {
   if (moveName === "Sharpen") {
     return {
       name: moveName,
-      power: 40,
+      category: "physical",
+      power: 0,
       type: "normal",
       accuracy: 100,
-      pp: 35,
-      statusEff: ""
+      pp: 30,
+      statusEff: "raisesUserAtk"
     };
   }
   if (moveName === "Conversion") {
     return {
       name: moveName,
-      power: 40,
+      category: "physical",
+      power: 0,
       type: "normal",
       accuracy: 100,
-      pp: 35,
+      pp: 30,
       statusEff: ""
     };
   }
   if (moveName === "Tri Attack") {
     return {
       name: moveName,
-      power: 40,
+      category: "special",
+      power: 80,
       type: "normal",
       accuracy: 100,
-      pp: 35,
+      pp: 10,
       statusEff: ""
     };
   }
   if (moveName === "Super Fang") {
     return {
       name: moveName,
+      category: "physical",
       power: 70,
       type: "normal",
       accuracy: 90,
@@ -1622,16 +1784,18 @@ const CreateMoves = moveName => {
   if (moveName === "Slash") {
     return {
       name: moveName,
-      power: 40,
+      category: "physical",
+      power: 70,
       type: "normal",
       accuracy: 100,
-      pp: 35,
+      pp: 20,
       statusEff: ""
     };
   }
   if (moveName === "Substitute") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1642,16 +1806,18 @@ const CreateMoves = moveName => {
   if (moveName === "Struggle") {
     return {
       name: moveName,
-      power: 10,
+      category: "physical",
+      power: 50,
       type: "normal",
       accuracy: 100,
-      pp: 35,
-      statusEff: ""
+      pp: 40,
+      statusEff: "recoil"
     };
   }
   if (moveName === "Sketch") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1662,6 +1828,7 @@ const CreateMoves = moveName => {
   if (moveName === "Triple Kick") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1672,6 +1839,7 @@ const CreateMoves = moveName => {
   if (moveName === "Thief") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1682,6 +1850,7 @@ const CreateMoves = moveName => {
   if (moveName === "Spider Web") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1692,6 +1861,7 @@ const CreateMoves = moveName => {
   if (moveName === "Mind Reader") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1702,6 +1872,7 @@ const CreateMoves = moveName => {
   if (moveName === "Nightmare") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1712,6 +1883,7 @@ const CreateMoves = moveName => {
   if (moveName === "Flame Wheel") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1722,6 +1894,7 @@ const CreateMoves = moveName => {
   if (moveName === "Snore") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1732,6 +1905,7 @@ const CreateMoves = moveName => {
   if (moveName === "Curse") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1742,6 +1916,7 @@ const CreateMoves = moveName => {
   if (moveName === "Flail") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1752,6 +1927,7 @@ const CreateMoves = moveName => {
   if (moveName === "Conversion 2") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1762,6 +1938,7 @@ const CreateMoves = moveName => {
   if (moveName === "Aeroblast") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1772,6 +1949,7 @@ const CreateMoves = moveName => {
   if (moveName === "Cotton Spore") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1782,6 +1960,7 @@ const CreateMoves = moveName => {
   if (moveName === "Reversal") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1792,6 +1971,7 @@ const CreateMoves = moveName => {
   if (moveName === "Spite") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1802,6 +1982,7 @@ const CreateMoves = moveName => {
   if (moveName === "Powder Snow") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1812,6 +1993,7 @@ const CreateMoves = moveName => {
   if (moveName === "Protect") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1822,6 +2004,7 @@ const CreateMoves = moveName => {
   if (moveName === "Mach Punch") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "fighting",
       accuracy: 100,
@@ -1832,16 +2015,18 @@ const CreateMoves = moveName => {
   if (moveName === "Scary Face") {
     return {
       name: moveName,
+      category: "physical",
       power: 0,
       type: "normal",
       accuracy: 100,
       pp: 35,
-      statusEff: "lowersUserAtk"
+      statusEff: "lowersTargetAtk"
     };
   }
   if (moveName === "Feint Attack") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1852,16 +2037,18 @@ const CreateMoves = moveName => {
   if (moveName === "Sweet Kiss") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
-      accuracy: 100,
-      pp: 35,
-      statusEff: ""
+      category: "physical",
+      power: 0,
+      type: "fairy",
+      accuracy: 75,
+      pp: 10,
+      statusEff: "ConfusionTarget"
     };
   }
   if (moveName === "Belly Drum") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1872,6 +2059,7 @@ const CreateMoves = moveName => {
   if (moveName === "Sludge Bomb") {
     return {
       name: moveName,
+      category: "physical",
       power: 65,
       type: "poison",
       accuracy: 100,
@@ -1882,6 +2070,7 @@ const CreateMoves = moveName => {
   if (moveName === "Sludge Wave") {
     return {
       name: moveName,
+      category: "physical",
       power: 60,
       type: "poison",
       accuracy: 100,
@@ -1892,6 +2081,7 @@ const CreateMoves = moveName => {
   if (moveName === "Mud Slap") {
     return {
       name: moveName,
+      category: "physical",
       power: 20,
       type: "ground",
       accuracy: 100,
@@ -1902,6 +2092,7 @@ const CreateMoves = moveName => {
   if (moveName === "Octazooka") {
     return {
       name: moveName,
+      category: "physical",
       power: 70,
       type: "water",
       accuracy: 100,
@@ -1912,6 +2103,7 @@ const CreateMoves = moveName => {
   if (moveName === "Spikes") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1922,6 +2114,7 @@ const CreateMoves = moveName => {
   if (moveName === "Zap Cannon") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1932,6 +2125,7 @@ const CreateMoves = moveName => {
   if (moveName === "Foresight") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1942,6 +2136,7 @@ const CreateMoves = moveName => {
   if (moveName === "Destiny Bond") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1952,6 +2147,7 @@ const CreateMoves = moveName => {
   if (moveName === "Perish Song") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1962,6 +2158,7 @@ const CreateMoves = moveName => {
   if (moveName === "Icy Wind") {
     return {
       name: moveName,
+      category: "physical",
       power: 55,
       type: "ice",
       accuracy: 95,
@@ -1972,6 +2169,7 @@ const CreateMoves = moveName => {
   if (moveName === "Detect") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1982,6 +2180,7 @@ const CreateMoves = moveName => {
   if (moveName === "Bone Rush") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -1992,6 +2191,7 @@ const CreateMoves = moveName => {
   if (moveName === "Lock On") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2002,6 +2202,7 @@ const CreateMoves = moveName => {
   if (moveName === "Outrage") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2012,6 +2213,7 @@ const CreateMoves = moveName => {
   if (moveName === "Sandstorm") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2022,6 +2224,7 @@ const CreateMoves = moveName => {
   if (moveName === "Giga Drain") {
     return {
       name: moveName,
+      category: "physical",
       power: 75,
       type: "grass",
       accuracy: 100,
@@ -2032,6 +2235,7 @@ const CreateMoves = moveName => {
   if (moveName === "Endure") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2042,6 +2246,7 @@ const CreateMoves = moveName => {
   if (moveName === "Charm") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2052,6 +2257,7 @@ const CreateMoves = moveName => {
   if (moveName === "Rollout") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2062,6 +2268,7 @@ const CreateMoves = moveName => {
   if (moveName === "False Swipe") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2072,6 +2279,7 @@ const CreateMoves = moveName => {
   if (moveName === "Swagger") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2082,6 +2290,7 @@ const CreateMoves = moveName => {
   if (moveName === "Milk Drink") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2092,6 +2301,7 @@ const CreateMoves = moveName => {
   if (moveName === "Spark") {
     return {
       name: moveName,
+      category: "physical",
       power: 65,
       type: "eletric",
       accuracy: 100,
@@ -2102,6 +2312,7 @@ const CreateMoves = moveName => {
   if (moveName === "Fury Cutter") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2112,6 +2323,7 @@ const CreateMoves = moveName => {
   if (moveName === "Steel Wing") {
     return {
       name: moveName,
+      category: "physical",
       power: 70,
       type: "steel",
       accuracy: 90,
@@ -2122,6 +2334,7 @@ const CreateMoves = moveName => {
   if (moveName === "Mean Look") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2132,6 +2345,7 @@ const CreateMoves = moveName => {
   if (moveName === "Attract") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2142,6 +2356,7 @@ const CreateMoves = moveName => {
   if (moveName === "Sleep Talk") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2152,6 +2367,7 @@ const CreateMoves = moveName => {
   if (moveName === "Heal Bell") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2162,6 +2378,7 @@ const CreateMoves = moveName => {
   if (moveName === "Return") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2172,6 +2389,7 @@ const CreateMoves = moveName => {
   if (moveName === "Present") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2182,6 +2400,7 @@ const CreateMoves = moveName => {
   if (moveName === "Frustration") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2192,6 +2411,7 @@ const CreateMoves = moveName => {
   if (moveName === "Safeguard") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2202,6 +2422,7 @@ const CreateMoves = moveName => {
   if (moveName === "Pain Split") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2212,6 +2433,7 @@ const CreateMoves = moveName => {
   if (moveName === "Sacred Fire") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2222,6 +2444,7 @@ const CreateMoves = moveName => {
   if (moveName === "Magnitude") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2232,16 +2455,18 @@ const CreateMoves = moveName => {
   if (moveName === "Dynamic Punch") {
     return {
       name: moveName,
+      category: "physical",
       power: 100,
       type: "fighting",
       accuracy: 50,
       pp: 5,
-      statusEff: ""
-    }; //may CONFUSION user
+      statusEff: "ConfusionTarget"
+    }; //may CONFUSION target
   }
   if (moveName === "Megahorn") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2252,6 +2477,7 @@ const CreateMoves = moveName => {
   if (moveName === "Dragon Breath") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2262,6 +2488,7 @@ const CreateMoves = moveName => {
   if (moveName === "Baton Pass") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2272,6 +2499,7 @@ const CreateMoves = moveName => {
   if (moveName === "Encore") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2282,6 +2510,7 @@ const CreateMoves = moveName => {
   if (moveName === "Pursuit") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2292,6 +2521,7 @@ const CreateMoves = moveName => {
   if (moveName === "Rapid Spin") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2302,6 +2532,7 @@ const CreateMoves = moveName => {
   if (moveName === "Sweet Scent") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2312,6 +2543,7 @@ const CreateMoves = moveName => {
   if (moveName === "Iron Tail") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2322,6 +2554,7 @@ const CreateMoves = moveName => {
   if (moveName === "Metal Claw") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2332,6 +2565,7 @@ const CreateMoves = moveName => {
   if (moveName === "Vital Throw") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2342,6 +2576,7 @@ const CreateMoves = moveName => {
   if (moveName === "Morning Sun") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2352,6 +2587,7 @@ const CreateMoves = moveName => {
   if (moveName === "Synthesis") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2362,6 +2598,7 @@ const CreateMoves = moveName => {
   if (moveName === "Moonlight") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2372,6 +2609,7 @@ const CreateMoves = moveName => {
   if (moveName === "Hidden Power") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2382,6 +2620,7 @@ const CreateMoves = moveName => {
   if (moveName === "Cross Chop") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2392,6 +2631,7 @@ const CreateMoves = moveName => {
   if (moveName === "Twister") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2402,6 +2642,7 @@ const CreateMoves = moveName => {
   if (moveName === "Rain Dance") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2412,6 +2653,7 @@ const CreateMoves = moveName => {
   if (moveName === "Sunny Day") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2422,6 +2664,7 @@ const CreateMoves = moveName => {
   if (moveName === "Crunch") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2432,6 +2675,7 @@ const CreateMoves = moveName => {
   if (moveName === "Mirror Coat") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2442,6 +2686,7 @@ const CreateMoves = moveName => {
   if (moveName === "Psych Up") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2452,6 +2697,7 @@ const CreateMoves = moveName => {
   if (moveName === "Extremespeed") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2462,6 +2708,7 @@ const CreateMoves = moveName => {
   if (moveName === "Ancient Power") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2472,6 +2719,7 @@ const CreateMoves = moveName => {
   if (moveName === "Shadow Ball") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2482,6 +2730,7 @@ const CreateMoves = moveName => {
   if (moveName === "Future Sight") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2492,6 +2741,7 @@ const CreateMoves = moveName => {
   if (moveName === "Rock Smash") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "fighting",
       accuracy: 100,
@@ -2502,6 +2752,7 @@ const CreateMoves = moveName => {
   if (moveName === "Whirlpool") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2512,6 +2763,7 @@ const CreateMoves = moveName => {
   if (moveName === "Beat Up") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2522,6 +2774,7 @@ const CreateMoves = moveName => {
   if (moveName === "Fake Out") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2532,6 +2785,7 @@ const CreateMoves = moveName => {
   if (moveName === "Uproar") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2542,6 +2796,7 @@ const CreateMoves = moveName => {
   if (moveName === "Stockpile") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2552,6 +2807,7 @@ const CreateMoves = moveName => {
   if (moveName === "Spit Up") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2562,6 +2818,7 @@ const CreateMoves = moveName => {
   if (moveName === "Swallow") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2572,6 +2829,7 @@ const CreateMoves = moveName => {
   if (moveName === "Heat Wave") {
     return {
       name: moveName,
+      category: "physical",
       power: 95,
       type: "fire",
       accuracy: 90,
@@ -2582,6 +2840,7 @@ const CreateMoves = moveName => {
   if (moveName === "Hail") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2592,6 +2851,7 @@ const CreateMoves = moveName => {
   if (moveName === "Torment") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2602,6 +2862,7 @@ const CreateMoves = moveName => {
   if (moveName === "Flatters") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2612,6 +2873,7 @@ const CreateMoves = moveName => {
   if (moveName === "Will O-wisp") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2622,6 +2884,7 @@ const CreateMoves = moveName => {
   if (moveName === "Memento") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2632,6 +2895,7 @@ const CreateMoves = moveName => {
   if (moveName === "Facade") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2642,6 +2906,7 @@ const CreateMoves = moveName => {
   if (moveName === "Focus Punch") {
     return {
       name: moveName,
+      category: "physical",
       power: 150,
       type: "fighting",
       accuracy: 100,
@@ -2652,6 +2917,7 @@ const CreateMoves = moveName => {
   if (moveName === "Smellingsalt") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2662,6 +2928,7 @@ const CreateMoves = moveName => {
   if (moveName === "Follow Me") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2672,6 +2939,7 @@ const CreateMoves = moveName => {
   if (moveName === "Nature Power") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2682,6 +2950,7 @@ const CreateMoves = moveName => {
   if (moveName === "Charge") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2692,6 +2961,7 @@ const CreateMoves = moveName => {
   if (moveName === "Taunt") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2702,6 +2972,7 @@ const CreateMoves = moveName => {
   if (moveName === "Helping Hand") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2712,6 +2983,7 @@ const CreateMoves = moveName => {
   if (moveName === "Trick") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2722,6 +2994,7 @@ const CreateMoves = moveName => {
   if (moveName === "Role Play") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2732,6 +3005,7 @@ const CreateMoves = moveName => {
   if (moveName === "Wish") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2742,6 +3016,7 @@ const CreateMoves = moveName => {
   if (moveName === "Assist") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2752,6 +3027,7 @@ const CreateMoves = moveName => {
   if (moveName === "Ingrain") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2762,6 +3038,7 @@ const CreateMoves = moveName => {
   if (moveName === "Superpower") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2772,6 +3049,7 @@ const CreateMoves = moveName => {
   if (moveName === "Magic Coat") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2782,6 +3060,7 @@ const CreateMoves = moveName => {
   if (moveName === "Recycle") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2792,6 +3071,7 @@ const CreateMoves = moveName => {
   if (moveName === "Revenge") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2802,6 +3082,7 @@ const CreateMoves = moveName => {
   if (moveName === "Brick Break") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2812,6 +3093,7 @@ const CreateMoves = moveName => {
   if (moveName === "Yawn") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2822,6 +3104,7 @@ const CreateMoves = moveName => {
   if (moveName === "Knock Off") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2832,6 +3115,7 @@ const CreateMoves = moveName => {
   if (moveName === "Endeavor") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2842,6 +3126,7 @@ const CreateMoves = moveName => {
   if (moveName === "Eruption") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2852,6 +3137,7 @@ const CreateMoves = moveName => {
   if (moveName === "Skill Swap") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2862,6 +3148,7 @@ const CreateMoves = moveName => {
   if (moveName === "Imprison") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2872,6 +3159,7 @@ const CreateMoves = moveName => {
   if (moveName === "Refresh") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2882,6 +3170,7 @@ const CreateMoves = moveName => {
   if (moveName === "Grudge") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2892,6 +3181,7 @@ const CreateMoves = moveName => {
   if (moveName === "Snatch") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2902,6 +3192,7 @@ const CreateMoves = moveName => {
   if (moveName === "Secret Power") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2912,6 +3203,7 @@ const CreateMoves = moveName => {
   if (moveName === "Dive") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2922,6 +3214,7 @@ const CreateMoves = moveName => {
   if (moveName === "Arm Thrust") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2932,6 +3225,7 @@ const CreateMoves = moveName => {
   if (moveName === "Camouflage") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2942,6 +3236,7 @@ const CreateMoves = moveName => {
   if (moveName === "Tail Glow") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2952,6 +3247,7 @@ const CreateMoves = moveName => {
   if (moveName === "Luster Purge") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2962,6 +3258,7 @@ const CreateMoves = moveName => {
   if (moveName === "Mist Ball") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2972,6 +3269,7 @@ const CreateMoves = moveName => {
   if (moveName === "Feather Dance") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2982,6 +3280,7 @@ const CreateMoves = moveName => {
   if (moveName === "Teeter Dance") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -2992,6 +3291,7 @@ const CreateMoves = moveName => {
   if (moveName === "Blaze Kick") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3002,6 +3302,7 @@ const CreateMoves = moveName => {
   if (moveName === "Mud Sport") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3012,6 +3313,7 @@ const CreateMoves = moveName => {
   if (moveName === "Ice Ball") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3022,6 +3324,7 @@ const CreateMoves = moveName => {
   if (moveName === "Needle Arm") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3032,6 +3335,7 @@ const CreateMoves = moveName => {
   if (moveName === "Slack Off") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3042,6 +3346,7 @@ const CreateMoves = moveName => {
   if (moveName === "Hyper Voice") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3052,6 +3357,7 @@ const CreateMoves = moveName => {
   if (moveName === "Poison Fang") {
     return {
       name: moveName,
+      category: "physical",
       power: 50,
       type: "poison",
       accuracy: 100,
@@ -3062,6 +3368,7 @@ const CreateMoves = moveName => {
   if (moveName === "Crush Claw") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3072,6 +3379,7 @@ const CreateMoves = moveName => {
   if (moveName === "Blast Burn") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3082,6 +3390,7 @@ const CreateMoves = moveName => {
   if (moveName === "Hydro Cannon") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3092,6 +3401,7 @@ const CreateMoves = moveName => {
   if (moveName === "Meteor Mash") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3102,6 +3412,7 @@ const CreateMoves = moveName => {
   if (moveName === "Astonish") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3112,6 +3423,7 @@ const CreateMoves = moveName => {
   if (moveName === "Weather Ball") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3122,6 +3434,7 @@ const CreateMoves = moveName => {
   if (moveName === "Aromatherapy") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3132,6 +3445,7 @@ const CreateMoves = moveName => {
   if (moveName === "Fake Tears") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3142,6 +3456,7 @@ const CreateMoves = moveName => {
   if (moveName === "Air Cutter") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3152,6 +3467,7 @@ const CreateMoves = moveName => {
   if (moveName === "Overheat") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3162,6 +3478,7 @@ const CreateMoves = moveName => {
   if (moveName === "Odor Sleuth") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3172,6 +3489,7 @@ const CreateMoves = moveName => {
   if (moveName === "Rock Tomb") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3182,6 +3500,7 @@ const CreateMoves = moveName => {
   if (moveName === "Silver Wind") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3192,6 +3511,7 @@ const CreateMoves = moveName => {
   if (moveName === "Metal Sound") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3202,6 +3522,7 @@ const CreateMoves = moveName => {
   if (moveName === "Grass Whistle") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "grass",
       accuracy: 100,
@@ -3212,6 +3533,7 @@ const CreateMoves = moveName => {
   if (moveName === "Tickle") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3222,6 +3544,7 @@ const CreateMoves = moveName => {
   if (moveName === "Cosmic Power") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3232,6 +3555,7 @@ const CreateMoves = moveName => {
   if (moveName === "Water Spout") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3242,6 +3566,7 @@ const CreateMoves = moveName => {
   if (moveName === "Signal Beam") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3252,6 +3577,7 @@ const CreateMoves = moveName => {
   if (moveName === "Shadow Punch") {
     return {
       name: moveName,
+      category: "physical",
       power: 60,
       type: "ghost",
       accuracy: 999,
@@ -3262,6 +3588,7 @@ const CreateMoves = moveName => {
   if (moveName === "Extrasensory") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3272,6 +3599,7 @@ const CreateMoves = moveName => {
   if (moveName === "Sky Uppercut") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3282,6 +3610,7 @@ const CreateMoves = moveName => {
   if (moveName === "Sand Tomb") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3292,6 +3621,7 @@ const CreateMoves = moveName => {
   if (moveName === "Sheer Cold") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3302,6 +3632,7 @@ const CreateMoves = moveName => {
   if (moveName === "Muddy Water") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3312,6 +3643,7 @@ const CreateMoves = moveName => {
   if (moveName === "Bullet Seed") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3322,6 +3654,7 @@ const CreateMoves = moveName => {
   if (moveName === "Aerial Ace") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3332,6 +3665,7 @@ const CreateMoves = moveName => {
   if (moveName === "Icicle Spear") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3342,6 +3676,7 @@ const CreateMoves = moveName => {
   if (moveName === "Iron Defense") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3352,6 +3687,7 @@ const CreateMoves = moveName => {
   if (moveName === "Block") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3362,6 +3698,7 @@ const CreateMoves = moveName => {
   if (moveName === "Howl") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3372,6 +3709,7 @@ const CreateMoves = moveName => {
   if (moveName === "Dragon Claw") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3382,6 +3720,7 @@ const CreateMoves = moveName => {
   if (moveName === "Frenzy Plant") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3392,6 +3731,7 @@ const CreateMoves = moveName => {
   if (moveName === "Bulk Up") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3402,6 +3742,7 @@ const CreateMoves = moveName => {
   if (moveName === "Bounce") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3412,6 +3753,7 @@ const CreateMoves = moveName => {
   if (moveName === "Mud Shot") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3422,6 +3764,7 @@ const CreateMoves = moveName => {
   if (moveName === "Poison Tail") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "poison",
       accuracy: 100,
@@ -3432,6 +3775,7 @@ const CreateMoves = moveName => {
   if (moveName === "Covet") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3442,6 +3786,7 @@ const CreateMoves = moveName => {
   if (moveName === "Volt Tackle") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3452,6 +3797,7 @@ const CreateMoves = moveName => {
   if (moveName === "Magical Leaf") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3462,6 +3808,7 @@ const CreateMoves = moveName => {
   if (moveName === "Water Sport") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3472,6 +3819,7 @@ const CreateMoves = moveName => {
   if (moveName === "Calm Mind") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3482,6 +3830,7 @@ const CreateMoves = moveName => {
   if (moveName === "Leaf Blade") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3492,6 +3841,7 @@ const CreateMoves = moveName => {
   if (moveName === "Dragon Dance") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3502,6 +3852,7 @@ const CreateMoves = moveName => {
   if (moveName === "Rock Blast") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3512,6 +3863,7 @@ const CreateMoves = moveName => {
   if (moveName === "Shock Wave") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3522,6 +3874,7 @@ const CreateMoves = moveName => {
   if (moveName === "Water Pulse") {
     return {
       name: moveName,
+      category: "physical",
       power: 60,
       type: "water",
       accuracy: 100,
@@ -3532,6 +3885,7 @@ const CreateMoves = moveName => {
   if (moveName === "Doom Desire") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3542,6 +3896,7 @@ const CreateMoves = moveName => {
   if (moveName === "Pyscho Boost") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3552,6 +3907,7 @@ const CreateMoves = moveName => {
   if (moveName === "Roost") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3562,6 +3918,7 @@ const CreateMoves = moveName => {
   if (moveName === "Gravity") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3572,6 +3929,7 @@ const CreateMoves = moveName => {
   if (moveName === "Miracle Eye") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3582,6 +3940,7 @@ const CreateMoves = moveName => {
   if (moveName === "Wake Up-slap") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3592,6 +3951,7 @@ const CreateMoves = moveName => {
   if (moveName === "Hammer Arm") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3602,6 +3962,7 @@ const CreateMoves = moveName => {
   if (moveName === "Gyro Ball") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3612,6 +3973,7 @@ const CreateMoves = moveName => {
   if (moveName === "Healing Wish") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3622,6 +3984,7 @@ const CreateMoves = moveName => {
   if (moveName === "Brine") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3632,6 +3995,7 @@ const CreateMoves = moveName => {
   if (moveName === "Natural Gift") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3642,6 +4006,7 @@ const CreateMoves = moveName => {
   if (moveName === "Feint") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3652,6 +4017,7 @@ const CreateMoves = moveName => {
   if (moveName === "Pluck") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3662,6 +4028,7 @@ const CreateMoves = moveName => {
   if (moveName === "Tailwind") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3672,6 +4039,7 @@ const CreateMoves = moveName => {
   if (moveName === "Acupressure") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3682,6 +4050,7 @@ const CreateMoves = moveName => {
   if (moveName === "Meatl Burst") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3692,6 +4061,7 @@ const CreateMoves = moveName => {
   if (moveName === "U Turn") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3702,6 +4072,7 @@ const CreateMoves = moveName => {
   if (moveName === "Close Combat") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3712,6 +4083,7 @@ const CreateMoves = moveName => {
   if (moveName === "Payback") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3722,6 +4094,7 @@ const CreateMoves = moveName => {
   if (moveName === "Assurance") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3732,6 +4105,7 @@ const CreateMoves = moveName => {
   if (moveName === "Embargo") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3742,6 +4116,7 @@ const CreateMoves = moveName => {
   if (moveName === "Fling") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3752,6 +4127,7 @@ const CreateMoves = moveName => {
   if (moveName === "Psycho Shift") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3762,6 +4138,7 @@ const CreateMoves = moveName => {
   if (moveName === "Trump Card") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3772,6 +4149,7 @@ const CreateMoves = moveName => {
   if (moveName === "Heal Block") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3782,6 +4160,7 @@ const CreateMoves = moveName => {
   if (moveName === "Wring Out") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3792,6 +4171,7 @@ const CreateMoves = moveName => {
   if (moveName === "Power Trick") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3802,6 +4182,7 @@ const CreateMoves = moveName => {
   if (moveName === "Gastro Acid") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3812,6 +4193,7 @@ const CreateMoves = moveName => {
   if (moveName === "Lucky Chant") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3822,6 +4204,7 @@ const CreateMoves = moveName => {
   if (moveName === "Me First") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3832,6 +4215,7 @@ const CreateMoves = moveName => {
   if (moveName === "Copycat") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3842,6 +4226,7 @@ const CreateMoves = moveName => {
   if (moveName === "Power Swap") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3852,6 +4237,7 @@ const CreateMoves = moveName => {
   if (moveName === "Guard Swap") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3862,6 +4248,7 @@ const CreateMoves = moveName => {
   if (moveName === "Punishment") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3872,6 +4259,7 @@ const CreateMoves = moveName => {
   if (moveName === "Last Resort") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3882,6 +4270,7 @@ const CreateMoves = moveName => {
   if (moveName === "Worry Seed") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3892,6 +4281,7 @@ const CreateMoves = moveName => {
   if (moveName === "Sucker Punch") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3902,6 +4292,7 @@ const CreateMoves = moveName => {
   if (moveName === "Toxic Spikes") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3912,6 +4303,7 @@ const CreateMoves = moveName => {
   if (moveName === "Heart Swap") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3922,6 +4314,7 @@ const CreateMoves = moveName => {
   if (moveName === "Aqua Ring") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3932,6 +4325,7 @@ const CreateMoves = moveName => {
   if (moveName === "Magnet Rise") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3942,6 +4336,7 @@ const CreateMoves = moveName => {
   if (moveName === "Flare Blitz") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3952,6 +4347,7 @@ const CreateMoves = moveName => {
   if (moveName === "Force Palm") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3962,6 +4358,7 @@ const CreateMoves = moveName => {
   if (moveName === "Aura Sphere") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3972,6 +4369,7 @@ const CreateMoves = moveName => {
   if (moveName === "Rock Polish") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -3982,6 +4380,7 @@ const CreateMoves = moveName => {
   if (moveName === "Poison Jab") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "poison",
       accuracy: 100,
@@ -3992,6 +4391,7 @@ const CreateMoves = moveName => {
   if (moveName === "Dark Pulse") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4002,6 +4402,7 @@ const CreateMoves = moveName => {
   if (moveName === "Night Slash") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4012,6 +4413,7 @@ const CreateMoves = moveName => {
   if (moveName === "Aqua Tail") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4022,6 +4424,7 @@ const CreateMoves = moveName => {
   if (moveName === "Seed Bomb") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4032,6 +4435,7 @@ const CreateMoves = moveName => {
   if (moveName === "Air Slash") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4042,6 +4446,7 @@ const CreateMoves = moveName => {
   if (moveName === "X Scissor") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4052,6 +4457,7 @@ const CreateMoves = moveName => {
   if (moveName === "Bug Buzz") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4062,6 +4468,7 @@ const CreateMoves = moveName => {
   if (moveName === "Dragon Pulse") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4072,6 +4479,7 @@ const CreateMoves = moveName => {
   if (moveName === "Dragon Rush") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4082,6 +4490,7 @@ const CreateMoves = moveName => {
   if (moveName === "Power Gem") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4092,6 +4501,7 @@ const CreateMoves = moveName => {
   if (moveName === "Drain Punch") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4102,6 +4512,7 @@ const CreateMoves = moveName => {
   if (moveName === "Vacuum Wave") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4112,6 +4523,7 @@ const CreateMoves = moveName => {
   if (moveName === "Focus Blast") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4122,6 +4534,7 @@ const CreateMoves = moveName => {
   if (moveName === "Energy Ball") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4132,6 +4545,7 @@ const CreateMoves = moveName => {
   if (moveName === "Brave Bird") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4142,6 +4556,7 @@ const CreateMoves = moveName => {
   if (moveName === "Earth Power") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4152,6 +4567,7 @@ const CreateMoves = moveName => {
   if (moveName === "Switcheroo") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4162,6 +4578,7 @@ const CreateMoves = moveName => {
   if (moveName === "Giga Impact") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4172,6 +4589,7 @@ const CreateMoves = moveName => {
   if (moveName === "Nasty Plot") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4182,6 +4600,7 @@ const CreateMoves = moveName => {
   if (moveName === "Bullet Punch") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4192,6 +4611,7 @@ const CreateMoves = moveName => {
   if (moveName === "Power Up-punch") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4202,6 +4622,7 @@ const CreateMoves = moveName => {
   if (moveName === "Avalanche") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4212,6 +4633,7 @@ const CreateMoves = moveName => {
   if (moveName === "Ice Shard") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "ice",
       accuracy: 100,
@@ -4222,6 +4644,7 @@ const CreateMoves = moveName => {
   if (moveName === "Shadow Claw") {
     return {
       name: moveName,
+      category: "physical",
       power: 70,
       type: "ghost",
       accuracy: 100,
@@ -4232,6 +4655,7 @@ const CreateMoves = moveName => {
   if (moveName === "Thunder Fang") {
     return {
       name: moveName,
+      category: "physical",
       power: 65,
       type: "eletric",
       accuracy: 95,
@@ -4242,6 +4666,7 @@ const CreateMoves = moveName => {
   if (moveName === "Ice Fang") {
     return {
       name: moveName,
+      category: "physical",
       power: 65,
       type: "ice",
       accuracy: 95,
@@ -4252,6 +4677,7 @@ const CreateMoves = moveName => {
   if (moveName === "Fire Fang") {
     return {
       name: moveName,
+      category: "physical",
       power: 65,
       type: "fire",
       accuracy: 95,
@@ -4262,6 +4688,7 @@ const CreateMoves = moveName => {
   if (moveName === "Shadow Sneak") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4272,6 +4699,7 @@ const CreateMoves = moveName => {
   if (moveName === "Mud Bomb") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4282,6 +4710,7 @@ const CreateMoves = moveName => {
   if (moveName === "Psycho Cut") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4292,6 +4721,7 @@ const CreateMoves = moveName => {
   if (moveName === "Zen Headbutt") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4302,6 +4732,7 @@ const CreateMoves = moveName => {
   if (moveName === "Mirror Shot") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4312,6 +4743,7 @@ const CreateMoves = moveName => {
   if (moveName === "Flash Cannon") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4322,6 +4754,7 @@ const CreateMoves = moveName => {
   if (moveName === "Rock Climb") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4332,6 +4765,7 @@ const CreateMoves = moveName => {
   if (moveName === "Defog") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4342,6 +4776,7 @@ const CreateMoves = moveName => {
   if (moveName === "Trick Room") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4352,6 +4787,7 @@ const CreateMoves = moveName => {
   if (moveName === "Draco Meteor") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4362,6 +4798,7 @@ const CreateMoves = moveName => {
   if (moveName === "Discharge") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4372,6 +4809,7 @@ const CreateMoves = moveName => {
   if (moveName === "Lava Plume") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4382,6 +4820,7 @@ const CreateMoves = moveName => {
   if (moveName === "Leaf Storm") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4392,6 +4831,7 @@ const CreateMoves = moveName => {
   if (moveName === "Power Whip") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4402,6 +4842,7 @@ const CreateMoves = moveName => {
   if (moveName === "Rock Wrecker") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4412,6 +4853,7 @@ const CreateMoves = moveName => {
   if (moveName === "Cross Poison") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "poison",
       accuracy: 100,
@@ -4422,6 +4864,7 @@ const CreateMoves = moveName => {
   if (moveName === "Gunk Shot") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4432,6 +4875,7 @@ const CreateMoves = moveName => {
   if (moveName === "Iron Head") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4442,6 +4886,7 @@ const CreateMoves = moveName => {
   if (moveName === "Magnet Bomb") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4452,6 +4897,7 @@ const CreateMoves = moveName => {
   if (moveName === "Stone Edge") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4462,6 +4908,7 @@ const CreateMoves = moveName => {
   if (moveName === "Captivate") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4472,6 +4919,7 @@ const CreateMoves = moveName => {
   if (moveName === "Stealth Rock") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4482,6 +4930,7 @@ const CreateMoves = moveName => {
   if (moveName === "Grass Knot") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4492,6 +4941,7 @@ const CreateMoves = moveName => {
   if (moveName === "Chatter") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4502,6 +4952,7 @@ const CreateMoves = moveName => {
   if (moveName === "Judgment") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4512,6 +4963,7 @@ const CreateMoves = moveName => {
   if (moveName === "Bug Bite") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4522,6 +4974,7 @@ const CreateMoves = moveName => {
   if (moveName === "Charge Beam") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4532,6 +4985,7 @@ const CreateMoves = moveName => {
   if (moveName === "Wood Hammer") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4542,6 +4996,7 @@ const CreateMoves = moveName => {
   if (moveName === "Aqua Jet") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4552,6 +5007,7 @@ const CreateMoves = moveName => {
   if (moveName === "Attack Order") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4562,6 +5018,7 @@ const CreateMoves = moveName => {
   if (moveName === "Defend Order") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4572,6 +5029,7 @@ const CreateMoves = moveName => {
   if (moveName === "Heal Order") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4582,6 +5040,7 @@ const CreateMoves = moveName => {
   if (moveName === "Head Smash") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4592,6 +5051,7 @@ const CreateMoves = moveName => {
   if (moveName === "Double Hit") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4602,6 +5062,7 @@ const CreateMoves = moveName => {
   if (moveName === "Roar of Time") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4612,6 +5073,7 @@ const CreateMoves = moveName => {
   if (moveName === "Spacial Rend") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4622,6 +5084,7 @@ const CreateMoves = moveName => {
   if (moveName === "Lunar Dance") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4632,6 +5095,7 @@ const CreateMoves = moveName => {
   if (moveName === "Crush Grip") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4642,6 +5106,7 @@ const CreateMoves = moveName => {
   if (moveName === "Magma Storm") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4652,6 +5117,7 @@ const CreateMoves = moveName => {
   if (moveName === "Dark Void") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4662,6 +5128,7 @@ const CreateMoves = moveName => {
   if (moveName === "Seed Flare") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4672,6 +5139,7 @@ const CreateMoves = moveName => {
   if (moveName === "Shadow Force") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4682,6 +5150,7 @@ const CreateMoves = moveName => {
   if (moveName === "Venoshock") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4692,6 +5161,7 @@ const CreateMoves = moveName => {
   if (moveName === "Round") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4702,6 +5172,7 @@ const CreateMoves = moveName => {
   if (moveName === "Echoed Voice") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4712,6 +5183,7 @@ const CreateMoves = moveName => {
   if (moveName === "Grass Pledge") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4722,6 +5194,7 @@ const CreateMoves = moveName => {
   if (moveName === "Work Up") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4732,6 +5205,7 @@ const CreateMoves = moveName => {
   if (moveName === "Grassy Terrain") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "grass",
       accuracy: 100,
@@ -4742,6 +5216,7 @@ const CreateMoves = moveName => {
   if (moveName === "Electric Terrain") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "electric",
       accuracy: 100,
@@ -4752,6 +5227,7 @@ const CreateMoves = moveName => {
   if (moveName === "Misty Terrain") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "water",
       accuracy: 100,
@@ -4762,6 +5238,7 @@ const CreateMoves = moveName => {
   if (moveName === "Confide") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4772,6 +5249,7 @@ const CreateMoves = moveName => {
   if (moveName === "Hone Claws") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4782,6 +5260,7 @@ const CreateMoves = moveName => {
   if (moveName === "Flame Burst") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4792,6 +5271,7 @@ const CreateMoves = moveName => {
   if (moveName === "Flame Charge") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4802,6 +5282,7 @@ const CreateMoves = moveName => {
   if (moveName === "Incinerate") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4812,6 +5293,7 @@ const CreateMoves = moveName => {
   if (moveName === "Inferno") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4822,6 +5304,7 @@ const CreateMoves = moveName => {
   if (moveName === "Fire Pledge") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4832,6 +5315,7 @@ const CreateMoves = moveName => {
   if (moveName === "Water Pledge") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4842,6 +5326,7 @@ const CreateMoves = moveName => {
   if (moveName === "Scald") {
     return {
       name: moveName,
+      category: "physical",
       power: 60,
       type: "water",
       accuracy: 100,
@@ -4852,6 +5337,7 @@ const CreateMoves = moveName => {
   if (moveName === "Smack Down") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4862,6 +5348,7 @@ const CreateMoves = moveName => {
   if (moveName === "Dragon Tail") {
     return {
       name: moveName,
+      category: "physical",
       power: 70,
       type: "dragon",
       accuracy: 100,
@@ -4872,6 +5359,7 @@ const CreateMoves = moveName => {
   if (moveName === "Bulldoze") {
     return {
       name: moveName,
+      category: "physical",
       power: 80,
       type: "ground",
       accuracy: 100,
@@ -4882,6 +5370,7 @@ const CreateMoves = moveName => {
   if (moveName === "Petal Blizzard") {
     return {
       name: moveName,
+      category: "physical",
       power: 90,
       type: "grass",
       accuracy: 100,
@@ -4892,6 +5381,7 @@ const CreateMoves = moveName => {
   if (moveName === "Ominous Wind") {
     return {
       name: moveName,
+      category: "physical",
       power: 60,
       type: "dark",
       accuracy: 100,
@@ -4902,6 +5392,7 @@ const CreateMoves = moveName => {
   if (moveName === "Sky Drop") {
     return {
       name: moveName,
+      category: "physical",
       power: 60,
       type: "flying",
       accuracy: 100,
@@ -4912,6 +5403,7 @@ const CreateMoves = moveName => {
   if (moveName === "Brutal Swing") {
     return {
       name: moveName,
+      category: "physical",
       power: 80,
       type: "fighting",
       accuracy: 100,
@@ -4922,6 +5414,7 @@ const CreateMoves = moveName => {
   if (moveName === "Electroweb") {
     return {
       name: moveName,
+      category: "physical",
       power: 50,
       type: "bug",
       accuracy: 100,
@@ -4932,6 +5425,7 @@ const CreateMoves = moveName => {
   if (moveName === "Rage Powder") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "bug",
       accuracy: 100,
@@ -4942,6 +5436,7 @@ const CreateMoves = moveName => {
   if (moveName === "Quiver Dance") {
     return {
       name: moveName,
+      category: "physical",
       power: 30,
       type: "normal",
       accuracy: 100,
@@ -4952,6 +5447,7 @@ const CreateMoves = moveName => {
   if (moveName === "Acrobatics") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -4962,6 +5458,7 @@ const CreateMoves = moveName => {
   if (moveName === "Struggle Bug") {
     return {
       name: moveName,
+      category: "physical",
       power: 20,
       type: "bug",
       accuracy: 100,
@@ -4972,6 +5469,7 @@ const CreateMoves = moveName => {
   if (moveName === "Infestation") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "bug",
       accuracy: 100,
@@ -4982,6 +5480,7 @@ const CreateMoves = moveName => {
   if (moveName === "Drill Run") {
     return {
       name: moveName,
+      category: "physical",
       power: 60,
       type: "normal",
       accuracy: 100,
@@ -4992,6 +5491,7 @@ const CreateMoves = moveName => {
   if (moveName === "Fell Stinger") {
     return {
       name: moveName,
+      category: "physical",
       power: 50,
       type: "bug",
       accuracy: 100,
@@ -5002,6 +5502,7 @@ const CreateMoves = moveName => {
   if (moveName === "Hurricane") {
     return {
       name: moveName,
+      category: "physical",
       power: 60,
       type: "flying",
       accuracy: 100,
@@ -5012,6 +5513,7 @@ const CreateMoves = moveName => {
   if (moveName === "Retaliate") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5022,6 +5524,7 @@ const CreateMoves = moveName => {
   if (moveName === "Final Gambit") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5032,6 +5535,7 @@ const CreateMoves = moveName => {
   if (moveName === "Wild Charge") {
     return {
       name: moveName,
+      category: "physical",
       power: 60,
       type: "normal",
       accuracy: 100,
@@ -5042,6 +5546,7 @@ const CreateMoves = moveName => {
   if (moveName === "Coil") {
     return {
       name: moveName,
+      category: "physical",
       power: 30,
       type: "normal",
       accuracy: 100,
@@ -5052,6 +5557,7 @@ const CreateMoves = moveName => {
   if (moveName === "Acid Spray") {
     return {
       name: moveName,
+      category: "physical",
       power: 60,
       type: "poison",
       accuracy: 100,
@@ -5062,6 +5568,7 @@ const CreateMoves = moveName => {
   if (moveName === "Belch") {
     return {
       name: moveName,
+      category: "physical",
       power: 55,
       type: "poison",
       accuracy: 100,
@@ -5072,6 +5579,7 @@ const CreateMoves = moveName => {
   if (moveName === "Electro Ball") {
     return {
       name: moveName,
+      category: "physical",
       power: 55,
       type: "electric",
       accuracy: 100,
@@ -5082,6 +5590,7 @@ const CreateMoves = moveName => {
   if (moveName === "Volt Switch") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "electric",
       accuracy: 100,
@@ -5092,6 +5601,7 @@ const CreateMoves = moveName => {
   if (moveName === "Play Nice") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5102,6 +5612,7 @@ const CreateMoves = moveName => {
   if (moveName === "Play Rough") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5112,6 +5623,7 @@ const CreateMoves = moveName => {
   if (moveName === "Nuzzle") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5122,6 +5634,7 @@ const CreateMoves = moveName => {
   if (moveName === "Chip Away") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5132,6 +5645,7 @@ const CreateMoves = moveName => {
   if (moveName === "Rototiller") {
     return {
       name: moveName,
+      category: "physical",
       power: 50,
       type: "ground",
       accuracy: 100,
@@ -5142,16 +5656,18 @@ const CreateMoves = moveName => {
   if (moveName === "Flatter") {
     return {
       name: moveName,
-      power: 40,
-      type: "normal",
+      category: "physical",
+      power: 0,
+      type: "dark",
       accuracy: 100,
-      pp: 35,
-      statusEff: ""
+      pp: 15,
+      statusEff: "ConfusionTarget"
     };
   }
   if (moveName === "Venom Drench") {
     return {
       name: moveName,
+      category: "physical",
       power: 70,
       type: "poison",
       accuracy: 100,
@@ -5162,6 +5678,7 @@ const CreateMoves = moveName => {
   if (moveName === "Quash") {
     return {
       name: moveName,
+      category: "physical",
       power: 60,
       type: "ground",
       accuracy: 100,
@@ -5172,6 +5689,7 @@ const CreateMoves = moveName => {
   if (moveName === "Smart Strike") {
     return {
       name: moveName,
+      category: "physical",
       power: 55,
       type: "fighting",
       accuracy: 100,
@@ -5182,6 +5700,7 @@ const CreateMoves = moveName => {
   if (moveName === "Wonder Room") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5192,6 +5711,7 @@ const CreateMoves = moveName => {
   if (moveName === "Psyshock") {
     return {
       name: moveName,
+      category: "physical",
       power: 60,
       type: "psychic",
       accuracy: 100,
@@ -5202,6 +5722,7 @@ const CreateMoves = moveName => {
   if (moveName === "Telekinesis") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "psychic",
       accuracy: 100,
@@ -5212,6 +5733,7 @@ const CreateMoves = moveName => {
   if (moveName === "After You") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5222,6 +5744,7 @@ const CreateMoves = moveName => {
   if (moveName === "Stored Power") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5232,6 +5755,7 @@ const CreateMoves = moveName => {
   if (moveName === "Bestow") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5242,6 +5766,7 @@ const CreateMoves = moveName => {
   if (moveName === "Disarming Voice") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5252,6 +5777,7 @@ const CreateMoves = moveName => {
   if (moveName === "Moonblast") {
     return {
       name: moveName,
+      category: "physical",
       power: 90,
       type: "normal",
       accuracy: 100,
@@ -5262,6 +5788,7 @@ const CreateMoves = moveName => {
   if (moveName === "Dazzling Gleam") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5272,6 +5799,7 @@ const CreateMoves = moveName => {
   if (moveName === "Spotlight") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5282,6 +5810,7 @@ const CreateMoves = moveName => {
   if (moveName === "Foul Play") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5292,6 +5821,7 @@ const CreateMoves = moveName => {
   if (moveName === "Hex") {
     return {
       name: moveName,
+      category: "physical",
       power: 60,
       type: "ghost",
       accuracy: 100,
@@ -5302,6 +5832,7 @@ const CreateMoves = moveName => {
   if (moveName === "Tail Slap") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5312,6 +5843,7 @@ const CreateMoves = moveName => {
   if (moveName === "Baby Doll-eyes") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5322,6 +5854,7 @@ const CreateMoves = moveName => {
   if (moveName === "Magic Room") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5332,6 +5865,7 @@ const CreateMoves = moveName => {
   if (moveName === "Quick Guard") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5342,6 +5876,7 @@ const CreateMoves = moveName => {
   if (moveName === "Wide Guard") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5352,6 +5887,7 @@ const CreateMoves = moveName => {
   if (moveName === "Synchronoise") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5362,6 +5898,7 @@ const CreateMoves = moveName => {
   if (moveName === "Soak") {
     return {
       name: moveName,
+      category: "physical",
       power: 50,
       type: "water",
       accuracy: 100,
@@ -5372,6 +5909,7 @@ const CreateMoves = moveName => {
   if (moveName === "Simple Beam") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5382,6 +5920,7 @@ const CreateMoves = moveName => {
   if (moveName === "Clear Smog") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5392,6 +5931,7 @@ const CreateMoves = moveName => {
   if (moveName === "Low Sweep") {
     return {
       name: moveName,
+      category: "physical",
       power: 45,
       type: "fighting",
       accuracy: 100,
@@ -5402,6 +5942,7 @@ const CreateMoves = moveName => {
   if (moveName === "Smelling Salts") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5412,6 +5953,7 @@ const CreateMoves = moveName => {
   if (moveName === "Dual Chop") {
     return {
       name: moveName,
+      category: "physical",
       power: 30,
       type: "fighting",
       accuracy: 100,
@@ -5422,6 +5964,7 @@ const CreateMoves = moveName => {
   if (moveName === "Power Trip") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5432,6 +5975,7 @@ const CreateMoves = moveName => {
   if (moveName === "Stomping Tantrum") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5442,6 +5986,7 @@ const CreateMoves = moveName => {
   if (moveName === "Snarl") {
     return {
       name: moveName,
+      category: "physical",
       power: 20,
       type: "normal",
       accuracy: 100,
@@ -5452,6 +5997,7 @@ const CreateMoves = moveName => {
   if (moveName === "Burn Up") {
     return {
       name: moveName,
+      category: "physical",
       power: 55,
       type: "fire",
       accuracy: 100,
@@ -5462,6 +6008,7 @@ const CreateMoves = moveName => {
   if (moveName === "Extreme Speed") {
     return {
       name: moveName,
+      category: "physical",
       power: 60,
       type: "normal",
       accuracy: 100,
@@ -5472,6 +6019,7 @@ const CreateMoves = moveName => {
   if (moveName === "Circle Throw") {
     return {
       name: moveName,
+      category: "physical",
       power: 60,
       type: "fighting",
       accuracy: 100,
@@ -5482,6 +6030,7 @@ const CreateMoves = moveName => {
   if (moveName === "Guard Split") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5492,6 +6041,7 @@ const CreateMoves = moveName => {
   if (moveName === "Ally Switch") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5502,6 +6052,7 @@ const CreateMoves = moveName => {
   if (moveName === "Heavy Slam") {
     return {
       name: moveName,
+      category: "physical",
       power: 80,
       type: "fighting",
       accuracy: 100,
@@ -5512,6 +6063,7 @@ const CreateMoves = moveName => {
   if (moveName === "Leaf Tornado") {
     return {
       name: moveName,
+      category: "physical",
       power: 60,
       type: "grass",
       accuracy: 100,
@@ -5522,6 +6074,7 @@ const CreateMoves = moveName => {
   if (moveName === "Reflect Type") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5532,6 +6085,7 @@ const CreateMoves = moveName => {
   if (moveName === "Autotomize") {
     return {
       name: moveName,
+      category: "physical",
       power: 55,
       type: "rock",
       accuracy: 100,
@@ -5542,6 +6096,7 @@ const CreateMoves = moveName => {
   if (moveName === "Steamroller") {
     return {
       name: moveName,
+      category: "physical",
       power: 70,
       type: "rock",
       accuracy: 100,
@@ -5552,6 +6107,7 @@ const CreateMoves = moveName => {
   if (moveName === "Heal Pulse") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5562,6 +6118,7 @@ const CreateMoves = moveName => {
   if (moveName === "Entrainment") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5572,6 +6129,7 @@ const CreateMoves = moveName => {
   if (moveName === "Frost Breath") {
     return {
       name: moveName,
+      category: "physical",
       power: 50,
       type: "ice",
       accuracy: 100,
@@ -5582,6 +6140,7 @@ const CreateMoves = moveName => {
   if (moveName === "Shell Smash") {
     return {
       name: moveName,
+      category: "physical",
       power: 60,
       type: "water",
       accuracy: 100,
@@ -5592,6 +6151,7 @@ const CreateMoves = moveName => {
   if (moveName === "Razor Shell") {
     return {
       name: moveName,
+      category: "physical",
       power: 55,
       type: "water",
       accuracy: 100,
@@ -5602,6 +6162,7 @@ const CreateMoves = moveName => {
   if (moveName === "Icicle Crash") {
     return {
       name: moveName,
+      category: "physical",
       power: 60,
       type: "ice",
       accuracy: 100,
@@ -5612,6 +6173,7 @@ const CreateMoves = moveName => {
   if (moveName === "Eerie Impulse") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5622,6 +6184,7 @@ const CreateMoves = moveName => {
   if (moveName === "Magnetic Flux") {
     return {
       name: moveName,
+      category: "physical",
       power: 70,
       type: "electric",
       accuracy: 100,
@@ -5632,6 +6195,7 @@ const CreateMoves = moveName => {
   if (moveName === "Metal Burst") {
     return {
       name: moveName,
+      category: "physical",
       power: 70,
       type: "normal",
       accuracy: 100,
@@ -5642,6 +6206,7 @@ const CreateMoves = moveName => {
   if (moveName === "Power Split") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5652,6 +6217,7 @@ const CreateMoves = moveName => {
   if (moveName === "Heart Stamp") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5662,6 +6228,7 @@ const CreateMoves = moveName => {
   if (moveName === "Draining Kiss") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5672,6 +6239,7 @@ const CreateMoves = moveName => {
   if (moveName === "Aurora Veil") {
     return {
       name: moveName,
+      category: "physical",
       power: 40,
       type: "normal",
       accuracy: 100,
@@ -5682,6 +6250,7 @@ const CreateMoves = moveName => {
   if (moveName === "Storm Throw") {
     return {
       name: moveName,
+      category: "physical",
       power: 50,
       type: "fighting",
       accuracy: 100,
@@ -5692,6 +6261,7 @@ const CreateMoves = moveName => {
   if (moveName === "Freeze Dry") {
     return {
       name: moveName,
+      category: "physical",
       power: 65,
       type: "ice",
       accuracy: 100,
@@ -5702,6 +6272,7 @@ const CreateMoves = moveName => {
   if (moveName === "High Horsepower") {
     return {
       name: moveName,
+      category: "physical",
       power: 75,
       type: "normal",
       accuracy: 100,
@@ -5712,6 +6283,7 @@ const CreateMoves = moveName => {
   if (moveName === "Psystrike") {
     return {
       name: moveName,
+      category: "physical",
       power: 70,
       type: "psychic",
       accuracy: 100,
@@ -5722,6 +6294,7 @@ const CreateMoves = moveName => {
   if (moveName === "Laser Focus") {
     return {
       name: moveName,
+      category: "physical",
       power: 50,
       type: "normal",
       accuracy: 100,
