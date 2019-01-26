@@ -43,7 +43,26 @@
 }
 
 .player2Sprite {
-  margin-left: 350px;
+  margin-left: 400px;
+}
+
+.teamList {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 50px;
+  width: 310px;
+}
+
+.teamListSprite {
+  height: 65px;
+  width: 65px;
+  border: none;
+}
+
+.teamListSprite:hover {
+  border: 2px dashed red;
 }
 
 .moveList {
@@ -60,12 +79,7 @@
   padding: 10px;
 }
 
-.player1Moves {
-  padding: 3px;
-  width: 100%;
-}
-
-.player2Moves {
+.playerMoves {
   padding: 3px;
   width: 100%;
 }

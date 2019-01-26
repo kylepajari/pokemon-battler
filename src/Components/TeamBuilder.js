@@ -13,7 +13,7 @@ class TeamBuilder extends Component {
       data: null,
       isOpen: false, //to keep track of whether dropdown is open
       currentPlayer: "Player One", //player who starts the game
-      teamSize: 1, //max number of pokemon per team, adjust to allow more/less
+      teamSize: 2, //max number of pokemon per team, adjust to allow more/less
       player1Team: [], //used to hold player one team
       player2Team: [], //used to hold player two team
       battleReady: false, //set when teams are picked
@@ -218,8 +218,6 @@ class TeamBuilder extends Component {
   };
 
   render() {
-    console.log(this.state.player1Team);
-
     return (
       <div className="teamBuilder">
         <div className="teamsContainer container">
