@@ -31,6 +31,8 @@ const CalcTypeAdvantage = (moveType, targetType1, targetType2) => {
     type1Advantage = 2;
   } else if (moveType === "fighting" && targetType1 === "dark") {
     type1Advantage = 2;
+  } else if (moveType === "fighting" && targetType1 === "fairy") {
+    type1Advantage = 0.5;
   } else if (moveType === "flying" && targetType1 === "fighting") {
     type1Advantage = 2;
   } else if (moveType === "flying" && targetType1 === "rock") {
@@ -54,6 +56,8 @@ const CalcTypeAdvantage = (moveType, targetType1, targetType2) => {
   } else if (moveType === "poison" && targetType1 === "steel") {
     type1Advantage = 0;
   } else if (moveType === "poison" && targetType1 === "grass") {
+    type1Advantage = 2;
+  } else if (moveType === "poison" && targetType1 === "fairy") {
     type1Advantage = 2;
   } else if (moveType === "ground" && targetType1 === "flying") {
     type1Advantage = 0;
@@ -103,6 +107,8 @@ const CalcTypeAdvantage = (moveType, targetType1, targetType2) => {
     type1Advantage = 2;
   } else if (moveType === "bug" && targetType1 === "dark") {
     type1Advantage = 2;
+  } else if (moveType === "bug" && targetType1 === "fairy") {
+    type1Advantage = 0.5;
   } else if (moveType === "ghost" && targetType1 === "normal") {
     type1Advantage = 0;
   } else if (moveType === "ghost" && targetType1 === "ghost") {
@@ -124,6 +130,8 @@ const CalcTypeAdvantage = (moveType, targetType1, targetType2) => {
   } else if (moveType === "steel" && targetType1 === "electric") {
     type1Advantage = 0.5;
   } else if (moveType === "steel" && targetType1 === "ice") {
+    type1Advantage = 2;
+  } else if (moveType === "steel" && targetType1 === "fairy") {
     type1Advantage = 2;
   } else if (moveType === "fire" && targetType1 === "rock") {
     type1Advantage = 0.5;
@@ -215,6 +223,8 @@ const CalcTypeAdvantage = (moveType, targetType1, targetType2) => {
     type1Advantage = 0.5;
   } else if (moveType === "dragon" && targetType1 === "dragon") {
     type1Advantage = 2;
+  } else if (moveType === "dragon" && targetType1 === "fairy") {
+    type1Advantage = 0;
   } else if (moveType === "dark" && targetType1 === "fighting") {
     type1Advantage = 0.5;
   } else if (moveType === "dark" && targetType1 === "ghost") {
@@ -225,6 +235,20 @@ const CalcTypeAdvantage = (moveType, targetType1, targetType2) => {
     type1Advantage = 2;
   } else if (moveType === "dark" && targetType1 === "dark") {
     type1Advantage = 0.5;
+  } else if (moveType === "dark" && targetType1 === "fairy") {
+    type1Advantage = 0.5;
+  } else if (moveType === "fairy" && targetType1 === "fighting") {
+    type1Advantage = 2;
+  } else if (moveType === "fairy" && targetType1 === "poison") {
+    type1Advantage = 0.5;
+  } else if (moveType === "fairy" && targetType1 === "steel") {
+    type1Advantage = 0.5;
+  } else if (moveType === "fairy" && targetType1 === "fire") {
+    type1Advantage = 0.5;
+  } else if (moveType === "fairy" && targetType1 === "dragon") {
+    type1Advantage = 2;
+  } else if (moveType === "fairy" && targetType1 === "dark") {
+    type1Advantage = 2;
   }
 
   if (targetType2 !== undefined) {
@@ -254,6 +278,8 @@ const CalcTypeAdvantage = (moveType, targetType1, targetType2) => {
       type2Advantage = 2;
     } else if (moveType === "fighting" && targetType2 === "dark") {
       type2Advantage = 2;
+    } else if (moveType === "fighting" && targetType2 === "fairy") {
+      type2Advantage = 0.5;
     } else if (moveType === "flying" && targetType2 === "fighting") {
       type2Advantage = 2;
     } else if (moveType === "flying" && targetType2 === "rock") {
@@ -277,6 +303,8 @@ const CalcTypeAdvantage = (moveType, targetType1, targetType2) => {
     } else if (moveType === "poison" && targetType2 === "steel") {
       type2Advantage = 0;
     } else if (moveType === "poison" && targetType2 === "grass") {
+      type2Advantage = 2;
+    } else if (moveType === "poison" && targetType2 === "fairy") {
       type2Advantage = 2;
     } else if (moveType === "ground" && targetType2 === "flying") {
       type2Advantage = 0;
@@ -326,6 +354,8 @@ const CalcTypeAdvantage = (moveType, targetType1, targetType2) => {
       type2Advantage = 2;
     } else if (moveType === "bug" && targetType2 === "dark") {
       type2Advantage = 2;
+    } else if (moveType === "bug" && targetType2 === "fairy") {
+      type2Advantage = 0.5;
     } else if (moveType === "ghost" && targetType2 === "normal") {
       type2Advantage = 0;
     } else if (moveType === "ghost" && targetType2 === "ghost") {
@@ -347,6 +377,8 @@ const CalcTypeAdvantage = (moveType, targetType1, targetType2) => {
     } else if (moveType === "steel" && targetType2 === "electric") {
       type2Advantage = 0.5;
     } else if (moveType === "steel" && targetType2 === "ice") {
+      type2Advantage = 2;
+    } else if (moveType === "steel" && targetType2 === "fairy") {
       type2Advantage = 2;
     } else if (moveType === "fire" && targetType2 === "rock") {
       type2Advantage = 0.5;
@@ -438,6 +470,8 @@ const CalcTypeAdvantage = (moveType, targetType1, targetType2) => {
       type2Advantage = 0.5;
     } else if (moveType === "dragon" && targetType2 === "dragon") {
       type2Advantage = 2;
+    } else if (moveType === "dragon" && targetType2 === "fairy") {
+      type2Advantage = 0;
     } else if (moveType === "dark" && targetType2 === "fighting") {
       type2Advantage = 0.5;
     } else if (moveType === "dark" && targetType2 === "ghost") {
@@ -448,6 +482,20 @@ const CalcTypeAdvantage = (moveType, targetType1, targetType2) => {
       type2Advantage = 2;
     } else if (moveType === "dark" && targetType2 === "dark") {
       type2Advantage = 0.5;
+    } else if (moveType === "dark" && targetType2 === "fairy") {
+      type2Advantage = 0.5;
+    } else if (moveType === "fairy" && targetType2 === "fighting") {
+      type2Advantage = 2;
+    } else if (moveType === "fairy" && targetType2 === "poison") {
+      type2Advantage = 0.5;
+    } else if (moveType === "fairy" && targetType2 === "steel") {
+      type2Advantage = 0.5;
+    } else if (moveType === "fairy" && targetType2 === "fire") {
+      type2Advantage = 0.5;
+    } else if (moveType === "fairy" && targetType2 === "dragon") {
+      type2Advantage = 2;
+    } else if (moveType === "fairy" && targetType2 === "dark") {
+      type2Advantage = 2;
     }
   }
 

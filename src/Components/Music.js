@@ -13,7 +13,7 @@ class Music extends Component {
     this.state = {
       volume: 0,
       team: Sound.status.STOPPED,
-      battle: Sound.status.STOPPED,
+      battle: Sound.status.PLAYING,
       victory: Sound.status.STOPPED
     };
   }
