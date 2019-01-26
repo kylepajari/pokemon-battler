@@ -46,7 +46,11 @@
   margin-left: 400px;
 }
 
-.teamList {
+.options {
+  margin: 5px;
+}
+
+.playerTeam {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -55,13 +59,13 @@
   width: 310px;
 }
 
-.teamListSprite {
+.playerTeamSprite {
   height: 65px;
   width: 65px;
   border: none;
 }
 
-.teamListSprite:hover {
+.playerTeamSprite:hover {
   border: 2px dashed red;
 }
 
@@ -70,7 +74,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 50%;
+  width: 58%;
 }
 
 .moveListName {

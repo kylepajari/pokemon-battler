@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { CalcTypeAdvantage } from "./TypeAdvantage";
 import $ from "jquery";
 import { MatchIconWithType } from "./MatchTypeIcon";
+import update from "immutability-helper";
 
 class BattleStage extends Component {
   constructor(props) {
@@ -49,8 +50,7 @@ class BattleStage extends Component {
     $(document.querySelector(".message")).fadeOut(10);
     $(document.querySelector(".playermessage")).fadeOut(10);
     $(document.querySelector(".playerMoves")).hide();
-    $(document.querySelector(".teamList")).fadeOut(10);
-    $(document.querySelector(".teamList")).hide();
+    $(document.querySelector(".playerTeam")).hide();
   }
 
   componentWillReceiveProps(props) {
@@ -59,6 +59,35 @@ class BattleStage extends Component {
       player2Team: props.player2Team
     });
   }
+
+  // componentDidUpdate(props) {
+  //   console.log("props 1", props.player1Team);
+  //   console.log("props 2", props.player2Team);
+  //   console.log("state 1", this.state.player1Team);
+  //   console.log("state 2", this.state.player2Team);
+
+  //   if (
+  //     this.state.player1Team.length !== 0 &&
+  //     this.state.player1Team[0].inBattle !== false
+  //   ) {
+  //     this.setState({
+  //       player1Team: update(props.player1Team, {
+  //         0: { inBattle: { $set: true } }
+  //       })
+  //     });
+  //   }
+
+  //   if (
+  //     this.state.player2Team.length !== 0 &&
+  //     this.state.player2Team[0].inBattle !== false
+  //   ) {
+  //     this.setState({
+  //       player2Team: update(props.player2Team, {
+  //         0: { inBattle: { $set: true } }
+  //       })
+  //     });
+  //   }
+  // }
 
   //RAPID FLASH FUNCTION ////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -121,12 +150,30 @@ class BattleStage extends Component {
     setTimeout(() => $(document.querySelector(".options")).fadeIn(300), 300);
   };
 
+  //DISPLAY MOVES FUNCTION ////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  displayMoves = () => {
+    console.log("displaying moves...");
+    //show moves for current battling pokemon
+    $(document.querySelector(".playerMoves")).toggle(500);
+    $(document.querySelector(".playerTeam")).hide(500);
+  };
+
   //DISPLAY POKEMON FUNCTION ////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  displayPokemon = () => {
+  displayPokemon = reason => {
     console.log("displaying pokemon...");
-    //show moves for current battling pokemon
-    $(document.querySelector(".teamList")).toggle(500);
+    if (reason === "fainted") {
+      //show only pokemon list, hide buttons
+      $(document.querySelector(".playerTeam")).show(500);
+      $(document.querySelector(".fightButton")).hide(500);
+      $(document.querySelector(".pkmnButton")).hide(500);
+    }
+    if (reason === "swap") {
+      //show moves for current battling pokemon
+      $(document.querySelector(".playerTeam")).toggle(500);
+      $(document.querySelector(".playerMoves")).hide(500);
+    }
   };
 
   //SWAP POKEMON FUNCTION ////////////////////////////////////////////////////////////////////////////////////
@@ -179,6 +226,8 @@ class BattleStage extends Component {
     console.log(
       this.state.playersTurn + " sent out " + Team[swapPoke].name + "!"
     );
+    //hide options buttons while swapping
+    $(document.querySelector(".options")).hide(300);
 
     //take current pokemon out of battle
     Team[PKMN].inBattle = false;
@@ -190,16 +239,29 @@ class BattleStage extends Component {
 
     //fade sprite back in
     setTimeout(() => Sprite.fadeIn(1000), 3000);
+    //clear text from message
+    setTimeout(() => $(document.querySelector(".message")).text(""), 300);
 
-    setTimeout(() => $(document.querySelector(".message")).fadeIn(500), 2000);
-
+    setTimeout(() => $(document.querySelector(".message")).fadeIn(300), 300);
     setTimeout(
       () =>
         $(document.querySelector(".message")).text(
-          this.state.playersTurn + " sent out " + Team[swapPoke].name
+          this.state.playersTurn + " withdrew " + Team[PKMN].name
+        ),
+      600
+    );
+    setTimeout(() => $(document.querySelector(".message")).fadeOut(300), 1500);
+
+    setTimeout(() => $(document.querySelector(".message")).fadeIn(300), 2000);
+    setTimeout(
+      () =>
+        $(document.querySelector(".message")).text(
+          "and sent out " + Team[swapPoke].name
         ),
       2000
     );
+    //clear text after swap
+    setTimeout(() => $(document.querySelector(".message")).text(""), 3500);
 
     //update current pokemon to swapped pokemon
     if (this.state.playersTurn === "Player One") {
@@ -214,23 +276,39 @@ class BattleStage extends Component {
       );
     }
 
+    // calculate percent difference between current poke and swap pole hp in percentage
+    let asPercentage = Team[swapPoke].hp / Team[swapPoke].OrigHp;
+
+    //if swapped pokemon has full hp, make bar full
+    if (Team[swapPoke].hp >= Team[swapPoke].OrigHp) {
+      setTimeout(() => HPbar.css("width", "100%"), 2000);
+      HPbar.removeClass("halfhp");
+      HPbar.removeClass("onefifthhp");
+      HPbar.addClass("fullhp");
+    } else {
+      let updatedBarHP = 560 * asPercentage;
+
+      //update health bar to reflect damage
+      if (updatedBarHP > HPbar.css("width")) {
+        setTimeout(
+          () => this.updateHP(HPbar, updatedBarHP, "up", swapPoke.name, 0),
+          2000
+        );
+      } else {
+        setTimeout(
+          () => this.updateHP(HPbar, updatedBarHP, "down", swapPoke.name, 0),
+          2000
+        );
+      }
+    }
+
     setTimeout(() => $(document.querySelector(".message")).fadeOut(500), 3000);
-    setTimeout(() => HPbar.css("width", "100%"), 2000);
-    HPbar.removeClass("halfhp");
-    HPbar.removeClass("onefifthhp");
-    HPbar.addClass("fullhp");
-    setTimeout(() => $(document.querySelector(".options")).fadeIn(300), 4000);
 
+    setTimeout(() => $(document.querySelector(".options")).show(500), 4000);
+    setTimeout(() => $(document.querySelector(".fightButton")).show(500), 4000);
+    setTimeout(() => $(document.querySelector(".pkmnButton")).show(500), 4000);
     //hide team list
-    $(document.querySelector(".teamList")).hide();
-  };
-
-  //DISPLAY MOVES FUNCTION ////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  displayMoves = () => {
-    console.log("displaying moves...");
-    //show moves for current battling pokemon
-    $(document.querySelector(".playerMoves")).toggle(500);
+    $(document.querySelector(".playerTeam")).hide();
   };
 
   //RANDOM NUMBER GENERATOR FUNCTION //////////////////////////////////////////////////////////////////////////
@@ -272,24 +350,32 @@ class BattleStage extends Component {
     Team[PKMN].fainted = true;
     //set in battle to false
     Team[PKMN].inBattle = false;
-
+    this.forceUpdate();
     //hide sprite
     Sprite.fadeOut(1000);
 
     //add opacity to pokeball representing pokemon
     Pokeball.addClass("faded");
 
-    //if pokemon fainted is not last in party
-    if (PKMN + 1 < Team.length) {
+    //check if all pokemon are fainted
+    let numFainted = 0;
+    Team.forEach(poke => {
+      if (poke.fainted === true) {
+        numFainted++;
+      }
+    });
+    console.log("number of pokemon fainted is: " + numFainted);
+
+    if (numFainted < Team.length) {
       //increase currentPokemon number for team to send out next in party
       if (PlayersTurn === "Player One") {
-        setTimeout(
-          () =>
-            this.setState({
-              player2CurrentPokemon: this.state.player2CurrentPokemon + 1
-            }),
-          2000
-        );
+        // setTimeout(
+        //   () =>
+        //     this.setState({
+        //       player2CurrentPokemon: this.state.player2CurrentPokemon + 1
+        //     }),
+        //   2000
+        // );
 
         //reset stat modifiers to defaults, for new pokemon
         this.setState({
@@ -305,13 +391,13 @@ class BattleStage extends Component {
           spcDefMultiplierDown1: 1
         });
       } else {
-        setTimeout(
-          () =>
-            this.setState({
-              player1CurrentPokemon: this.state.player1CurrentPokemon + 1
-            }),
-          2000
-        );
+        // setTimeout(
+        //   () =>
+        //     this.setState({
+        //       player1CurrentPokemon: this.state.player1CurrentPokemon + 1
+        //     }),
+        //   2000
+        // );
 
         //reset stat modifiers to defaults, for new pokemon
         this.setState({
@@ -328,33 +414,78 @@ class BattleStage extends Component {
         });
       }
 
-      //fade sprite back in
-      setTimeout(() => Sprite.fadeIn(1000), 3000);
-      // setTimeout(
-      //   () => $(document.querySelector(".message")).fadeOut(500),
-      //   1500
-      // );
-      setTimeout(() => $(document.querySelector(".message")).fadeIn(500), 2000);
-
+      //allow choosing of pokemon to send out
+      setTimeout(() => $(document.querySelector(".message")).fadeOut(300), 500);
+      setTimeout(() => $(document.querySelector(".message")).fadeIn(300), 2000);
       setTimeout(
         () =>
           $(document.querySelector(".message")).text(
-            this.state.playersTurn + " sent out " + Team[PKMN + 1].name
+            "Select which Pokémon to send out..."
           ),
         2000
       );
-      setTimeout(() => (Team[PKMN + 1].inBattle = true), 2000);
+      //display list of available pokemon that are not inbattle/fainted
+      this.displayPokemon("fainted");
 
-      setTimeout(
-        () => $(document.querySelector(".message")).fadeOut(500),
-        3000
-      );
-      setTimeout(() => HPbar.css("width", "100%"), 2000);
-      HPbar.removeClass("halfhp");
-      HPbar.removeClass("onefifthhp");
-      HPbar.addClass("fullhp");
-      setTimeout(() => $(document.querySelector(".options")).fadeIn(300), 4000);
+      // //fade sprite back in
+      // setTimeout(() => Sprite.fadeIn(1000), 3000);
+      // // setTimeout(
+      // //   () => $(document.querySelector(".message")).fadeOut(500),
+      // //   1500
+      // // );
+      // setTimeout(() => $(document.querySelector(".message")).fadeIn(500), 2000);
+
+      // setTimeout(
+      //   () =>
+      //     $(document.querySelector(".message")).text(
+      //       this.state.playersTurn + " sent out " + Team[PKMN + 1].name
+      //     ),
+      //   2000
+      // );
+      // setTimeout(() => (Team[PKMN].inBattle = false), 2000);
+      // setTimeout(() => (Team[PKMN + 1].inBattle = true), 2000);
+
+      // setTimeout(
+      //   () => $(document.querySelector(".message")).fadeOut(500),
+      //   3000
+      // );
+      // // calculate percent difference between current poke and swap pole hp in percentage
+      // let asPercentage = Team[PKMN + 1].hp / Team[PKMN + 1].OrigHp;
+
+      // //if swapped pokemon has full hp, make bar full
+      // if (Team[PKMN + 1].hp >= Team[PKMN + 1].OrigHp) {
+      //   setTimeout(() => HPbar.css("width", "100%"), 2000);
+      //   HPbar.removeClass("halfhp");
+      //   HPbar.removeClass("onefifthhp");
+      //   HPbar.addClass("fullhp");
+      // } else {
+      //   let updatedBarHP = 560 * asPercentage;
+
+      //   //update health bar to reflect damage
+      //   if (updatedBarHP > HPbar.css("width")) {
+      //     setTimeout(
+      //       () =>
+      //         this.updateHP(HPbar, updatedBarHP, "up", Team[PKMN + 1].name, 0),
+      //       2000
+      //     );
+      //   } else {
+      //     setTimeout(
+      //       () =>
+      //         this.updateHP(
+      //           HPbar,
+      //           updatedBarHP,
+      //           "down",
+      //           Team[PKMN + 1].name,
+      //           0
+      //         ),
+      //       2000
+      //     );
+      //   }
+      // }
+      // setTimeout(() => $(document.querySelector(".options")).fadeIn(300), 4000);
     } else {
+      console.log("All pokemon on team fainted...");
+
       setTimeout(
         () => $(document.querySelector(".playermessage")).fadeIn(500),
         500
@@ -425,19 +556,8 @@ class BattleStage extends Component {
     lv
   ) => {
     console.log("using move...");
-    console.log(
-      index,
-      moveName,
-      moveCategory,
-      moveType,
-      power,
-      pp,
-      moveAcc,
-      statusEff,
-      statusProb,
-      lv
-    );
     let moves = $(document.querySelector(".playerMoves"));
+    let options = $(document.querySelector(".options"));
     let PKMNuser = null;
     let PKMNtarget = null;
     let HPbar = null;
@@ -467,6 +587,9 @@ class BattleStage extends Component {
         1500
       );
     } else if (pp > 0) {
+      //hide move list/ options
+      moves.hide(500);
+      options.hide(500);
       //subtract 1 pp from move used
       PKMNuser.moves[index].pp -= 1;
 
@@ -791,17 +914,8 @@ class BattleStage extends Component {
         if (!hurtitself && !paralysis && !frozen) {
           //if so, does move land hit (accuracy check)
           //formula: percentChance = moveAcc * (attacker accuracy / target evasion)
-          console.log(
-            "move acc: " +
-              moveAcc +
-              ", user acc: " +
-              PKMNuser.accuracy +
-              ", target evasion: " +
-              PKMNtarget.evasion
-          );
           let percentChance =
             (moveAcc * (PKMNuser.accuracy / PKMNtarget.evasion)) / 100;
-          console.log("Chance of hitting: " + percentChance);
           let rand = Math.random();
 
           if (rand > percentChance) {
@@ -1063,6 +1177,7 @@ class BattleStage extends Component {
           ),
         1800
       );
+      setTimeout(() => $(document.querySelector(".message")).text(""), 3500);
     }
 
     //RECOVER DAMAGE/////////////////////////////////////////////////////////////
@@ -2024,13 +2139,11 @@ class BattleStage extends Component {
       pokemon = this.state.player2Team[this.state.player2CurrentPokemon];
       team = this.state.player2Team;
     }
-    console.log(pokemon);
 
     if (this.props.battleReady) {
       return (
         <div className="battleWindow">
           <div className="battleContainer container">
-            <div>{this.state.playersTurn}'s Turn</div>
             <div className="side side1 col">
               <p className="row">
                 {this.state.player2Team.map((item, i) => {
@@ -2138,27 +2251,28 @@ class BattleStage extends Component {
             </div>
           </div>
           <div className="battleInputs container">
+            <div>{this.state.playersTurn}'s Turn</div>
             <div className="options row">
               <button
                 type="button"
-                className="btn btn-success fightButton"
+                className="btn btn-light fightButton"
                 onClick={() => this.displayMoves()}
               >
                 Fight
               </button>
               <button
                 type="button"
-                className="btn btn-success pkmnButton"
-                onClick={() => this.displayPokemon()}
+                className="btn btn-light pkmnButton"
+                onClick={() => this.displayPokemon("swap")}
               >
-                PKMN
+                Pokémon
               </button>
-              <div className="teamList">
+              <div className="playerTeam">
                 {team.map((pkmn, i) => {
                   if (!pkmn.inBattle && !pkmn.fainted) {
                     return (
                       <img
-                        className="teamListSprite"
+                        className="playerTeamSprite"
                         src={pkmn.frontSprite}
                         alt={pkmn.name}
                         onClick={() => this.swapPokemon(i)}
@@ -2195,8 +2309,8 @@ class BattleStage extends Component {
                         )
                       }
                     >
-                      {move.name.toUpperCase()} / PP:{move.pp}{" "}
-                      {MatchIconWithType(move.type)}
+                      {move.name.toUpperCase()} / PP:{move.pp} / PWR:
+                      {move.power} {MatchIconWithType(move.type)}
                     </button>
                   );
                 })}
