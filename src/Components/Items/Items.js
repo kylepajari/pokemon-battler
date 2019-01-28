@@ -216,7 +216,7 @@ class Items extends Component {
     console.log(PKMNuser.name + " was cured of " + PKMNuser.statusCondition);
     $(document.querySelector(".message")).fadeIn(300);
     $(document.querySelector(".message")).text(
-      PKMNuser.name + " was cured of " + PKMNuser.statusCondition
+      PKMNuser.name + " was cured of " + PKMNuser.statusCondition + "!"
     );
     setTimeout(() => $(document.querySelector(".message")).fadeOut(300), 1000);
     //remove status condition

@@ -12,9 +12,10 @@ class TeamBuilder extends Component {
 
     this.state = {
       data: null,
-      isOpen: false, //to keep track of whether dropdown is open
+      isOpen: false, //to keep track of whether pokemon dropdown is open
+      isTeamOpen: false, //to keep track of whether team size dropdown is open
       currentPlayer: "Player One", //player who starts the game
-      teamSize: 2, //max number of pokemon per team, adjust to allow more/less
+      teamSize: 3, //max number of pokemon per team, adjust to allow more/less
       player1Team: [], //used to hold player one team
       player2Team: [], //used to hold player two team
       battleReady: false, //set when teams are picked
@@ -28,8 +29,16 @@ class TeamBuilder extends Component {
 
   componentDidMount() {
     $(document.getElementById("BattleButton")).fadeOut(10);
-    $(document.querySelector(".dropdown")).fadeIn(10);
+    $(document.querySelector(".pokemonList")).fadeOut(10);
+    $(document.querySelector(".teamList")).fadeIn(10);
   }
+
+  changeTeamSize = num => {
+    console.log("Changing team size to " + num);
+    $(document.querySelector(".pokemonList")).fadeIn(300);
+    $(document.querySelector(".teamList")).fadeOut(10);
+    this.setState({ teamSize: num });
+  };
 
   //Returns passed string with upper-case first letter
   Capitalize = str => {
@@ -265,7 +274,7 @@ class TeamBuilder extends Component {
       this.state.player2Team.length === this.state.teamSize
     ) {
       console.log("both teams full! Revealing Battle button!");
-      $(document.querySelector(".dropdown")).fadeOut(100);
+      $(document.querySelectorAll(".dropdown")).fadeOut(100);
       $(document.getElementById("BattleButton")).fadeIn(300);
     }
 
@@ -279,6 +288,11 @@ class TeamBuilder extends Component {
   toggleOpen = () => {
     const currentIsOpen = this.state.isOpen;
     this.setState({ isOpen: !currentIsOpen });
+  };
+
+  toggleTeamOpen = () => {
+    const currentIsOpen = this.state.isTeamOpen;
+    this.setState({ isTeamOpen: !currentIsOpen });
   };
 
   startBattle = () => {
@@ -323,7 +337,80 @@ class TeamBuilder extends Component {
             </div>
           </div>
         </div>
-        <div className="btn-group dropdown" onClick={this.toggleOpen}>
+        <div
+          className="btn-group dropdown teamList"
+          onClick={this.toggleTeamOpen}
+        >
+          <button
+            type="button"
+            className="btn btn-dark dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            id="dropdownMenu1"
+          >
+            Select a Team Size
+          </button>
+          <div
+            className={`"dropdown-menu" ${
+              this.state.isTeamOpen ? "dropdown-menu show" : "dropdown-menu"
+            }`}
+            aria-labelledby="dropdownMenu1"
+          >
+            <a
+              className="dropdown-item"
+              key="1"
+              href="#!"
+              onClick={() => this.changeTeamSize(1)}
+            >
+              1
+            </a>
+            <a
+              className="dropdown-item"
+              key="2"
+              href="#!"
+              onClick={() => this.changeTeamSize(2)}
+            >
+              2
+            </a>
+            <a
+              className="dropdown-item"
+              key="3"
+              href="#!"
+              onClick={() => this.changeTeamSize(3)}
+            >
+              3
+            </a>
+            <a
+              className="dropdown-item"
+              key="4"
+              href="#!"
+              onClick={() => this.changeTeamSize(4)}
+            >
+              4
+            </a>
+            <a
+              className="dropdown-item"
+              key="5"
+              href="#!"
+              onClick={() => this.changeTeamSize(5)}
+            >
+              5
+            </a>
+            <a
+              className="dropdown-item"
+              key="6"
+              href="#!"
+              onClick={() => this.changeTeamSize(6)}
+            >
+              6
+            </a>
+          </div>
+        </div>
+        <div
+          className="btn-group dropdown pokemonList"
+          onClick={this.toggleOpen}
+        >
           <button
             type="button"
             className="btn btn-dark dropdown-toggle"

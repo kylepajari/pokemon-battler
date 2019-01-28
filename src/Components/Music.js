@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Sound from "react-sound";
 import BattleTheme from "../battleTheme.mp3";
-import TeamTheme from "../teamTheme.mp3";
 import Victory from "../victory.mp3";
 import volumeIcon from "../volume.png";
 
@@ -12,7 +11,6 @@ class Music extends Component {
 
     this.state = {
       volume: 0,
-      team: Sound.status.STOPPED,
       battle: Sound.status.PLAYING,
       victory: Sound.status.STOPPED
     };
@@ -21,7 +19,7 @@ class Music extends Component {
   toggleSound = () => {
     if (this.state.volume === 0) {
       this.setState({
-        volume: 70
+        volume: 50
       });
     } else {
       this.setState({
@@ -33,14 +31,6 @@ class Music extends Component {
   render() {
     return (
       <div className="MusicPlayer">
-        <Sound
-          url={TeamTheme}
-          loop={true}
-          autoLoad={false}
-          autoPlay={false}
-          volume={this.state.volume}
-          playStatus={this.state.team}
-        />
         <Sound
           url={BattleTheme}
           loop={true}
