@@ -12,9 +12,9 @@ class Music extends Component {
 
     this.state = {
       volume: 0,
-      // team: Sound.status.STOPPED,
-      battle: Sound.status.PLAYING
-      // victory: Sound.status.STOPPED
+      team: Sound.status.STOPPED,
+      battle: Sound.status.PLAYING,
+      victory: Sound.status.STOPPED
     };
   }
 
@@ -33,14 +33,14 @@ class Music extends Component {
   render() {
     return (
       <div className="MusicPlayer">
-        {/* <Sound
+        <Sound
           url={TeamTheme}
           loop={true}
           autoLoad={false}
           autoPlay={false}
           volume={this.state.volume}
           playStatus={this.state.team}
-        /> */}
+        />
         <Sound
           url={BattleTheme}
           loop={true}
@@ -49,14 +49,14 @@ class Music extends Component {
           volume={this.state.volume}
           playStatus={this.state.battle}
         />
-        {/* <Sound
+        <Sound
           url={Victory}
           loop={false}
           autoLoad={false}
           autoPlay={false}
           volume={this.state.volume}
           playStatus={this.state.victory}
-        /> */}
+        />
         <img
           className={`"volume" ${
             this.state.volume === 0 ? "volume muted" : "volume"

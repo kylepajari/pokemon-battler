@@ -207,10 +207,10 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "special",
-      power: 70,
+      power: 0,
       type: "flying",
       accuracy: 100,
-      pp: 20,
+      pp: 35,
       statusEff: "",
       statusProb: 1
     };
@@ -390,7 +390,7 @@ const CreateMoves = moveName => {
       power: 40,
       type: "normal",
       accuracy: 100,
-      pp: 35,
+      pp: 30,
       statusEff: "",
       statusProb: 1
     };
@@ -476,7 +476,7 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 30,
       statusEff: "Poison",
-      statusProb: 0.3
+      statusProb: 0.4
     };
   }
   if (moveName === "Twineedle") {
@@ -1120,7 +1120,7 @@ const CreateMoves = moveName => {
       name: moveName,
       category: "special",
       power: 90,
-      type: "normal",
+      type: "psychic",
       accuracy: 100,
       pp: 10,
       statusEff: "lowerTargetSpc",
@@ -1254,7 +1254,7 @@ const CreateMoves = moveName => {
       power: 0,
       type: "normal",
       accuracy: 999,
-      pp: 35,
+      pp: 30,
       statusEff: "recoverHP",
       statusProb: 1
     };
@@ -1314,7 +1314,7 @@ const CreateMoves = moveName => {
       power: 0,
       type: "water",
       accuracy: 999,
-      pp: 35,
+      pp: 30,
       statusEff: "raisesUserDef",
       statusProb: 1
     }; //raises defense
@@ -1326,7 +1326,7 @@ const CreateMoves = moveName => {
       power: 0,
       type: "normal",
       accuracy: 999,
-      pp: 35,
+      pp: 30,
       statusEff: "raisesUserDef",
       statusProb: 1
     }; //raises defense
@@ -1410,7 +1410,7 @@ const CreateMoves = moveName => {
       power: 0,
       type: "normal",
       accuracy: 100,
-      pp: 10,
+      pp: 35,
       statusEff: "",
       statusProb: 1
     };
@@ -1971,11 +1971,11 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 50,
+      power: 40,
       type: "normal",
       accuracy: 100,
-      pp: 40,
-      statusEff: "recoil",
+      pp: 35,
+      statusEff: "",
       statusProb: 1
     };
   }
@@ -2058,7 +2058,7 @@ const CreateMoves = moveName => {
       power: 60,
       type: "fire",
       accuracy: 100,
-      pp: 25,
+      pp: 35,
       statusEff: "Burn",
       statusProb: 0.1
     };
@@ -2166,7 +2166,7 @@ const CreateMoves = moveName => {
       power: 40,
       type: "ice",
       accuracy: 100,
-      pp: 25,
+      pp: 35,
       statusEff: "Frozen",
       statusProb: 0.1
     };
@@ -2226,7 +2226,7 @@ const CreateMoves = moveName => {
       power: 0,
       type: "fairy",
       accuracy: 75,
-      pp: 10,
+      pp: 35,
       statusEff: "ConfusionTarget",
       statusProb: 1
     };
@@ -2514,7 +2514,7 @@ const CreateMoves = moveName => {
       power: 65,
       type: "eletric",
       accuracy: 100,
-      pp: 20,
+      pp: 35,
       statusEff: "Paralyze",
       statusProb: 0.1
     };
@@ -2658,7 +2658,7 @@ const CreateMoves = moveName => {
       power: 100,
       type: "fire",
       accuracy: 95,
-      pp: 5,
+      pp: 35,
       statusEff: "Burn",
       statusProb: 0.5
     };
@@ -2898,7 +2898,7 @@ const CreateMoves = moveName => {
       power: 0,
       type: "fire",
       accuracy: 999,
-      pp: 5,
+      pp: 35,
       statusEff: "raisesUserSpcAtk",
       statusProb: 1
     };
@@ -3090,7 +3090,7 @@ const CreateMoves = moveName => {
       power: 95,
       type: "fire",
       accuracy: 90,
-      pp: 10,
+      pp: 35,
       statusEff: "",
       statusProb: 0.1
     };
@@ -3102,7 +3102,7 @@ const CreateMoves = moveName => {
       power: 50,
       type: "ice",
       accuracy: 100,
-      pp: 25,
+      pp: 35,
       statusEff: "Frozen",
       statusProb: 0.1
     };
@@ -3138,7 +3138,7 @@ const CreateMoves = moveName => {
       power: 0,
       type: "fire",
       accuracy: 85,
-      pp: 15,
+      pp: 5,
       statusEff: "Burn",
       statusProb: 1
     };
@@ -3174,7 +3174,7 @@ const CreateMoves = moveName => {
       power: 150,
       type: "fighting",
       accuracy: 100,
-      pp: 20,
+      pp: 35,
       statusEff: "",
       statusProb: 1
     };
@@ -3594,7 +3594,7 @@ const CreateMoves = moveName => {
       power: 85,
       type: "fire",
       accuracy: 90,
-      pp: 10,
+      pp: 35,
       statusEff: "Burn",
       statusProb: 0.1
     };
@@ -3618,7 +3618,7 @@ const CreateMoves = moveName => {
       power: 30,
       type: "ice",
       accuracy: 90,
-      pp: 20,
+      pp: 35,
       statusEff: "",
       statusProb: 1
     };
@@ -3690,7 +3690,7 @@ const CreateMoves = moveName => {
       power: 150,
       type: "fire",
       accuracy: 90,
-      pp: 5,
+      pp: 35,
       statusEff: "",
       statusProb: 1
     };
@@ -3786,7 +3786,7 @@ const CreateMoves = moveName => {
       power: 130,
       type: "fire",
       accuracy: 90,
-      pp: 5,
+      pp: 35,
       statusEff: "lowersUserSpcAtk",
       statusProb: 1
     };
@@ -3954,7 +3954,7 @@ const CreateMoves = moveName => {
       power: 999,
       type: "ice",
       accuracy: 20,
-      pp: 5,
+      pp: 35,
       statusEff: "",
       statusProb: 1
     };
@@ -4002,7 +4002,7 @@ const CreateMoves = moveName => {
       power: 55,
       type: "ice",
       accuracy: 100,
-      pp: 30,
+      pp: 35,
       statusEff: "",
       statusProb: 1
     };
@@ -4110,7 +4110,7 @@ const CreateMoves = moveName => {
       power: 50,
       type: "poison",
       accuracy: 100,
-      pp: 25,
+      pp: 35,
       statusEff: "Poison",
       statusProb: 0.1
     };
@@ -4710,7 +4710,7 @@ const CreateMoves = moveName => {
       power: 0,
       type: "water",
       accuracy: 999,
-      pp: 20,
+      pp: 35,
       statusEff: "recoverHP",
       statusProb: 1
     };
@@ -4734,7 +4734,7 @@ const CreateMoves = moveName => {
       power: 120,
       type: "fire",
       accuracy: 100,
-      pp: 15,
+      pp: 35,
       statusEff: "recoil",
       statusProb: 1
     };
@@ -4782,7 +4782,7 @@ const CreateMoves = moveName => {
       power: 80,
       type: "poison",
       accuracy: 100,
-      pp: 20,
+      pp: 35,
       statusEff: "Poison",
       statusProb: 0.3
     };
@@ -5046,7 +5046,7 @@ const CreateMoves = moveName => {
       power: 60,
       type: "ice",
       accuracy: 100,
-      pp: 10,
+      pp: 35,
       statusEff: "",
       statusProb: 1
     };
@@ -5058,7 +5058,7 @@ const CreateMoves = moveName => {
       power: 40,
       type: "ice",
       accuracy: 100,
-      pp: 30,
+      pp: 35,
       statusEff: "",
       statusProb: 1
     };
@@ -5070,7 +5070,7 @@ const CreateMoves = moveName => {
       power: 70,
       type: "ghost",
       accuracy: 100,
-      pp: 15,
+      pp: 35,
       statusEff: "",
       statusProb: 1
     };
@@ -5250,7 +5250,7 @@ const CreateMoves = moveName => {
       power: 80,
       type: "fire",
       accuracy: 100,
-      pp: 15,
+      pp: 35,
       statusEff: "Burn",
       statusProb: 0.3
     };
@@ -5298,7 +5298,7 @@ const CreateMoves = moveName => {
       power: 70,
       type: "poison",
       accuracy: 100,
-      pp: 20,
+      pp: 35,
       statusEff: "Poison",
       statusProb: 0.1
     };
@@ -5415,10 +5415,10 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 40,
-      type: "normal",
+      power: 60,
+      type: "bug",
       accuracy: 100,
-      pp: 35,
+      pp: 20,
       statusEff: "",
       statusProb: 1
     };
@@ -5454,7 +5454,7 @@ const CreateMoves = moveName => {
       power: 40,
       type: "water",
       accuracy: 100,
-      pp: 20,
+      pp: 35,
       statusEff: "",
       statusProb: 1
     };
@@ -5574,7 +5574,7 @@ const CreateMoves = moveName => {
       power: 100,
       type: "fire",
       accuracy: 75,
-      pp: 5,
+      pp: 35,
       statusEff: "Bound",
       statusProb: 1
     };
@@ -5754,7 +5754,7 @@ const CreateMoves = moveName => {
       power: 50,
       type: "fire",
       accuracy: 100,
-      pp: 20,
+      pp: 35,
       statusEff: "raisesUserSpd",
       statusProb: 1
     };
@@ -5766,7 +5766,7 @@ const CreateMoves = moveName => {
       power: 60,
       type: "fire",
       accuracy: 100,
-      pp: 15,
+      pp: 35,
       statusEff: "Burn",
       statusProb: 0.3
     };
@@ -5778,7 +5778,7 @@ const CreateMoves = moveName => {
       power: 100,
       type: "normal",
       accuracy: 50,
-      pp: 5,
+      pp: 35,
       statusEff: "Burn",
       statusProb: 1
     };
@@ -5790,7 +5790,7 @@ const CreateMoves = moveName => {
       power: 80,
       type: "fire",
       accuracy: 100,
-      pp: 10,
+      pp: 35,
       statusEff: "",
       statusProb: 1
     };
@@ -5814,7 +5814,7 @@ const CreateMoves = moveName => {
       power: 80,
       type: "water",
       accuracy: 100,
-      pp: 15,
+      pp: 35,
       statusEff: "Burn",
       statusProb: 0.3
     };
@@ -6066,7 +6066,7 @@ const CreateMoves = moveName => {
       power: 40,
       type: "poison",
       accuracy: 100,
-      pp: 20,
+      pp: 35, //20
       statusEff: "lowersTargetSpcDef",
       statusProb: 1
     };
@@ -6078,7 +6078,7 @@ const CreateMoves = moveName => {
       power: 120,
       type: "poison",
       accuracy: 90,
-      pp: 10,
+      pp: 35, //10
       statusEff: "",
       statusProb: 1
     };
@@ -6174,7 +6174,7 @@ const CreateMoves = moveName => {
       power: 0,
       type: "dark",
       accuracy: 100,
-      pp: 15,
+      pp: 35, //15
       statusEff: "ConfusionTarget",
       statusProb: 1
     };
@@ -6546,7 +6546,7 @@ const CreateMoves = moveName => {
       power: 130,
       type: "fire",
       accuracy: 70,
-      pp: 5,
+      pp: 35, //5
       statusEff: "",
       statusProb: 1
     };
@@ -6690,7 +6690,7 @@ const CreateMoves = moveName => {
       power: 60,
       type: "ice",
       accuracy: 90,
-      pp: 10,
+      pp: 35, //10
       statusEff: "Frozen",
       statusProb: 0.1
     };
@@ -6726,7 +6726,7 @@ const CreateMoves = moveName => {
       power: 85,
       type: "ice",
       accuracy: 90,
-      pp: 10,
+      pp: 35, //10
       statusEff: "Frozen",
       statusProb: 0.1
     };
@@ -6798,7 +6798,7 @@ const CreateMoves = moveName => {
       power: 50,
       type: "fairy",
       accuracy: 100,
-      pp: 10,
+      pp: 35, //10
       statusEff: "recoverDamage",
       statusProb: 1
     };
@@ -6810,7 +6810,7 @@ const CreateMoves = moveName => {
       power: 0,
       type: "ice",
       accuracy: 999,
-      pp: 20,
+      pp: 35, //20
       statusEff: "raisesUserSpcDef",
       statusProb: 1
     };
@@ -6834,7 +6834,7 @@ const CreateMoves = moveName => {
       power: 70,
       type: "ice",
       accuracy: 100,
-      pp: 20,
+      pp: 35, //20
       statusEff: "Frozen",
       statusProb: 0.1
     };

@@ -1,0 +1,22 @@
+.moveList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+}
+
+.moveListName {
+  font-size: 20px;
+  text-decoration: underline;
+  padding: 10px;
+}
+
+.playerMoves {
+  padding: 3px;
+  width: 100%;
+}
+
+.btn:hover {
+  cursor: pointer;
+}

@@ -5,7 +5,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { CalcTypeAdvantage } from "./TypeAdvantage";
 import $ from "jquery";
 import { MatchIconWithType } from "./MatchTypeIcon";
-import update from "immutability-helper";
+import Items from "./Items/Items";
+import Moves from "./Moves/Moves";
+import Team from "./Team/Team";
 
 class BattleStage extends Component {
   constructor(props) {
@@ -15,6 +17,10 @@ class BattleStage extends Component {
       playersTurn: "Player One",
       player1Team: [],
       player2Team: [],
+      displayItems: false,
+      displayMoves: false,
+      displayTeam: false,
+      isPoisonBurned: false,
       player1CurrentPokemon: 0,
       player2CurrentPokemon: 0,
       player1PokemonCurrentHP: 0,
@@ -44,13 +50,23 @@ class BattleStage extends Component {
       spcAtkMultiplierDown2: 1,
       spcDefMultiplierDown2: 1
     };
+
+    this.dealDamage = this.dealDamage.bind(this);
+    this.updateHP = this.updateHP.bind(this);
+    this.switchTurns = this.switchTurns.bind(this);
+    this.checkForStatusEffect = this.checkForStatusEffect.bind(this);
+    this.handleMoves = this.handleMoves.bind(this);
+    this.handleTeam = this.handleTeam.bind(this);
+    this.handleItems = this.handleItems.bind(this);
+    this.handleSwapPokemon = this.handleSwapPokemon.bind(this);
+    this.handlePoisonBurn = this.handlePoisonBurn.bind(this);
+    this.dealPoisonBurn = this.dealPoisonBurn.bind(this);
+    this.resetMultipliers = this.resetMultipliers.bind(this);
   }
 
   componentDidMount() {
     $(document.querySelector(".message")).fadeOut(10);
     $(document.querySelector(".playermessage")).fadeOut(10);
-    $(document.querySelector(".playerMoves")).hide();
-    $(document.querySelector(".playerTeam")).hide();
   }
 
   componentWillReceiveProps(props) {
@@ -60,34 +76,12 @@ class BattleStage extends Component {
     });
   }
 
-  // componentDidUpdate(props) {
-  //   console.log("props 1", props.player1Team);
-  //   console.log("props 2", props.player2Team);
-  //   console.log("state 1", this.state.player1Team);
-  //   console.log("state 2", this.state.player2Team);
-
-  //   if (
-  //     this.state.player1Team.length !== 0 &&
-  //     this.state.player1Team[0].inBattle !== false
-  //   ) {
-  //     this.setState({
-  //       player1Team: update(props.player1Team, {
-  //         0: { inBattle: { $set: true } }
-  //       })
-  //     });
-  //   }
-
-  //   if (
-  //     this.state.player2Team.length !== 0 &&
-  //     this.state.player2Team[0].inBattle !== false
-  //   ) {
-  //     this.setState({
-  //       player2Team: update(props.player2Team, {
-  //         0: { inBattle: { $set: true } }
-  //       })
-  //     });
-  //   }
-  // }
+  //RANDOM NUMBER GENERATOR FUNCTION //////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  randomNumberGenerator = (min, max) => {
+    let num = (Math.random() * (max - min) + min).toFixed(2);
+    return num;
+  };
 
   //RAPID FLASH FUNCTION ////////////////////////////////////////////////////////////////////////////////////
   //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -100,28 +94,57 @@ class BattleStage extends Component {
     $(img).fadeIn(300);
   };
 
+  //RESET MULTPLIERS ////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+  resetMultipliers() {
+    console.log("resetting multipliers...");
+    if (this.state.playersTurn === "Player One") {
+      this.setState({
+        atkMultiplierUp1: 1,
+        atkMultiplierDown1: 1,
+        defMultiplierUp1: 1,
+        defMultiplierDown1: 1,
+        spdMultiplierUp1: 1,
+        spdMultiplierDown1: 1,
+        spcAtkMultiplierUp1: 1,
+        spcAtkMultiplierDown1: 1,
+        spcDefMultiplierUp1: 1,
+        spcDefMultiplierDown1: 1
+      });
+    } else {
+      this.setState({
+        atkMultiplierUp2: 1,
+        atkMultiplierDown2: 1,
+        defMultiplierUp2: 1,
+        defMultiplierDown2: 1,
+        spdMultiplierUp2: 1,
+        spdMultiplierDown2: 1,
+        spcAtkMultiplierUp2: 1,
+        spcAtkMultiplierDown2: 1,
+        spcDefMultiplierUp2: 1,
+        spcDefMultiplierDown2: 1
+      });
+    }
+  }
+
   //UPDATE HP FUNCTION ///////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  updateHP = (HPbar, value, direction, pokemon, power) => {
+  updateHP = (HPbar, value, pokemon, power) => {
     console.log("changing HP Bar...");
 
     HPbar.css("width", value);
-    if (direction === "down") {
-      if (value <= 260 && value >= 104) {
-        HPbar.removeClass("fullhp");
-        HPbar.addClass("halfhp");
-      } else if (value <= 104 && value >= 0) {
-        HPbar.removeClass("halfhp");
-        HPbar.addClass("onefifthhp");
-      }
-    } else if (direction === "up") {
-      if (value <= 260 && value >= 104) {
-        HPbar.removeClass("onefifthhp");
-        HPbar.addClass("halfhp");
-      } else if (value > 260 && value <= 520) {
-        HPbar.removeClass("halfhp");
-        HPbar.addClass("fullhp");
-      }
+    if (value >= 0 && value <= 104) {
+      HPbar.removeClass("fullhp");
+      HPbar.removeClass("halfhp");
+      HPbar.addClass("onefifthhp");
+    } else if (value > 104 && value <= 280) {
+      HPbar.removeClass("fullhp");
+      HPbar.removeClass("onefifthhp");
+      HPbar.addClass("halfhp");
+    } else if (value > 280) {
+      HPbar.removeClass("onefifthhp");
+      HPbar.removeClass("halfhp");
+      HPbar.addClass("fullhp");
     }
 
     if (value <= 0) {
@@ -136,6 +159,132 @@ class BattleStage extends Component {
     }
   };
 
+  //HANDLE ITEMS ////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+  handleItems() {
+    console.log("toggling items...");
+    this.setState({
+      displayItems: !this.state.displayItems,
+      displayMoves: false,
+      displayTeam: false
+    });
+  }
+
+  //HANDLE MOVES ////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+  handleMoves() {
+    console.log("toggling moves...");
+    this.setState({
+      displayMoves: !this.state.displayMoves,
+      displayItems: false,
+      displayTeam: false
+    });
+  }
+
+  //HANDLE TEAM ////////////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+  handleTeam(reason) {
+    console.log("toggling team..." + reason);
+    if (reason === "fainted") {
+      //switch turns to show list for player who lost pokemon
+      this.switchTurns();
+      //show only pokemon list, hide buttons
+      this.setState({
+        displayTeam: !this.state.displayTeam,
+        displayItems: false,
+        displayMoves: false
+      });
+      $(document.querySelector(".fightButton")).hide(500);
+      $(document.querySelector(".pkmnButton")).hide(500);
+      $(document.querySelector(".itemsButton")).hide(500);
+    }
+    if (reason === "swap") {
+      //show pokemon available for switching
+      this.setState({
+        displayTeam: !this.state.displayTeam,
+        displayItems: false,
+        displayMoves: false
+      });
+    }
+  }
+
+  //HANDLE SWAP POKEMON ////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+  handleSwapPokemon(swapPoke) {
+    console.log("changing current pokemon", swapPoke);
+
+    if (this.state.playersTurn === "Player One") {
+      this.setState({ player1CurrentPokemon: swapPoke });
+    } else {
+      this.setState({ player2CurrentPokemon: swapPoke });
+    }
+  }
+
+  //HANDLE POISON BURN ////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+  handlePoisonBurn(bool) {
+    if (bool) {
+      console.log("setting poison/burn damage to true");
+      this.setState({ isPoisonBurned: true });
+    } else {
+      console.log("setting poison/burn damage to false");
+      this.setState({ isPoisonBurned: false });
+    }
+  }
+
+  dealPoisonBurn = (PKMNuser, HPbar) => {
+    //reset poison/burn flag
+    this.handlePoisonBurn(false);
+    console.log(this.state.isPoisonBurned);
+
+    //deal 1/8 of Orig HP as damage to user
+    let damage = PKMNuser.OrigHp / 16;
+    console.log("poison/burn damage: " + damage);
+
+    //store original bar percent
+    let origHealth = 0;
+    origHealth = parseInt(HPbar.css("width"));
+
+    // calculate percent difference of hp / dmg
+    let asPercentage = 0;
+    asPercentage = damage / PKMNuser.hp;
+
+    //update target pokemon hp after damage dealt
+    PKMNuser.hp -= damage;
+    $(document.querySelector(".message")).fadeIn(500);
+    if (PKMNuser.statusCondition === "Poison") {
+      setTimeout(
+        () =>
+          $(document.querySelector(".message")).text(
+            PKMNuser.name + " was hurt by Poison!"
+          ),
+        500
+      );
+    } else if (PKMNuser.statusCondition === "Burn") {
+      setTimeout(
+        () =>
+          $(document.querySelector(".message")).text(
+            PKMNuser.name + " was hurt by Burn!"
+          ),
+        500
+      );
+    }
+    setTimeout(() => $(document.querySelector(".message")).fadeOut(500), 1000);
+    setTimeout(() => $(document.querySelector(".message")).text(""), 1500);
+    let dmgDone = 0;
+    dmgDone = origHealth * asPercentage;
+    let updatedBarHP = 0;
+    updatedBarHP = origHealth - dmgDone;
+
+    //update health bar to reflect damage
+    setTimeout(
+      () => this.updateHP(HPbar, updatedBarHP, PKMNuser.name, 0),
+      1000
+    );
+
+    setTimeout(() => this.switchTurns(), 2500);
+  };
+
   //SWITCH TURNS FUNCTION ////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////
   switchTurns = () => {
@@ -147,175 +296,7 @@ class BattleStage extends Component {
     } else {
       this.setState({ playersTurn: "Player One" });
     }
-    setTimeout(() => $(document.querySelector(".options")).fadeIn(300), 300);
-  };
-
-  //DISPLAY MOVES FUNCTION ////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  displayMoves = () => {
-    console.log("displaying moves...");
-    //show moves for current battling pokemon
-    $(document.querySelector(".playerMoves")).toggle(500);
-    $(document.querySelector(".playerTeam")).hide(500);
-  };
-
-  //DISPLAY POKEMON FUNCTION ////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  displayPokemon = reason => {
-    console.log("displaying pokemon...");
-    if (reason === "fainted") {
-      //show only pokemon list, hide buttons
-      $(document.querySelector(".playerTeam")).show(500);
-      $(document.querySelector(".fightButton")).hide(500);
-      $(document.querySelector(".pkmnButton")).hide(500);
-    }
-    if (reason === "swap") {
-      //show moves for current battling pokemon
-      $(document.querySelector(".playerTeam")).toggle(500);
-      $(document.querySelector(".playerMoves")).hide(500);
-    }
-  };
-
-  //SWAP POKEMON FUNCTION ////////////////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  swapPokemon = swapPoke => {
-    console.log("swapping pokemon...");
-    let Sprite = null;
-    let PKMN = null;
-    let Team = null;
-    let HPbar = null;
-    if (this.state.playersTurn === "Player One") {
-      Team = this.state.player1Team;
-      PKMN = this.state.player1CurrentPokemon;
-      HPbar = $(document.querySelector(".player1HP"));
-      Team = this.state.player1Team;
-      Sprite = $(document.querySelector(".player1Sprite"));
-      //reset stat modifiers to defaults, for new pokemon
-      this.setState({
-        atkMultiplierUp1: 1,
-        atkMultiplierDown1: 1,
-        defMultiplierUp1: 1,
-        defMultiplierDown1: 1,
-        spdMultiplierUp1: 1,
-        spdMultiplierDown1: 1,
-        spcAtkMultiplierUp1: 1,
-        spcAtkMultiplierDown1: 1,
-        spcDefMultiplierUp1: 1,
-        spcDefMultiplierDown1: 1
-      });
-    } else {
-      Team = this.state.player2Team;
-      PKMN = this.state.player2CurrentPokemon;
-      HPbar = $(document.querySelector(".player2HP"));
-      Team = this.state.player2Team;
-      Sprite = $(document.querySelector(".player2Sprite"));
-      //reset stat modifiers to defaults, for new pokemon
-      this.setState({
-        atkMultiplierUp2: 1,
-        atkMultiplierDown2: 1,
-        defMultiplierUp2: 1,
-        defMultiplierDown2: 1,
-        spdMultiplierUp2: 1,
-        spdMultiplierDown2: 1,
-        spcAtkMultiplierUp2: 1,
-        spcAtkMultiplierDown2: 1,
-        spcDefMultiplierUp2: 1,
-        spcDefMultiplierDown2: 1
-      });
-    }
-    console.log(
-      this.state.playersTurn + " sent out " + Team[swapPoke].name + "!"
-    );
-    //hide options buttons while swapping
-    $(document.querySelector(".options")).hide(300);
-
-    //take current pokemon out of battle
-    Team[PKMN].inBattle = false;
-    //place swapped pokemon into battle
-    Team[swapPoke].inBattle = true;
-
-    //hide sprite
-    Sprite.fadeOut(1000);
-
-    //fade sprite back in
-    setTimeout(() => Sprite.fadeIn(1000), 3000);
-    //clear text from message
-    setTimeout(() => $(document.querySelector(".message")).text(""), 300);
-
-    setTimeout(() => $(document.querySelector(".message")).fadeIn(300), 300);
-    setTimeout(
-      () =>
-        $(document.querySelector(".message")).text(
-          this.state.playersTurn + " withdrew " + Team[PKMN].name
-        ),
-      600
-    );
-    setTimeout(() => $(document.querySelector(".message")).fadeOut(300), 1500);
-
-    setTimeout(() => $(document.querySelector(".message")).fadeIn(300), 2000);
-    setTimeout(
-      () =>
-        $(document.querySelector(".message")).text(
-          "and sent out " + Team[swapPoke].name
-        ),
-      2000
-    );
-    //clear text after swap
-    setTimeout(() => $(document.querySelector(".message")).text(""), 3500);
-
-    //update current pokemon to swapped pokemon
-    if (this.state.playersTurn === "Player One") {
-      setTimeout(
-        () => this.setState({ player1CurrentPokemon: swapPoke }),
-        2000
-      );
-    } else {
-      setTimeout(
-        () => this.setState({ player2CurrentPokemon: swapPoke }),
-        2000
-      );
-    }
-
-    // calculate percent difference between current poke and swap pole hp in percentage
-    let asPercentage = Team[swapPoke].hp / Team[swapPoke].OrigHp;
-
-    //if swapped pokemon has full hp, make bar full
-    if (Team[swapPoke].hp >= Team[swapPoke].OrigHp) {
-      setTimeout(() => HPbar.css("width", "100%"), 2000);
-      HPbar.removeClass("halfhp");
-      HPbar.removeClass("onefifthhp");
-      HPbar.addClass("fullhp");
-    } else {
-      let updatedBarHP = 560 * asPercentage;
-
-      //update health bar to reflect damage
-      if (updatedBarHP > HPbar.css("width")) {
-        setTimeout(
-          () => this.updateHP(HPbar, updatedBarHP, "up", swapPoke.name, 0),
-          2000
-        );
-      } else {
-        setTimeout(
-          () => this.updateHP(HPbar, updatedBarHP, "down", swapPoke.name, 0),
-          2000
-        );
-      }
-    }
-
-    setTimeout(() => $(document.querySelector(".message")).fadeOut(500), 3000);
-
-    setTimeout(() => $(document.querySelector(".options")).show(500), 4000);
-    setTimeout(() => $(document.querySelector(".fightButton")).show(500), 4000);
-    setTimeout(() => $(document.querySelector(".pkmnButton")).show(500), 4000);
-    //hide team list
-    $(document.querySelector(".playerTeam")).hide();
-  };
-
-  //RANDOM NUMBER GENERATOR FUNCTION //////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  randomNumberGenerator = (min, max) => {
-    let num = (Math.random() * (max - min) + min).toFixed(2);
-    return num;
+    setTimeout(() => $(document.querySelector(".options")).fadeIn(300), 500);
   };
 
   //FAINT POKEMON FUNCTION //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -325,10 +306,8 @@ class BattleStage extends Component {
     let Pokeball = null;
     let PKMN = null;
     let Team = null;
-    let HPbar = null;
     let PlayersTurn = this.state.playersTurn;
     if (PlayersTurn === "Player One") {
-      HPbar = $(document.querySelector(".player2HP"));
       Team = this.state.player2Team;
       PKMN = this.state.player2CurrentPokemon;
       Sprite = $(document.querySelector(".player2Sprite"));
@@ -336,7 +315,6 @@ class BattleStage extends Component {
         document.getElementById("p2" + this.state.player2CurrentPokemon)
       );
     } else {
-      HPbar = $(document.querySelector(".player1HP"));
       Team = this.state.player1Team;
       PKMN = this.state.player1CurrentPokemon;
       Sprite = $(document.querySelector(".player1Sprite"));
@@ -350,7 +328,7 @@ class BattleStage extends Component {
     Team[PKMN].fainted = true;
     //set in battle to false
     Team[PKMN].inBattle = false;
-    this.forceUpdate();
+    // this.forceUpdate();
     //hide sprite
     Sprite.fadeOut(1000);
 
@@ -368,121 +346,22 @@ class BattleStage extends Component {
 
     if (numFainted < Team.length) {
       //increase currentPokemon number for team to send out next in party
-      if (PlayersTurn === "Player One") {
-        // setTimeout(
-        //   () =>
-        //     this.setState({
-        //       player2CurrentPokemon: this.state.player2CurrentPokemon + 1
-        //     }),
-        //   2000
-        // );
-
-        //reset stat modifiers to defaults, for new pokemon
-        this.setState({
-          atkMultiplierUp1: 1,
-          atkMultiplierDown1: 1,
-          defMultiplierUp1: 1,
-          defMultiplierDown1: 1,
-          spdMultiplierUp1: 1,
-          spdMultiplierDown1: 1,
-          spcAtkMultiplierUp1: 1,
-          spcAtkMultiplierDown1: 1,
-          spcDefMultiplierUp1: 1,
-          spcDefMultiplierDown1: 1
-        });
-      } else {
-        // setTimeout(
-        //   () =>
-        //     this.setState({
-        //       player1CurrentPokemon: this.state.player1CurrentPokemon + 1
-        //     }),
-        //   2000
-        // );
-
-        //reset stat modifiers to defaults, for new pokemon
-        this.setState({
-          atkMultiplierUp2: 1,
-          atkMultiplierDown2: 1,
-          defMultiplierUp2: 1,
-          defMultiplierDown2: 1,
-          spdMultiplierUp2: 1,
-          spdMultiplierDown2: 1,
-          spcAtkMultiplierUp2: 1,
-          spcAtkMultiplierDown2: 1,
-          spcDefMultiplierUp2: 1,
-          spcDefMultiplierDown2: 1
-        });
-      }
+      //reset stat modifiers to defaults, for new pokemon
+      this.resetMultipliers();
 
       //allow choosing of pokemon to send out
-      setTimeout(() => $(document.querySelector(".message")).fadeOut(300), 500);
-      setTimeout(() => $(document.querySelector(".message")).fadeIn(300), 2000);
+      // setTimeout(() => $(document.querySelector(".message")).fadeOut(500), 500);
       setTimeout(
         () =>
           $(document.querySelector(".message")).text(
             "Select which Pokémon to send out..."
           ),
-        2000
+        3000
       );
+      setTimeout(() => $(document.querySelector(".message")).fadeIn(500), 3000);
+
       //display list of available pokemon that are not inbattle/fainted
-      this.displayPokemon("fainted");
-
-      // //fade sprite back in
-      // setTimeout(() => Sprite.fadeIn(1000), 3000);
-      // // setTimeout(
-      // //   () => $(document.querySelector(".message")).fadeOut(500),
-      // //   1500
-      // // );
-      // setTimeout(() => $(document.querySelector(".message")).fadeIn(500), 2000);
-
-      // setTimeout(
-      //   () =>
-      //     $(document.querySelector(".message")).text(
-      //       this.state.playersTurn + " sent out " + Team[PKMN + 1].name
-      //     ),
-      //   2000
-      // );
-      // setTimeout(() => (Team[PKMN].inBattle = false), 2000);
-      // setTimeout(() => (Team[PKMN + 1].inBattle = true), 2000);
-
-      // setTimeout(
-      //   () => $(document.querySelector(".message")).fadeOut(500),
-      //   3000
-      // );
-      // // calculate percent difference between current poke and swap pole hp in percentage
-      // let asPercentage = Team[PKMN + 1].hp / Team[PKMN + 1].OrigHp;
-
-      // //if swapped pokemon has full hp, make bar full
-      // if (Team[PKMN + 1].hp >= Team[PKMN + 1].OrigHp) {
-      //   setTimeout(() => HPbar.css("width", "100%"), 2000);
-      //   HPbar.removeClass("halfhp");
-      //   HPbar.removeClass("onefifthhp");
-      //   HPbar.addClass("fullhp");
-      // } else {
-      //   let updatedBarHP = 560 * asPercentage;
-
-      //   //update health bar to reflect damage
-      //   if (updatedBarHP > HPbar.css("width")) {
-      //     setTimeout(
-      //       () =>
-      //         this.updateHP(HPbar, updatedBarHP, "up", Team[PKMN + 1].name, 0),
-      //       2000
-      //     );
-      //   } else {
-      //     setTimeout(
-      //       () =>
-      //         this.updateHP(
-      //           HPbar,
-      //           updatedBarHP,
-      //           "down",
-      //           Team[PKMN + 1].name,
-      //           0
-      //         ),
-      //       2000
-      //     );
-      //   }
-      // }
-      // setTimeout(() => $(document.querySelector(".options")).fadeIn(300), 4000);
+      setTimeout(() => this.handleTeam("fainted"), 3000);
     } else {
       console.log("All pokemon on team fainted...");
 
@@ -494,10 +373,7 @@ class BattleStage extends Component {
         () => $(document.querySelector(".message")).fadeOut(500),
         2000
       );
-      setTimeout(
-        () => $(document.querySelector(".options")).fadeOut(300),
-        1500
-      );
+      $(document.querySelector(".options")).hide(500);
       if (PlayersTurn === "Player One") {
         setTimeout(
           () =>
@@ -541,459 +417,6 @@ class BattleStage extends Component {
     }
   };
 
-  //USE MOVE FUNCTION ////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  useMove = (
-    index,
-    moveName,
-    moveCategory,
-    moveType,
-    power,
-    pp,
-    moveAcc,
-    statusEff,
-    statusProb,
-    lv
-  ) => {
-    console.log("using move...");
-    let moves = $(document.querySelector(".playerMoves"));
-    let options = $(document.querySelector(".options"));
-    let PKMNuser = null;
-    let PKMNtarget = null;
-    let HPbar = null;
-    if (this.state.playersTurn === "Player One") {
-      PKMNuser = this.state.player1Team[this.state.player1CurrentPokemon];
-      PKMNtarget = this.state.player2Team[this.state.player2CurrentPokemon];
-      HPbar = $(document.querySelector(".player1HP"));
-    } else {
-      PKMNuser = this.state.player2Team[this.state.player2CurrentPokemon];
-      PKMNtarget = this.state.player1Team[this.state.player1CurrentPokemon];
-      HPbar = $(document.querySelector(".player2HP"));
-    }
-    let targetType1 = PKMNtarget.types[0][0];
-    let targetType2 = null;
-    if (PKMNtarget.types[0][1] !== null) {
-      targetType2 = PKMNtarget.types[0][1];
-    }
-
-    //does move have PP remaining?
-    if (pp === 0) {
-      //out of pp for move
-      console.log("out of PP!");
-      $(document.querySelector(".message")).text(moveName + " is out of PP!");
-      $(document.querySelector(".message")).fadeIn(500);
-      setTimeout(
-        () => $(document.querySelector(".message")).fadeOut(500),
-        1500
-      );
-    } else if (pp > 0) {
-      //hide move list/ options
-      moves.hide(500);
-      options.hide(500);
-      //subtract 1 pp from move used
-      PKMNuser.moves[index].pp -= 1;
-
-      //check if user is poisoned or burned, set up for hp loss
-      if (
-        PKMNuser.statusCondition === "Poison" ||
-        PKMNuser.statusCondition === "Burn"
-      ) {
-        //deal 1/8 of Orig HP as damage to user
-        let damage = PKMNuser.OrigHp / 16;
-        console.log("poison/burn damage: " + damage);
-
-        //store original bar percent
-        let origHealth = 0;
-        setTimeout(() => (origHealth = parseInt(HPbar.css("width"))), 3800);
-
-        // calculate percent difference of hp / dmg
-        let asPercentage = 0;
-        setTimeout(() => (asPercentage = damage / PKMNuser.hp), 3800);
-
-        //update target pokemon hp after damage dealt
-        if (statusEff !== "") {
-          setTimeout(() => (PKMNuser.hp -= damage), 5000);
-          setTimeout(
-            () => $(document.querySelector(".message")).fadeIn(500),
-            5000
-          );
-          if (PKMNuser.statusCondition === "Poison") {
-            setTimeout(
-              () =>
-                $(document.querySelector(".message")).text(
-                  PKMNuser.name + " was hurt by Poison!"
-                ),
-              5000
-            );
-          } else if (PKMNuser.statusCondition === "Burn") {
-            setTimeout(
-              () =>
-                $(document.querySelector(".message")).text(
-                  PKMNuser.name + " was hurt by Burn!"
-                ),
-              5000
-            );
-          }
-          setTimeout(
-            () => $(document.querySelector(".message")).fadeOut(500),
-            6000
-          );
-          setTimeout(
-            () => $(document.querySelector(".message")).text(""),
-            6500
-          );
-          let dmgDone = 0;
-          setTimeout(() => (dmgDone = origHealth * asPercentage), 4800);
-          let updatedBarHP = 0;
-          setTimeout(() => (updatedBarHP = origHealth - dmgDone), 4800);
-
-          //update health bar to reflect damage
-          setTimeout(
-            () =>
-              this.updateHP(HPbar, updatedBarHP, "down", PKMNuser.name, power),
-            5000
-          );
-        } else {
-          //use for when move used does not have status eff, shorter timers
-          setTimeout(() => (PKMNuser.hp -= damage), 3500);
-          setTimeout(
-            () => $(document.querySelector(".message")).fadeIn(500),
-            3500
-          );
-          if (PKMNuser.statusCondition === "Poison") {
-            setTimeout(
-              () =>
-                $(document.querySelector(".message")).text(
-                  PKMNuser.name + " was hurt by Poison!"
-                ),
-              3500
-            );
-          } else if (PKMNuser.statusCondition === "Burn") {
-            setTimeout(
-              () =>
-                $(document.querySelector(".message")).text(
-                  PKMNuser.name + " was hurt by Burn!"
-                ),
-              3500
-            );
-          }
-          setTimeout(
-            () => $(document.querySelector(".message")).fadeOut(500),
-            4500
-          );
-          setTimeout(
-            () => $(document.querySelector(".message")).text(""),
-            5000
-          );
-          let dmgDone = 0;
-          setTimeout(() => (dmgDone = origHealth * asPercentage), 3800);
-          let updatedBarHP = 0;
-          setTimeout(() => (updatedBarHP = origHealth - dmgDone), 3800);
-
-          //update health bar to reflect damage
-          setTimeout(
-            () =>
-              this.updateHP(HPbar, updatedBarHP, "down", PKMNuser.name, power),
-            4000
-          );
-        }
-      }
-
-      //check if user is afflicted with sleep and has turns remaining
-      if (PKMNuser.isAsleep && PKMNuser.turnsAsleep > 0) {
-        console.log(PKMNuser.name + " is fast asleep...");
-        console.log(
-          PKMNuser.name +
-            " will stay asleep for " +
-            (PKMNuser.turnsAsleep - 1) +
-            " more turns..."
-        );
-        //subtract one turn from asleep
-        PKMNuser.turnsAsleep = PKMNuser.turnsAsleep - 1;
-        $(document.querySelector(".message")).text(
-          PKMNuser.name + " is fast asleep... "
-        );
-        $(document.querySelector(".message")).fadeIn(500);
-        setTimeout(
-          () => $(document.querySelector(".message")).fadeOut(500),
-          1500
-        );
-        setTimeout(() => $(document.querySelector(".message")).text(""), 2000);
-        moves.fadeOut(300);
-        setTimeout(() => this.switchTurns(), 2000);
-      } else {
-        moves.fadeOut(300);
-        //check if user is asleep and on last turn
-        if (PKMNuser.isAsleep && PKMNuser.turnsAsleep === 0) {
-          //wake up pokemon
-          console.log(PKMNuser.name + " woke up!");
-          $(document.querySelector(".message")).text(
-            PKMNuser.name + " woke up! "
-          );
-          $(document.querySelector(".message")).fadeIn(500);
-          setTimeout(
-            () => $(document.querySelector(".message")).fadeOut(500),
-            1500
-          );
-          setTimeout(
-            () => $(document.querySelector(".message")).text(""),
-            2000
-          );
-          PKMNuser.isAsleep = false;
-
-          console.log(PKMNuser.name + " used " + moveName);
-          setTimeout(
-            () => $(document.querySelector(".message")).fadeIn(500),
-            2000
-          );
-
-          setTimeout(
-            () =>
-              $(document.querySelector(".message")).text(
-                PKMNuser.name + " used " + moveName
-              ),
-            2000
-          );
-
-          setTimeout(
-            () => $(document.querySelector(".message")).fadeOut(500),
-            3500
-          );
-          setTimeout(
-            () => $(document.querySelector(".message")).text(""),
-            4000
-          );
-        } else {
-          //if pokemon not sleeping
-          $(document.querySelector(".message")).fadeIn(500);
-          console.log(PKMNuser.name + " used " + moveName);
-
-          $(document.querySelector(".message")).text(
-            PKMNuser.name + " used " + moveName
-          );
-
-          setTimeout(
-            () => $(document.querySelector(".message")).fadeOut(500),
-            1500
-          );
-          setTimeout(
-            () => $(document.querySelector(".message")).text(""),
-            2000
-          );
-        }
-
-        //handle frozen
-        let frozen = false;
-        if (PKMNuser.statusCondition === "Frozen") {
-          //user is frozen
-          console.log(PKMNuser.name + " is frozen...");
-          frozen = true;
-          $(document.querySelector(".message")).fadeIn(500);
-          $(document.querySelector(".message")).text(
-            PKMNuser.name + " is Frozen Solid!"
-          );
-
-          setTimeout(
-            () => $(document.querySelector(".message")).fadeOut(500),
-            1500
-          );
-          setTimeout(
-            () => $(document.querySelector(".message")).text(""),
-            2000
-          );
-          setTimeout(() => this.switchTurns(), 2000);
-        }
-
-        //handle paralyze
-        let paralysis = false;
-        if (PKMNuser.statusCondition === "Paralyze") {
-          //user is paralyzed
-          let rand = Math.random();
-          //25% chance of paralysis
-          if (rand < 0.25) {
-            //blocked by paralysis
-            console.log(PKMNuser.name + " is paralyzed...");
-            paralysis = true;
-
-            $(document.querySelector(".message")).fadeIn(500);
-            $(document.querySelector(".message")).text(
-              PKMNuser.name + " is paralyzed!"
-            );
-
-            setTimeout(
-              () => $(document.querySelector(".message")).fadeOut(500),
-              1500
-            );
-            setTimeout(
-              () => $(document.querySelector(".message")).text(""),
-              2000
-            );
-            setTimeout(() => this.switchTurns(), 2000);
-          }
-        }
-
-        //handle confusion
-        let hurtitself = false;
-        if (PKMNuser.isConfused) {
-          if (PKMNuser.turnsConfused > 0) {
-            //subtract one turn from confused
-            PKMNuser.turnsConfused = PKMNuser.turnsConfused - 1;
-
-            console.log(PKMNuser.name + " is confused...");
-            let rand = Math.random();
-            //50% chance of hurting itself
-            if (rand > 0.5) {
-              console.log(PKMNuser.name + " hurt itself in confusion...");
-              hurtitself = true;
-
-              //deal 1/8 of Orig HP as damage to user
-              let damage = PKMNuser.OrigHp / 16;
-              console.log("confusion damage: " + damage);
-
-              //store original bar percent
-              let origHealth = parseInt(HPbar.css("width"));
-
-              // calculate percent difference of hp / dmg
-              let asPercentage = damage / PKMNuser.hp;
-
-              //update target pokemon hp after damage dealt
-              PKMNuser.hp = PKMNuser.hp - damage;
-
-              let dmgDone = origHealth * asPercentage;
-              let updatedBarHP = origHealth - dmgDone;
-              console.log(origHealth, asPercentage, dmgDone, updatedBarHP);
-
-              //update health bar to reflect damage
-              setTimeout(
-                () =>
-                  this.updateHP(
-                    HPbar,
-                    updatedBarHP,
-                    "down",
-                    PKMNuser.name,
-                    power
-                  ),
-                500
-              );
-
-              $(document.querySelector(".message")).fadeIn(500);
-              $(document.querySelector(".message")).text(
-                PKMNuser.name + " hurt itself in confusion!"
-              );
-
-              setTimeout(
-                () => $(document.querySelector(".message")).fadeOut(500),
-                1500
-              );
-              setTimeout(
-                () => $(document.querySelector(".message")).text(""),
-                2000
-              );
-              setTimeout(() => this.switchTurns(), 2000);
-            }
-          } else {
-            console.log(PKMNuser.name + " snapped out of confusion...");
-            PKMNuser.isConfused = false;
-            $(document.querySelector(".message")).fadeIn(500);
-            $(document.querySelector(".message")).text(
-              PKMNuser.name + " snapped out of confusion! "
-            );
-
-            setTimeout(
-              () => $(document.querySelector(".message")).fadeOut(500),
-              1500
-            );
-            setTimeout(
-              () => $(document.querySelector(".message")).text(""),
-              2000
-            );
-          }
-        }
-
-        //if pokemon was hurt from confusion or blocked by paralysis, skip rest of move
-        if (!hurtitself && !paralysis && !frozen) {
-          //if so, does move land hit (accuracy check)
-          //formula: percentChance = moveAcc * (attacker accuracy / target evasion)
-          let percentChance =
-            (moveAcc * (PKMNuser.accuracy / PKMNtarget.evasion)) / 100;
-          let rand = Math.random();
-
-          if (rand > percentChance) {
-            console.log(PKMNuser.name + "'s attack Missed!");
-            setTimeout(
-              () => $(document.querySelector(".message")).fadeIn(500),
-              2000
-            );
-            setTimeout(
-              () =>
-                $(document.querySelector(".message")).text(
-                  PKMNuser.name + "'s attack Missed!"
-                ),
-              2000
-            );
-            setTimeout(
-              () => $(document.querySelector(".message")).fadeOut(500),
-              3500
-            );
-
-            setTimeout(() => this.switchTurns(), 3500);
-          } else {
-            //does move have power, if so deal damage
-            if (power > 0) {
-              //if move lands, continue with deal damage
-              setTimeout(
-                () =>
-                  this.dealDamage(
-                    power,
-                    lv,
-                    moveName,
-                    moveCategory,
-                    moveType,
-                    statusEff,
-                    statusProb
-                  ),
-                2000
-              );
-            }
-
-            if (power === 0 && statusEff !== "") {
-              this.checkForStatusEffect(
-                statusEff,
-                statusProb,
-                PKMNuser,
-                PKMNtarget,
-                targetType1,
-                targetType2,
-                moveName,
-                HPbar,
-                power
-              );
-            } else if (power === 0 && statusEff === "") {
-              //move does nothing
-              console.log(moveName + " did nothing...");
-              setTimeout(
-                () => $(document.querySelector(".message")).fadeIn(500),
-                2200
-              );
-              setTimeout(
-                () =>
-                  $(document.querySelector(".message")).text(
-                    moveName + " did nothing..."
-                  ),
-                2200
-              );
-              setTimeout(
-                () => $(document.querySelector(".message")).fadeOut(1000),
-                2800
-              );
-              setTimeout(() => this.switchTurns(), 3000);
-            }
-          }
-        }
-      }
-    }
-  };
-
   //CHECK FOR STATUS EFFECT FUNCTION ////////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////////////////////////////
   checkForStatusEffect = (
@@ -1007,7 +430,8 @@ class BattleStage extends Component {
     HPbar,
     power,
     recoilDamage,
-    recoverDamage
+    recoverDamage,
+    isUserPoisonedOrBurned
   ) => {
     console.log("checking for status effect...");
     let atkMultiplierUp = 0;
@@ -1045,6 +469,7 @@ class BattleStage extends Component {
       spcDefMultiplierDown = this.state.spcDefMultiplierDown2 - 0.12;
     }
     console.log("move has status effect: " + statusEff);
+    console.log(isUserPoisonedOrBurned);
 
     //CONFUSION USER/////////////////////////////////////////////////////////////////////////////
     //if condition is ConfusionUser, only apply if user is not already confused
@@ -1055,7 +480,7 @@ class BattleStage extends Component {
           2300
         );
         setTimeout(
-          () => $(document.querySelector(".message")).fadeOut(1000),
+          () => $(document.querySelector(".message")).fadeOut(500),
           3000
         );
         PKMNuser.isConfused = true;
@@ -1075,23 +500,6 @@ class BattleStage extends Component {
             ),
           2300
         );
-      } else {
-        //user is already confused
-        setTimeout(
-          () => $(document.querySelector(".message")).fadeIn(500),
-          2300
-        );
-        setTimeout(
-          () => $(document.querySelector(".message")).fadeOut(1000),
-          3000
-        );
-        setTimeout(
-          () =>
-            $(document.querySelector(".message")).text(
-              PKMNuser.name + " was unaffected"
-            ),
-          2300
-        );
       }
     }
 
@@ -1104,7 +512,7 @@ class BattleStage extends Component {
           2300
         );
         setTimeout(
-          () => $(document.querySelector(".message")).fadeOut(1000),
+          () => $(document.querySelector(".message")).fadeOut(500),
           3000
         );
         let rand = Math.random();
@@ -1129,23 +537,6 @@ class BattleStage extends Component {
             2300
           );
         }
-      } else {
-        //target is already confused
-        setTimeout(
-          () => $(document.querySelector(".message")).fadeIn(500),
-          2300
-        );
-        setTimeout(
-          () => $(document.querySelector(".message")).fadeOut(1000),
-          3000
-        );
-        setTimeout(
-          () =>
-            $(document.querySelector(".message")).text(
-              PKMNtarget.name + " was unaffected"
-            ),
-          2300
-        );
       }
     }
 
@@ -1166,7 +557,7 @@ class BattleStage extends Component {
 
       //update health bar to reflect damage
       setTimeout(
-        () => this.updateHP(HPbar, updatedBarHP, "down", PKMNuser.name, power),
+        () => this.updateHP(HPbar, updatedBarHP, PKMNuser.name, power),
         1800
       );
 
@@ -1202,7 +593,7 @@ class BattleStage extends Component {
 
       //update health bar to reflect recovery
       setTimeout(
-        () => this.updateHP(HPbar, updatedBarHP, "up", PKMNuser.name, power),
+        () => this.updateHP(HPbar, updatedBarHP, PKMNuser.name, power),
         1800
       );
 
@@ -1237,7 +628,7 @@ class BattleStage extends Component {
 
       //update health bar to reflect recovery
       setTimeout(
-        () => this.updateHP(HPbar, updatedBarHP, "up", PKMNuser.name, power),
+        () => this.updateHP(HPbar, updatedBarHP, PKMNuser.name, power),
         1800
       );
 
@@ -1249,6 +640,46 @@ class BattleStage extends Component {
         1800
       );
     }
+
+    //BOUND ////////////////////////////////////////////////////////////////////////////
+    // if (statusEff === "Bound") {
+    //   if (PKMNtarget.isBound === false) {
+    //     setTimeout(
+    //       () => $(document.querySelector(".message")).fadeIn(500),
+    //       2300
+    //     );
+    //     setTimeout(
+    //       () => $(document.querySelector(".message")).fadeOut(500),
+    //       3000
+    //     );
+    //     setTimeout(() => (PKMNtarget.isBound = true), 2000);
+
+    //     setTimeout(
+    //       () =>
+    //         $(document.querySelector(".message")).text(
+    //           PKMNtarget.name + " was wrapped by " + moveName + "!"
+    //         ),
+    //       2300
+    //     );
+    //   } else {
+    //     //user is already bound
+    //     setTimeout(
+    //       () => $(document.querySelector(".message")).fadeIn(500),
+    //       2300
+    //     );
+    //     setTimeout(
+    //       () => $(document.querySelector(".message")).fadeOut(1000),
+    //       3000
+    //     );
+    //     setTimeout(
+    //       () =>
+    //         $(document.querySelector(".message")).text(
+    //           PKMNtarget.name + " is already Bound"
+    //         ),
+    //       2300
+    //     );
+    //   }
+    // }
 
     //REST /////////////////////////////////////////////////////////////
     if (statusEff === "Rest") {
@@ -1264,110 +695,20 @@ class BattleStage extends Component {
       setTimeout(
         () =>
           $(document.querySelector(".message")).text(
-            PKMNuser.name + " started sleeping and restored all HP!"
+            PKMNuser.name + " started sleeping and regained health!"
           ),
         2300
       );
       setTimeout(
         () => $(document.querySelector(".message")).fadeOut(500),
-        3300
+        3000
       );
 
       //put user to sleep for exactly 2 turns
-      PKMNuser.isAsleep = true;
+      PKMNuser.statusCondition = "Sleep";
       PKMNuser.turnsAsleep = 2;
-    }
-
-    //BOUND ////////////////////////////////////////////////////////////////////////////
-    if (statusEff === "Bound") {
-      if (PKMNtarget.isBound === false) {
-        setTimeout(
-          () => $(document.querySelector(".message")).fadeIn(500),
-          2300
-        );
-        setTimeout(
-          () => $(document.querySelector(".message")).fadeOut(500),
-          3000
-        );
-        setTimeout(() => (PKMNtarget.isBound = true), 2000);
-
-        setTimeout(
-          () =>
-            $(document.querySelector(".message")).text(
-              PKMNtarget.name + " was Bound by " + moveName + "!"
-            ),
-          2300
-        );
-      } else {
-        //user is already bound
-        setTimeout(
-          () => $(document.querySelector(".message")).fadeIn(500),
-          2300
-        );
-        setTimeout(
-          () => $(document.querySelector(".message")).fadeOut(1000),
-          3000
-        );
-        setTimeout(
-          () =>
-            $(document.querySelector(".message")).text(
-              PKMNtarget.name + " is already Bound"
-            ),
-          2300
-        );
-      }
-    }
-
-    //SLEEP/////////////////////////////////////////////////////////////////////////////
-    //if condition is Sleep, only apply if target is not already asleep
-    if (statusEff === "Sleep") {
-      if (PKMNtarget.isAsleep === false) {
-        setTimeout(
-          () => $(document.querySelector(".message")).fadeIn(500),
-          2300
-        );
-        setTimeout(
-          () => $(document.querySelector(".message")).fadeOut(1000),
-          3000
-        );
-        setTimeout(() => (PKMNtarget.isAsleep = true), 2000);
-        let sleepTurns = Math.round(this.randomNumberGenerator(1, 7));
-        PKMNtarget.turnsAsleep = sleepTurns;
-        console.log(
-          PKMNtarget.name + " will sleep for " + sleepTurns + " turns..."
-        );
-
-        setTimeout(
-          () =>
-            $(document.querySelector(".message")).text(
-              PKMNtarget.name + " fell Asleep!"
-            ),
-          2300
-        );
-      } else {
-        //target is already asleep
-        setTimeout(
-          () => $(document.querySelector(".message")).fadeIn(500),
-          2300
-        );
-        setTimeout(
-          () => $(document.querySelector(".message")).fadeOut(1000),
-          3000
-        );
-        setTimeout(
-          () =>
-            $(document.querySelector(".message")).text(
-              PKMNtarget.name + " was unaffected"
-            ),
-          2300
-        );
-      }
     } else {
       setTimeout(() => $(document.querySelector(".message")).fadeIn(500), 2300);
-      setTimeout(
-        () => $(document.querySelector(".message")).fadeOut(1000),
-        3000
-      );
 
       //CONDITIONS //////////////////////////////////////////////////////////
       //POISON, BURN, PARALYZE, SLEEP, FROZEN, USERCONFUSION, TARGETCONFUSION,BOUND
@@ -1382,16 +723,19 @@ class BattleStage extends Component {
         ) {
           //poison and steel types not effected by poison
           //do nothing...
-          setTimeout(
-            () =>
-              $(document.querySelector(".message")).text(
-                PKMNtarget.name + " was unaffected"
-              ),
-            2300
-          );
+          if (PKMNtarget.statusCondition !== "Poison") {
+            setTimeout(
+              () =>
+                $(document.querySelector(".message")).text(
+                  PKMNtarget.name + " was unaffected"
+                ),
+              2300
+            );
+          }
         } else {
           //check probability chance from move to see if hits
           if (rand < statusProb) {
+            console.log(PKMNtarget.name + " was Poisoned!");
             setTimeout(() => (PKMNtarget.statusCondition = "Poison"), 2000);
             setTimeout(
               () =>
@@ -1425,13 +769,15 @@ class BattleStage extends Component {
           } else {
             //fire types not effected by burn
             //do nothing...
-            setTimeout(
-              () =>
-                $(document.querySelector(".message")).text(
-                  PKMNtarget.name + " was unaffected"
-                ),
-              2300
-            );
+            if (PKMNtarget.statusCondition !== "Burn") {
+              setTimeout(
+                () =>
+                  $(document.querySelector(".message")).text(
+                    PKMNtarget.name + " was unaffected"
+                  ),
+                2300
+              );
+            }
           }
         } else {
           //if target is currently frozen, remove status
@@ -1447,6 +793,7 @@ class BattleStage extends Component {
           } else {
             //check probability chance from move to see if hits
             if (rand < statusProb) {
+              console.log(PKMNtarget.name + " was Burned!");
               setTimeout(() => (PKMNtarget.statusCondition = "Burn"), 2000);
               setTimeout(
                 () =>
@@ -1469,16 +816,19 @@ class BattleStage extends Component {
         ) {
           //electric types not effected by paralyze
           //do nothing...
-          setTimeout(
-            () =>
-              $(document.querySelector(".message")).text(
-                PKMNtarget.name + " was unaffected"
-              ),
-            2300
-          );
+          if (PKMNtarget.statusCondition !== "Paralyze") {
+            setTimeout(
+              () =>
+                $(document.querySelector(".message")).text(
+                  PKMNtarget.name + " was unaffected"
+                ),
+              2300
+            );
+          }
         } else {
           //check probability chance from move to see if hits
           if (rand < statusProb) {
+            console.log(PKMNtarget.name + " was Paralyzed!");
             setTimeout(() => (PKMNtarget.statusCondition = "Paralyze"), 2000);
             setTimeout(
               () =>
@@ -1489,6 +839,49 @@ class BattleStage extends Component {
             );
           }
         }
+      } else if (statusEff === "Sleep" && PKMNtarget.statusCondition === "") {
+        //if condition is Sleep, only apply if target is not already asleep
+        if (PKMNtarget.statusCondition !== "Sleep") {
+          setTimeout(
+            () => $(document.querySelector(".message")).fadeIn(500),
+            2300
+          );
+          setTimeout(
+            () => $(document.querySelector(".message")).fadeOut(500),
+            3000
+          );
+          setTimeout(() => (PKMNtarget.statusCondition = "Sleep"), 2000);
+          let sleepTurns = Math.round(this.randomNumberGenerator(1, 7));
+          PKMNtarget.turnsAsleep = sleepTurns;
+          console.log(
+            PKMNtarget.name + " will sleep for " + sleepTurns + " turns..."
+          );
+
+          setTimeout(
+            () =>
+              $(document.querySelector(".message")).text(
+                PKMNtarget.name + " fell Asleep!"
+              ),
+            2300
+          );
+        } else {
+          //target is already asleep
+          setTimeout(
+            () => $(document.querySelector(".message")).fadeIn(500),
+            2300
+          );
+          setTimeout(
+            () => $(document.querySelector(".message")).fadeOut(500),
+            3000
+          );
+          setTimeout(
+            () =>
+              $(document.querySelector(".message")).text(
+                PKMNtarget.name + " was unaffected"
+              ),
+            2300
+          );
+        }
       } else if (statusEff === "Frozen" && PKMNtarget.statusCondition === "") {
         if (
           targetType1 === "ice" ||
@@ -1497,16 +890,19 @@ class BattleStage extends Component {
         ) {
           //ice types not effected by frozen
           //do nothing...
-          setTimeout(
-            () =>
-              $(document.querySelector(".message")).text(
-                PKMNtarget.name + " was unaffected"
-              ),
-            2300
-          );
+          if (PKMNtarget.statusCondition !== "Frozen") {
+            setTimeout(
+              () =>
+                $(document.querySelector(".message")).text(
+                  PKMNtarget.name + " was unaffected"
+                ),
+              2300
+            );
+          }
         } else {
           //check probability chance from move to see if hits
           if (rand < statusProb) {
+            console.log(PKMNtarget.name + " was Frozen!");
             setTimeout(() => (PKMNtarget.statusCondition = "Frozen"), 2000);
             setTimeout(
               () =>
@@ -1524,11 +920,6 @@ class BattleStage extends Component {
     // lowersTargetAtk, lowersTargetDef,lowersTargetSpd,lowersTargetSpcAtk,lowersTargetSpcDef,lowersTargetAcc,lowersTargetEva
     //RAISES USER////////////////////////////////////////////////////////////
     if (statusEff === "raisesUserAtk") {
-      setTimeout(() => $(document.querySelector(".message")).fadeIn(500), 2300);
-      setTimeout(
-        () => $(document.querySelector(".message")).fadeOut(1000),
-        3000
-      );
       PKMNuser.attack = PKMNuser.OrigAttack * atkMultiplierUp;
       setTimeout(
         () =>
@@ -1554,11 +945,6 @@ class BattleStage extends Component {
         this.setState({ atkMultiplierUp2: atkMultiplierUp });
       }
     } else if (statusEff === "raisesUserDef") {
-      setTimeout(() => $(document.querySelector(".message")).fadeIn(500), 2300);
-      setTimeout(
-        () => $(document.querySelector(".message")).fadeOut(1000),
-        3000
-      );
       PKMNuser.defense = PKMNuser.OrigDefense * defMultiplierUp;
       setTimeout(
         () =>
@@ -1584,11 +970,6 @@ class BattleStage extends Component {
         this.setState({ defMultiplierUp2: defMultiplierUp });
       }
     } else if (statusEff === "raisesUserSpd") {
-      setTimeout(() => $(document.querySelector(".message")).fadeIn(500), 2300);
-      setTimeout(
-        () => $(document.querySelector(".message")).fadeOut(1000),
-        3000
-      );
       PKMNuser.speed = PKMNuser.OrigSpeed * spdMultiplierUp;
       setTimeout(
         () =>
@@ -1614,11 +995,6 @@ class BattleStage extends Component {
         this.setState({ spdMultiplierUp2: spdMultiplierUp });
       }
     } else if (statusEff === "raisesUserSpcAtk") {
-      setTimeout(() => $(document.querySelector(".message")).fadeIn(500), 2300);
-      setTimeout(
-        () => $(document.querySelector(".message")).fadeOut(1000),
-        3000
-      );
       PKMNuser.specialattack = PKMNuser.OrigSpecialattack * spcAtkMultiplierUp;
       setTimeout(
         () =>
@@ -1644,11 +1020,6 @@ class BattleStage extends Component {
         this.setState({ spcAtkMultiplierUp2: spcAtkMultiplierUp });
       }
     } else if (statusEff === "raisesUserSpcDef") {
-      setTimeout(() => $(document.querySelector(".message")).fadeIn(500), 2300);
-      setTimeout(
-        () => $(document.querySelector(".message")).fadeOut(1000),
-        3000
-      );
       PKMNuser.specialdefense =
         PKMNuser.OrigSpecialdefense * spcDefMultiplierUp;
       setTimeout(
@@ -1675,11 +1046,6 @@ class BattleStage extends Component {
         this.setState({ spcDefMultiplierUp2: spcDefMultiplierUp });
       }
     } else if (statusEff === "raisesUserAcc") {
-      setTimeout(() => $(document.querySelector(".message")).fadeIn(500), 2300);
-      setTimeout(
-        () => $(document.querySelector(".message")).fadeOut(1000),
-        3000
-      );
       PKMNuser.accuracy = PKMNuser.accuracy + 0.1;
       setTimeout(
         () =>
@@ -1700,11 +1066,6 @@ class BattleStage extends Component {
         );
       }
     } else if (statusEff === "raisesUserEva") {
-      setTimeout(() => $(document.querySelector(".message")).fadeIn(500), 2300);
-      setTimeout(
-        () => $(document.querySelector(".message")).fadeOut(1000),
-        3000
-      );
       PKMNuser.evasion = PKMNuser.evasion + 0.1;
       setTimeout(
         () =>
@@ -1728,11 +1089,6 @@ class BattleStage extends Component {
 
     //LOWERS TARGET////////////////////////////////////////////////////////////////
     if (statusEff === "lowersTargetAtk") {
-      setTimeout(() => $(document.querySelector(".message")).fadeIn(500), 2300);
-      setTimeout(
-        () => $(document.querySelector(".message")).fadeOut(1000),
-        3000
-      );
       PKMNtarget.attack = PKMNtarget.OrigAttack * atkMultiplierDown;
       setTimeout(
         () =>
@@ -1758,11 +1114,6 @@ class BattleStage extends Component {
         this.setState({ atkMultiplierDown2: atkMultiplierDown });
       }
     } else if (statusEff === "lowersTargetDef") {
-      setTimeout(() => $(document.querySelector(".message")).fadeIn(500), 2300);
-      setTimeout(
-        () => $(document.querySelector(".message")).fadeOut(1000),
-        3000
-      );
       PKMNtarget.defense = PKMNtarget.defense * defMultiplierDown;
       setTimeout(
         () =>
@@ -1788,11 +1139,6 @@ class BattleStage extends Component {
         this.setState({ defMultiplierDown2: defMultiplierDown });
       }
     } else if (statusEff === "lowersTargetSpd") {
-      setTimeout(() => $(document.querySelector(".message")).fadeIn(500), 2300);
-      setTimeout(
-        () => $(document.querySelector(".message")).fadeOut(1000),
-        3000
-      );
       PKMNtarget.speed = PKMNtarget.speed * spdMultiplierDown;
       setTimeout(
         () =>
@@ -1818,11 +1164,6 @@ class BattleStage extends Component {
         this.setState({ spdMultiplierDown2: spdMultiplierDown });
       }
     } else if (statusEff === "lowersTargetSpcAtk") {
-      setTimeout(() => $(document.querySelector(".message")).fadeIn(500), 2300);
-      setTimeout(
-        () => $(document.querySelector(".message")).fadeOut(1000),
-        3000
-      );
       PKMNtarget.specialattack =
         PKMNtarget.specialattack * spcAtkMultiplierDown;
       setTimeout(
@@ -1849,11 +1190,6 @@ class BattleStage extends Component {
         this.setState({ spcAtkMultiplierDown2: spcAtkMultiplierDown });
       }
     } else if (statusEff === "lowersTargetSpcDef") {
-      setTimeout(() => $(document.querySelector(".message")).fadeIn(500), 2300);
-      setTimeout(
-        () => $(document.querySelector(".message")).fadeOut(1000),
-        3000
-      );
       PKMNtarget.specialdefense =
         PKMNtarget.specialdefense * spcDefMultiplierDown;
       setTimeout(
@@ -1880,11 +1216,6 @@ class BattleStage extends Component {
         this.setState({ spcDefMultiplierDown2: spcDefMultiplierDown });
       }
     } else if (statusEff === "lowersTargetAcc") {
-      setTimeout(() => $(document.querySelector(".message")).fadeIn(500), 2300);
-      setTimeout(
-        () => $(document.querySelector(".message")).fadeOut(1000),
-        3000
-      );
       PKMNtarget.accuracy = PKMNtarget.accuracy - 0.1;
       setTimeout(
         () =>
@@ -1905,11 +1236,6 @@ class BattleStage extends Component {
         );
       }
     } else if (statusEff === "lowersTargetEva") {
-      setTimeout(() => $(document.querySelector(".message")).fadeIn(500), 2300);
-      setTimeout(
-        () => $(document.querySelector(".message")).fadeOut(1000),
-        3000
-      );
       PKMNtarget.evasion = PKMNtarget.evasion - 0.1;
       setTimeout(
         () =>
@@ -1931,9 +1257,21 @@ class BattleStage extends Component {
       }
     }
 
+    setTimeout(() => $(document.querySelector(".message")).fadeOut(500), 3000);
+    setTimeout(() => $(document.querySelector(".message")).text(""), 3500);
+
     //if move is not a damaging one, end turn
     if (power === 0) {
-      setTimeout(() => this.switchTurns(), 3000);
+      console.log("move has 0 power...");
+      console.log(isUserPoisonedOrBurned);
+
+      //if user is poisonedburned, delay switching turns
+      if (isUserPoisonedOrBurned === true) {
+        console.log(PKMNuser.name + " is poisoned/burned");
+        setTimeout(() => this.dealPoisonBurn(PKMNuser, HPbar), 3500);
+      } else {
+        setTimeout(() => this.switchTurns(), 3500);
+      }
     }
   };
 
@@ -2028,17 +1366,18 @@ class BattleStage extends Component {
     let dmgDone = origHealth * asPercentage;
     let updatedBarHP = origHealth - dmgDone;
 
-    //update health bar to reflect damage
-    this.updateHP(TargetHP, updatedBarHP, "down", PKMNtarget.name, power);
-
     //if move does not do any damage, do not flash sprite
     if (Damage !== 0) {
+      //update health bar to reflect damage
+      this.updateHP(TargetHP, updatedBarHP, PKMNtarget.name, power);
+
       if (this.state.playersTurn === "Player One") {
         this.rapidFlash($(document.querySelector(".player2Sprite")));
       } else {
         this.rapidFlash($(document.querySelector(".player1Sprite")));
       }
     } else {
+      //damage was calced to 0
       $(document.querySelector(".message")).fadeIn(500);
       $(document.querySelector(".message")).text(
         PKMNtarget.name + " was unaffected"
@@ -2049,24 +1388,49 @@ class BattleStage extends Component {
       );
     }
 
-    //Check for and apply status effect after damage
-    if (statusEff !== "") {
-      this.checkForStatusEffect(
-        statusEff,
-        statusProb,
-        PKMNuser,
-        PKMNtarget,
-        targetType1,
-        targetType2,
-        moveName,
-        UserHP,
-        power,
-        recoilDamage,
-        recoverDamage
-      );
-    }
+    console.log(PKMNtarget.hp);
 
-    setTimeout(() => this.switchTurns(), 2000);
+    if (
+      PKMNtarget.hp > 0 ||
+      statusEff === "recoverDamage" ||
+      statusEff === "recoil"
+    ) {
+      //Check for and apply status effect after damage only if pokemon is not fainted
+      if (statusEff !== "") {
+        console.log(statusEff);
+
+        this.checkForStatusEffect(
+          statusEff,
+          statusProb,
+          PKMNuser,
+          PKMNtarget,
+          targetType1,
+          targetType2,
+          moveName,
+          UserHP,
+          power,
+          recoilDamage,
+          recoverDamage,
+          this.state.isPoisonBurned
+        );
+
+        if (this.state.isPoisonBurned) {
+          console.log(PKMNuser.name + " is poisoned/burned");
+          setTimeout(() => this.dealPoisonBurn(PKMNuser, UserHP), 2000);
+        } else {
+          console.log("user is not poisoned/burned");
+          setTimeout(() => this.switchTurns(), 2500);
+        }
+      } else {
+        if (this.state.isPoisonBurned) {
+          console.log(PKMNuser.name + " is poisoned/burned");
+          setTimeout(() => this.dealPoisonBurn(PKMNuser, UserHP), 2000);
+        } else {
+          //no effect from move, switch turns
+          setTimeout(() => this.switchTurns(), 2000);
+        }
+      }
+    }
   };
 
   //TYPES FUNCTION ///////////////////////////////////////////////////////////////////////////////
@@ -2082,7 +1446,7 @@ class BattleStage extends Component {
 
   //CONDITIONS FUNCTION ///////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////
-  Conditions = (status, isAsleep, isConfused) => {
+  Conditions = (status, isConfused) => {
     let StatusDiv = [];
     if (status === "Poison") {
       StatusDiv.push(
@@ -2108,15 +1472,14 @@ class BattleStage extends Component {
           FRZ
         </span>
       );
-    }
-
-    if (isAsleep === true) {
+    } else if (status === "Sleep") {
       StatusDiv.push(
         <span className="badge badge-secondary sleep" key="sleep">
           SLP
         </span>
       );
     }
+
     if (isConfused === true) {
       StatusDiv.push(
         <span className="badge badge-secondary" key="confuse">
@@ -2129,17 +1492,6 @@ class BattleStage extends Component {
   };
 
   render() {
-    const currentPlayer = this.state.playersTurn;
-    let pokemon;
-    let team;
-    if (currentPlayer === "Player One") {
-      pokemon = this.state.player1Team[this.state.player1CurrentPokemon];
-      team = this.state.player1Team;
-    } else {
-      pokemon = this.state.player2Team[this.state.player2CurrentPokemon];
-      team = this.state.player2Team;
-    }
-
     if (this.props.battleReady) {
       return (
         <div className="battleWindow">
@@ -2163,8 +1515,6 @@ class BattleStage extends Component {
                 {this.Conditions(
                   this.state.player2Team[this.state.player2CurrentPokemon]
                     .statusCondition,
-                  this.state.player2Team[this.state.player2CurrentPokemon]
-                    .isAsleep,
                   this.state.player2Team[this.state.player2CurrentPokemon]
                     .isConfused
                 )}
@@ -2214,8 +1564,6 @@ class BattleStage extends Component {
                   this.state.player1Team[this.state.player1CurrentPokemon]
                     .statusCondition,
                   this.state.player1Team[this.state.player1CurrentPokemon]
-                    .isAsleep,
-                  this.state.player1Team[this.state.player1CurrentPokemon]
                     .isConfused
                 )}
               </p>
@@ -2256,66 +1604,65 @@ class BattleStage extends Component {
               <button
                 type="button"
                 className="btn btn-light fightButton"
-                onClick={() => this.displayMoves()}
+                onClick={() => this.handleMoves()}
               >
                 Fight
               </button>
               <button
                 type="button"
                 className="btn btn-light pkmnButton"
-                onClick={() => this.displayPokemon("swap")}
+                onClick={() => this.handleTeam("swap")}
               >
                 Pokémon
               </button>
-              <div className="playerTeam">
-                {team.map((pkmn, i) => {
-                  if (!pkmn.inBattle && !pkmn.fainted) {
-                    return (
-                      <img
-                        className="playerTeamSprite"
-                        src={pkmn.frontSprite}
-                        alt={pkmn.name}
-                        onClick={() => this.swapPokemon(i)}
-                        key={i}
-                      />
-                    );
-                  }
-                  return false;
-                })}
-              </div>
+              <button
+                type="button"
+                className="btn btn-light itemsButton"
+                onClick={() => this.handleItems()}
+              >
+                Bag
+              </button>
             </div>
-            <div className="moveList row container">
-              <div className="playerMoves row">
-                <div className="moveListName">{pokemon.name}'s Moves:</div>
-                <br />
-                {pokemon.moves.map((move, i) => {
-                  return (
-                    <button
-                      key={i}
-                      type="button"
-                      className="btn btn-outline-dark"
-                      onClick={() =>
-                        this.useMove(
-                          i,
-                          move.name,
-                          move.category,
-                          move.type,
-                          move.power,
-                          move.pp,
-                          move.accuracy,
-                          move.statusEff,
-                          move.statusProb,
-                          pokemon.lv
-                        )
-                      }
-                    >
-                      {move.name.toUpperCase()} / PP:{move.pp} / PWR:
-                      {move.power} {MatchIconWithType(move.type)}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
+            <Team
+              displayTeam={this.state.displayTeam}
+              playersTurn={this.state.playersTurn}
+              player1Team={this.state.player1Team}
+              player2Team={this.state.player2Team}
+              player1CurrentPokemon={this.state.player1CurrentPokemon}
+              player2CurrentPokemon={this.state.player2CurrentPokemon}
+              handleTeam={this.handleTeam}
+              handleSwapPokemon={this.handleSwapPokemon}
+              updateHP={this.updateHP}
+              resetMultipliers={this.resetMultipliers}
+            />
+            <Items
+              displayItems={this.state.displayItems}
+              playersTurn={this.state.playersTurn}
+              player1Team={this.state.player1Team}
+              player2Team={this.state.player2Team}
+              player1CurrentPokemon={this.state.player1CurrentPokemon}
+              player2CurrentPokemon={this.state.player2CurrentPokemon}
+              updateHP={this.updateHP}
+              switchTurns={this.switchTurns}
+              handleItems={this.handleItems}
+              checkForStatusEffect={this.checkForStatusEffect}
+            />
+            <Moves
+              displayMoves={this.state.displayMoves}
+              playersTurn={this.state.playersTurn}
+              player1Team={this.state.player1Team}
+              player2Team={this.state.player2Team}
+              player1CurrentPokemon={this.state.player1CurrentPokemon}
+              player2CurrentPokemon={this.state.player2CurrentPokemon}
+              dealDamage={this.dealDamage}
+              updateHP={this.updateHP}
+              switchTurns={this.switchTurns}
+              checkForStatusEffect={this.checkForStatusEffect}
+              handleMoves={this.handleMoves}
+              isPoisonBurned={this.state.isPoisonBurned}
+              handlePoisonBurn={this.handlePoisonBurn}
+              dealPoisonBurn={this.dealPoisonBurn}
+            />
           </div>
         </div>
       );

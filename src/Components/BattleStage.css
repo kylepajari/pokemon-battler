@@ -50,44 +50,6 @@
   margin: 5px;
 }
 
-.playerTeam {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  height: 50px;
-  width: 310px;
-}
-
-.playerTeamSprite {
-  height: 65px;
-  width: 65px;
-  border: none;
-}
-
-.playerTeamSprite:hover {
-  border: 2px dashed red;
-}
-
-.moveList {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 58%;
-}
-
-.moveListName {
-  font-size: 20px;
-  text-decoration: underline;
-  padding: 10px;
-}
-
-.playerMoves {
-  padding: 3px;
-  width: 100%;
-}
-
 .battleMessages {
   border-top: 2px dashed black;
   height: 30px;

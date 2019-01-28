@@ -1,0 +1,20 @@
+.playerItems {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 3px;
+}
+
+.playerItem {
+  box-sizing: border-box;
+  height: 60px;
+  border: none;
+  font-size: 16px;
+}
+
+.playerItem:hover {
+  border: 2px dashed black;
+  cursor: pointer;
+}

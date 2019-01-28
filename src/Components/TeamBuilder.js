@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import BattleStage from "./BattleStage";
 import { CreateMoves } from "./MoveCreator";
 import $ from "jquery";
+import update from "immutability-helper";
 
 class TeamBuilder extends Component {
   constructor(props) {
@@ -13,11 +14,11 @@ class TeamBuilder extends Component {
       data: null,
       isOpen: false, //to keep track of whether dropdown is open
       currentPlayer: "Player One", //player who starts the game
-      teamSize: 3, //max number of pokemon per team, adjust to allow more/less
+      teamSize: 2, //max number of pokemon per team, adjust to allow more/less
       player1Team: [], //used to hold player one team
       player2Team: [], //used to hold player two team
       battleReady: false, //set when teams are picked
-      globalLevel: 100 //level to set all pokemon too, also used to scale stats,
+      globalLevel: 15 //level to set all pokemon too, also used to scale stats,
     };
 
     this.toggleOpen = this.toggleOpen.bind(this);
@@ -64,18 +65,87 @@ class TeamBuilder extends Component {
     return this.Capitalize(this.toCamelCase(name.replace("-", " ")));
   };
 
+  //MOVES LIST BUILDER FUNCTION //////////////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////
   movesBuilder = movesToMap => {
+    let discardedMoves = [];
+    let usableMoves = [];
+    //go through moves, and create new list with objects for each one
     let movesList = movesToMap.map((item, i) => {
       let name = this.formatName(item.move.name);
       return CreateMoves(name);
     });
-    let newMoves = [];
-    for (let i = 0; i < 4; i++) {
-      let randomMove = movesList[Math.floor(Math.random() * movesList.length)];
-      newMoves.push(randomMove);
+
+    //go through new object list, and place unwanted moves in serperate array
+    movesList.forEach(move => {
+      if (move.pp === 35) {
+        discardedMoves.push(move);
+      } else {
+        usableMoves.push(move);
+      }
+    });
+
+    let status = [];
+    let damaging = [];
+    //go through useable moves, and split into status/damaging arrays
+    usableMoves.forEach(move => {
+      if (move.power === 0) {
+        status.push(move);
+      } else {
+        damaging.push(move);
+      }
+    });
+
+    let physical = [];
+    let special = [];
+    //go through damaging moves, split into physical special arrays
+    damaging.forEach(move => {
+      if (move.category === "special") {
+        special.push(move);
+      } else {
+        physical.push(move);
+      }
+    });
+
+    //finally, go through physical, special, and status moves, and create final move list
+    let finalMoves = [];
+
+    //if pokemon has more than 4 moves available
+    if (physical.length + special.length + status.length > 4) {
+      console.log("pokemon has more than 4 moves, distributing...");
+
+      for (let i = 0; i < 2; i++) {
+        if (physical.length > 2) {
+          let randomMove =
+            physical[Math.floor(Math.random() * physical.length)];
+          if (i === 0) {
+            console.log(randomMove.name + " was chosen as FIRST MOVE");
+          } else {
+            console.log(randomMove.name + " was chosen as SECOND MOVE");
+          }
+
+          finalMoves.push(randomMove);
+        } else {
+          //has 2 or less physical moves, add them
+          finalMoves.concat(physical);
+        }
+      }
+      for (let i = 0; i < 1; i++) {
+        let randomMove = special[Math.floor(Math.random() * special.length)];
+        console.log(randomMove.name + " was chosen as THIRD MOVE");
+        finalMoves.push(randomMove);
+      }
+      for (let i = 0; i < 1; i++) {
+        let randomMove = status[Math.floor(Math.random() * status.length)];
+        console.log(randomMove.name + " was chosen FORTH MOVE");
+        finalMoves.push(randomMove);
+      }
+    } else {
+      //pokemon has 4 or less moves, add all of them
+      finalMoves = physical.concat(special, status);
     }
-    //use return newMoves to get 4 random ones instead of all moves
-    return movesList;
+
+    return finalMoves;
   };
 
   fetchPokemon = num => {
@@ -212,6 +282,8 @@ class TeamBuilder extends Component {
   };
 
   startBattle = () => {
+    this.state.player1Team[0].inBattle = true;
+    this.state.player2Team[0].inBattle = true;
     this.setState({ battleReady: true });
     console.log("starting battle...");
     $(document.getElementById("BattleButton")).fadeOut(300);

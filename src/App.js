@@ -37,7 +37,7 @@ class App extends Component {
       return (
         <div className="App">
           <div className="title">
-            <Music inBattle={this.state.inBattle} />
+            {/* <Music inBattle={this.state.inBattle} /> */}
             <p>Pokémon Battler</p>
             <img className="pokeball" src={pokeball} alt="Pokeball" />
           </div>
