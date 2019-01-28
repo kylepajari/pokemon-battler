@@ -445,7 +445,7 @@ class Moves extends Component {
                     )
                   }
                 >
-                  {move.name.toUpperCase()} / PP:{move.pp}{" "}
+                  {move.name.toUpperCase()} / PP:{move.pp} / PWR:{move.power}{" "}
                   {MatchIconWithType(move.type)}
                 </button>
               );

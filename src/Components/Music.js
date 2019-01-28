@@ -34,8 +34,8 @@ class Music extends Component {
         <Sound
           url={BattleTheme}
           loop={true}
-          autoLoad={false}
-          autoPlay={false}
+          autoLoad={true}
+          autoPlay={true}
           volume={this.state.volume}
           playStatus={this.state.battle}
         />

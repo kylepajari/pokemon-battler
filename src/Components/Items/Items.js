@@ -167,7 +167,9 @@ class Items extends Component {
     //if increasing would bring them over full hp, cap hp
     if (Math.round(PKMNuser.hp) + healAmount > PKMNuser.OrigHp) {
       setTimeout(() => (PKMNuser.hp = PKMNuser.OrigHp), 500);
+      setTimeout(() => this.forceUpdate(), 500);
       let difference = Math.round(PKMNuser.OrigHp - PKMNuser.hp);
+      $(document.querySelector(".options")).fadeOut(300);
       $(document.querySelector(".message")).fadeIn(300);
       $(document.querySelector(".message")).text(
         PKMNuser.name + " recovered by " + difference.toString() + " HP!"
@@ -178,7 +180,9 @@ class Items extends Component {
       );
     } else {
       //increase health by healAmount
-      setTimeout(() => (PKMNuser.hp += healAmount), 500);
+      setTimeout(() => (PKMNuser.hp += healAmount), 300);
+      setTimeout(() => this.forceUpdate(), 300);
+      $(document.querySelector(".options")).fadeOut(300);
       $(document.querySelector(".message")).fadeIn(300);
       $(document.querySelector(".message")).text(
         PKMNuser.name + " recovered by " + healAmount.toString() + " HP!"
@@ -195,14 +199,13 @@ class Items extends Component {
 
     let hpRecovered = origHealth * asPercentage;
     let updatedBarHP = origHealth + hpRecovered;
-    console.log(origHealth, asPercentage, hpRecovered, updatedBarHP);
     if (updatedBarHP > 560) {
       updatedBarHP = 560;
     }
 
     setTimeout(
       () => this.props.updateHP(HPbar, updatedBarHP, PKMNuser, 0),
-      500
+      300
     );
 
     this.checkForPoisonBurn(PKMNuser, HPbar);
@@ -214,13 +217,14 @@ class Items extends Component {
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
   healStatus = (PKMNuser, name) => {
     console.log(PKMNuser.name + " was cured of " + PKMNuser.statusCondition);
+    $(document.querySelector(".options")).fadeOut(300);
     $(document.querySelector(".message")).fadeIn(300);
     $(document.querySelector(".message")).text(
       PKMNuser.name + " was cured of " + PKMNuser.statusCondition + "!"
     );
     setTimeout(() => $(document.querySelector(".message")).fadeOut(300), 1000);
     //remove status condition
-    PKMNuser.statusCondition = "";
+    setTimeout(() => (PKMNuser.statusCondition = ""), 500);
 
     this.props.handleItems();
     setTimeout(() => this.props.switchTurns(), 1300);

@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import pokeball from "./pokeball.png";
 import TeamBuilder from "./Components/TeamBuilder/TeamBuilder";
 import Music from "./Components/Music";
+import Promise from "es6-promise-promise";
 
 class App extends Component {
   constructor(props) {

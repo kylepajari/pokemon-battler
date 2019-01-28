@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./Team.css";
 import $ from "jquery";
 
-class Teams extends Component {
+class Team extends Component {
   constructor(props) {
     super(props);
 
@@ -127,13 +127,18 @@ class Teams extends Component {
           {team.map((pkmn, i) => {
             if (!pkmn.inBattle && !pkmn.fainted) {
               return (
-                <img
-                  className="playerTeamSprite"
-                  src={pkmn.frontSprite}
-                  alt={pkmn.name}
-                  onClick={() => this.swapPokemon(i)}
-                  key={i}
-                />
+                <div className="playerTeamSprite" key={i}>
+                  <p className="smallText">{pkmn.name}</p>
+                  <img
+                    src={pkmn.frontSprite}
+                    alt={pkmn.name}
+                    onClick={() => this.swapPokemon(i)}
+                    key={pkmn.name}
+                  />
+                  <p className="smallText">
+                    HP:{Math.round(pkmn.hp)}/{pkmn.OrigHp}
+                  </p>
+                </div>
               );
             }
             return false;
@@ -146,4 +151,4 @@ class Teams extends Component {
   }
 }
 
-export default Teams;
+export default Team;

@@ -5,6 +5,8 @@
   "dependencies": {
     "bootstrap": "^4.2.1",
     "create-react-class": "^15.6.3",
+    "es6-promise": "^4.2.5",
+    "es6-promise-promise": "^1.0.0",
     "immutability-helper": "^3.0.0",
     "jquery": "^3.3.1",
     "react": "^16.7.0",

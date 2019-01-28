@@ -1,6 +1,6 @@
 .battleContainer {
   background-color: white;
-  height: 550px;
+  height: 590px;
   width: 650px;
   border: 2px dashed black;
   border-radius: 15px;
@@ -39,11 +39,11 @@
 }
 
 .player1Sprite {
-  margin-left: 30px;
+  margin-left: 20px;
 }
 
 .player2Sprite {
-  margin-left: 400px;
+  margin-left: 380px;
 }
 
 .options {
@@ -52,7 +52,7 @@
 
 .battleMessages {
   border-top: 2px dashed black;
-  height: 30px;
+  height: 20%;
   width: 106%;
   display: flex;
   flex-direction: column;
@@ -61,12 +61,12 @@
 }
 
 .message {
-  margin-top: 10px;
-  font-size: 16px;
+  margin-top: 2px;
+  font-size: 14px;
 }
 .playermessage {
-  margin-top: 3px;
-  font-size: 16px;
+  margin-top: 2px;
+  font-size: 14px;
 }
 
 .faded {
@@ -105,4 +105,13 @@
 }
 .sleep {
   background-color: rgb(111, 104, 112);
+}
+
+/* hp displayed in number values */
+.smallText {
+  font-size: 14px;
+}
+.smallHP {
+  text-align: left;
+  margin-left: 35px;
 }

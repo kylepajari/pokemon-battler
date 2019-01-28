@@ -251,6 +251,7 @@ class BattleStage extends Component {
 
     //update target pokemon hp after damage dealt
     PKMNuser.hp -= damage;
+    this.forceUpdate();
     $(document.querySelector(".message")).fadeIn(500);
     if (PKMNuser.statusCondition === "Poison") {
       setTimeout(
@@ -364,15 +365,15 @@ class BattleStage extends Component {
       setTimeout(() => this.handleTeam("fainted"), 3000);
     } else {
       console.log("All pokemon on team fainted...");
-
-      setTimeout(
-        () => $(document.querySelector(".playermessage")).fadeIn(500),
-        500
-      );
       setTimeout(
         () => $(document.querySelector(".message")).fadeOut(500),
+        1500
+      );
+      setTimeout(
+        () => $(document.querySelector(".playermessage")).fadeIn(500),
         2000
       );
+
       $(document.querySelector(".options")).hide(500);
       if (PlayersTurn === "Player One") {
         setTimeout(
@@ -387,7 +388,7 @@ class BattleStage extends Component {
             $(document.querySelector(".playermessage")).text(
               "Player One defeated Player Two!"
             ),
-          4000
+          3000
         );
       } else {
         setTimeout(
@@ -402,18 +403,9 @@ class BattleStage extends Component {
             $(document.querySelector(".playermessage")).text(
               "Player Two defeated Player One!"
             ),
-          4000
+          3000
         );
       }
-      setTimeout(
-        () => $(document.querySelector(".playermessage")).fadeOut(500),
-        3000
-      );
-
-      setTimeout(
-        () => $(document.querySelector(".playermessage")).fadeIn(500),
-        4000
-      );
     }
   };
 
@@ -695,7 +687,7 @@ class BattleStage extends Component {
       setTimeout(
         () =>
           $(document.querySelector(".message")).text(
-            PKMNuser.name + " started sleeping and regained health!"
+            PKMNuser.name + " fell asleep and recovered HP!"
           ),
         2300
       );
@@ -1361,6 +1353,9 @@ class BattleStage extends Component {
 
     //update target pokemon hp after damage dealt
     PKMNtarget.hp = PKMNtarget.hp - Damage;
+    if (PKMNtarget.hp < 0) {
+      PKMNtarget.hp = 0;
+    }
     // this.forceUpdate();
 
     let dmgDone = origHealth * asPercentage;
@@ -1370,7 +1365,7 @@ class BattleStage extends Component {
     if (Damage !== 0) {
       //update health bar to reflect damage
       this.updateHP(TargetHP, updatedBarHP, PKMNtarget.name, power);
-
+      this.forceUpdate();
       if (this.state.playersTurn === "Player One") {
         this.rapidFlash($(document.querySelector(".player2Sprite")));
       } else {
@@ -1391,9 +1386,10 @@ class BattleStage extends Component {
     console.log(PKMNtarget.hp);
 
     if (
-      PKMNtarget.hp > 0 ||
-      statusEff === "recoverDamage" ||
-      statusEff === "recoil"
+      PKMNtarget.hp > 0
+      // ||
+      // statusEff === "recoverDamage" ||
+      // statusEff === "recoil"
     ) {
       //Check for and apply status effect after damage only if pokemon is not fainted
       if (statusEff !== "") {
@@ -1531,6 +1527,16 @@ class BattleStage extends Component {
                   style={{ width: "100%" }}
                 />
               </div>
+              <p className="smallText smallHP">
+                {Math.round(
+                  this.state.player2Team[this.state.player2CurrentPokemon].hp
+                )}
+                /
+                {
+                  this.state.player2Team[this.state.player2CurrentPokemon]
+                    .OrigHp
+                }
+              </p>
               <div className="spriteContainer">
                 <img
                   className="sprite player2Sprite"
@@ -1579,6 +1585,16 @@ class BattleStage extends Component {
                   style={{ width: "100%" }}
                 />
               </div>
+              <p className="smallText smallHP">
+                {Math.round(
+                  this.state.player1Team[this.state.player1CurrentPokemon].hp
+                )}
+                /
+                {
+                  this.state.player1Team[this.state.player1CurrentPokemon]
+                    .OrigHp
+                }
+              </p>
               <div className="spriteContainer">
                 <img
                   className="sprite player1Sprite"

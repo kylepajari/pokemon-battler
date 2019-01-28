@@ -422,7 +422,7 @@ class TeamBuilder extends Component {
         </div>
         <div className="teamsContainer container-fluid row">
           <div className="team1 col">
-            <p>Player One:({this.state.player1Team.length})</p>
+            <p>Player One:</p>
             <div>
               <ul>
                 {this.state.player1Team.map((pokemon, i) => {
@@ -443,7 +443,7 @@ class TeamBuilder extends Component {
             Capitalize={this.Capitalize}
           />
           <div className="team2 col">
-            <p>Player Two:({this.state.player2Team.length})</p>
+            <p>Player Two:</p>
             <div>
               <ul>
                 {this.state.player2Team.map((pokemon, i) => {
