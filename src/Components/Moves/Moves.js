@@ -445,8 +445,8 @@ class Moves extends Component {
                     )
                   }
                 >
-                  {move.name.toUpperCase()} / PP:{move.pp} / PWR:
-                  {move.power} {MatchIconWithType(move.type)}
+                  {move.name.toUpperCase()} / PP:{move.pp}{" "}
+                  {MatchIconWithType(move.type)}
                 </button>
               );
             })}
