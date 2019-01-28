@@ -23,8 +23,8 @@ class TeamBuilder extends Component {
     };
 
     this.toggleOpen = this.toggleOpen.bind(this);
-    this.addPokemon = this.addPokemon.bind(this);
     this.Capitalize = this.Capitalize.bind(this);
+    this.handleFainted = this.handleFainted.bind(this);
   }
 
   componentDidMount() {
@@ -305,6 +305,17 @@ class TeamBuilder extends Component {
     $(document.getElementById("BattleButton")).fadeOut(300);
   };
 
+  handleFainted = (index, playersTurn) => {
+    console.log("marking pokemon as fainted");
+    console.log(index, playersTurn);
+    if (playersTurn === "Player One") {
+      this.state.player2Team[index].fainted = true;
+    } else {
+      this.state.player1Team[index].fainted = true;
+    }
+    this.forceUpdate();
+  };
+
   render() {
     return (
       <div className="teamBuilder">
@@ -448,6 +459,7 @@ class TeamBuilder extends Component {
             player1Team={this.state.player1Team}
             player2Team={this.state.player2Team}
             Capitalize={this.Capitalize}
+            handleFainted={this.handleFainted}
           />
           <div className="team2 col">
             <p>Player Two:</p>

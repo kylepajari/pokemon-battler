@@ -331,6 +331,7 @@ class BattleStage extends Component {
 
     //set fainted property to true on pokemon
     Team[PKMN].fainted = true;
+    this.props.handleFainted(PKMN, this.state.playersTurn);
     //set in battle to false
     Team[PKMN].inBattle = false;
     // this.forceUpdate();
