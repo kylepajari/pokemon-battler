@@ -1,20 +1,38 @@
-.moveList {
+.playerMoves {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  width: 60%;
-}
-
-.moveListName {
-  font-size: 20px;
-  text-decoration: underline;
-  padding: 5px;
-}
-
-.playerMoves {
-  padding: 3px;
+  align-items: flex-start;
+  height: 170px;
   width: 100%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.playerMoves > p {
+  margin-bottom: 0;
+}
+
+.pokemonName {
+  text-align: left;
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+.pokemonMove {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: left;
+  justify-content: space-between;
+  font-size: 16px;
+  height: 55px;
+  width: 100%;
+}
+
+.pokemonMove > .type {
+  height: 25px;
+  width: 70px;
 }
 
 .btn:hover {

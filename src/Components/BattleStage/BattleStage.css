@@ -1,6 +1,6 @@
 .battleContainer {
   background-color: white;
-  height: 590px;
+  height: 570px;
   width: 650px;
   border: 2px dashed black;
   border-radius: 15px;
@@ -52,7 +52,7 @@
 
 .battleMessages {
   border-top: 2px dashed black;
-  height: 20%;
+  height: 20px;
   width: 106%;
   display: flex;
   flex-direction: column;
@@ -61,16 +61,12 @@
 }
 
 .message {
-  margin-top: 2px;
-  font-size: 14px;
+  margin-top: 5px;
+  font-size: 16px;
 }
 .playermessage {
-  margin-top: 2px;
+  margin-top: 5px;
   font-size: 14px;
-}
-
-.faded {
-  opacity: 0.5;
 }
 
 .fullhp {
@@ -86,8 +82,8 @@
 }
 
 .type {
-  height: 30px;
-  width: 65px;
+  height: 25px;
+  width: 70px;
 }
 
 /* status colors */
@@ -114,4 +110,5 @@
 .smallHP {
   text-align: left;
   margin-left: 35px;
+  margin-bottom: 0;
 }

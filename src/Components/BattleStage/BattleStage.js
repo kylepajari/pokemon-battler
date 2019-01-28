@@ -147,7 +147,7 @@ class BattleStage extends Component {
       HPbar.addClass("fullhp");
     }
 
-    if (value <= 0) {
+    if (value <= 1) {
       console.log(pokemon + " fainted");
       if (power === 999) {
         $(document.querySelector(".message")).text("One-Hit KO!");
@@ -237,8 +237,12 @@ class BattleStage extends Component {
     this.handlePoisonBurn(false);
     console.log(this.state.isPoisonBurned);
 
-    //deal 1/8 of Orig HP as damage to user
-    let damage = PKMNuser.OrigHp / 16;
+    //deal 1/16 of Orig HP as damage to user
+    let damage = Math.round(PKMNuser.OrigHp / 16);
+    //incase of really small damage amounts
+    if (damage < 1) {
+      damage = 1;
+    }
     console.log("poison/burn damage: " + damage);
 
     //store original bar percent
@@ -543,6 +547,7 @@ class BattleStage extends Component {
 
       //update target pokemon hp after damage dealt
       PKMNuser.hp = PKMNuser.hp - Damage;
+      this.forceUpdate();
 
       let dmgDone = origHealth * asPercentage;
       let updatedBarHP = origHealth - dmgDone;
@@ -579,6 +584,7 @@ class BattleStage extends Component {
       } else {
         PKMNuser.hp = PKMNuser.hp + Damage;
       }
+      this.forceUpdate();
 
       let hpRecovered = origHealth * asPercentage;
       let updatedBarHP = origHealth + hpRecovered;
@@ -614,6 +620,7 @@ class BattleStage extends Component {
       } else {
         PKMNuser.hp = PKMNuser.hp + recoveryAmount;
       }
+      this.forceUpdate();
 
       let hpRecovered = origHealth * asPercentage;
       let updatedBarHP = origHealth + hpRecovered;
@@ -1353,7 +1360,7 @@ class BattleStage extends Component {
 
     //update target pokemon hp after damage dealt
     PKMNtarget.hp = PKMNtarget.hp - Damage;
-    if (PKMNtarget.hp < 0) {
+    if (PKMNtarget.hp < 1) {
       PKMNtarget.hp = 0;
     }
     // this.forceUpdate();

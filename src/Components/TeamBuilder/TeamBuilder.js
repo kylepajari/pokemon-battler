@@ -115,6 +115,8 @@ class TeamBuilder extends Component {
         physical.push(move);
       }
     });
+    console.log("Number of Physical Moves: " + physical.length);
+    console.log("Number of Special Moves: " + special.length);
 
     //finally, go through physical, special, and status moves, and create final move list
     let finalMoves = [];
@@ -135,8 +137,8 @@ class TeamBuilder extends Component {
 
           finalMoves.push(randomMove);
         } else {
-          //has 2 or less physical moves, add them
-          finalMoves.concat(physical);
+          //has 2 or less special moves, add them
+          finalMoves.concat(special);
         }
       }
       for (let i = 0; i < 1; i++) {
@@ -427,7 +429,12 @@ class TeamBuilder extends Component {
               <ul>
                 {this.state.player1Team.map((pokemon, i) => {
                   return (
-                    <li className="sprite" key={i}>
+                    <li
+                      className={`"sprite" ${
+                        pokemon.fainted ? "sprite faded" : "sprite"
+                      }`}
+                      key={i}
+                    >
                       <img src={pokemon.frontSprite} alt={pokemon.name} />
                     </li>
                   );
@@ -448,7 +455,12 @@ class TeamBuilder extends Component {
               <ul>
                 {this.state.player2Team.map((pokemon, i) => {
                   return (
-                    <li className="sprite" key={i}>
+                    <li
+                      className={`"sprite" ${
+                        pokemon.fainted ? "sprite faded" : "sprite"
+                      }`}
+                      key={i}
+                    >
                       <img src={pokemon.frontSprite} alt={pokemon.name} />
                     </li>
                   );

@@ -219,9 +219,12 @@ class Moves extends Component {
               console.log(PKMNuser.name + " hurt itself in confusion...");
               hurtitself = true;
 
-              //deal 1/8 of Orig HP as damage to user
-              let damage = PKMNuser.OrigHp / 16;
-              console.log("confusion damage: " + damage);
+              //deal 1/16 of Orig HP as damage to user
+              let damage = Math.round(PKMNuser.OrigHp / 16);
+              //incase of really small damage amounts
+              if (damage < 1) {
+                damage = 1;
+              }
 
               //store original bar percent
               let origHealth = parseInt(HPbar.css("width"));
@@ -231,10 +234,10 @@ class Moves extends Component {
 
               //update target pokemon hp after damage dealt
               PKMNuser.hp = PKMNuser.hp - damage;
+              this.forceUpdate();
 
               let dmgDone = origHealth * asPercentage;
               let updatedBarHP = origHealth - dmgDone;
-              console.log(origHealth, asPercentage, dmgDone, updatedBarHP);
 
               //update health bar to reflect damage
               setTimeout(
@@ -420,41 +423,38 @@ class Moves extends Component {
     }
     if (this.state.displayMoves) {
       return (
-        <div className="moveList row container">
-          <div className="playerMoves row">
-            <div className="moveListName">{pokemon.name}'s Moves:</div>
-            <br />
-            {pokemon.moves.map((move, i) => {
-              return (
-                <button
-                  key={i}
-                  type="button"
-                  className="btn btn-outline-dark"
-                  onClick={() =>
-                    this.useMove(
-                      i,
-                      move.name,
-                      move.category,
-                      move.type,
-                      move.power,
-                      move.pp,
-                      move.accuracy,
-                      move.statusEff,
-                      move.statusProb,
-                      pokemon.lv
-                    )
-                  }
-                >
-                  {move.name.toUpperCase()} / PP:{move.pp} / PWR:{move.power}{" "}
-                  {MatchIconWithType(move.type)}
-                </button>
-              );
-            })}
-          </div>
+        <div className="playerMoves">
+          <p className="pokemonName">{pokemon.name}'s Moves:</p>
+          {pokemon.moves.map((move, i) => {
+            return (
+              <button
+                key={i}
+                type="button"
+                className="btn btn-outline-dark pokemonMove"
+                onClick={() =>
+                  this.useMove(
+                    i,
+                    move.name,
+                    move.category,
+                    move.type,
+                    move.power,
+                    move.pp,
+                    move.accuracy,
+                    move.statusEff,
+                    move.statusProb,
+                    pokemon.lv
+                  )
+                }
+              >
+                {move.name.toUpperCase()} / PP:{move.pp} / PWR:{move.power}{" "}
+                {MatchIconWithType(move.type)}
+              </button>
+            );
+          })}
         </div>
       );
     } else {
-      return <div className="moveList row container" />;
+      return null;
     }
   }
 }
