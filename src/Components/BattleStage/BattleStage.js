@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import "./BattleStage.css";
-import pokeball from "../pokeball.png";
+import pokeball from "../../pokeball.png";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { CalcTypeAdvantage } from "./TypeAdvantage";
+import { CalcTypeAdvantage } from "../TypeAdvantage";
 import $ from "jquery";
-import { MatchIconWithType } from "./MatchTypeIcon";
-import Items from "./Items/Items";
-import Moves from "./Moves/Moves";
-import Team from "./Team/Team";
+import { MatchIconWithType } from "../MatchTypeIcon";
+import Items from "../Items/Items";
+import Moves from "../Moves/Moves";
+import Team from "../Team/Team";
 
 class BattleStage extends Component {
   constructor(props) {

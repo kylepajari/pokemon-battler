@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./TeamBuilder.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import BattleStage from "./BattleStage";
-import { CreateMoves } from "./MoveCreator";
+import BattleStage from "../BattleStage/BattleStage";
+import { CreateMoves } from "../MoveCreator";
 import $ from "jquery";
 import update from "immutability-helper";
 
@@ -306,37 +306,6 @@ class TeamBuilder extends Component {
   render() {
     return (
       <div className="teamBuilder">
-        <div className="teamsContainer container">
-          <div className="team1 col">
-            <p>Player One:({this.state.player1Team.length})</p>
-            <div>
-              <ul>
-                {this.state.player1Team.map((pokemon, i) => {
-                  return (
-                    <li className="sprite" key={i}>
-                      <img src={pokemon.frontSprite} alt={pokemon.name} />
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </div>
-
-          <div className="team2 col">
-            <p>Player Two:({this.state.player2Team.length})</p>
-            <div>
-              <ul>
-                {this.state.player2Team.map((pokemon, i) => {
-                  return (
-                    <li className="sprite" key={i}>
-                      <img src={pokemon.frontSprite} alt={pokemon.name} />
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </div>
-        </div>
         <div
           className="btn-group dropdown teamList"
           onClick={this.toggleTeamOpen}
@@ -451,12 +420,43 @@ class TeamBuilder extends Component {
             Battle!
           </button>
         </div>
-        <BattleStage
-          battleReady={this.state.battleReady}
-          player1Team={this.state.player1Team}
-          player2Team={this.state.player2Team}
-          Capitalize={this.Capitalize}
-        />
+        <div className="teamsContainer container-fluid row">
+          <div className="team1 col">
+            <p>Player One:({this.state.player1Team.length})</p>
+            <div>
+              <ul>
+                {this.state.player1Team.map((pokemon, i) => {
+                  return (
+                    <li className="sprite" key={i}>
+                      <img src={pokemon.frontSprite} alt={pokemon.name} />
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+          <BattleStage
+            className="battleStage col"
+            battleReady={this.state.battleReady}
+            player1Team={this.state.player1Team}
+            player2Team={this.state.player2Team}
+            Capitalize={this.Capitalize}
+          />
+          <div className="team2 col">
+            <p>Player Two:({this.state.player2Team.length})</p>
+            <div>
+              <ul>
+                {this.state.player2Team.map((pokemon, i) => {
+                  return (
+                    <li className="sprite" key={i}>
+                      <img src={pokemon.frontSprite} alt={pokemon.name} />
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

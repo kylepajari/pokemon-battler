@@ -1362,7 +1362,7 @@ const CreateMoves = moveName => {
       power: 0,
       type: "dark",
       accuracy: 100,
-      pp: 20,
+      pp: 35,
       statusEff: "lowersTargetAcc",
       statusProb: 1
     };

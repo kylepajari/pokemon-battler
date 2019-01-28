@@ -16,7 +16,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 8px;
+  padding: 3px;
 }
 
 .sprite {
@@ -39,7 +39,7 @@
 }
 
 .player1Sprite {
-  margin-right: 350px;
+  margin-left: 30px;
 }
 
 .player2Sprite {
@@ -47,7 +47,7 @@
 }
 
 .options {
-  margin: 5px;
+  margin: 3px;
 }
 
 .battleMessages {

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import pokeball from "./pokeball.png";
-import TeamBuilder from "./Components/TeamBuilder";
+import TeamBuilder from "./Components/TeamBuilder/TeamBuilder";
 import Music from "./Components/Music";
 
 class App extends Component {

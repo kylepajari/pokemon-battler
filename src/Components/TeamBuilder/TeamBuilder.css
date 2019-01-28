@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.teamBuilder {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.teamsContainer > div > div > ul {
+  list-style-type: none;
+}
+
+.team1 {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.battleStage {
+  width: 100%;
+}
+.team2 {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+#BattleButton {
+  margin: 5px;
+}

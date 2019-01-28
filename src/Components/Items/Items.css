@@ -1,15 +1,17 @@
 .playerItems {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  width: 100%;
+  align-items: baseline;
+  height: 100%;
+  width: 52%;
   margin: 3px;
+  padding: 8px;
 }
 
 .playerItem {
   box-sizing: border-box;
-  height: 60px;
+  height: 40px;
   border: none;
   font-size: 16px;
 }
