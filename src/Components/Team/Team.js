@@ -111,16 +111,8 @@ class Team extends Component {
     setTimeout(() => $(document.querySelector(".itemsButton")).show(500), 4000);
     //hide team list
     this.props.handleTeam("swap");
-    if (
-      this.state.playersTurn === "Player One" &&
-      this.state.player1Team[this.state.player1CurrentPokemon].hp === 0
-    ) {
-      setTimeout(() => this.props.switchTurns(), 1500);
-    } else if (
-      this.state.playersTurn === "Player Two" &&
-      this.state.player2Team[this.state.player2CurrentPokemon].hp === 0
-    ) {
-      setTimeout(() => this.props.switchTurns(), 1500);
+    if (this.props.faintedByRecoilPoisonBurn === true) {
+      setTimeout(() => this.props.switchTurns(), 4000);
     }
   };
 

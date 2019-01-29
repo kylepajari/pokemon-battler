@@ -24,6 +24,7 @@ class BattleStage extends Component {
       displayMoves: false,
       displayTeam: false,
       isPoisonBurned: false,
+      faintedByRecoilPoisonBurn: false,
       player1CurrentPokemon: 0,
       player2CurrentPokemon: 0,
       recoilDamage: 0,
@@ -236,7 +237,7 @@ class BattleStage extends Component {
   dealPoisonBurn = (PKMNuser, HPbar) => {
     //reset poison/burn flag
     this.handlePoisonBurn(false);
-    let faintedByPoisonBurn = false;
+    let faintedPoisonBurn = false;
     //deal 1/8 of Orig HP as damage to user
     let damage = Math.round(PKMNuser.OrigHp / 8);
     //incase of really small damage amounts
@@ -257,7 +258,8 @@ class BattleStage extends Component {
     PKMNuser.hp -= damage;
     if (PKMNuser.hp < 1) {
       PKMNuser.hp = 0;
-      faintedByPoisonBurn = true;
+      faintedPoisonBurn = true;
+      this.setState({ faintedByRecoilPoisonBurn: true });
     }
     this.handleForceUpdate();
     if (PKMNuser.statusCondition === "Poison") {
@@ -296,7 +298,7 @@ class BattleStage extends Component {
       500
     );
 
-    if (!faintedByPoisonBurn) {
+    if (!faintedPoisonBurn) {
       setTimeout(() => this.switchTurns(), 2500);
     }
   };
@@ -305,6 +307,8 @@ class BattleStage extends Component {
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////
   switchTurns = () => {
     console.log("switching turns...");
+    //reset faintedByRecoilPoisonBurn
+    this.setState({ faintedByRecoilPoisonBurn: false });
 
     //switch to next player
     if (this.state.playersTurn === "Player One") {
@@ -449,6 +453,8 @@ class BattleStage extends Component {
       if (PKMNuser.hp - Damage < 1) {
         setTimeout(() => (PKMNuser.hp = 0), 2000);
         faintedByRecoil = true;
+        this.setState({ faintedByRecoilPoisonBurn: true });
+        this.handleForceUpdate();
       } else {
         setTimeout(() => (PKMNuser.hp = PKMNuser.hp - Damage), 2000);
       }
@@ -1223,6 +1229,7 @@ class BattleStage extends Component {
               handleFainted={this.props.handleFainted}
               resetMultipliers={this.resetMultipliers}
               switchTurns={this.switchTurns}
+              faintedByRecoilPoisonBurn={this.state.faintedByRecoilPoisonBurn}
             />
             <Items
               displayItems={this.state.displayItems}
