@@ -172,10 +172,11 @@ const DealDamage = (
       if (isPoisonBurned) {
         console.log(PKMNuser.name + " is poisoned/burned");
         setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 2000);
-      } else {
-        console.log(PKMNuser.name + " is not poisoned/burned, switching turns");
-        setTimeout(() => switchTurns(), 2500);
       }
+      // } else {
+      //   console.log(PKMNuser.name + " is not poisoned/burned, switching turns");
+      //   setTimeout(() => switchTurns(), 2500);
+      // }
     } else {
       if (isPoisonBurned) {
         console.log(PKMNuser.name + " is poisoned/burned");

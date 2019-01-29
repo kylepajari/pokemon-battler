@@ -1,4 +1,3 @@
-import $ from "jquery";
 import { FaintPokemon } from "./FaintPokemon";
 import { DisplayMessage } from "./DisplayMessage";
 
@@ -33,7 +32,7 @@ const UpdateHP = (
     HPbar.addClass("fullhp");
   }
 
-  if (value <= 1) {
+  if (value <= 3) {
     console.log(pokemon + " fainted");
     if (power === 999) {
       DisplayMessage("One-Hit KO!");

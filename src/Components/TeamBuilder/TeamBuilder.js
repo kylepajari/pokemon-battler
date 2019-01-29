@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import BattleStage from "../BattleStage/BattleStage";
 import { CreateMoves } from "../MoveCreator";
 import $ from "jquery";
-import update from "immutability-helper";
 
 class TeamBuilder extends Component {
   constructor(props) {
@@ -19,7 +18,7 @@ class TeamBuilder extends Component {
       player1Team: [], //used to hold player one team
       player2Team: [], //used to hold player two team
       battleReady: false, //set when teams are picked
-      globalLevel: 15 //level to set all pokemon too, also used to scale stats,
+      globalLevel: 30 //level to set all pokemon too, also used to scale stats,
     };
 
     this.toggleOpen = this.toggleOpen.bind(this);
@@ -307,14 +306,25 @@ class TeamBuilder extends Component {
     $(document.getElementById("BattleButton")).fadeOut(300);
   };
 
-  handleFainted = (index, playersTurn) => {
+  handleFainted = (index, playersTurn, faintedFromRecoil) => {
     let poke = null;
     if (playersTurn === "Player One") {
-      poke = this.state.player2Team[index];
-      poke.fainted = true;
+      if (faintedFromRecoil) {
+        poke = this.state.player1Team[index];
+        poke.fainted = true;
+      } else {
+        poke = this.state.player2Team[index];
+        poke.fainted = true;
+      }
     } else {
-      poke = this.state.player1Team[index];
-      poke.fainted = true;
+      //player twos turn
+      if (faintedFromRecoil) {
+        poke = this.state.player2Team[index];
+        poke.fainted = true;
+      } else {
+        poke = this.state.player1Team[index];
+        poke.fainted = true;
+      }
     }
     this.forceUpdate();
   };

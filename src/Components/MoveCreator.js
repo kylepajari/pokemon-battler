@@ -1194,7 +1194,7 @@ const CreateMoves = moveName => {
       power: 0,
       type: "normal",
       accuracy: 999,
-      pp: 20,
+      pp: 35,
       statusEff: "",
       statusProb: 1
     }; //Does nothing in battle
@@ -1794,7 +1794,7 @@ const CreateMoves = moveName => {
       power: 0,
       type: "water",
       accuracy: 100,
-      pp: 40,
+      pp: 35,
       statusEff: "",
       statusProb: 1
     }; //does nothing in battle

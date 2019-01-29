@@ -18,9 +18,9 @@ class Items extends Component {
     this.state = {
       player1Items: [
         {
-          name: "Potion",
+          name: "Super Potion",
           sprite: potion,
-          effect: "Heals 20 HP",
+          effect: "Heals 50 HP",
           count: this.props.player1Team.length
         },
         {
@@ -56,9 +56,9 @@ class Items extends Component {
       ],
       player2Items: [
         {
-          name: "Potion",
+          name: "Super Potion",
           sprite: potion,
-          effect: "Heals 20 HP",
+          effect: "Heals 50 HP",
           count: this.props.player1Team.length
         },
         {
@@ -254,8 +254,8 @@ class Items extends Component {
     }
 
     //check if user trying to heal with potion
-    if (name === "Potion") {
-      healAmount = 20;
+    if (name === "Super Potion") {
+      healAmount = 50;
       //if user is at full health, deny usage
       if (PKMNuser.hp === PKMNuser.OrigHp) {
         this.itemDoesNotApply();

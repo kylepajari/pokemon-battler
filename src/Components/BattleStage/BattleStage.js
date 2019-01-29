@@ -173,7 +173,20 @@ class BattleStage extends Component {
     console.log("toggling team..." + reason);
     if (reason === "fainted") {
       //switch turns to show list for player who lost pokemon
-      this.switchTurns();
+      if (
+        this.state.playersTurn === "Player One" &&
+        this.state.player1Team[this.state.player1CurrentPokemon].hp === 0
+      ) {
+        //dont switch turns
+      } else if (
+        this.state.playersTurn === "Player Two" &&
+        this.state.player2Team[this.state.player2CurrentPokemon].hp === 0
+      ) {
+        //dont switch turns
+      } else {
+        this.switchTurns();
+      }
+
       //show only pokemon list, hide buttons
       this.setState({
         displayTeam: !this.state.displayTeam,
@@ -224,8 +237,8 @@ class BattleStage extends Component {
     //reset poison/burn flag
     this.handlePoisonBurn(false);
 
-    //deal 1/16 of Orig HP as damage to user
-    let damage = Math.round(PKMNuser.OrigHp / 16);
+    //deal 1/8 of Orig HP as damage to user
+    let damage = Math.round(PKMNuser.OrigHp / 8);
     //incase of really small damage amounts
     if (damage < 1) {
       damage = 1;
@@ -242,6 +255,9 @@ class BattleStage extends Component {
 
     //update target pokemon hp after damage dealt
     PKMNuser.hp -= damage;
+    if (PKMNuser.hp < 1) {
+      PKMNuser.hp = 0;
+    }
     this.handleForceUpdate();
     if (PKMNuser.statusCondition === "Poison") {
       setTimeout(
@@ -250,7 +266,7 @@ class BattleStage extends Component {
       );
     } else if (PKMNuser.statusCondition === "Burn") {
       setTimeout(
-        () => DisplayMessage(PKMNuser.name + " was hurt by Poison!"),
+        () => DisplayMessage(PKMNuser.name + " was hurt by Burn!"),
         500
       );
     }
@@ -348,7 +364,6 @@ class BattleStage extends Component {
       spcDefMultiplierDown = this.state.spcDefMultiplierDown2 - 0.12;
     }
     console.log("move has status effect: " + statusEff);
-    console.log(isUserPoisonedOrBurned);
 
     //CONFUSION USER/////////////////////////////////////////////////////////////////////////////
     //if condition is ConfusionUser, only apply if user is not already confused
@@ -418,6 +433,7 @@ class BattleStage extends Component {
     }
 
     //RECOIL/////////////////////////////////////////////////////////////
+    let faintedByRecoil = false;
     if (statusEff === "recoil") {
       //damage should be 1/4 damage dealt to target
       let Damage = recoilDamage;
@@ -427,11 +443,20 @@ class BattleStage extends Component {
       let asPercentage = Damage / PKMNuser.hp;
 
       //update target pokemon hp after damage dealt
-      setTimeout(() => (PKMNuser.hp = PKMNuser.hp - Damage), 2000);
+      if (PKMNuser.hp - Damage < 1) {
+        setTimeout(() => (PKMNuser.hp = 0), 2000);
+        faintedByRecoil = true;
+      } else {
+        setTimeout(() => (PKMNuser.hp = PKMNuser.hp - Damage), 2000);
+      }
       setTimeout(() => this.handleForceUpdate(), 2000);
 
       let dmgDone = origHealth * asPercentage;
       let updatedBarHP = origHealth - dmgDone;
+      if (updatedBarHP < 3) {
+        updatedBarHP = 0;
+      }
+      console.log("updatedhp: " + updatedBarHP);
 
       //update health bar to reflect damage
       setTimeout(
@@ -556,7 +581,7 @@ class BattleStage extends Component {
     //REST /////////////////////////////////////////////////////////////
     if (statusEff === "Rest") {
       //restore all hp
-      PKMNuser.hp = PKMNuser.OrigHp;
+      setTimeout(() => (PKMNuser.hp = PKMNuser.OrigHp), 2500);
 
       //update health bar to reflect recovery
       setTimeout(() => HPbar.css("width", "100%"), 2500);
@@ -569,7 +594,7 @@ class BattleStage extends Component {
       );
 
       //put user to sleep for exactly 2 turns
-      PKMNuser.statusCondition = "Sleep";
+      setTimeout(() => (PKMNuser.statusCondition = "Sleep"), 2500);
       PKMNuser.turnsAsleep = 2;
     } else {
       //CONDITIONS //////////////////////////////////////////////////////////
@@ -1003,6 +1028,16 @@ class BattleStage extends Component {
         setTimeout(() => this.dealPoisonBurn(PKMNuser, HPbar), 4000);
       } else {
         setTimeout(() => this.switchTurns(), 4000);
+      }
+    } else {
+      //move did damage
+      if (faintedByRecoil) {
+        console.log("pokemon fainted from recoil...");
+        //dont switch turns here
+      } else {
+        console.log("move had status effect that did not cause fainting...");
+
+        setTimeout(() => this.switchTurns(), 2000);
       }
     }
   };
