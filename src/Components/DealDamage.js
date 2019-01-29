@@ -2,6 +2,7 @@ import $ from "jquery";
 import { UpdateHP } from "./UpdateHP";
 import { CalcTypeAdvantage } from "./TypeAdvantage";
 import { RandomNumberGenerator } from "./RandomNumberGenerator";
+import { DisplayMessage } from "./DisplayMessage";
 
 const DealDamage = (
   power,
@@ -141,11 +142,7 @@ const DealDamage = (
     }
   } else {
     //damage was calced to 0
-    $(document.querySelector(".message")).fadeIn(500);
-    $(document.querySelector(".message")).text(
-      PKMNtarget.name + " was unaffected"
-    );
-    setTimeout(() => $(document.querySelector(".message")).fadeOut(500), 1500);
+    DisplayMessage(PKMNtarget.name + " was unaffected");
   }
   console.log("HP left after damage: " + PKMNtarget.hp);
 
@@ -176,7 +173,7 @@ const DealDamage = (
         console.log(PKMNuser.name + " is poisoned/burned");
         setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 2000);
       } else {
-        console.log("user is not poisoned/burned");
+        console.log(PKMNuser.name + " is not poisoned/burned, switching turns");
         setTimeout(() => switchTurns(), 2500);
       }
     } else {

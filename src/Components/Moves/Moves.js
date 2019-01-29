@@ -4,6 +4,7 @@ import "./Moves.css";
 import { MatchIconWithType } from "../MatchTypeIcon";
 import { UpdateHP } from "../UpdateHP";
 import { DealDamage } from "../DealDamage";
+import { DisplayMessage } from "../DisplayMessage";
 import $ from "jquery";
 
 class Moves extends Component {
@@ -59,12 +60,7 @@ class Moves extends Component {
     if (pp === 0) {
       //out of pp for move
       console.log("out of PP!");
-      $(document.querySelector(".message")).text(moveName + " is out of PP!");
-      $(document.querySelector(".message")).fadeIn(500);
-      setTimeout(
-        () => $(document.querySelector(".message")).fadeOut(500),
-        1500
-      );
+      DisplayMessage(moveName + " is out of PP!");
     } else if (pp > 0) {
       //hide move list/ options
       this.props.handleMoves();
@@ -85,6 +81,7 @@ class Moves extends Component {
       }
 
       //check if user is afflicted with sleep and has turns remaining
+      let wokeup = false;
       if (PKMNuser.statusCondition === "Sleep" && PKMNuser.turnsAsleep > 0) {
         console.log(PKMNuser.name + " is fast asleep...");
         //subtract one turn from asleep
@@ -95,16 +92,7 @@ class Moves extends Component {
             PKMNuser.turnsAsleep +
             " more turns..."
         );
-
-        $(document.querySelector(".message")).text(
-          PKMNuser.name + " is fast asleep... "
-        );
-        $(document.querySelector(".message")).fadeIn(500);
-        setTimeout(
-          () => $(document.querySelector(".message")).fadeOut(500),
-          1500
-        );
-        setTimeout(() => $(document.querySelector(".message")).text(""), 2000);
+        DisplayMessage(PKMNuser.name + " is fast asleep... ");
         if (this.props.isPoisonBurned) {
           console.log(PKMNuser.name + " is poisoned/burned");
           setTimeout(() => this.props.dealPoisonBurn(PKMNuser, HPbar), 2000);
@@ -118,43 +106,10 @@ class Moves extends Component {
           PKMNuser.turnsAsleep === 0
         ) {
           //wake up pokemon
+          wokeup = true;
           console.log(PKMNuser.name + " woke up!");
-          $(document.querySelector(".message")).text(
-            PKMNuser.name + " woke up! "
-          );
-          $(document.querySelector(".message")).fadeIn(500);
-          setTimeout(
-            () => $(document.querySelector(".message")).fadeOut(500),
-            1000
-          );
-          setTimeout(
-            () => $(document.querySelector(".message")).text(""),
-            1500
-          );
+          DisplayMessage(PKMNuser.name + " woke up!");
           PKMNuser.statusCondition = "";
-
-          console.log(PKMNuser.name + " used " + moveName);
-          setTimeout(
-            () => $(document.querySelector(".message")).fadeIn(500),
-            2000
-          );
-
-          setTimeout(
-            () =>
-              $(document.querySelector(".message")).text(
-                PKMNuser.name + " used " + moveName
-              ),
-            2000
-          );
-
-          setTimeout(
-            () => $(document.querySelector(".message")).fadeOut(500),
-            3300
-          );
-          setTimeout(
-            () => $(document.querySelector(".message")).text(""),
-            3800
-          );
         }
 
         //handle frozen
@@ -163,19 +118,7 @@ class Moves extends Component {
           //user is frozen
           console.log(PKMNuser.name + " is frozen...");
           frozen = true;
-          $(document.querySelector(".message")).fadeIn(500);
-          $(document.querySelector(".message")).text(
-            PKMNuser.name + " is Frozen Solid!"
-          );
-
-          setTimeout(
-            () => $(document.querySelector(".message")).fadeOut(500),
-            1500
-          );
-          setTimeout(
-            () => $(document.querySelector(".message")).text(""),
-            2000
-          );
+          DisplayMessage(PKMNuser.name + " is Frozen Solid!");
           setTimeout(() => this.props.switchTurns(), 2000);
         }
 
@@ -189,25 +132,13 @@ class Moves extends Component {
             //blocked by paralysis
             console.log(PKMNuser.name + " is paralyzed...");
             paralysis = true;
-
-            $(document.querySelector(".message")).fadeIn(500);
-            $(document.querySelector(".message")).text(
-              PKMNuser.name + " is paralyzed!"
-            );
-
-            setTimeout(
-              () => $(document.querySelector(".message")).fadeOut(500),
-              1500
-            );
-            setTimeout(
-              () => $(document.querySelector(".message")).text(""),
-              2000
-            );
+            DisplayMessage(PKMNuser.name + " is paralyzed!");
             setTimeout(() => this.props.switchTurns(), 2000);
           }
         }
 
         //handle confusion
+        let snappedOut = false;
         let hurtitself = false;
         if (PKMNuser.isConfused) {
           if (PKMNuser.turnsConfused > 0) {
@@ -260,20 +191,7 @@ class Moves extends Component {
                   ),
                 500
               );
-
-              $(document.querySelector(".message")).fadeIn(500);
-              $(document.querySelector(".message")).text(
-                PKMNuser.name + " hurt itself in confusion!"
-              );
-
-              setTimeout(
-                () => $(document.querySelector(".message")).fadeOut(500),
-                1500
-              );
-              setTimeout(
-                () => $(document.querySelector(".message")).text(""),
-                2000
-              );
+              DisplayMessage(PKMNuser.name + " hurt itself in confusion!");
               //if user is poisonedburned, delay switching turns
               if (this.props.isPoisonBurned) {
                 console.log(PKMNuser.name + " is poisoned/burned");
@@ -286,41 +204,17 @@ class Moves extends Component {
               }
             }
           } else {
-            console.log(PKMNuser.name + " snapped out of confusion...");
+            console.log(PKMNuser.name + " snapped out of confusion");
+            snappedOut = true;
             PKMNuser.isConfused = false;
-            $(document.querySelector(".message")).fadeIn(500);
-            $(document.querySelector(".message")).text(
-              PKMNuser.name + " snapped out of confusion! "
-            );
-
-            setTimeout(
-              () => $(document.querySelector(".message")).fadeOut(500),
-              1500
-            );
-            setTimeout(
-              () => $(document.querySelector(".message")).text(""),
-              2000
-            );
+            DisplayMessage(PKMNuser.name + " snapped out of confusion!");
           }
         }
 
-        //if pokemon was hurt from confusion or blocked by paralysis, skip rest of move
-        if (!hurtitself && !paralysis && !frozen) {
-          $(document.querySelector(".message")).fadeIn(500);
+        //if pokemon was woken up, snapped out of confusion, hurt itself from confusion, blocked by paralysis, or frozen; skip rest of move
+        if (!wokeup && !snappedOut && !hurtitself && !paralysis && !frozen) {
           console.log(PKMNuser.name + " used " + moveName);
-
-          $(document.querySelector(".message")).text(
-            PKMNuser.name + " used " + moveName
-          );
-
-          setTimeout(
-            () => $(document.querySelector(".message")).fadeOut(500),
-            1500
-          );
-          setTimeout(
-            () => $(document.querySelector(".message")).text(""),
-            2000
-          );
+          DisplayMessage(PKMNuser.name + " used " + moveName);
           //if so, does move land hit (accuracy check)
           //formula: percentChance = moveAcc * (attacker accuracy / target evasion)
           let percentChance =
@@ -330,23 +224,8 @@ class Moves extends Component {
           if (rand > percentChance) {
             console.log(PKMNuser.name + "'s attack Missed!");
             setTimeout(
-              () => $(document.querySelector(".message")).fadeIn(500),
+              () => DisplayMessage(PKMNuser.name + "'s attack Missed!"),
               2000
-            );
-            setTimeout(
-              () =>
-                $(document.querySelector(".message")).text(
-                  PKMNuser.name + "'s attack Missed!"
-                ),
-              2000
-            );
-            setTimeout(
-              () => $(document.querySelector(".message")).fadeOut(500),
-              3500
-            );
-            setTimeout(
-              () => $(document.querySelector(".message")).text(""),
-              4000
             );
             if (this.props.isPoisonBurned) {
               console.log(PKMNuser.name + " is poisoned/burned");
@@ -407,20 +286,10 @@ class Moves extends Component {
               //move does nothing
               console.log(moveName + " did nothing...");
               setTimeout(
-                () => $(document.querySelector(".message")).fadeIn(500),
-                2200
+                () => DisplayMessage(moveName + " did nothing..."),
+                2000
               );
-              setTimeout(
-                () =>
-                  $(document.querySelector(".message")).text(
-                    moveName + " did nothing..."
-                  ),
-                2200
-              );
-              setTimeout(
-                () => $(document.querySelector(".message")).fadeOut(500),
-                3500
-              );
+
               if (this.props.isPoisonBurned) {
                 console.log(PKMNuser.name + " is poisoned/burned");
                 setTimeout(
@@ -429,6 +298,107 @@ class Moves extends Component {
                 );
               } else {
                 setTimeout(() => this.props.switchTurns(), 4000);
+              }
+            }
+          }
+        } else if (
+          (wokeup || snappedOut) &&
+          !hurtitself &&
+          !paralysis &&
+          !frozen
+        ) {
+          console.log(PKMNuser.name + " used " + moveName);
+          setTimeout(
+            () => DisplayMessage(PKMNuser.name + " used " + moveName),
+            2000
+          );
+          //if so, does move land hit (accuracy check)
+          //formula: percentChance = moveAcc * (attacker accuracy / target evasion)
+          let percentChance =
+            (moveAcc * (PKMNuser.accuracy / PKMNtarget.evasion)) / 100;
+          let rand = Math.random();
+
+          if (rand > percentChance) {
+            console.log(PKMNuser.name + "'s attack Missed!");
+            setTimeout(
+              () => DisplayMessage(PKMNuser.name + "'s attack Missed!"),
+              4000
+            );
+            if (this.props.isPoisonBurned) {
+              console.log(PKMNuser.name + " is poisoned/burned");
+              setTimeout(
+                () => this.props.dealPoisonBurn(PKMNuser, HPbar),
+                6000
+              );
+            } else {
+              setTimeout(() => this.props.switchTurns(), 6000);
+            }
+          } else {
+            //does move have power, if so deal damage
+            if (power > 0) {
+              //if move lands, continue with deal damage
+              setTimeout(
+                () =>
+                  DealDamage(
+                    power,
+                    lv,
+                    moveName,
+                    moveCategory,
+                    moveType,
+                    statusEff,
+                    statusProb,
+                    this.props.player1Team,
+                    this.props.player2Team,
+                    this.props.player1CurrentPokemon,
+                    this.props.player2CurrentPokemon,
+                    this.props.playersTurn,
+                    this.props.resetMultipliers,
+                    this.props.handleTeam,
+                    this.props.handleFainted,
+                    this.props.handleForceUpdate,
+                    this.props.checkForStatusEffect,
+                    this.props.isPoisonBurned,
+                    this.props.dealPoisonBurn,
+                    this.props.switchTurns
+                  ),
+                4000
+              );
+            } else if (power === 0 && statusEff !== "") {
+              console.log(isUserPoisonedOrBurned);
+              setTimeout(
+                () =>
+                  this.props.checkForStatusEffect(
+                    statusEff,
+                    statusProb,
+                    PKMNuser,
+                    PKMNtarget,
+                    targetType1,
+                    targetType2,
+                    moveName,
+                    HPbar,
+                    power,
+                    0,
+                    0,
+                    isUserPoisonedOrBurned
+                  ),
+                2000
+              );
+            } else if (power === 0 && statusEff === "") {
+              //move does nothing
+              console.log(moveName + " did nothing...");
+              setTimeout(
+                () => DisplayMessage(moveName + " did nothing..."),
+                4000
+              );
+
+              if (this.props.isPoisonBurned) {
+                console.log(PKMNuser.name + " is poisoned/burned");
+                setTimeout(
+                  () => this.props.dealPoisonBurn(PKMNuser, HPbar),
+                  6000
+                );
+              } else {
+                setTimeout(() => this.props.switchTurns(), 6000);
               }
             }
           }
@@ -469,7 +439,7 @@ class Moves extends Component {
                   )
                 }
               >
-                {move.name.toUpperCase()} / PP:{move.pp} / PWR:{move.power}{" "}
+                {move.name.toUpperCase()} / PP:{move.pp}{" "}
                 {MatchIconWithType(move.type)}
               </button>
             );

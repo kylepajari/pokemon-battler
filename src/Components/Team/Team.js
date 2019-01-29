@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./Team.css";
 import $ from "jquery";
 import { UpdateHP } from "../UpdateHP";
+import { DisplayMessage } from "../DisplayMessage";
 
 class Team extends Component {
   constructor(props) {
@@ -40,7 +41,7 @@ class Team extends Component {
     }
 
     //reset stat modifiers to defaults, for new pokemon
-    this.props.resetMultipliers();
+    this.props.resetMultipliers("swap");
 
     console.log(
       this.props.playersTurn + " sent out " + Team[swapPoke].name + "!"
@@ -55,45 +56,31 @@ class Team extends Component {
 
     //hide sprite
     Sprite.fadeOut(1000);
+    setTimeout(
+      () =>
+        DisplayMessage(this.props.playersTurn + " withdrew " + Team[PKMN].name),
+      500
+    );
+    setTimeout(
+      () => DisplayMessage("and sent out " + Team[swapPoke].name),
+      2500
+    );
+
+    //update current pokemon to swapped pokemon
+    setTimeout(() => this.props.handleSwapPokemon(swapPoke), 2500);
 
     //fade sprite back in
     setTimeout(() => Sprite.fadeIn(1000), 3000);
-    //clear text from message
-    setTimeout(() => $(document.querySelector(".message")).text(""), 300);
-
-    setTimeout(() => $(document.querySelector(".message")).fadeIn(300), 300);
-    setTimeout(
-      () =>
-        $(document.querySelector(".message")).text(
-          this.props.playersTurn + " withdrew " + Team[PKMN].name
-        ),
-      600
-    );
-    setTimeout(() => $(document.querySelector(".message")).fadeOut(300), 1500);
-
-    setTimeout(() => $(document.querySelector(".message")).fadeIn(300), 2000);
-    setTimeout(
-      () =>
-        $(document.querySelector(".message")).text(
-          "and sent out " + Team[swapPoke].name
-        ),
-      2000
-    );
-    //clear text after swap
-    setTimeout(() => $(document.querySelector(".message")).text(""), 3500);
-
-    //update current pokemon to swapped pokemon
-    setTimeout(() => this.props.handleSwapPokemon(swapPoke), 2000);
 
     // calculate percent difference between current poke and swap pole hp in percentage
     let asPercentage = Team[swapPoke].hp / Team[swapPoke].OrigHp;
 
     //if swapped pokemon has full hp, make bar full
     if (Team[swapPoke].hp >= Team[swapPoke].OrigHp) {
-      setTimeout(() => HPbar.css("width", "100%"), 2000);
-      setTimeout(() => HPbar.removeClass("halfhp"), 2000);
-      setTimeout(() => HPbar.removeClass("onefifthhp"), 2000);
-      setTimeout(() => HPbar.addClass("fullhp"), 2000);
+      setTimeout(() => HPbar.css("width", "100%"), 2500);
+      setTimeout(() => HPbar.removeClass("halfhp"), 2500);
+      setTimeout(() => HPbar.removeClass("onefifthhp"), 2500);
+      setTimeout(() => HPbar.addClass("fullhp"), 2500);
     } else {
       let updatedBarHP = 560 * asPercentage;
       console.log(updatedBarHP, HPbar.css("width"));
@@ -115,12 +102,9 @@ class Team extends Component {
             this.props.handleTeam,
             this.props.handleFainted
           ),
-        2000
+        2500
       );
     }
-
-    setTimeout(() => $(document.querySelector(".message")).fadeOut(500), 3000);
-
     setTimeout(() => $(document.querySelector(".options")).show(500), 4000);
     setTimeout(() => $(document.querySelector(".fightButton")).show(500), 4000);
     setTimeout(() => $(document.querySelector(".pkmnButton")).show(500), 4000);

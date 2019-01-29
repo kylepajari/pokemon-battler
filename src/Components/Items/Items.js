@@ -9,6 +9,7 @@ import iceheal from "./ItemsIcons/iceheal.png";
 import paralyzeheal from "./ItemsIcons/paralyzeheal.png";
 import awakening from "./ItemsIcons/awakening.png";
 import { UpdateHP } from "../UpdateHP";
+import { DisplayMessage } from "../DisplayMessage";
 
 class Items extends Component {
   constructor(props) {
@@ -103,9 +104,7 @@ class Items extends Component {
 
   itemDoesNotApply = () => {
     //pokemon has no condition
-    $(document.querySelector(".message")).fadeIn(300);
-    $(document.querySelector(".message")).text("It won't have any effect.");
-    setTimeout(() => $(document.querySelector(".message")).fadeOut(300), 1000);
+    DisplayMessage("It won't have any effect.");
   };
 
   checkForPoisonBurn = (PKMNuser, HPbar) => {
@@ -131,26 +130,15 @@ class Items extends Component {
       setTimeout(() => $(document.querySelector(".message")).fadeIn(500), 2500);
       if (PKMNuser.statusCondition === "Poison") {
         setTimeout(
-          () =>
-            $(document.querySelector(".message")).text(
-              PKMNuser.name + " was hurt by Poison!"
-            ),
+          () => DisplayMessage(PKMNuser.name + " was hurt by Poison!"),
           2500
         );
       } else if (PKMNuser.statusCondition === "Burn") {
         setTimeout(
-          () =>
-            $(document.querySelector(".message")).text(
-              PKMNuser.name + " was hurt by Burn!"
-            ),
+          () => DisplayMessage(PKMNuser.name + " was hurt by Burn!"),
           2500
         );
       }
-      setTimeout(
-        () => $(document.querySelector(".message")).fadeOut(500),
-        3500
-      );
-      setTimeout(() => $(document.querySelector(".message")).text(""), 4000);
       let dmgDone = 0;
       setTimeout(() => (dmgDone = origHealth * asPercentage), 2800);
       let updatedBarHP = 0;
@@ -182,29 +170,19 @@ class Items extends Component {
     //if increasing would bring them over full hp, cap hp
     if (Math.round(PKMNuser.hp) + healAmount > PKMNuser.OrigHp) {
       setTimeout(() => (PKMNuser.hp = PKMNuser.OrigHp), 500);
-      setTimeout(() => this.forceUpdate(), 500);
+      setTimeout(() => this.props.handleForceUpdate(), 500);
       let difference = Math.round(PKMNuser.OrigHp - PKMNuser.hp);
       $(document.querySelector(".options")).fadeOut(300);
-      $(document.querySelector(".message")).fadeIn(300);
-      $(document.querySelector(".message")).text(
+      DisplayMessage(
         PKMNuser.name + " recovered by " + difference.toString() + " HP!"
-      );
-      setTimeout(
-        () => $(document.querySelector(".message")).fadeOut(300),
-        1000
       );
     } else {
       //increase health by healAmount
       setTimeout(() => (PKMNuser.hp += healAmount), 300);
-      setTimeout(() => this.forceUpdate(), 300);
+      setTimeout(() => this.props.handleForceUpdate(), 300);
       $(document.querySelector(".options")).fadeOut(300);
-      $(document.querySelector(".message")).fadeIn(300);
-      $(document.querySelector(".message")).text(
+      DisplayMessage(
         PKMNuser.name + " recovered by " + healAmount.toString() + " HP!"
-      );
-      setTimeout(
-        () => $(document.querySelector(".message")).fadeOut(300),
-        1000
       );
     }
 
@@ -244,14 +222,12 @@ class Items extends Component {
 
   //HEAL STATUS FUNCTION ////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  healStatus = (PKMNuser, name) => {
+  healStatus = PKMNuser => {
     console.log(PKMNuser.name + " was cured of " + PKMNuser.statusCondition);
     $(document.querySelector(".options")).fadeOut(300);
-    $(document.querySelector(".message")).fadeIn(300);
-    $(document.querySelector(".message")).text(
+    DisplayMessage(
       PKMNuser.name + " was cured of " + PKMNuser.statusCondition + "!"
     );
-    setTimeout(() => $(document.querySelector(".message")).fadeOut(300), 1000);
     //remove status condition
     setTimeout(() => (PKMNuser.statusCondition = ""), 500);
 

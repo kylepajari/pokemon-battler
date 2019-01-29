@@ -1,5 +1,6 @@
 import $ from "jquery";
 import { FaintPokemon } from "./FaintPokemon";
+import { DisplayMessage } from "./DisplayMessage";
 
 const UpdateHP = (
   HPbar,
@@ -35,11 +36,10 @@ const UpdateHP = (
   if (value <= 1) {
     console.log(pokemon + " fainted");
     if (power === 999) {
-      $(document.querySelector(".message")).text("One-Hit KO!");
+      DisplayMessage("One-Hit KO!");
     } else {
-      $(document.querySelector(".message")).text(pokemon + " fainted!");
+      DisplayMessage(pokemon + " fainted!");
     }
-    $(document.querySelector(".message")).fadeIn(500);
     setTimeout(
       () =>
         FaintPokemon(

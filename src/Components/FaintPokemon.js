@@ -1,4 +1,5 @@
 import $ from "jquery";
+import { DisplayMessage } from "./DisplayMessage";
 
 const FaintPokemon = (
   player1Team,
@@ -50,26 +51,21 @@ const FaintPokemon = (
   if (numFainted < Team.length) {
     //increase currentPokemon number for team to send out next in party
     //reset stat modifiers to defaults, for new pokemon
-    resetMultipliers();
+    resetMultipliers("fainted");
 
     //allow choosing of pokemon to send out
     setTimeout(
-      () =>
-        $(document.querySelector(".message")).text(
-          "Select which Pokémon to send out..."
-        ),
+      () => DisplayMessage("Select which Pokémon to send out..."),
       3000
     );
-    setTimeout(() => $(document.querySelector(".message")).fadeIn(500), 3000);
 
     //display list of available pokemon that are not inbattle/fainted
     setTimeout(() => handleTeam("fainted"), 3000);
   } else {
     console.log("All pokemon on team fainted...");
-    setTimeout(() => $(document.querySelector(".message")).fadeOut(500), 1500);
     setTimeout(
       () => $(document.querySelector(".playermessage")).fadeIn(500),
-      2000
+      3000
     );
 
     $(document.querySelector(".options")).hide(500);
@@ -79,14 +75,14 @@ const FaintPokemon = (
           $(document.querySelector(".playermessage")).text(
             "Player Two is out of Pokémon! "
           ),
-        2000
+        3000
       );
       setTimeout(
         () =>
           $(document.querySelector(".playermessage")).text(
             "Player One defeated Player Two!"
           ),
-        3000
+        4500
       );
     } else {
       setTimeout(
@@ -94,14 +90,14 @@ const FaintPokemon = (
           $(document.querySelector(".playermessage")).text(
             "Player One is out of Pokémon! "
           ),
-        2000
+        3000
       );
       setTimeout(
         () =>
           $(document.querySelector(".playermessage")).text(
             "Player Two defeated Player One!"
           ),
-        3000
+        4500
       );
     }
   }
