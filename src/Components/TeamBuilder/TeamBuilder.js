@@ -306,8 +306,6 @@ class TeamBuilder extends Component {
   };
 
   handleFainted = (index, playersTurn) => {
-    console.log("marking pokemon as fainted");
-    console.log(index, playersTurn);
     if (playersTurn === "Player One") {
       this.state.player2Team[index].fainted = true;
     } else {

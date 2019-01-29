@@ -8,6 +8,7 @@ import burnheal from "./ItemsIcons/burnheal.png";
 import iceheal from "./ItemsIcons/iceheal.png";
 import paralyzeheal from "./ItemsIcons/paralyzeheal.png";
 import awakening from "./ItemsIcons/awakening.png";
+import { UpdateHP } from "../UpdateHP";
 
 class Items extends Component {
   constructor(props) {
@@ -157,7 +158,21 @@ class Items extends Component {
 
       //update health bar to reflect damage
       setTimeout(
-        () => this.props.updateHP(HPbar, updatedBarHP, PKMNuser.name, 0),
+        () =>
+          UpdateHP(
+            HPbar,
+            updatedBarHP,
+            PKMNuser.name,
+            0,
+            this.props.player1Team,
+            this.props.player2Team,
+            this.props.player1CurrentPokemon,
+            this.props.player2CurrentPokemon,
+            this.props.playersTurn,
+            this.props.resetMultipliers,
+            this.props.handleTeam,
+            this.props.handleFainted
+          ),
         3000
       );
     }
@@ -204,7 +219,21 @@ class Items extends Component {
     }
 
     setTimeout(
-      () => this.props.updateHP(HPbar, updatedBarHP, PKMNuser, 0),
+      () =>
+        UpdateHP(
+          HPbar,
+          updatedBarHP,
+          PKMNuser,
+          0,
+          this.props.player1Team,
+          this.props.player2Team,
+          this.props.player1CurrentPokemon,
+          this.props.player2CurrentPokemon,
+          this.props.playersTurn,
+          this.props.resetMultipliers,
+          this.props.handleTeam,
+          this.props.handleFainted
+        ),
       300
     );
 

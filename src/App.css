@@ -52,7 +52,7 @@
 }
 
 .faded {
-  filter: brightness(20%);
+  filter: brightness(10%);
 }
 
 .volume {

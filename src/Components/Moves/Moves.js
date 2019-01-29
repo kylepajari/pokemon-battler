@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Moves.css";
 import { MatchIconWithType } from "../MatchTypeIcon";
+import { UpdateHP } from "../UpdateHP";
 import $ from "jquery";
 
 class Moves extends Component {
@@ -242,11 +243,19 @@ class Moves extends Component {
               //update health bar to reflect damage
               setTimeout(
                 () =>
-                  this.props.updateHP(
+                  UpdateHP(
                     HPbar,
                     updatedBarHP,
                     PKMNuser.name,
-                    power
+                    power,
+                    this.props.player1Team,
+                    this.props.player2Team,
+                    this.props.player1CurrentPokemon,
+                    this.props.player2CurrentPokemon,
+                    this.props.playersTurn,
+                    this.props.resetMultipliers,
+                    this.props.handleTeam,
+                    this.props.handleFainted
                   ),
                 500
               );

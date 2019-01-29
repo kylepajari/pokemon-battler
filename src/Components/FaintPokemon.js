@@ -1,0 +1,110 @@
+import $ from "jquery";
+
+const FaintPokemon = (
+  player1Team,
+  player2Team,
+  player1CurrentPokemon,
+  player2CurrentPokemon,
+  PlayersTurn,
+  resetMultipliers,
+  handleTeam,
+  handleFainted
+) => {
+  let Sprite = null;
+  let Pokeball = null;
+  let PKMN = null;
+  let Team = null;
+  if (PlayersTurn === "Player One") {
+    Team = player2Team;
+    PKMN = player2CurrentPokemon;
+    Sprite = $(document.querySelector(".player2Sprite"));
+    Pokeball = $(document.getElementById("p2" + player2CurrentPokemon));
+  } else {
+    Team = player1Team;
+    PKMN = player1CurrentPokemon;
+    Sprite = $(document.querySelector(".player1Sprite"));
+    Pokeball = $(document.getElementById("p1" + player1CurrentPokemon));
+  }
+  console.log("running fainted function...");
+
+  //set fainted property to true on pokemon
+  Team[PKMN].fainted = true;
+  handleFainted(PKMN, PlayersTurn);
+  //set in battle to false
+  Team[PKMN].inBattle = false;
+  //hide sprite
+  Sprite.fadeOut(1000);
+
+  //add opacity to pokeball representing pokemon
+  Pokeball.addClass("faded");
+
+  //check if all pokemon are fainted
+  let numFainted = 0;
+  Team.forEach(poke => {
+    if (poke.fainted === true) {
+      numFainted++;
+    }
+  });
+  console.log("number of pokemon fainted is: " + numFainted);
+
+  if (numFainted < Team.length) {
+    //increase currentPokemon number for team to send out next in party
+    //reset stat modifiers to defaults, for new pokemon
+    resetMultipliers();
+
+    //allow choosing of pokemon to send out
+    setTimeout(
+      () =>
+        $(document.querySelector(".message")).text(
+          "Select which Pokémon to send out..."
+        ),
+      3000
+    );
+    setTimeout(() => $(document.querySelector(".message")).fadeIn(500), 3000);
+
+    //display list of available pokemon that are not inbattle/fainted
+    setTimeout(() => handleTeam("fainted"), 3000);
+  } else {
+    console.log("All pokemon on team fainted...");
+    setTimeout(() => $(document.querySelector(".message")).fadeOut(500), 1500);
+    setTimeout(
+      () => $(document.querySelector(".playermessage")).fadeIn(500),
+      2000
+    );
+
+    $(document.querySelector(".options")).hide(500);
+    if (PlayersTurn === "Player One") {
+      setTimeout(
+        () =>
+          $(document.querySelector(".playermessage")).text(
+            "Player Two is out of Pokémon! "
+          ),
+        2000
+      );
+      setTimeout(
+        () =>
+          $(document.querySelector(".playermessage")).text(
+            "Player One defeated Player Two!"
+          ),
+        3000
+      );
+    } else {
+      setTimeout(
+        () =>
+          $(document.querySelector(".playermessage")).text(
+            "Player One is out of Pokémon! "
+          ),
+        2000
+      );
+      setTimeout(
+        () =>
+          $(document.querySelector(".playermessage")).text(
+            "Player Two defeated Player One!"
+          ),
+        3000
+      );
+    }
+  }
+};
+
+export { FaintPokemon };

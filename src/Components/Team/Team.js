@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Team.css";
 import $ from "jquery";
+import { UpdateHP } from "../UpdateHP";
 
 class Team extends Component {
   constructor(props) {
@@ -99,7 +100,21 @@ class Team extends Component {
 
       //update health bar to reflect damage
       setTimeout(
-        () => this.props.updateHP(HPbar, updatedBarHP, swapPoke.name, 0),
+        () =>
+          UpdateHP(
+            HPbar,
+            updatedBarHP,
+            swapPoke.name,
+            0,
+            this.props.player1Team,
+            this.props.player2Team,
+            this.props.player1CurrentPokemon,
+            this.props.player2CurrentPokemon,
+            this.props.playersTurn,
+            this.props.resetMultipliers,
+            this.props.handleTeam,
+            this.props.handleFainted
+          ),
         2000
       );
     }
