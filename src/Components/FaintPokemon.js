@@ -15,39 +15,43 @@ const FaintPokemon = (
   let Pokeball = null;
   let PKMN = null;
   let Team = null;
-  let faintedFromRecoil = false;
+  let faintedFromRecoilPoisonBurn = false;
   if (PlayersTurn === "Player One") {
     console.log(player1Team[player1CurrentPokemon].hp);
 
     if (player1Team[player1CurrentPokemon].hp <= 0) {
-      faintedFromRecoil = true;
+      faintedFromRecoilPoisonBurn = true;
       Team = player1Team;
       PKMN = player1CurrentPokemon;
       Sprite = $(document.querySelector(".player1Sprite"));
       Pokeball = $(document.getElementById("p1" + player1CurrentPokemon));
-    } else if (player2Team[player2CurrentPokemon].hp <= 0) Team = player2Team;
-    PKMN = player2CurrentPokemon;
-    Sprite = $(document.querySelector(".player2Sprite"));
-    Pokeball = $(document.getElementById("p2" + player2CurrentPokemon));
-  } else {
-    //player twos turn
-    if (player2Team[player2CurrentPokemon].hp <= 0) {
-      faintedFromRecoil = true;
+    } else if (player2Team[player2CurrentPokemon].hp <= 0) {
       Team = player2Team;
       PKMN = player2CurrentPokemon;
       Sprite = $(document.querySelector(".player2Sprite"));
       Pokeball = $(document.getElementById("p2" + player2CurrentPokemon));
-    } else if (player1Team[player1CurrentPokemon].hp <= 0) Team = player1Team;
-    PKMN = player1CurrentPokemon;
-    Sprite = $(document.querySelector(".player1Sprite"));
-    Pokeball = $(document.getElementById("p1" + player1CurrentPokemon));
+    }
+  } else {
+    //player twos turn
+    if (player2Team[player2CurrentPokemon].hp <= 0) {
+      faintedFromRecoilPoisonBurn = true;
+      Team = player2Team;
+      PKMN = player2CurrentPokemon;
+      Sprite = $(document.querySelector(".player2Sprite"));
+      Pokeball = $(document.getElementById("p2" + player2CurrentPokemon));
+    } else if (player1Team[player1CurrentPokemon].hp <= 0) {
+      Team = player1Team;
+      PKMN = player1CurrentPokemon;
+      Sprite = $(document.querySelector(".player1Sprite"));
+      Pokeball = $(document.getElementById("p1" + player1CurrentPokemon));
+    }
   }
   console.log("running fainted function...");
   console.log(Sprite, Pokeball);
 
   //set fainted property to true on pokemon
   Team[PKMN].fainted = true;
-  handleFainted(PKMN, PlayersTurn, faintedFromRecoil);
+  handleFainted(PKMN, PlayersTurn, faintedFromRecoilPoisonBurn);
   //set in battle to false
   Team[PKMN].inBattle = false;
   //hide sprite

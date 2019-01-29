@@ -236,7 +236,7 @@ class BattleStage extends Component {
   dealPoisonBurn = (PKMNuser, HPbar) => {
     //reset poison/burn flag
     this.handlePoisonBurn(false);
-
+    let faintedByPoisonBurn = false;
     //deal 1/8 of Orig HP as damage to user
     let damage = Math.round(PKMNuser.OrigHp / 8);
     //incase of really small damage amounts
@@ -257,6 +257,7 @@ class BattleStage extends Component {
     PKMNuser.hp -= damage;
     if (PKMNuser.hp < 1) {
       PKMNuser.hp = 0;
+      faintedByPoisonBurn = true;
     }
     this.handleForceUpdate();
     if (PKMNuser.statusCondition === "Poison") {
@@ -295,7 +296,9 @@ class BattleStage extends Component {
       500
     );
 
-    setTimeout(() => this.switchTurns(), 2500);
+    if (!faintedByPoisonBurn) {
+      setTimeout(() => this.switchTurns(), 2500);
+    }
   };
 
   //SWITCH TURNS FUNCTION ////////////////////////////////////////////////////////////////////////////////////
@@ -488,6 +491,9 @@ class BattleStage extends Component {
     if (statusEff === "recoverDamage") {
       //damage should be 1/2 damage dealt to target
       let Damage = recoverDamage;
+      if (Damage < 1) {
+        Damage = 1;
+      }
 
       // let Damage = PKMNuser.hp / RecoverAmount;
       let origHealth = parseInt(HPbar.css("width"));
@@ -1216,6 +1222,7 @@ class BattleStage extends Component {
               handleSwapPokemon={this.handleSwapPokemon}
               handleFainted={this.props.handleFainted}
               resetMultipliers={this.resetMultipliers}
+              switchTurns={this.switchTurns}
             />
             <Items
               displayItems={this.state.displayItems}

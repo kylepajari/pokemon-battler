@@ -991,8 +991,8 @@ const CreateMoves = moveName => {
       type: "fire",
       accuracy: 100,
       pp: 15,
-      statusEff: "Bound",
-      statusProb: 1
+      statusEff: "Burn",
+      statusProb: 0.5
     }; //hits for 2-5 turns
   }
   if (moveName === "Thunder Shock") {

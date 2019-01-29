@@ -89,6 +89,9 @@ const DealDamage = (
     Damage = ((((lv * 2) / 5 + 2) * power * (uSA / tSD)) / 50 + 2) * modifier;
   }
   Damage = Math.round(Damage);
+  if (Damage < 1) {
+    Damage = 1;
+  }
 
   //set up recoil/recover damage
   let recoilDamage = Damage / 4;
