@@ -142,14 +142,13 @@ class Team extends Component {
           {team.map((pkmn, i) => {
             if (!pkmn.inBattle && !pkmn.fainted) {
               return (
-                <div className="playerTeamSprite" key={i}>
+                <div
+                  className="playerTeamSprite"
+                  key={i}
+                  onClick={() => this.swapPokemon(i)}
+                >
                   <p className="smallText">{pkmn.name}</p>
-                  <img
-                    src={pkmn.frontSprite}
-                    alt={pkmn.name}
-                    onClick={() => this.swapPokemon(i)}
-                    key={pkmn.name}
-                  />
+                  <img src={pkmn.frontSprite} alt={pkmn.name} key={pkmn.name} />
                   <p className="smallText">
                     HP:{Math.round(pkmn.hp)}/{pkmn.OrigHp}
                   </p>

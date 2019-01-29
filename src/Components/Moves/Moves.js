@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./Moves.css";
 import { MatchIconWithType } from "../MatchTypeIcon";
 import { UpdateHP } from "../UpdateHP";
+import { DealDamage } from "../DealDamage";
 import $ from "jquery";
 
 class Moves extends Component {
@@ -235,7 +236,7 @@ class Moves extends Component {
 
               //update target pokemon hp after damage dealt
               PKMNuser.hp = PKMNuser.hp - damage;
-              this.forceUpdate();
+              this.props.handleForceUpdate();
 
               let dmgDone = origHealth * asPercentage;
               let updatedBarHP = origHealth - dmgDone;
@@ -362,14 +363,27 @@ class Moves extends Component {
               //if move lands, continue with deal damage
               setTimeout(
                 () =>
-                  this.props.dealDamage(
+                  DealDamage(
                     power,
                     lv,
                     moveName,
                     moveCategory,
                     moveType,
                     statusEff,
-                    statusProb
+                    statusProb,
+                    this.props.player1Team,
+                    this.props.player2Team,
+                    this.props.player1CurrentPokemon,
+                    this.props.player2CurrentPokemon,
+                    this.props.playersTurn,
+                    this.props.resetMultipliers,
+                    this.props.handleTeam,
+                    this.props.handleFainted,
+                    this.props.handleForceUpdate,
+                    this.props.checkForStatusEffect,
+                    this.props.isPoisonBurned,
+                    this.props.dealPoisonBurn,
+                    this.props.switchTurns
                   ),
                 2000
               );

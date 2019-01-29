@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./BattleStage.css";
 import pokeball from "../../pokeball.png";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { CalcTypeAdvantage } from "../TypeAdvantage";
 import $ from "jquery";
 import { MatchIconWithType } from "../MatchTypeIcon";
 import Items from "../Items/Items";
@@ -10,6 +9,7 @@ import Moves from "../Moves/Moves";
 import Team from "../Team/Team";
 import { UpdateHP } from "../UpdateHP";
 import { Conditions } from "../Conditions";
+import { RandomNumberGenerator } from "../RandomNumberGenerator";
 
 class BattleStage extends Component {
   constructor(props) {
@@ -50,8 +50,6 @@ class BattleStage extends Component {
       spcAtkMultiplierDown2: 1,
       spcDefMultiplierDown2: 1
     };
-
-    this.dealDamage = this.dealDamage.bind(this);
     this.switchTurns = this.switchTurns.bind(this);
     this.checkForStatusEffect = this.checkForStatusEffect.bind(this);
     this.handleMoves = this.handleMoves.bind(this);
@@ -59,6 +57,7 @@ class BattleStage extends Component {
     this.handleItems = this.handleItems.bind(this);
     this.handleSwapPokemon = this.handleSwapPokemon.bind(this);
     this.handlePoisonBurn = this.handlePoisonBurn.bind(this);
+    this.handleForceUpdate = this.handleForceUpdate.bind(this);
     this.dealPoisonBurn = this.dealPoisonBurn.bind(this);
     this.resetMultipliers = this.resetMultipliers.bind(this);
   }
@@ -75,23 +74,11 @@ class BattleStage extends Component {
     });
   }
 
-  //RANDOM NUMBER GENERATOR FUNCTION //////////////////////////////////////////////////////////////////////////
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  randomNumberGenerator = (min, max) => {
-    let num = (Math.random() * (max - min) + min).toFixed(2);
-    return num;
-  };
+  handleForceUpdate() {
+    console.log("updating...");
 
-  //RAPID FLASH FUNCTION ////////////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////
-  rapidFlash = img => {
-    $(img).fadeOut(100);
-    $(img).fadeIn(300);
-    $(img).fadeOut(100);
-    $(img).fadeIn(300);
-    $(img).fadeOut(100);
-    $(img).fadeIn(300);
-  };
+    this.forceUpdate();
+  }
 
   //RESET MULTPLIERS ////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -202,7 +189,6 @@ class BattleStage extends Component {
   dealPoisonBurn = (PKMNuser, HPbar) => {
     //reset poison/burn flag
     this.handlePoisonBurn(false);
-    console.log(this.state.isPoisonBurned);
 
     //deal 1/16 of Orig HP as damage to user
     let damage = Math.round(PKMNuser.OrigHp / 16);
@@ -352,7 +338,7 @@ class BattleStage extends Component {
           3000
         );
         PKMNuser.isConfused = true;
-        let amountTurnsConfused = Math.round(this.randomNumberGenerator(1, 4));
+        let amountTurnsConfused = Math.round(RandomNumberGenerator(1, 4));
         console.log(
           PKMNuser.name +
             " will be confused for " +
@@ -386,9 +372,7 @@ class BattleStage extends Component {
         let rand = Math.random();
         if (rand < statusProb) {
           PKMNtarget.isConfused = true;
-          let amountTurnsConfused = Math.round(
-            this.randomNumberGenerator(1, 4)
-          );
+          let amountTurnsConfused = Math.round(RandomNumberGenerator(1, 4));
           console.log(
             PKMNtarget.name +
               " will be confused for " +
@@ -764,7 +748,7 @@ class BattleStage extends Component {
             3000
           );
           setTimeout(() => (PKMNtarget.statusCondition = "Sleep"), 2000);
-          let sleepTurns = Math.round(this.randomNumberGenerator(1, 7));
+          let sleepTurns = Math.round(RandomNumberGenerator(1, 7));
           PKMNtarget.turnsAsleep = sleepTurns;
           console.log(
             PKMNtarget.name + " will sleep for " + sleepTurns + " turns..."
@@ -1188,181 +1172,6 @@ class BattleStage extends Component {
     }
   };
 
-  //DEAL DAMAGE FUNCTION ////////////////////////////////////////////////////////////////////////////////////////////////////////
-  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  dealDamage = (
-    power,
-    lv,
-    moveName,
-    moveCategory,
-    moveType,
-    statusEff,
-    statusProb
-  ) => {
-    console.log("dealing damage...");
-    let PKMNuser = "";
-    let PKMNtarget = "";
-    let UserHP = "";
-    let TargetHP = "";
-    if (this.state.playersTurn === "Player One") {
-      PKMNuser = this.state.player1Team[this.state.player1CurrentPokemon];
-      PKMNtarget = this.state.player2Team[this.state.player2CurrentPokemon];
-      UserHP = $(document.querySelector(".player1HP"));
-      TargetHP = $(document.querySelector(".player2HP"));
-    } else {
-      PKMNuser = this.state.player2Team[this.state.player2CurrentPokemon];
-      PKMNtarget = this.state.player1Team[this.state.player1CurrentPokemon];
-      UserHP = $(document.querySelector(".player2HP"));
-      TargetHP = $(document.querySelector(".player1HP"));
-    }
-
-    //damage formula:
-    let A = PKMNuser.attack; //attack stat of attacker
-    let uSA = PKMNuser.specialattack; //special attack stat of attacker
-    let D = PKMNtarget.defense; //defense stat of target
-    let tSD = PKMNtarget.specialdefense; //special defense stat of target
-    let userType1 = PKMNuser.types[0][0];
-    let userType2 = null;
-    if (PKMNuser.types[0][1] !== null) {
-      userType2 = PKMNuser.types[0][1];
-    }
-    let targetType1 = PKMNtarget.types[0][0];
-    let targetType2 = null;
-    if (PKMNtarget.types[0][1] !== null) {
-      targetType2 = PKMNtarget.types[0][1];
-    }
-
-    //calc STAB(Same-Type-Attack-Bonus) 1.5, if user is same as move type
-    let STAB = 1;
-    if (moveType === userType1 || moveType === userType2) {
-      console.log(
-        "move type " +
-          moveType +
-          " matches user type " +
-          userType1 +
-          " or " +
-          userType2 +
-          ", applying STAB 1.5x"
-      );
-      STAB = 1.5;
-    }
-
-    //calc type advantage
-    let Type = CalcTypeAdvantage(moveType, targetType1, targetType2);
-
-    let modifier = this.randomNumberGenerator(0.85, 1.0) * STAB * Type; //random * STAB * Type
-    //formula taken from pokemon wiki, level * 2 / 5 + 2 * "move power" + (attack of attacker / defense of target) / 50 + 2 * modifier
-    let Damage = 0;
-    console.log("move category is: " + moveCategory);
-
-    if (moveCategory === "physical") {
-      //use attack/defense stats
-      Damage = ((((lv * 2) / 5 + 2) * power * (A / D)) / 50 + 2) * modifier;
-    } else if (moveCategory === "special") {
-      //use special attack/defense stats
-      Damage = ((((lv * 2) / 5 + 2) * power * (uSA / tSD)) / 50 + 2) * modifier;
-    }
-
-    //set up recoil/recover damage
-    let recoilDamage = Damage / 4;
-    let recoverDamage = Damage / 2;
-    //store original bar percent
-    let origHealth = parseInt(TargetHP.css("width"));
-
-    // calculate percent difference of hp / dmg
-    let asPercentage = Damage / PKMNtarget.hp;
-
-    //update target pokemon hp after damage dealt
-    PKMNtarget.hp = PKMNtarget.hp - Damage;
-    if (PKMNtarget.hp < 1) {
-      PKMNtarget.hp = 0;
-    }
-    // this.forceUpdate();
-
-    let dmgDone = origHealth * asPercentage;
-    let updatedBarHP = origHealth - dmgDone;
-
-    //if move does not do any damage, do not flash sprite
-    if (Damage !== 0) {
-      //update health bar to reflect damage
-      UpdateHP(
-        TargetHP,
-        updatedBarHP,
-        PKMNtarget.name,
-        power,
-        this.state.player1Team,
-        this.state.player2Team,
-        this.state.player1CurrentPokemon,
-        this.state.player2CurrentPokemon,
-        this.state.playersTurn,
-        this.resetMultipliers,
-        this.handleTeam,
-        this.props.handleFainted
-      );
-      this.forceUpdate();
-      if (this.state.playersTurn === "Player One") {
-        this.rapidFlash($(document.querySelector(".player2Sprite")));
-      } else {
-        this.rapidFlash($(document.querySelector(".player1Sprite")));
-      }
-    } else {
-      //damage was calced to 0
-      $(document.querySelector(".message")).fadeIn(500);
-      $(document.querySelector(".message")).text(
-        PKMNtarget.name + " was unaffected"
-      );
-      setTimeout(
-        () => $(document.querySelector(".message")).fadeOut(500),
-        1500
-      );
-    }
-
-    console.log(PKMNtarget.hp);
-
-    if (
-      PKMNtarget.hp > 0
-      // ||
-      // statusEff === "recoverDamage" ||
-      // statusEff === "recoil"
-    ) {
-      //Check for and apply status effect after damage only if pokemon is not fainted
-      if (statusEff !== "") {
-        console.log(statusEff);
-
-        this.checkForStatusEffect(
-          statusEff,
-          statusProb,
-          PKMNuser,
-          PKMNtarget,
-          targetType1,
-          targetType2,
-          moveName,
-          UserHP,
-          power,
-          recoilDamage,
-          recoverDamage,
-          this.state.isPoisonBurned
-        );
-
-        if (this.state.isPoisonBurned) {
-          console.log(PKMNuser.name + " is poisoned/burned");
-          setTimeout(() => this.dealPoisonBurn(PKMNuser, UserHP), 2000);
-        } else {
-          console.log("user is not poisoned/burned");
-          setTimeout(() => this.switchTurns(), 2500);
-        }
-      } else {
-        if (this.state.isPoisonBurned) {
-          console.log(PKMNuser.name + " is poisoned/burned");
-          setTimeout(() => this.dealPoisonBurn(PKMNuser, UserHP), 2000);
-        } else {
-          //no effect from move, switch turns
-          setTimeout(() => this.switchTurns(), 2000);
-        }
-      }
-    }
-  };
-
   //TYPES FUNCTION ///////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////
   Types = array => {
@@ -1559,7 +1368,6 @@ class BattleStage extends Component {
               player2Team={this.state.player2Team}
               player1CurrentPokemon={this.state.player1CurrentPokemon}
               player2CurrentPokemon={this.state.player2CurrentPokemon}
-              dealDamage={this.dealDamage}
               switchTurns={this.switchTurns}
               checkForStatusEffect={this.checkForStatusEffect}
               handleMoves={this.handleMoves}
@@ -1568,6 +1376,7 @@ class BattleStage extends Component {
               dealPoisonBurn={this.dealPoisonBurn}
               handleTeam={this.handleTeam}
               handleFainted={this.props.handleFainted}
+              handleForceUpdate={this.handleForceUpdate}
               resetMultipliers={this.resetMultipliers}
             />
           </div>

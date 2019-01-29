@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Sound from "react-sound";
-import BattleTheme from "../battleTheme.mp3";
-import Victory from "../victory.mp3";
+import BattleTheme from "../Sounds/battleTheme.mp3";
+import Victory from "../Sounds/victory.mp3";
 import volumeIcon from "../volume.png";
 
 class Music extends Component {

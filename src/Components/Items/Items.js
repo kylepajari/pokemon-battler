@@ -335,13 +335,14 @@ class Items extends Component {
                   onClick={() => this.useItem(item.name, i)}
                   key={item.name}
                 >
+                  <p className="smallText">{item.name}</p>
                   <img
                     className="itemSprite"
                     src={item.sprite}
                     alt={item.name}
                     key={i}
                   />
-                  {item.name} / {item.count}
+                  <p className="smallText">{item.count}</p>
                 </div>
               );
             } else {

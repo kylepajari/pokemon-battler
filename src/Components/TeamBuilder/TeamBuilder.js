@@ -298,18 +298,23 @@ class TeamBuilder extends Component {
   };
 
   startBattle = () => {
-    this.state.player1Team[0].inBattle = true;
-    this.state.player2Team[0].inBattle = true;
+    const poke1 = this.state.player1Team[0];
+    const poke2 = this.state.player2Team[0];
+    poke1.inBattle = true;
+    poke2.inBattle = true;
     this.setState({ battleReady: true });
     console.log("starting battle...");
     $(document.getElementById("BattleButton")).fadeOut(300);
   };
 
   handleFainted = (index, playersTurn) => {
+    let poke = null;
     if (playersTurn === "Player One") {
-      this.state.player2Team[index].fainted = true;
+      poke = this.state.player2Team[index];
+      poke.fainted = true;
     } else {
-      this.state.player1Team[index].fainted = true;
+      poke = this.state.player1Team[index];
+      poke.fainted = true;
     }
     this.forceUpdate();
   };
