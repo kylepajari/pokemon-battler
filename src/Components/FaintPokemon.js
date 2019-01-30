@@ -90,22 +90,21 @@ const FaintPokemon = (
     );
 
     $(document.querySelector(".options")).hide(500);
-    if (PlayersTurn === "Player One") {
-      setTimeout(
-        () =>
-          $(document.querySelector(".playermessage")).text(
-            "Player Two is out of Pokémon! "
-          ),
-        3000
-      );
-      setTimeout(
-        () =>
-          $(document.querySelector(".playermessage")).text(
-            "Player One defeated Player Two!"
-          ),
-        4500
-      );
-    } else {
+    let faintedCountTeam1 = 0;
+    let faintedCountTeam2 = 0;
+    player1Team.forEach(poke => {
+      if (poke.fainted) {
+        faintedCountTeam1++;
+      }
+    });
+    player2Team.forEach(poke => {
+      if (poke.fainted) {
+        faintedCountTeam2++;
+      }
+    });
+
+    if (faintedCountTeam1 === Team.length) {
+      //everyone on player ones team has fainted
       setTimeout(
         () =>
           $(document.querySelector(".playermessage")).text(
@@ -120,8 +119,25 @@ const FaintPokemon = (
           ),
         4500
       );
-      $(document.querySelector(".options")).hide(4500);
     }
+    if (faintedCountTeam2 === Team.length) {
+      //everyone on player twos team has fainted
+      setTimeout(
+        () =>
+          $(document.querySelector(".playermessage")).text(
+            "Player Two is out of Pokémon! "
+          ),
+        3000
+      );
+      setTimeout(
+        () =>
+          $(document.querySelector(".playermessage")).text(
+            "Player One defeated Player Two!"
+          ),
+        4500
+      );
+    }
+    setTimeout(() => $(document.querySelector(".options").hide(300), 4500));
   }
 };
 

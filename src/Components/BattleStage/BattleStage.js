@@ -324,6 +324,7 @@ class BattleStage extends Component {
     console.log("switching turns...");
     //reset faintedByRecoilPoisonBurn
     this.handleFaintedByRecoilPoisonBurn(false);
+    this.handlePoisonBurn(false);
 
     //switch to next player
     if (this.state.playersTurn === "Player One") {
@@ -1037,8 +1038,13 @@ class BattleStage extends Component {
         //dont switch turns here
       } else {
         console.log("move had status effect that did not cause fainting...");
+        if (!isUserPoisonedOrBurned) {
+          console.log(
+            "user is not poisoned/burned and did not faint from move, switching turns..."
+          );
 
-        setTimeout(() => this.switchTurns(), 3500);
+          setTimeout(() => this.switchTurns(), 3500);
+        }
       }
     }
   };
