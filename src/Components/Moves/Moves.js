@@ -151,7 +151,6 @@ class Moves extends Component {
             if (rand > 0.5) {
               console.log(PKMNuser.name + " hurt itself in confusion...");
               hurtitself = true;
-
               //deal 1/8 of Orig HP as damage to user
               let damage = Math.round(PKMNuser.OrigHp / 8);
               //incase of really small damage amounts

@@ -59,6 +59,9 @@ class BattleStage extends Component {
     this.handleItems = this.handleItems.bind(this);
     this.handleSwapPokemon = this.handleSwapPokemon.bind(this);
     this.handlePoisonBurn = this.handlePoisonBurn.bind(this);
+    this.handleFaintedByRecoilPoisonBurn = this.handleFaintedByRecoilPoisonBurn.bind(
+      this
+    );
     this.handleForceUpdate = this.handleForceUpdate.bind(this);
     this.dealPoisonBurn = this.dealPoisonBurn.bind(this);
     this.resetMultipliers = this.resetMultipliers.bind(this);
@@ -220,6 +223,18 @@ class BattleStage extends Component {
     }
   }
 
+  //HANDLE FAINTED BY POISON/BURN ////////////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////////////////////////////////
+  handleFaintedByRecoilPoisonBurn(bool) {
+    if (bool) {
+      console.log("setting poison/burn damage to true");
+      this.setState({ faintedByRecoilPoisonBurn: true });
+    } else {
+      console.log("setting poison/burn damage to false");
+      this.setState({ faintedByRecoilPoisonBurn: false });
+    }
+  }
+
   //HANDLE POISON BURN ////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////
   handlePoisonBurn(bool) {
@@ -259,7 +274,7 @@ class BattleStage extends Component {
     if (PKMNuser.hp < 1) {
       PKMNuser.hp = 0;
       faintedPoisonBurn = true;
-      this.setState({ faintedByRecoilPoisonBurn: true });
+      this.handleFaintedByRecoilPoisonBurn(true);
     }
     this.handleForceUpdate();
     if (PKMNuser.statusCondition === "Poison") {
@@ -308,7 +323,7 @@ class BattleStage extends Component {
   switchTurns = () => {
     console.log("switching turns...");
     //reset faintedByRecoilPoisonBurn
-    this.setState({ faintedByRecoilPoisonBurn: false });
+    this.handleFaintedByRecoilPoisonBurn(false);
 
     //switch to next player
     if (this.state.playersTurn === "Player One") {

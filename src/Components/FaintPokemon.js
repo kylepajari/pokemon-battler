@@ -120,6 +120,7 @@ const FaintPokemon = (
           ),
         4500
       );
+      $(document.querySelector(".options")).hide(4500);
     }
   }
 };
