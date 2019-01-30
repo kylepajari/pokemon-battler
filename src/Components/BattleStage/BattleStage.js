@@ -391,14 +391,6 @@ class BattleStage extends Component {
     //if condition is ConfusionUser, only apply if user is not already confused
     if (statusEff === "ConfusionUser") {
       if (PKMNuser.isConfused === false) {
-        setTimeout(
-          () => $(document.querySelector(".message")).fadeIn(500),
-          2000
-        );
-        setTimeout(
-          () => $(document.querySelector(".message")).fadeOut(500),
-          3000
-        );
         setTimeout(() => (PKMNuser.isConfused = true), 2000);
 
         let amountTurnsConfused = Math.round(RandomNumberGenerator(1, 4));
@@ -411,10 +403,7 @@ class BattleStage extends Component {
         PKMNuser.turnsConfused = amountTurnsConfused;
 
         setTimeout(
-          () =>
-            $(document.querySelector(".message")).text(
-              PKMNuser.name + " became Confused!"
-            ),
+          () => DisplayMessage(PKMNuser.name + " became Confused!"),
           2000
         );
       }
@@ -424,14 +413,6 @@ class BattleStage extends Component {
     //if condition is ConfusionTarget, only apply if target is not already confused
     if (statusEff === "ConfusionTarget") {
       if (PKMNtarget.isConfused === false) {
-        setTimeout(
-          () => $(document.querySelector(".message")).fadeIn(500),
-          2000
-        );
-        setTimeout(
-          () => $(document.querySelector(".message")).fadeOut(500),
-          3000
-        );
         let rand = Math.random();
         if (rand < statusProb) {
           setTimeout(() => (PKMNtarget.isConfused = true), 2000);
@@ -446,10 +427,7 @@ class BattleStage extends Component {
           PKMNtarget.turnsConfused = amountTurnsConfused;
 
           setTimeout(
-            () =>
-              $(document.querySelector(".message")).text(
-                PKMNtarget.name + " became Confused!"
-              ),
+            () => DisplayMessage(PKMNtarget.name + " became Confused!"),
             2000
           );
         }
@@ -598,13 +576,7 @@ class BattleStage extends Component {
         2000
       );
 
-      setTimeout(
-        () =>
-          $(document.querySelector(".message")).text(
-            PKMNuser.name + " recovered HP!"
-          ),
-        2000
-      );
+      setTimeout(() => DisplayMessage(PKMNuser.name + " recovered HP!"), 2000);
     }
 
     //REST /////////////////////////////////////////////////////////////
@@ -741,7 +713,7 @@ class BattleStage extends Component {
         //if condition is Sleep, only apply if target is not already asleep
         if (PKMNtarget.statusCondition !== "Sleep") {
           setTimeout(() => (PKMNtarget.statusCondition = "Sleep"), 2000);
-          let sleepTurns = Math.round(RandomNumberGenerator(1, 7));
+          let sleepTurns = Math.round(RandomNumberGenerator(2, 5));
           PKMNtarget.turnsAsleep = sleepTurns;
           console.log(
             PKMNtarget.name + " will sleep for " + sleepTurns + " turns..."

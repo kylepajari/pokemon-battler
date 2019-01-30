@@ -127,7 +127,6 @@ class Items extends Component {
 
       //update target pokemon hp after damage dealt else {
       setTimeout(() => (PKMNuser.hp -= damage), 2500);
-      setTimeout(() => $(document.querySelector(".message")).fadeIn(500), 2500);
       if (PKMNuser.statusCondition === "Poison") {
         setTimeout(
           () => DisplayMessage(PKMNuser.name + " was hurt by Poison!"),
