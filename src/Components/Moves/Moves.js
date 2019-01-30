@@ -167,6 +167,9 @@ class Moves extends Component {
 
               //update target pokemon hp after damage dealt
               PKMNuser.hp = PKMNuser.hp - damage;
+              if (PKMNuser.hp < 0) {
+                PKMNuser.hp = 0;
+              }
               this.props.handleForceUpdate();
 
               let dmgDone = origHealth * asPercentage;
