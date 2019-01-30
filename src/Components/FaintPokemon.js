@@ -137,7 +137,7 @@ const FaintPokemon = (
         4500
       );
     }
-    setTimeout(() => $(document.querySelector(".options").hide(300), 4500));
+    setTimeout(() => $(document.querySelector(".options")).hide(300), 4500);
   }
 };
 
