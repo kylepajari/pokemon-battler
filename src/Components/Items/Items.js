@@ -107,64 +107,6 @@ class Items extends Component {
     DisplayMessage("It won't have any effect.");
   };
 
-  checkForPoisonBurn = (PKMNuser, HPbar) => {
-    //check if user is poisoned or burned, set up for hp loss
-    if (
-      PKMNuser.statusCondition === "Poison" ||
-      PKMNuser.statusCondition === "Burn"
-    ) {
-      //deal 1/8 of Orig HP as damage to user
-      let damage = PKMNuser.OrigHp / 16;
-      console.log("poison/burn damage: " + damage);
-
-      //store original bar percent
-      let origHealth = 0;
-      setTimeout(() => (origHealth = parseInt(HPbar.css("width"))), 2800);
-
-      // calculate percent difference of hp / dmg
-      let asPercentage = 0;
-      setTimeout(() => (asPercentage = damage / PKMNuser.hp), 2800);
-
-      //update target pokemon hp after damage dealt else {
-      setTimeout(() => (PKMNuser.hp -= damage), 2500);
-      if (PKMNuser.statusCondition === "Poison") {
-        setTimeout(
-          () => DisplayMessage(PKMNuser.name + " was hurt by Poison!"),
-          2500
-        );
-      } else if (PKMNuser.statusCondition === "Burn") {
-        setTimeout(
-          () => DisplayMessage(PKMNuser.name + " was hurt by Burn!"),
-          2500
-        );
-      }
-      let dmgDone = 0;
-      setTimeout(() => (dmgDone = origHealth * asPercentage), 2800);
-      let updatedBarHP = 0;
-      setTimeout(() => (updatedBarHP = origHealth - dmgDone), 2800);
-
-      //update health bar to reflect damage
-      setTimeout(
-        () =>
-          UpdateHP(
-            HPbar,
-            updatedBarHP,
-            PKMNuser.name,
-            0,
-            this.props.player1Team,
-            this.props.player2Team,
-            this.props.player1CurrentPokemon,
-            this.props.player2CurrentPokemon,
-            this.props.playersTurn,
-            this.props.resetMultipliers,
-            this.props.handleTeam,
-            this.props.handleFainted
-          ),
-        3000
-      );
-    }
-  };
-
   healHP = (PKMNuser, HPbar, healAmount) => {
     //if increasing would bring them over full hp, cap hp
     if (Math.round(PKMNuser.hp) + healAmount > PKMNuser.OrigHp) {
@@ -213,10 +155,15 @@ class Items extends Component {
         ),
       300
     );
-
-    this.checkForPoisonBurn(PKMNuser, HPbar);
     this.props.handleItems();
-    setTimeout(() => this.props.switchTurns(), 1300);
+    if (
+      PKMNuser.statusCondition === "Poison" ||
+      PKMNuser.statusCondition === "Burn"
+    ) {
+      setTimeout(() => this.props.dealPoisonBurn(PKMNuser, HPbar), 1500);
+    } else {
+      setTimeout(() => this.props.switchTurns(), 1500);
+    }
   };
 
   //HEAL STATUS FUNCTION ////////////////////////////////////////////////////////////////////////////////////
@@ -229,9 +176,8 @@ class Items extends Component {
     );
     //remove status condition
     setTimeout(() => (PKMNuser.statusCondition = ""), 500);
-
     this.props.handleItems();
-    setTimeout(() => this.props.switchTurns(), 1300);
+    setTimeout(() => this.props.switchTurns(), 1500);
   };
 
   //USE ITEM FUNCTION ////////////////////////////////////////////////////////////////////////////////////

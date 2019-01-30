@@ -227,10 +227,10 @@ class BattleStage extends Component {
   /////////////////////////////////////////////////////////////////////////////////////////////////////
   handleFaintedByRecoilPoisonBurn(bool) {
     if (bool) {
-      console.log("setting poison/burn damage to true");
+      console.log("setting recoil/poison/burn fainted to true");
       this.setState({ faintedByRecoilPoisonBurn: true });
     } else {
-      console.log("setting poison/burn damage to false");
+      console.log("resetting recoil/poison/burn fainted to false");
       this.setState({ faintedByRecoilPoisonBurn: false });
     }
   }
@@ -1240,6 +1240,7 @@ class BattleStage extends Component {
               handleForceUpdate={this.handleForceUpdate}
               resetMultipliers={this.resetMultipliers}
               checkForStatusEffect={this.checkForStatusEffect}
+              dealPoisonBurn={this.dealPoisonBurn}
             />
             <Moves
               displayMoves={this.state.displayMoves}
