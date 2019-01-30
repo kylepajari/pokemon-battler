@@ -1434,7 +1434,7 @@ const CreateMoves = moveName => {
       power: 200,
       type: "normal",
       accuracy: 100,
-      pp: 5,
+      pp: 35, //5
       statusEff: "FaintsUser",
       statusProb: 1
     };
@@ -1830,7 +1830,7 @@ const CreateMoves = moveName => {
       power: 250,
       type: "normal",
       accuracy: 100,
-      pp: 5,
+      pp: 35, //5
       statusEff: "FaintsUser",
       statusProb: 1
     };

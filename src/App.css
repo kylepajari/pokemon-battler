@@ -36,6 +36,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  height: 80px;
   margin-top: 3px;
   margin-bottom: 3px;
 }
@@ -47,8 +48,8 @@
 .pokeball {
   margin-top: 5px;
   margin-left: 15px;
-  height: 5%;
-  width: 5%;
+  height: 75px;
+  width: 75px;
 }
 
 .faded {
