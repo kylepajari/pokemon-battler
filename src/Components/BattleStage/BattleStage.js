@@ -1049,7 +1049,7 @@ class BattleStage extends Component {
       } else {
         console.log("move had status effect that did not cause fainting...");
 
-        setTimeout(() => this.switchTurns(), 2000);
+        setTimeout(() => this.switchTurns(), 3500);
       }
     }
   };

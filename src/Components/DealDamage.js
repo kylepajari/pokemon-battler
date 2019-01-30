@@ -75,6 +75,15 @@ const DealDamage = (
 
   //calc type advantage
   let Type = CalcTypeAdvantage(moveType, targetType1, targetType2);
+  let effectiveMessage = false;
+  if (Type === 0.25) {
+    effectiveMessage = true;
+    DisplayMessage("It's not very effective...");
+  }
+  if (Type === 4) {
+    effectiveMessage = true;
+    DisplayMessage("It's super effective!");
+  }
 
   let modifier = RandomNumberGenerator(0.85, 1.0) * STAB * Type; //random * STAB * Type
   //formula taken from pokemon wiki, level * 2 / 5 + 2 * "move power" + (attack of attacker / defense of target) / 50 + 2 * modifier
@@ -89,9 +98,7 @@ const DealDamage = (
     Damage = ((((lv * 2) / 5 + 2) * power * (uSA / tSD)) / 50 + 2) * modifier;
   }
   Damage = Math.round(Damage);
-  if (Damage < 1) {
-    Damage = 1;
-  }
+  console.log("Damage is: " + Damage);
 
   //set up recoil/recover damage
   let recoilDamage = Damage / 4;
@@ -104,44 +111,85 @@ const DealDamage = (
 
   //update target pokemon hp after damage dealt
   PKMNtarget.hp = PKMNtarget.hp - Damage;
-  if (PKMNtarget.hp < 1) {
+  if (PKMNtarget.hp < 0) {
     PKMNtarget.hp = 0;
   }
-  handleForceUpdate();
-  let dmgDone = origHealth * asPercentage;
+  if (!effectiveMessage) {
+    handleForceUpdate();
+  } else {
+    setTimeout(() => handleForceUpdate(), 1500);
+  }
+
+  let dmgDone = Math.round(origHealth * asPercentage);
   let updatedBarHP = origHealth - dmgDone;
 
   //if move does not do any damage, do not flash sprite
   if (Damage !== 0) {
     //update health bar to reflect damage
-    UpdateHP(
-      TargetHP,
-      updatedBarHP,
-      PKMNtarget.name,
-      power,
-      player1Team,
-      player2Team,
-      player1CurrentPokemon,
-      player2CurrentPokemon,
-      playersTurn,
-      resetMultipliers,
-      handleTeam,
-      handleFainted
-    );
-    if (playersTurn === "Player One") {
-      $(document.querySelector(".player2Sprite")).fadeOut(100);
-      $(document.querySelector(".player2Sprite")).fadeIn(300);
-      $(document.querySelector(".player2Sprite")).fadeOut(100);
-      $(document.querySelector(".player2Sprite")).fadeIn(300);
-      $(document.querySelector(".player2Sprite")).fadeOut(100);
-      $(document.querySelector(".player2Sprite")).fadeIn(300);
+    if (!effectiveMessage) {
+      UpdateHP(
+        TargetHP,
+        updatedBarHP,
+        PKMNtarget.name,
+        power,
+        player1Team,
+        player2Team,
+        player1CurrentPokemon,
+        player2CurrentPokemon,
+        playersTurn,
+        resetMultipliers,
+        handleTeam,
+        handleFainted
+      );
+      if (playersTurn === "Player One") {
+        $(document.querySelector(".player2Sprite")).fadeOut(100);
+        $(document.querySelector(".player2Sprite")).fadeIn(300);
+        $(document.querySelector(".player2Sprite")).fadeOut(100);
+        $(document.querySelector(".player2Sprite")).fadeIn(300);
+        $(document.querySelector(".player2Sprite")).fadeOut(100);
+        $(document.querySelector(".player2Sprite")).fadeIn(300);
+      } else {
+        $(document.querySelector(".player1Sprite")).fadeOut(100);
+        $(document.querySelector(".player1Sprite")).fadeIn(300);
+        $(document.querySelector(".player1Sprite")).fadeOut(100);
+        $(document.querySelector(".player1Sprite")).fadeIn(300);
+        $(document.querySelector(".player1Sprite")).fadeOut(100);
+        $(document.querySelector(".player1Sprite")).fadeIn(300);
+      }
     } else {
-      $(document.querySelector(".player1Sprite")).fadeOut(100);
-      $(document.querySelector(".player1Sprite")).fadeIn(300);
-      $(document.querySelector(".player1Sprite")).fadeOut(100);
-      $(document.querySelector(".player1Sprite")).fadeIn(300);
-      $(document.querySelector(".player1Sprite")).fadeOut(100);
-      $(document.querySelector(".player1Sprite")).fadeIn(300);
+      setTimeout(
+        () =>
+          UpdateHP(
+            TargetHP,
+            updatedBarHP,
+            PKMNtarget.name,
+            power,
+            player1Team,
+            player2Team,
+            player1CurrentPokemon,
+            player2CurrentPokemon,
+            playersTurn,
+            resetMultipliers,
+            handleTeam,
+            handleFainted
+          ),
+        1500
+      );
+      if (playersTurn === "Player One") {
+        $(document.querySelector(".player2Sprite")).fadeOut(100);
+        $(document.querySelector(".player2Sprite")).fadeIn(300);
+        $(document.querySelector(".player2Sprite")).fadeOut(100);
+        $(document.querySelector(".player2Sprite")).fadeIn(300);
+        $(document.querySelector(".player2Sprite")).fadeOut(100);
+        $(document.querySelector(".player2Sprite")).fadeIn(300);
+      } else {
+        $(document.querySelector(".player1Sprite")).fadeOut(100);
+        $(document.querySelector(".player1Sprite")).fadeIn(300);
+        $(document.querySelector(".player1Sprite")).fadeOut(100);
+        $(document.querySelector(".player1Sprite")).fadeIn(300);
+        $(document.querySelector(".player1Sprite")).fadeOut(100);
+        $(document.querySelector(".player1Sprite")).fadeIn(300);
+      }
     }
   } else {
     //damage was calced to 0
@@ -157,24 +205,49 @@ const DealDamage = (
   ) {
     //Check for and apply status effect after damage only if pokemon is not fainted
     if (statusEff !== "") {
-      checkForStatusEffect(
-        statusEff,
-        statusProb,
-        PKMNuser,
-        PKMNtarget,
-        targetType1,
-        targetType2,
-        moveName,
-        UserHP,
-        power,
-        recoilDamage,
-        recoverDamage,
-        isPoisonBurned
-      );
+      if (!effectiveMessage) {
+        checkForStatusEffect(
+          statusEff,
+          statusProb,
+          PKMNuser,
+          PKMNtarget,
+          targetType1,
+          targetType2,
+          moveName,
+          UserHP,
+          power,
+          recoilDamage,
+          recoverDamage,
+          isPoisonBurned
+        );
+      } else {
+        setTimeout(
+          () =>
+            checkForStatusEffect(
+              statusEff,
+              statusProb,
+              PKMNuser,
+              PKMNtarget,
+              targetType1,
+              targetType2,
+              moveName,
+              UserHP,
+              power,
+              recoilDamage,
+              recoverDamage,
+              isPoisonBurned
+            ),
+          1500
+        );
+      }
 
       if (isPoisonBurned) {
         console.log(PKMNuser.name + " is poisoned/burned");
-        setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 2000);
+        if (!effectiveMessage) {
+          setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 2000);
+        } else {
+          setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 3500);
+        }
       }
       // } else {
       //   console.log(PKMNuser.name + " is not poisoned/burned, switching turns");
@@ -183,10 +256,18 @@ const DealDamage = (
     } else {
       if (isPoisonBurned) {
         console.log(PKMNuser.name + " is poisoned/burned");
-        setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 2000);
+        if (!effectiveMessage) {
+          setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 2000);
+        } else {
+          setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 3500);
+        }
       } else {
         //no effect from move, switch turns
-        setTimeout(() => switchTurns(), 2000);
+        if (!effectiveMessage) {
+          setTimeout(() => switchTurns(), 2000);
+        } else {
+          setTimeout(() => switchTurns(), 3500);
+        }
       }
     }
   }
