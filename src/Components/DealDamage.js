@@ -76,11 +76,11 @@ const DealDamage = (
   //calc type advantage
   let Type = CalcTypeAdvantage(moveType, targetType1, targetType2);
   let effectiveMessage = false;
-  if (Type === 0.25) {
+  if (Type < 1) {
     effectiveMessage = true;
     DisplayMessage("It's not very effective...");
   }
-  if (Type === 4) {
+  if (Type > 1) {
     effectiveMessage = true;
     DisplayMessage("It's super effective!");
   }
