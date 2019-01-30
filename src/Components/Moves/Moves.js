@@ -93,7 +93,7 @@ class Moves extends Component {
             " more turns..."
         );
         DisplayMessage(PKMNuser.name + " is fast asleep... ");
-        if (this.props.isPoisonBurned) {
+        if (isUserPoisonedOrBurned) {
           console.log(PKMNuser.name + " is poisoned/burned");
           setTimeout(() => this.props.dealPoisonBurn(PKMNuser, HPbar), 2000);
         } else {
@@ -119,7 +119,12 @@ class Moves extends Component {
           console.log(PKMNuser.name + " is frozen...");
           frozen = true;
           DisplayMessage(PKMNuser.name + " is Frozen Solid!");
-          setTimeout(() => this.props.switchTurns(), 2000);
+          if (isUserPoisonedOrBurned) {
+            console.log(PKMNuser.name + " is poisoned/burned");
+            setTimeout(() => this.props.dealPoisonBurn(PKMNuser, HPbar), 2000);
+          } else {
+            setTimeout(() => this.props.switchTurns(), 2000);
+          }
         }
 
         //handle paralyze
@@ -133,7 +138,15 @@ class Moves extends Component {
             console.log(PKMNuser.name + " is paralyzed...");
             paralysis = true;
             DisplayMessage(PKMNuser.name + " is paralyzed!");
-            setTimeout(() => this.props.switchTurns(), 2000);
+            if (isUserPoisonedOrBurned) {
+              console.log(PKMNuser.name + " is poisoned/burned");
+              setTimeout(
+                () => this.props.dealPoisonBurn(PKMNuser, HPbar),
+                2000
+              );
+            } else {
+              setTimeout(() => this.props.switchTurns(), 2000);
+            }
           }
         }
 
@@ -195,7 +208,7 @@ class Moves extends Component {
               );
               DisplayMessage(PKMNuser.name + " hurt itself in confusion!");
               //if user is poisonedburned, delay switching turns
-              if (this.props.isPoisonBurned) {
+              if (isUserPoisonedOrBurned) {
                 console.log(PKMNuser.name + " is poisoned/burned");
                 setTimeout(
                   () => this.props.dealPoisonBurn(PKMNuser, HPbar),
@@ -229,7 +242,7 @@ class Moves extends Component {
               () => DisplayMessage(PKMNuser.name + "'s attack Missed!"),
               2000
             );
-            if (this.props.isPoisonBurned) {
+            if (isUserPoisonedOrBurned) {
               console.log(PKMNuser.name + " is poisoned/burned");
               setTimeout(
                 () => this.props.dealPoisonBurn(PKMNuser, HPbar),
@@ -292,7 +305,7 @@ class Moves extends Component {
                 2000
               );
 
-              if (this.props.isPoisonBurned) {
+              if (isUserPoisonedOrBurned) {
                 console.log(PKMNuser.name + " is poisoned/burned");
                 setTimeout(
                   () => this.props.dealPoisonBurn(PKMNuser, HPbar),
@@ -326,7 +339,7 @@ class Moves extends Component {
               () => DisplayMessage(PKMNuser.name + "'s attack Missed!"),
               4000
             );
-            if (this.props.isPoisonBurned) {
+            if (isUserPoisonedOrBurned) {
               console.log(PKMNuser.name + " is poisoned/burned");
               setTimeout(
                 () => this.props.dealPoisonBurn(PKMNuser, HPbar),
@@ -393,7 +406,7 @@ class Moves extends Component {
                 4000
               );
 
-              if (this.props.isPoisonBurned) {
+              if (isUserPoisonedOrBurned) {
                 console.log(PKMNuser.name + " is poisoned/burned");
                 setTimeout(
                   () => this.props.dealPoisonBurn(PKMNuser, HPbar),
