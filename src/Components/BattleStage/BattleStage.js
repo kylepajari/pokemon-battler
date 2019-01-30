@@ -393,13 +393,14 @@ class BattleStage extends Component {
       if (PKMNuser.isConfused === false) {
         setTimeout(
           () => $(document.querySelector(".message")).fadeIn(500),
-          2300
+          2000
         );
         setTimeout(
           () => $(document.querySelector(".message")).fadeOut(500),
           3000
         );
-        PKMNuser.isConfused = true;
+        setTimeout(() => (PKMNuser.isConfused = true), 2000);
+
         let amountTurnsConfused = Math.round(RandomNumberGenerator(1, 4));
         console.log(
           PKMNuser.name +
@@ -414,7 +415,7 @@ class BattleStage extends Component {
             $(document.querySelector(".message")).text(
               PKMNuser.name + " became Confused!"
             ),
-          2300
+          2000
         );
       }
     }
@@ -425,7 +426,7 @@ class BattleStage extends Component {
       if (PKMNtarget.isConfused === false) {
         setTimeout(
           () => $(document.querySelector(".message")).fadeIn(500),
-          2300
+          2000
         );
         setTimeout(
           () => $(document.querySelector(".message")).fadeOut(500),
@@ -433,7 +434,8 @@ class BattleStage extends Component {
         );
         let rand = Math.random();
         if (rand < statusProb) {
-          PKMNtarget.isConfused = true;
+          setTimeout(() => (PKMNtarget.isConfused = true), 2000);
+
           let amountTurnsConfused = Math.round(RandomNumberGenerator(1, 4));
           console.log(
             PKMNtarget.name +
@@ -448,7 +450,7 @@ class BattleStage extends Component {
               $(document.querySelector(".message")).text(
                 PKMNtarget.name + " became Confused!"
               ),
-            2300
+            2000
           );
         }
       }
