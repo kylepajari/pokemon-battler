@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/pokedex-battler/precache-manifest.432c7e3e1fae6517ad3fb7ca5c5e1a7d.js"
+  "/pokemon-battler/precache-manifest.a9c0ad885d24a5fb42eafa1d25911806.js"
 );
 
 workbox.clientsClaim();
@@ -28,7 +28,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/pokedex-battler/index.html", {
+workbox.routing.registerNavigationRoute("/pokemon-battler/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
