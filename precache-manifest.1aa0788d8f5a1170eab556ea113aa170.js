@@ -4,16 +4,16 @@ self.__precacheManifest = [
     "url": "/pokemon-battler/static/media/PressStart2P-Regular.81c0aae9.ttf"
   },
   {
-    "revision": "6d4c6a01ea7b7c5b5fbb",
-    "url": "/pokemon-battler/static/css/main.7fcdb429.chunk.css"
+    "revision": "081207cdfbc9d6c6b228",
+    "url": "/pokemon-battler/static/css/main.5a5376fe.chunk.css"
   },
   {
     "revision": "de20ffb61759ca92878b995bd1ed6eb9",
     "url": "/pokemon-battler/static/media/rockicon.de20ffb6.png"
   },
   {
-    "revision": "0b66087019812d1c3da3",
-    "url": "/pokemon-battler/static/js/1.0b660870.chunk.js"
+    "revision": "073f0b82927c09c988bd",
+    "url": "/pokemon-battler/static/js/1.073f0b82.chunk.js"
   },
   {
     "revision": "3ea546017eb653ef3879",
@@ -36,8 +36,8 @@ self.__precacheManifest = [
     "url": "/pokemon-battler/static/media/volume.128b63e3.png"
   },
   {
-    "revision": "6d4c6a01ea7b7c5b5fbb",
-    "url": "/pokemon-battler/static/js/main.6d4c6a01.chunk.js"
+    "revision": "081207cdfbc9d6c6b228",
+    "url": "/pokemon-battler/static/js/main.081207cd.chunk.js"
   },
   {
     "revision": "4ab28086d73a13248fddb49ec61c778e",
@@ -68,11 +68,11 @@ self.__precacheManifest = [
     "url": "/pokemon-battler/static/media/physicicon.1ce7dca6.png"
   },
   {
-    "revision": "0b66087019812d1c3da3",
-    "url": "/pokemon-battler/static/css/1.06dfd132.chunk.css"
+    "revision": "073f0b82927c09c988bd",
+    "url": "/pokemon-battler/static/css/1.ab220068.chunk.css"
   },
   {
-    "revision": "0a458fab4b6f3d76d52bd88a44334819",
+    "revision": "4ddcd0f0d5d1bce812f3806c29b31318",
     "url": "/pokemon-battler/index.html"
   }
 ];
