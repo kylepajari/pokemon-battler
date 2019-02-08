@@ -7,9 +7,12 @@ const FaintPokemon = (
   player1CurrentPokemon,
   player2CurrentPokemon,
   PlayersTurn,
+  playerOneName,
+  playerTwoName,
   resetMultipliers,
   handleTeam,
-  handleFainted
+  handleFainted,
+  mode
 ) => {
   let Sprite = null;
   let Pokeball = null;
@@ -17,8 +20,6 @@ const FaintPokemon = (
   let Team = null;
   let faintedFromRecoilPoisonBurn = false;
   if (PlayersTurn === "Player One") {
-    console.log(player1Team[player1CurrentPokemon].hp);
-
     if (player1Team[player1CurrentPokemon].hp <= 0) {
       faintedFromRecoilPoisonBurn = true;
       Team = player1Team;
@@ -47,7 +48,6 @@ const FaintPokemon = (
     }
   }
   console.log("running fainted function...");
-  console.log(Sprite, Pokeball);
 
   //set fainted property to true on pokemon
   Team[PKMN].fainted = true;
@@ -73,15 +73,28 @@ const FaintPokemon = (
     //increase currentPokemon number for team to send out next in party
     //reset stat modifiers to defaults, for new pokemon
     resetMultipliers("fainted");
-
-    //allow choosing of pokemon to send out
-    setTimeout(
-      () => DisplayMessage("Select which Pokémon to send out..."),
-      3000
-    );
-
-    //display list of available pokemon that are not inbattle/fainted
-    setTimeout(() => handleTeam("fainted"), 3000);
+    console.log(mode);
+    if (mode === "Multi") {
+      setTimeout(
+        () => DisplayMessage("Select which Pokémon to send out..."),
+        3000
+      );
+      //display list of available pokemon that are not inbattle/fainted
+      setTimeout(() => handleTeam("fainted"), 3000);
+    } else {
+      //if in single mode, only show message for player one
+      if (
+        PlayersTurn === "Player One" &&
+        player1Team[player1CurrentPokemon].hp <= 0
+      ) {
+        setTimeout(
+          () => DisplayMessage("Select which Pokémon to send out..."),
+          3000
+        );
+      }
+      //display list of available pokemon that are not inbattle/fainted
+      setTimeout(() => handleTeam("fainted"), 3000);
+    }
   } else {
     console.log("All pokemon on team fainted...");
     setTimeout(
@@ -108,14 +121,14 @@ const FaintPokemon = (
       setTimeout(
         () =>
           $(document.querySelector(".playermessage")).text(
-            "Player One is out of Pokémon! "
+            playerOneName + " is out of Pokémon! "
           ),
         3000
       );
       setTimeout(
         () =>
           $(document.querySelector(".playermessage")).text(
-            "Player Two defeated Player One!"
+            playerTwoName + " defeated " + playerOneName + "!"
           ),
         4500
       );
@@ -125,14 +138,14 @@ const FaintPokemon = (
       setTimeout(
         () =>
           $(document.querySelector(".playermessage")).text(
-            "Player Two is out of Pokémon! "
+            playerTwoName + " is out of Pokémon! "
           ),
         3000
       );
       setTimeout(
         () =>
           $(document.querySelector(".playermessage")).text(
-            "Player One defeated Player Two!"
+            playerOneName + " defeated " + playerTwoName + "!"
           ),
         4500
       );

@@ -26,10 +26,10 @@
   overflow-x: hidden;
 }
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 0px;
   background: transparent;
-}
+} */
 
 .title {
   display: flex;

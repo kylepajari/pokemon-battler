@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import BattleStage from "../BattleStage/BattleStage";
 import { CreateMoves } from "../MoveCreator";
 import $ from "jquery";
+import BadgesContainer from "../BadgesContainer/BadgesContainer";
 
 class TeamBuilder extends Component {
   constructor(props) {
@@ -14,29 +15,116 @@ class TeamBuilder extends Component {
       isOpen: false, //to keep track of whether pokemon dropdown is open
       isTeamOpen: false, //to keep track of whether team size dropdown is open
       currentPlayer: "Player One", //player who starts the game
-      teamSize: 3, //max number of pokemon per team, adjust to allow more/less
+      playerOneName: "Player One",
+      playerTwoName: "Player Two",
+      mode: "",
+      teamSize: 6, //max number of pokemon per team, adjust to allow more/less
       player1Team: [], //used to hold player one team
       player2Team: [], //used to hold player two team
       battleReady: false, //set when teams are picked
-      globalLevel: 30 //level to set all pokemon too, also used to scale stats,
+      globalLevel: 50 //level to set all pokemon too, also used to scale stats,
     };
 
+    this.fetchPokemon = this.fetchPokemon.bind(this);
     this.toggleOpen = this.toggleOpen.bind(this);
     this.Capitalize = this.Capitalize.bind(this);
     this.handleFainted = this.handleFainted.bind(this);
+    this.singlePlayer = this.singlePlayer.bind(this);
+    this.multiPlayer = this.multiPlayer.bind(this);
+    this.inputNames = this.inputNames.bind(this);
+    this.handleLeaderNames = this.handleLeaderNames.bind(this);
   }
 
   componentDidMount() {
     $(document.getElementById("BattleButton")).fadeOut(10);
     $(document.querySelector(".pokemonList")).fadeOut(10);
-    $(document.querySelector(".teamList")).fadeIn(10);
+    $(document.querySelector(".teamList")).fadeOut(10);
+    $(document.querySelector(".playerOneNameDiv")).fadeOut(10);
+    $(document.querySelector(".playerTwoNameDiv")).fadeOut(10);
+    $(document.querySelector(".teamsContainer")).fadeOut(10);
+    $(document.querySelector(".badgesContainer")).fadeOut(10);
   }
+
+  singlePlayer() {
+    $(document.querySelector("#btnSinglePlayer")).fadeOut(10);
+    $(document.querySelector("#btnMultiPlayer")).fadeOut(10);
+    $(document.querySelector(".playerOneNameDiv")).fadeIn(300);
+    this.setState({ mode: "Single" });
+  }
+
+  multiPlayer() {
+    $(document.querySelector("#btnSinglePlayer")).fadeOut(10);
+    $(document.querySelector("#btnMultiPlayer")).fadeOut(10);
+    $(document.querySelector(".playerOneNameDiv")).fadeIn(300);
+    this.setState({ mode: "Multi" });
+  }
+
+  handleLeaderNames = num => {
+    switch (num) {
+      case 1:
+        this.setState({ playerTwoName: "Brock" });
+        break;
+      case 2:
+        this.setState({ playerTwoName: "Misty" });
+        break;
+      case 3:
+        this.setState({ playerTwoName: "Lt. Surge" });
+        break;
+      case 4:
+        this.setState({ playerTwoName: "Erika" });
+        break;
+      case 5:
+        this.setState({ playerTwoName: "Koga" });
+        break;
+      case 6:
+        this.setState({ playerTwoName: "Sabrina" });
+        break;
+      case 7:
+        this.setState({ playerTwoName: "Blaine" });
+        break;
+      case 8:
+        this.setState({ playerTwoName: "Giovanni" });
+        break;
+      case 9:
+        this.setState({ playerTwoName: "Rival" });
+        break;
+      default:
+        this.setState({ playerTwoName: "Gym Leader" });
+        break;
+    }
+  };
+
+  inputNames = (player, input) => {
+    if (player === "P1") {
+      if (input !== "") {
+        this.setState({ playerOneName: this.Capitalize(input) });
+      }
+      if (this.state.mode === "Single") {
+        this.displayBadges();
+      } else {
+        $(document.querySelector(".playerOneNameDiv")).fadeOut(10);
+        $(document.querySelector(".playerTwoNameDiv")).fadeIn(300);
+      }
+    } else if (player === "P2") {
+      if (input !== "") {
+        this.setState({ playerTwoName: this.Capitalize(input) });
+      }
+      $(document.querySelector(".playerTwoNameDiv")).fadeOut(10);
+      $(document.querySelector(".teamList")).fadeIn(300);
+    }
+  };
 
   changeTeamSize = num => {
     console.log("Changing team size to " + num);
+    $(document.querySelector(".teamsContainer")).fadeIn(300);
     $(document.querySelector(".pokemonList")).fadeIn(300);
     $(document.querySelector(".teamList")).fadeOut(10);
     this.setState({ teamSize: num });
+  };
+
+  displayBadges = () => {
+    $(document.querySelector(".playerOneNameDiv")).fadeOut(10);
+    $(document.querySelector(".badgesContainer")).fadeIn(300);
   };
 
   //Returns passed string with upper-case first letter
@@ -158,14 +246,16 @@ class TeamBuilder extends Component {
     return finalMoves;
   };
 
-  fetchPokemon = num => {
+  fetchPokemon = (num, level, team) => {
     let url = "https://pokeapi.co/api/v2/pokemon/" + num;
     fetch(url)
       .then(response => response.json())
-      .then(data => this.setState({ data }, () => this.addPokemon()));
+      .then(data =>
+        this.setState({ data }, () => this.addPokemon(level, team))
+      );
   };
 
-  addPokemon = () => {
+  addPokemon = (level, team) => {
     let pokemonObj = null;
     pokemonObj = {
       name: this.Capitalize(this.state.data.name),
@@ -173,66 +263,54 @@ class TeamBuilder extends Component {
       frontSpriteShiny: this.state.data.sprites.front_shiny,
       backSprite: this.state.data.sprites.back_default,
       backSpriteShiny: this.state.data.sprites.back_shiny,
-      lv: this.state.globalLevel,
-      OrigHp: this.calcStats(
-        "hp",
-        this.state.data.stats[5].base_stat,
-        this.state.globalLevel
-      ),
-      hp: this.calcStats(
-        "hp",
-        this.state.data.stats[5].base_stat,
-        this.state.globalLevel
-      ),
+      lv: level,
+      OrigHp: this.calcStats("hp", this.state.data.stats[5].base_stat, level),
+      hp: this.calcStats("hp", this.state.data.stats[5].base_stat, level),
       OrigAttack: this.calcStats(
         "attack",
         this.state.data.stats[4].base_stat,
-        this.state.globalLevel
+        level
       ),
       attack: this.calcStats(
         "attack",
         this.state.data.stats[4].base_stat,
-        this.state.globalLevel
+        level
       ),
       OrigDefense: this.calcStats(
         "defense",
         this.state.data.stats[3].base_stat,
-        this.state.globalLevel
+        level
       ),
       defense: this.calcStats(
         "defense",
         this.state.data.stats[3].base_stat,
-        this.state.globalLevel
+        level
       ),
       OrigSpeed: this.calcStats(
         "speed",
         this.state.data.stats[0].base_stat,
-        this.state.globalLevel
+        level
       ),
-      speed: this.calcStats(
-        "speed",
-        this.state.data.stats[0].base_stat,
-        this.state.globalLevel
-      ),
+      speed: this.calcStats("speed", this.state.data.stats[0].base_stat, level),
       OrigSpecialattack: this.calcStats(
         "specialattack",
         this.state.data.stats[2].base_stat,
-        this.state.globalLevel
+        level
       ),
       specialattack: this.calcStats(
         "specialattack",
         this.state.data.stats[2].base_stat,
-        this.state.globalLevel
+        level
       ),
       OrigSpecialdefense: this.calcStats(
         "specialdefense",
         this.state.data.stats[1].base_stat,
-        this.state.globalLevel
+        level
       ),
       specialdefense: this.calcStats(
         "specialdefense",
         this.state.data.stats[1].base_stat,
-        this.state.globalLevel
+        level
       ),
       types: [
         this.state.data.types.map(item => {
@@ -253,18 +331,39 @@ class TeamBuilder extends Component {
     };
 
     let player = null; //default to player one
-    if (this.state.currentPlayer === "Player One") {
+    if (
+      this.state.currentPlayer === "Player One" &&
+      this.state.mode === "Multi"
+    ) {
       player = this.state.player1Team;
     } else {
       player = this.state.player2Team;
     }
-
+    if (this.state.mode === "Single") {
+      if (team === undefined) {
+        player = this.state.player1Team;
+      }
+      if (team === "team2") {
+        player = this.state.player2Team;
+      }
+    }
     if (player.length !== this.state.teamSize) {
-      console.log("adding pokemon to " + this.state.currentPlayer + "'s Team");
-      if (this.state.currentPlayer === "Player One") {
+      if (
+        this.state.currentPlayer === "Player One" &&
+        this.state.mode === "Multi"
+      ) {
         this.state.player1Team.push(pokemonObj);
         this.setState({ player1Team: player });
-      } else {
+      } else if (
+        this.state.currentPlayer === "Player Two" &&
+        this.state.mode === "Multi"
+      ) {
+        this.state.player2Team.push(pokemonObj);
+        this.setState({ player2Team: player });
+      } else if (team === undefined) {
+        this.state.player1Team.push(pokemonObj);
+        this.setState({ player1Team: player });
+      } else if (team === "team2") {
         this.state.player2Team.push(pokemonObj);
         this.setState({ player2Team: player });
       }
@@ -279,10 +378,18 @@ class TeamBuilder extends Component {
       $(document.getElementById("BattleButton")).fadeIn(300);
     }
 
-    if (this.state.currentPlayer === "Player One") {
+    if (
+      this.state.currentPlayer === "Player One" &&
+      this.state.mode === "Multi"
+    ) {
       this.setState({ currentPlayer: "Player Two" });
-    } else {
+    } else if (
+      this.state.currentPlayer === "Player Two" &&
+      this.state.mode === "Multi"
+    ) {
       this.setState({ currentPlayer: "Player One" });
+    } else {
+      this.forceUpdate();
     }
   };
 
@@ -330,8 +437,68 @@ class TeamBuilder extends Component {
   };
 
   render() {
+    let playerName = null;
+    if (this.state.currentPlayer === "Player One") {
+      playerName = this.state.playerOneName;
+    } else {
+      playerName = this.state.playerTwoName;
+    }
     return (
       <div className="teamBuilder">
+        <button
+          type="button"
+          className="btn btn-dark"
+          id="btnSinglePlayer"
+          onClick={this.singlePlayer}
+        >
+          Single Player (Gym Leader Challenge)
+        </button>
+        <button
+          type="button"
+          className="btn btn-dark"
+          id="btnMultiPlayer"
+          onClick={this.multiPlayer}
+        >
+          Multi-Player (Local Battle)
+        </button>
+        <div className="playerOneNameDiv">
+          <p>Enter a name for Player One:</p>
+          <input
+            type="text"
+            id="playerOneNameBox"
+            placeholder="Player One..."
+          />
+          <button
+            type="button"
+            onClick={() =>
+              this.inputNames(
+                "P1",
+                document.getElementById("playerOneNameBox").value
+              )
+            }
+          >
+            Enter
+          </button>
+        </div>
+        <div className="playerTwoNameDiv">
+          <p>Enter a name for Player Two:</p>
+          <input
+            type="text"
+            id="playerTwoNameBox"
+            placeholder="Player Two..."
+          />
+          <button
+            type="button"
+            onClick={() =>
+              this.inputNames(
+                "P2",
+                document.getElementById("playerTwoNameBox").value
+              )
+            }
+          >
+            Enter
+          </button>
+        </div>
         <div
           className="btn-group dropdown teamList"
           onClick={this.toggleTeamOpen}
@@ -414,7 +581,7 @@ class TeamBuilder extends Component {
             aria-expanded="false"
             id="dropdownMenu1"
           >
-            {this.state.currentPlayer}: Select a Pokemon
+            {playerName}: Select a Pokemon
           </button>
           <div
             className={`"dropdown-menu" ${
@@ -428,7 +595,9 @@ class TeamBuilder extends Component {
                   className="dropdown-item"
                   key={i}
                   href="#!"
-                  onClick={() => this.fetchPokemon(i + 1)}
+                  onClick={() =>
+                    this.fetchPokemon(i + 1, this.state.globalLevel)
+                  }
                 >
                   {this.Capitalize(item.name)}
                 </a>
@@ -446,9 +615,15 @@ class TeamBuilder extends Component {
             Battle!
           </button>
         </div>
+        <div>
+          <BadgesContainer
+            fetchPokemon={this.fetchPokemon}
+            handleLeaderNames={this.handleLeaderNames}
+          />
+        </div>
         <div className="teamsContainer container-fluid row">
           <div className="team1 col">
-            <p>Player One:</p>
+            <p>{this.state.playerOneName}:</p>
             <div>
               <ul>
                 {this.state.player1Team.map((pokemon, i) => {
@@ -473,9 +648,12 @@ class TeamBuilder extends Component {
             player2Team={this.state.player2Team}
             Capitalize={this.Capitalize}
             handleFainted={this.handleFainted}
+            playerOneName={this.state.playerOneName}
+            playerTwoName={this.state.playerTwoName}
+            mode={this.state.mode}
           />
           <div className="team2 col">
-            <p>Player Two:</p>
+            <p>{this.state.playerTwoName}:</p>
             <div>
               <ul>
                 {this.state.player2Team.map((pokemon, i) => {

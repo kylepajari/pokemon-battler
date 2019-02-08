@@ -11,12 +11,15 @@ const UpdateHP = (
   player1CurrentPokemon,
   player2CurrentPokemon,
   playersTurn,
+  playerOneName,
+  playerTwoName,
   resetMultipliers,
   handleTeam,
-  handleFainted
+  handleFainted,
+  mode
 ) => {
-  console.log("changing HP Bar...");
-
+  console.log("changing HP Bar...", mode);
+  value = parseInt(value);
   HPbar.css("width", value);
   if (value >= 0 && value <= 104) {
     HPbar.removeClass("fullhp");
@@ -31,7 +34,6 @@ const UpdateHP = (
     HPbar.removeClass("halfhp");
     HPbar.addClass("fullhp");
   }
-
   if (value <= 3) {
     console.log(pokemon + " fainted");
     if (power === 999) {
@@ -39,6 +41,7 @@ const UpdateHP = (
     } else {
       DisplayMessage(pokemon + " fainted!");
     }
+
     setTimeout(
       () =>
         FaintPokemon(
@@ -47,9 +50,12 @@ const UpdateHP = (
           player1CurrentPokemon,
           player2CurrentPokemon,
           playersTurn,
+          playerOneName,
+          playerTwoName,
           resetMultipliers,
           handleTeam,
-          handleFainted
+          handleFainted,
+          mode
         ),
       1000
     );

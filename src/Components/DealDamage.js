@@ -17,6 +17,8 @@ const DealDamage = (
   player1CurrentPokemon,
   player2CurrentPokemon,
   playersTurn,
+  playerOneName,
+  playerTwoName,
   resetMultipliers,
   handleTeam,
   handleFainted,
@@ -24,23 +26,27 @@ const DealDamage = (
   checkForStatusEffect,
   isPoisonBurned,
   dealPoisonBurn,
-  switchTurns
+  switchTurns,
+  mode
 ) => {
   console.log("dealing damage...");
   let PKMNuser = "";
   let PKMNtarget = "";
   let UserHP = "";
   let TargetHP = "";
+  let TargetSprite = "";
   if (playersTurn === "Player One") {
     PKMNuser = player1Team[player1CurrentPokemon];
     PKMNtarget = player2Team[player2CurrentPokemon];
     UserHP = $(document.querySelector(".player1HP"));
     TargetHP = $(document.querySelector(".player2HP"));
+    TargetSprite = $(document.querySelector(".player2Sprite"));
   } else {
     PKMNuser = player2Team[player2CurrentPokemon];
     PKMNtarget = player1Team[player1CurrentPokemon];
     UserHP = $(document.querySelector(".player2HP"));
     TargetHP = $(document.querySelector(".player1HP"));
+    TargetSprite = $(document.querySelector(".player1Sprite"));
   }
 
   //damage formula:
@@ -137,25 +143,20 @@ const DealDamage = (
         player1CurrentPokemon,
         player2CurrentPokemon,
         playersTurn,
+        playerOneName,
+        playerTwoName,
         resetMultipliers,
         handleTeam,
-        handleFainted
+        handleFainted,
+        mode
       );
-      if (playersTurn === "Player One") {
-        $(document.querySelector(".player2Sprite")).fadeOut(100);
-        $(document.querySelector(".player2Sprite")).fadeIn(300);
-        $(document.querySelector(".player2Sprite")).fadeOut(100);
-        $(document.querySelector(".player2Sprite")).fadeIn(300);
-        $(document.querySelector(".player2Sprite")).fadeOut(100);
-        $(document.querySelector(".player2Sprite")).fadeIn(300);
-      } else {
-        $(document.querySelector(".player1Sprite")).fadeOut(100);
-        $(document.querySelector(".player1Sprite")).fadeIn(300);
-        $(document.querySelector(".player1Sprite")).fadeOut(100);
-        $(document.querySelector(".player1Sprite")).fadeIn(300);
-        $(document.querySelector(".player1Sprite")).fadeOut(100);
-        $(document.querySelector(".player1Sprite")).fadeIn(300);
-      }
+      //flash sprite
+      TargetSprite.fadeOut(100);
+      TargetSprite.fadeIn(300);
+      TargetSprite.fadeOut(100);
+      TargetSprite.fadeIn(300);
+      TargetSprite.fadeOut(100);
+      TargetSprite.fadeIn(300);
     } else {
       setTimeout(
         () =>
@@ -169,27 +170,22 @@ const DealDamage = (
             player1CurrentPokemon,
             player2CurrentPokemon,
             playersTurn,
+            playerOneName,
+            playerTwoName,
             resetMultipliers,
             handleTeam,
-            handleFainted
+            handleFainted,
+            mode
           ),
         1500
       );
-      if (playersTurn === "Player One") {
-        $(document.querySelector(".player2Sprite")).fadeOut(100);
-        $(document.querySelector(".player2Sprite")).fadeIn(300);
-        $(document.querySelector(".player2Sprite")).fadeOut(100);
-        $(document.querySelector(".player2Sprite")).fadeIn(300);
-        $(document.querySelector(".player2Sprite")).fadeOut(100);
-        $(document.querySelector(".player2Sprite")).fadeIn(300);
-      } else {
-        $(document.querySelector(".player1Sprite")).fadeOut(100);
-        $(document.querySelector(".player1Sprite")).fadeIn(300);
-        $(document.querySelector(".player1Sprite")).fadeOut(100);
-        $(document.querySelector(".player1Sprite")).fadeIn(300);
-        $(document.querySelector(".player1Sprite")).fadeOut(100);
-        $(document.querySelector(".player1Sprite")).fadeIn(300);
-      }
+      //flash sprite
+      TargetSprite.fadeOut(100);
+      TargetSprite.fadeIn(300);
+      TargetSprite.fadeOut(100);
+      TargetSprite.fadeIn(300);
+      TargetSprite.fadeOut(100);
+      TargetSprite.fadeIn(300);
     }
   } else {
     //damage was calced to 0

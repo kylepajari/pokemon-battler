@@ -56,11 +56,24 @@ class Team extends Component {
 
     //hide sprite
     Sprite.fadeOut(1000);
-    setTimeout(
-      () =>
-        DisplayMessage(this.props.playersTurn + " withdrew " + Team[PKMN].name),
-      500
-    );
+    if (this.props.playersTurn === "Player One") {
+      setTimeout(
+        () =>
+          DisplayMessage(
+            this.props.playerOneName + " withdrew " + Team[PKMN].name
+          ),
+        500
+      );
+    } else {
+      setTimeout(
+        () =>
+          DisplayMessage(
+            this.props.playerTwoName + " withdrew " + Team[PKMN].name
+          ),
+        500
+      );
+    }
+
     setTimeout(
       () => DisplayMessage("and sent out " + Team[swapPoke].name),
       2500
@@ -98,9 +111,12 @@ class Team extends Component {
             this.props.player1CurrentPokemon,
             this.props.player2CurrentPokemon,
             this.props.playersTurn,
+            this.props.playerOneName,
+            this.props.playerTwoName,
             this.props.resetMultipliers,
             this.props.handleTeam,
-            this.props.handleFainted
+            this.props.handleFainted,
+            this.props.mode
           ),
         2500
       );

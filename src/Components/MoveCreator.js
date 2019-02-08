@@ -991,7 +991,7 @@ const CreateMoves = moveName => {
       type: "fire",
       accuracy: 100,
       pp: 15,
-      statusEff: "Burn",
+      statusEff: "Bound",
       statusProb: 0.5
     }; //hits for 2-5 turns
   }
@@ -5711,6 +5711,18 @@ const CreateMoves = moveName => {
       statusProb: 1
     };
   }
+  if (moveName === "Psychic Terrain") {
+    return {
+      name: moveName,
+      category: "physical",
+      power: 40,
+      type: "psychic",
+      accuracy: 100,
+      pp: 35,
+      statusEff: "",
+      statusProb: 1
+    };
+  }
   if (moveName === "Confide") {
     return {
       name: moveName,
@@ -6868,6 +6880,30 @@ const CreateMoves = moveName => {
       name: moveName,
       category: "physical",
       power: 50,
+      type: "normal",
+      accuracy: 100,
+      pp: 35,
+      statusEff: "",
+      statusProb: 1
+    };
+  }
+  if (moveName === "Strength Sap") {
+    return {
+      name: moveName,
+      category: "physical",
+      power: 40,
+      type: "normal",
+      accuracy: 100,
+      pp: 35,
+      statusEff: "",
+      statusProb: 1
+    };
+  }
+  if (moveName === "First Impression") {
+    return {
+      name: moveName,
+      category: "physical",
+      power: 40,
       type: "normal",
       accuracy: 100,
       pp: 35,

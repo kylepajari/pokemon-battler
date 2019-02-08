@@ -149,9 +149,12 @@ class Items extends Component {
           this.props.player1CurrentPokemon,
           this.props.player2CurrentPokemon,
           this.props.playersTurn,
+          this.props.playerOneName,
+          this.props.playerTwoName,
           this.props.resetMultipliers,
           this.props.handleTeam,
-          this.props.handleFainted
+          this.props.handleFainted,
+          this.props.mode
         ),
       300
     );
