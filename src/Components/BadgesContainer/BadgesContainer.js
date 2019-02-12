@@ -10,6 +10,7 @@ import Marsh_Badge from "./Badges/Marsh_Badge.png";
 import Soul_Badge from "./Badges/Soul_Badge.png";
 import Volcano_Badge from "./Badges/Volcano_Badge.png";
 import Earth_Badge from "./Badges/Earth_Badge.png";
+import { RandomNumberGenerator } from "../RandomNumberGenerator";
 
 class BadgesContainer extends Component {
   constructor(props) {
@@ -20,6 +21,8 @@ class BadgesContainer extends Component {
 
   aiTeamBuilder = badge => {
     console.log("creating ai team for " + badge);
+    let rand = 0;
+    let randLvl = 0;
 
     switch (badge) {
       case "Boulder Badge": //Brock
@@ -94,13 +97,40 @@ class BadgesContainer extends Component {
         this.props.fetchPokemon(34, 70, "team2"); //Nidoking lv 70
         this.props.handleLeaderNames(8);
         break;
-      case "Rival":
-        this.props.fetchPokemon(3, 70, "team2"); //Venusaur lv 70
-        this.props.fetchPokemon(6, 70, "team2"); //Charizard lv 70
-        this.props.fetchPokemon(9, 70, "team2"); //Blastoise lv 70
-        this.props.fetchPokemon(145, 75, "team2"); //Zapdos lv 75
-        this.props.fetchPokemon(144, 75, "team2"); //Articuno lv 75
-        this.props.fetchPokemon(150, 80, "team2"); //Mewtwo lv 80
+      case "Rival50":
+        rand = Math.round(RandomNumberGenerator(1, 151));
+        this.props.fetchPokemon(rand, 50, "team2");
+        rand = Math.round(RandomNumberGenerator(1, 151));
+        this.props.fetchPokemon(rand, 50, "team2");
+        rand = Math.round(RandomNumberGenerator(1, 151));
+        this.props.fetchPokemon(rand, 50, "team2");
+        rand = Math.round(RandomNumberGenerator(1, 151));
+        this.props.fetchPokemon(rand, 50, "team2");
+        rand = Math.round(RandomNumberGenerator(1, 151));
+        this.props.fetchPokemon(rand, 50, "team2");
+        rand = Math.round(RandomNumberGenerator(1, 151));
+        this.props.fetchPokemon(rand, 50, "team2");
+        this.props.handleLeaderNames(9);
+        break;
+      case "RivalRandom":
+        rand = Math.round(RandomNumberGenerator(1, 151));
+        randLvl = Math.round(RandomNumberGenerator(1, 100));
+        this.props.fetchPokemon(rand, randLvl, "team2");
+        rand = Math.round(RandomNumberGenerator(1, 151));
+        randLvl = Math.round(RandomNumberGenerator(1, 100));
+        this.props.fetchPokemon(rand, randLvl, "team2");
+        rand = Math.round(RandomNumberGenerator(1, 151));
+        randLvl = Math.round(RandomNumberGenerator(1, 100));
+        this.props.fetchPokemon(rand, randLvl, "team2");
+        rand = Math.round(RandomNumberGenerator(1, 151));
+        randLvl = Math.round(RandomNumberGenerator(1, 100));
+        this.props.fetchPokemon(rand, randLvl, "team2");
+        rand = Math.round(RandomNumberGenerator(1, 151));
+        randLvl = Math.round(RandomNumberGenerator(1, 100));
+        this.props.fetchPokemon(rand, randLvl, "team2");
+        rand = Math.round(RandomNumberGenerator(1, 151));
+        randLvl = Math.round(RandomNumberGenerator(1, 100));
+        this.props.fetchPokemon(rand, randLvl, "team2");
         this.props.handleLeaderNames(9);
         break;
       default:
@@ -176,6 +206,20 @@ class BadgesContainer extends Component {
         >
           <img src={Earth_Badge} alt="Earth Badge" />
           Earth Badge - Giovanni
+        </button>
+        <button
+          type="button"
+          className="btn btn-light"
+          onClick={() => this.aiTeamBuilder("Rival50")}
+        >
+          Random Trainer - Lv 50
+        </button>
+        <button
+          type="button"
+          className="btn btn-light"
+          onClick={() => this.aiTeamBuilder("RivalRandom")}
+        >
+          Random Trainer - All Random Lv
         </button>
       </div>
     );

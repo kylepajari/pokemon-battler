@@ -1,5 +1,6 @@
 import { FaintPokemon } from "./FaintPokemon";
 import { DisplayMessage } from "./DisplayMessage";
+import lowhealth from "../Sounds/BattleSounds/General/LOWHEALTH.wav";
 
 const UpdateHP = (
   HPbar,
@@ -25,6 +26,8 @@ const UpdateHP = (
     HPbar.removeClass("fullhp");
     HPbar.removeClass("halfhp");
     HPbar.addClass("onefifthhp");
+    let boop = new Audio(lowhealth);
+    boop.play();
   } else if (value > 104 && value <= 280) {
     HPbar.removeClass("fullhp");
     HPbar.removeClass("onefifthhp");
@@ -37,9 +40,9 @@ const UpdateHP = (
   if (value <= 3) {
     console.log(pokemon + " fainted");
     if (power === 999) {
-      DisplayMessage("One-Hit KO!");
+      setTimeout(() => DisplayMessage("One-Hit KO!"), 1000);
     } else {
-      DisplayMessage(pokemon + " fainted!");
+      setTimeout(() => DisplayMessage(pokemon + " fainted!"), 1000);
     }
 
     setTimeout(
@@ -57,7 +60,7 @@ const UpdateHP = (
           handleFainted,
           mode
         ),
-      1000
+      2000
     );
   }
 };

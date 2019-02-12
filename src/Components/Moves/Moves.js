@@ -50,6 +50,7 @@ class Moves extends Component {
                     move.accuracy,
                     move.statusEff,
                     move.statusProb,
+                    move.sound,
                     pokemon.lv,
                     this.props.player1CurrentPokemon,
                     this.props.player2CurrentPokemon,

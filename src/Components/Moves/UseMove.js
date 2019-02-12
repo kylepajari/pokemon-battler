@@ -1,6 +1,9 @@
 import { UpdateHP } from "../UpdateHP";
 import { DealDamage } from "../DealDamage";
 import { DisplayMessage } from "../DisplayMessage";
+import Confused from "../../Sounds/BattleSounds/General/CONFUSED.wav";
+import ConfusedHitSelf from "../../Sounds/BattleSounds/General/ConfusedHitSelf.wav";
+import Sleeping from "../../Sounds/BattleSounds/General/Sleeping.wav";
 import $ from "jquery";
 
 const UseMove = (
@@ -13,6 +16,7 @@ const UseMove = (
   moveAcc,
   statusEff,
   statusProb,
+  moveSound,
   lv,
   Player1Poke,
   Player2Poke,
@@ -38,14 +42,18 @@ const UseMove = (
   let PKMNuser = null;
   let PKMNtarget = null;
   let HPbar = null;
+  let attack = null;
+  let Sprite = null;
   if (PlayersTurn === "Player One") {
     PKMNuser = player1Team[Player1Poke];
     PKMNtarget = player2Team[Player2Poke];
     HPbar = $(document.querySelector(".player1HP"));
+    Sprite = $(document.querySelector(".player1Sprite"));
   } else {
     PKMNuser = player2Team[Player2Poke];
     PKMNtarget = player1Team[Player1Poke];
     HPbar = $(document.querySelector(".player2HP"));
+    Sprite = $(document.querySelector(".player2Sprite"));
   }
 
   let targetType1 = PKMNtarget.types[0][0];
@@ -106,6 +114,8 @@ const UseMove = (
           " more turns..."
       );
       DisplayMessage(PKMNuser.name + " is fast asleep... ");
+      let sleepingSound = new Audio(Sleeping);
+      sleepingSound.play();
       if (isUserPoisonedOrBurned) {
         console.log(PKMNuser.name + " is poisoned/burned");
         setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 2000);
@@ -166,10 +176,13 @@ const UseMove = (
           PKMNuser.turnsConfused = PKMNuser.turnsConfused - 1;
 
           console.log(PKMNuser.name + " is confused...");
+          DisplayMessage(PKMNuser.name + " is confused...");
+          let confusedSound = new Audio(Confused);
+          confusedSound.play();
+
           let rand = Math.random();
           //50% chance of hurting itself
           if (rand > 0.5) {
-            console.log(PKMNuser.name + " hurt itself in confusion...");
             hurtitself = true;
             //deal 1/8 of Orig HP as damage to user
             let damage = Math.round(PKMNuser.OrigHp / 8);
@@ -194,6 +207,18 @@ const UseMove = (
             let dmgDone = origHealth * asPercentage;
             let updatedBarHP = origHealth - dmgDone;
 
+            setTimeout(
+              () =>
+                DisplayMessage(PKMNuser.name + " hurt itself in confusion!"),
+              1500
+            );
+
+            //flash sprite
+            setTimeout(() => Sprite.fadeOut(100), 1500);
+            setTimeout(() => Sprite.fadeIn(300), 1600);
+            //play hurt itself clip
+            let hit = new Audio(ConfusedHitSelf);
+            setTimeout(() => hit.play(), 1500);
             //update health bar to reflect damage
             setTimeout(
               () =>
@@ -214,15 +239,14 @@ const UseMove = (
                   handleFainted,
                   mode
                 ),
-              500
+              2500
             );
-            DisplayMessage(PKMNuser.name + " hurt itself in confusion!");
             //if user is poisonedburned, delay switching turns
             if (isUserPoisonedOrBurned) {
               console.log(PKMNuser.name + " is poisoned/burned");
-              setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 2000);
+              setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 4500);
             } else {
-              setTimeout(() => switchTurns(), 2000);
+              setTimeout(() => switchTurns(), 4500);
             }
           }
         } else {
@@ -236,7 +260,17 @@ const UseMove = (
       //if pokemon was woken up, snapped out of confusion, hurt itself from confusion, blocked by paralysis, or frozen; skip rest of move
       if (!wokeup && !snappedOut && !hurtitself && !paralysis && !frozen) {
         console.log(PKMNuser.name + " used " + moveName);
-        DisplayMessage(PKMNuser.name + " used " + moveName);
+        if (PKMNuser.isConfused) {
+          setTimeout(
+            () => DisplayMessage(PKMNuser.name + " used " + moveName),
+            1500
+          );
+        } else {
+          DisplayMessage(PKMNuser.name + " used " + moveName);
+        }
+
+        //play move sound
+        attack = new Audio(moveSound);
         //if so, does move land hit (accuracy check)
         //formula: percentChance = moveAcc * (attacker accuracy / target evasion)
         let percentChance =
@@ -245,17 +279,39 @@ const UseMove = (
 
         if (rand > percentChance) {
           console.log(PKMNuser.name + "'s attack Missed!");
-          setTimeout(
-            () => DisplayMessage(PKMNuser.name + "'s attack Missed!"),
-            2000
-          );
+          if (PKMNuser.isConfused) {
+            setTimeout(
+              () => DisplayMessage(PKMNuser.name + "'s attack Missed!"),
+              3500
+            );
+          } else {
+            setTimeout(
+              () => DisplayMessage(PKMNuser.name + "'s attack Missed!"),
+              2000
+            );
+          }
+
           if (isUserPoisonedOrBurned) {
             console.log(PKMNuser.name + " is poisoned/burned");
-            setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 4000);
+            if (PKMNuser.isConfused) {
+              setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 5500);
+            } else {
+              setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 4000);
+            }
           } else {
-            setTimeout(() => switchTurns(), 4000);
+            if (PKMNuser.isConfused) {
+              setTimeout(() => switchTurns(), 5500);
+            } else {
+              setTimeout(() => switchTurns(), 4000);
+            }
           }
         } else {
+          if (PKMNuser.isConfused) {
+            setTimeout(() => attack.play(), 3000);
+          } else {
+            setTimeout(() => attack.play(), 1500);
+          }
+
           //does move have power, if so deal damage
           if (power > 0) {
             //if move lands, continue with deal damage
@@ -286,23 +342,27 @@ const UseMove = (
                   switchTurns,
                   mode
                 ),
-              2000
+              3500
             );
           } else if (power === 0 && statusEff !== "") {
             console.log(isUserPoisonedOrBurned);
-            checkForStatusEffect(
-              statusEff,
-              statusProb,
-              PKMNuser,
-              PKMNtarget,
-              targetType1,
-              targetType2,
-              moveName,
-              HPbar,
-              power,
-              0,
-              0,
-              isUserPoisonedOrBurned
+            setTimeout(
+              () =>
+                checkForStatusEffect(
+                  statusEff,
+                  statusProb,
+                  PKMNuser,
+                  PKMNtarget,
+                  targetType1,
+                  targetType2,
+                  moveName,
+                  HPbar,
+                  power,
+                  0,
+                  0,
+                  isUserPoisonedOrBurned
+                ),
+              1500
             );
           } else if (power === 0 && statusEff === "") {
             //move does nothing
@@ -331,6 +391,8 @@ const UseMove = (
           () => DisplayMessage(PKMNuser.name + " used " + moveName),
           2000
         );
+        //play move sound
+        attack = new Audio(moveSound);
         //if so, does move land hit (accuracy check)
         //formula: percentChance = moveAcc * (attacker accuracy / target evasion)
         let percentChance =
@@ -350,6 +412,7 @@ const UseMove = (
             setTimeout(() => switchTurns(), 6000);
           }
         } else {
+          setTimeout(() => attack.play(), 3500);
           //does move have power, if so deal damage
           if (power > 0) {
             //if move lands, continue with deal damage
@@ -379,7 +442,7 @@ const UseMove = (
                   dealPoisonBurn,
                   switchTurns
                 ),
-              4000
+              5500
             );
           } else if (power === 0 && statusEff !== "") {
             console.log(isUserPoisonedOrBurned);

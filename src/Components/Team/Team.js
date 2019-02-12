@@ -4,6 +4,7 @@ import "./Team.css";
 import $ from "jquery";
 import { UpdateHP } from "../UpdateHP";
 import { DisplayMessage } from "../DisplayMessage";
+import swapSound from "../../Sounds/BattleSounds/General/SWITCHIN.wav";
 
 class Team extends Component {
   constructor(props) {
@@ -42,10 +43,6 @@ class Team extends Component {
 
     //reset stat modifiers to defaults, for new pokemon
     this.props.resetMultipliers("swap");
-
-    console.log(
-      this.props.playersTurn + " sent out " + Team[swapPoke].name + "!"
-    );
     //hide options buttons while swapping
     $(document.querySelector(".options")).hide(300);
 
@@ -78,9 +75,14 @@ class Team extends Component {
       () => DisplayMessage("and sent out " + Team[swapPoke].name),
       2500
     );
-
+    let switchSound = new Audio(swapSound);
+    setTimeout(() => switchSound.play(), 1000);
     //update current pokemon to swapped pokemon
     setTimeout(() => this.props.handleSwapPokemon(swapPoke), 2500);
+
+    //play new pokemon's cry
+    let cry = new Audio(Team[swapPoke].cry);
+    setTimeout(cry.play.bind(cry), 3200);
 
     //fade sprite back in
     setTimeout(() => Sprite.fadeIn(1000), 3000);

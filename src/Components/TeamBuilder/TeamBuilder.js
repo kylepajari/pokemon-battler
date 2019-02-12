@@ -3,6 +3,7 @@ import "./TeamBuilder.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import BattleStage from "../BattleStage/BattleStage";
 import { CreateMoves } from "../MoveCreator";
+import { CryAssign } from "../CryAssign";
 import $ from "jquery";
 import BadgesContainer from "../BadgesContainer/BadgesContainer";
 
@@ -318,6 +319,7 @@ class TeamBuilder extends Component {
         })
       ],
       moves: this.movesBuilder(this.state.data.moves),
+      cry: CryAssign(this.Capitalize(this.state.data.name)),
       accuracy: 1,
       evasion: 1,
       inBattle: false,
@@ -347,6 +349,7 @@ class TeamBuilder extends Component {
         player = this.state.player2Team;
       }
     }
+    console.log(pokemonObj);
     if (player.length !== this.state.teamSize) {
       if (
         this.state.currentPlayer === "Player One" &&

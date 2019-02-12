@@ -1,5 +1,7 @@
 import $ from "jquery";
 import { DisplayMessage } from "./DisplayMessage";
+import Victory from "../Sounds/victory.mp3";
+import FaintSound from "../Sounds/BattleSounds/General/IMDOWN.wav";
 
 const FaintPokemon = (
   player1Team,
@@ -48,6 +50,9 @@ const FaintPokemon = (
     }
   }
   console.log("running fainted function...");
+  //play fainted sound
+  let faint = new Audio(FaintSound);
+  faint.play();
 
   //set fainted property to true on pokemon
   Team[PKMN].fainted = true;
@@ -103,6 +108,10 @@ const FaintPokemon = (
     );
 
     $(document.querySelector(".options")).hide(500);
+    //play victory music
+    let win = new Audio(Victory);
+    setTimeout(win.play(), 3000);
+
     let faintedCountTeam1 = 0;
     let faintedCountTeam2 = 0;
     player1Team.forEach(poke => {

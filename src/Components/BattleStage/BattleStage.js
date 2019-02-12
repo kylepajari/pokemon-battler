@@ -12,6 +12,10 @@ import { Conditions } from "../Conditions";
 import { RandomNumberGenerator } from "../RandomNumberGenerator";
 import { DisplayMessage } from "../DisplayMessage";
 import { handleAI } from "../AI";
+import swapSound from "../../Sounds/BattleSounds/General/SWITCHIN.wav";
+import statRise from "../../Sounds/BattleSounds/General/STATRISE.wav";
+import statLower from "../../Sounds/BattleSounds/General/STATLOWER.wav";
+import recoverSound from "../../Sounds/BattleSounds/General/RECOVER.wav";
 
 class BattleStage extends Component {
   constructor(props) {
@@ -241,8 +245,15 @@ class BattleStage extends Component {
               () => DisplayMessage("and sent out " + Team[swapPoke].name),
               2500
             );
+            let switchSound = new Audio(swapSound);
+            setTimeout(() => switchSound.play(), 1000);
             //update current pokemon to swapped pokemon
             setTimeout(() => this.handleSwapPokemon(swapPoke), 2500);
+
+            //play new pokemon's cry
+            let cry = new Audio(Team[swapPoke].cry);
+            setTimeout(cry.play.bind(cry), 3200);
+
             //fade sprite back in
             setTimeout(() => Sprite.fadeIn(1000), 3000);
             // calculate percent difference between current poke and swap pole hp in percentage
@@ -691,7 +702,8 @@ class BattleStage extends Component {
           ),
         2000
       );
-
+      let recover = new Audio(recoverSound);
+      setTimeout(() => recover.play(), 2000);
       setTimeout(() => DisplayMessage(PKMNuser.name + " recovered HP!"), 2000);
     }
 
@@ -738,7 +750,8 @@ class BattleStage extends Component {
           ),
         2000
       );
-
+      let recover = new Audio(recoverSound);
+      setTimeout(() => recover.play(), 2000);
       setTimeout(() => DisplayMessage(PKMNuser.name + " recovered HP!"), 2000);
     }
 
@@ -924,14 +937,21 @@ class BattleStage extends Component {
     //STATUS MODIFIERS: raisesUserAtk, raisesUserDef,raisesUserSpd,raisesUserSpcAtk,raisesUserSpcDef,raisesUserAcc,raisesUserEva
     // lowersTargetAtk, lowersTargetDef,lowersTargetSpd,lowersTargetSpcAtk,lowersTargetSpcDef,lowersTargetAcc,lowersTargetEva
     //RAISES USER////////////////////////////////////////////////////////////
+    let statUpSound = new Audio(statRise);
+    let statDownSound = new Audio(statLower);
     if (statusEff === "raisesUserAtk") {
       PKMNuser.attack = PKMNuser.OrigAttack * atkMultiplierUp;
-      setTimeout(() => DisplayMessage(PKMNuser.name + "'s attack rose!"), 2000);
 
       if (PKMNuser.attack >= PKMNuser.OrigAttack * 4) {
         PKMNuser.attack = PKMNuser.OrigAttack * 4;
         setTimeout(
           () => DisplayMessage(PKMNuser.name + "'s attack wont go higher!"),
+          2000
+        );
+      } else {
+        setTimeout(() => statUpSound.play(), 2000);
+        setTimeout(
+          () => DisplayMessage(PKMNuser.name + "'s attack rose!"),
           2000
         );
       }
@@ -942,15 +962,17 @@ class BattleStage extends Component {
       }
     } else if (statusEff === "raisesUserDef") {
       PKMNuser.defense = PKMNuser.OrigDefense * defMultiplierUp;
-      setTimeout(
-        () => DisplayMessage(PKMNuser.name + "'s defense rose!"),
-        2000
-      );
 
       if (PKMNuser.defense >= PKMNuser.OrigDefense * 4) {
         PKMNuser.defense = PKMNuser.OrigDefense * 4;
         setTimeout(
           () => DisplayMessage(PKMNuser.name + "'s defense wont go higher!"),
+          2000
+        );
+      } else {
+        setTimeout(() => statUpSound.play(), 2000);
+        setTimeout(
+          () => DisplayMessage(PKMNuser.name + "'s defense rose!"),
           2000
         );
       }
@@ -961,12 +983,17 @@ class BattleStage extends Component {
       }
     } else if (statusEff === "raisesUserSpd") {
       PKMNuser.speed = PKMNuser.OrigSpeed * spdMultiplierUp;
-      setTimeout(() => DisplayMessage(PKMNuser.name + "'s speed rose!"), 2000);
 
       if (PKMNuser.speed >= PKMNuser.OrigSpeed * 4) {
         PKMNuser.speed = PKMNuser.OrigSpeed * 4;
         setTimeout(
           () => DisplayMessage(PKMNuser.name + "'s speed wont go higher!"),
+          2000
+        );
+      } else {
+        setTimeout(() => statUpSound.play(), 2000);
+        setTimeout(
+          () => DisplayMessage(PKMNuser.name + "'s speed rose!"),
           2000
         );
       }
@@ -977,16 +1004,18 @@ class BattleStage extends Component {
       }
     } else if (statusEff === "raisesUserSpcAtk") {
       PKMNuser.specialattack = PKMNuser.OrigSpecialattack * spcAtkMultiplierUp;
-      setTimeout(
-        () => DisplayMessage(PKMNuser.name + "'s special attack rose!"),
-        2000
-      );
 
       if (PKMNuser.specialattack >= PKMNuser.OrigSpecialattack * 4) {
         PKMNuser.specialattack = PKMNuser.OrigSpecialattack * 4;
         setTimeout(
           () =>
             DisplayMessage(PKMNuser.name + "'s special attack wont go higher!"),
+          2000
+        );
+      } else {
+        setTimeout(() => statUpSound.play(), 2000);
+        setTimeout(
+          () => DisplayMessage(PKMNuser.name + "'s special attack rose!"),
           2000
         );
       }
@@ -998,10 +1027,6 @@ class BattleStage extends Component {
     } else if (statusEff === "raisesUserSpcDef") {
       PKMNuser.specialdefense =
         PKMNuser.OrigSpecialdefense * spcDefMultiplierUp;
-      setTimeout(
-        () => DisplayMessage(PKMNuser.name + "'s special defense rose!"),
-        2000
-      );
 
       if (PKMNuser.specialdefense >= PKMNuser.OrigSpecialdefense * 4) {
         PKMNuser.specialdefense = PKMNuser.OrigSpecialdefense * 4;
@@ -1012,6 +1037,12 @@ class BattleStage extends Component {
             ),
           2000
         );
+      } else {
+        setTimeout(() => statUpSound.play(), 2000);
+        setTimeout(
+          () => DisplayMessage(PKMNuser.name + "'s special defense rose!"),
+          2000
+        );
       }
       if (this.state.PlayersTurn === "Player One") {
         this.setState({ spcDefMultiplierUp1: spcDefMultiplierUp });
@@ -1020,10 +1051,6 @@ class BattleStage extends Component {
       }
     } else if (statusEff === "raisesUserAcc") {
       PKMNuser.accuracy = PKMNuser.accuracy + 0.1;
-      setTimeout(
-        () => DisplayMessage(PKMNuser.name + "'s accuracy went up!"),
-        2000
-      );
 
       if (PKMNuser.accuracy > 1.5) {
         PKMNuser.accuracy = 1.5;
@@ -1031,18 +1058,26 @@ class BattleStage extends Component {
           () => DisplayMessage(PKMNuser.name + "'s accuracy wont go higher!"),
           2000
         );
+      } else {
+        setTimeout(() => statUpSound.play(), 2000);
+        setTimeout(
+          () => DisplayMessage(PKMNuser.name + "'s accuracy went up!"),
+          2000
+        );
       }
     } else if (statusEff === "raisesUserEva") {
       PKMNuser.evasion = PKMNuser.evasion + 0.1;
-      setTimeout(
-        () => DisplayMessage(PKMNuser.name + "'s evasion went up!"),
-        2000
-      );
 
       if (PKMNuser.evasion > 1.5) {
         PKMNuser.evasion = 1.5;
         setTimeout(
           () => DisplayMessage(PKMNuser.name + "'s evasion wont go higher!"),
+          2000
+        );
+      } else {
+        setTimeout(() => statUpSound.play(), 2000);
+        setTimeout(
+          () => DisplayMessage(PKMNuser.name + "'s evasion went up!"),
           2000
         );
       }
@@ -1051,15 +1086,17 @@ class BattleStage extends Component {
     //LOWERS TARGET////////////////////////////////////////////////////////////////
     if (statusEff === "lowersTargetAtk") {
       PKMNtarget.attack = PKMNtarget.OrigAttack * atkMultiplierDown;
-      setTimeout(
-        () => DisplayMessage(PKMNtarget.name + "'s attack fell!"),
-        2000
-      );
 
       if (PKMNtarget.attack <= PKMNtarget.OrigAttack / 4) {
         PKMNtarget.attack = PKMNtarget.OrigAttack / 4;
         setTimeout(
           () => DisplayMessage(PKMNtarget.name + "'s attack wont go lower!"),
+          2000
+        );
+      } else {
+        setTimeout(() => statDownSound.play(), 2000);
+        setTimeout(
+          () => DisplayMessage(PKMNtarget.name + "'s attack fell!"),
           2000
         );
       }
@@ -1070,15 +1107,17 @@ class BattleStage extends Component {
       }
     } else if (statusEff === "lowersTargetDef") {
       PKMNtarget.defense = PKMNtarget.defense * defMultiplierDown;
-      setTimeout(
-        () => DisplayMessage(PKMNtarget.name + "'s defense fell!"),
-        2000
-      );
 
       if (PKMNtarget.defense <= PKMNtarget.OrigDefense / 4) {
         PKMNtarget.defense = PKMNtarget.OrigDefense / 4;
         setTimeout(
           () => DisplayMessage(PKMNtarget.name + "'s defense wont go lower!"),
+          2000
+        );
+      } else {
+        setTimeout(() => statDownSound.play(), 2000);
+        setTimeout(
+          () => DisplayMessage(PKMNtarget.name + "'s defense fell!"),
           2000
         );
       }
@@ -1089,15 +1128,17 @@ class BattleStage extends Component {
       }
     } else if (statusEff === "lowersTargetSpd") {
       PKMNtarget.speed = PKMNtarget.speed * spdMultiplierDown;
-      setTimeout(
-        () => DisplayMessage(PKMNtarget.name + "'s speed fell!"),
-        2000
-      );
 
       if (PKMNtarget.speed <= PKMNtarget.OrigSpeed / 4) {
         PKMNtarget.speed = PKMNtarget.OrigSpeed / 4;
         setTimeout(
           () => DisplayMessage(PKMNtarget.name + "'s speed wont go lower!"),
+          2000
+        );
+      } else {
+        setTimeout(() => statDownSound.play(), 2000);
+        setTimeout(
+          () => DisplayMessage(PKMNtarget.name + "'s speed fell!"),
           2000
         );
       }
@@ -1109,10 +1150,6 @@ class BattleStage extends Component {
     } else if (statusEff === "lowersTargetSpcAtk") {
       PKMNtarget.specialattack =
         PKMNtarget.specialattack * spcAtkMultiplierDown;
-      setTimeout(
-        () => DisplayMessage(PKMNtarget.name + "'s special attack fell!"),
-        2000
-      );
 
       if (PKMNtarget.specialattack <= PKMNtarget.OrigSpecialattack / 4) {
         PKMNtarget.specialattack = PKMNtarget.OrigSpecialattack / 4;
@@ -1121,6 +1158,12 @@ class BattleStage extends Component {
             DisplayMessage(
               PKMNtarget.name + "'s special attack wont go lower!"
             ),
+          2000
+        );
+      } else {
+        setTimeout(() => statDownSound.play(), 2000);
+        setTimeout(
+          () => DisplayMessage(PKMNtarget.name + "'s special attack fell!"),
           2000
         );
       }
@@ -1132,10 +1175,6 @@ class BattleStage extends Component {
     } else if (statusEff === "lowersTargetSpcDef") {
       PKMNtarget.specialdefense =
         PKMNtarget.specialdefense * spcDefMultiplierDown;
-      setTimeout(
-        () => DisplayMessage(PKMNtarget.name + "'s special defense fell!"),
-        2000
-      );
 
       if (PKMNtarget.specialdefense <= PKMNtarget.OrigSpecialdefense / 4) {
         PKMNtarget.specialdefense = PKMNtarget.OrigSpecialdefense / 4;
@@ -1146,6 +1185,12 @@ class BattleStage extends Component {
             ),
           2000
         );
+      } else {
+        setTimeout(() => statDownSound.play(), 2000);
+        setTimeout(
+          () => DisplayMessage(PKMNtarget.name + "'s special defense fell!"),
+          2000
+        );
       }
       if (this.state.PlayersTurn === "Player One") {
         this.setState({ spcDefMultiplierDown1: spcDefMultiplierDown });
@@ -1154,10 +1199,6 @@ class BattleStage extends Component {
       }
     } else if (statusEff === "lowersTargetAcc") {
       PKMNtarget.accuracy = PKMNtarget.accuracy - 0.1;
-      setTimeout(
-        () => DisplayMessage(PKMNtarget.name + "'s accuracy fell!"),
-        2000
-      );
 
       if (PKMNtarget.accuracy < 0.5) {
         PKMNtarget.accuracy = 0.5;
@@ -1165,18 +1206,26 @@ class BattleStage extends Component {
           () => DisplayMessage(PKMNtarget.name + "'s accuracy wont go lower!"),
           2000
         );
+      } else {
+        setTimeout(() => statDownSound.play(), 2000);
+        setTimeout(
+          () => DisplayMessage(PKMNtarget.name + "'s accuracy fell!"),
+          2000
+        );
       }
     } else if (statusEff === "lowersTargetEva") {
       PKMNtarget.evasion = PKMNtarget.evasion - 0.1;
-      setTimeout(
-        () => DisplayMessage(PKMNtarget.name + "'s evasion fell!"),
-        2000
-      );
 
       if (PKMNtarget.evasion < 0.5) {
         PKMNtarget.evasion = 0.5;
         setTimeout(
           () => DisplayMessage(PKMNtarget.name + "'s evasion wont go lower!"),
+          2000
+        );
+      } else {
+        setTimeout(() => statDownSound.play(), 2000);
+        setTimeout(
+          () => DisplayMessage(PKMNtarget.name + "'s evasion fell!"),
           2000
         );
       }

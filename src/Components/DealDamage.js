@@ -3,6 +3,9 @@ import { UpdateHP } from "./UpdateHP";
 import { CalcTypeAdvantage } from "./TypeAdvantage";
 import { RandomNumberGenerator } from "./RandomNumberGenerator";
 import { DisplayMessage } from "./DisplayMessage";
+import HitSound from "../Sounds/BattleSounds/General/IMHIT.wav";
+import HitSoundSuper from "../Sounds/BattleSounds/General/IMHITSUPER.wav";
+import HitSoundWeak from "../Sounds/BattleSounds/General/IMHITWEAK.wav";
 
 const DealDamage = (
   power,
@@ -52,6 +55,7 @@ const DealDamage = (
   //damage formula:
   let A = PKMNuser.attack; //attack stat of attacker
   let uSA = PKMNuser.specialattack; //special attack stat of attacker
+  let SPD = PKMNuser.speed; //speed stat of attacker
   let D = PKMNtarget.defense; //defense stat of target
   let tSD = PKMNtarget.specialdefense; //special defense stat of target
   let userType1 = PKMNuser.types[0][0];
@@ -81,17 +85,33 @@ const DealDamage = (
 
   //calc type advantage
   let Type = CalcTypeAdvantage(moveType, targetType1, targetType2);
-  let effectiveMessage = false;
+  let effectiveMessage = "";
+  let Hit = null;
   if (Type < 1) {
-    effectiveMessage = true;
-    DisplayMessage("It's not very effective...");
-  }
-  if (Type > 1) {
-    effectiveMessage = true;
-    DisplayMessage("It's super effective!");
+    effectiveMessage = "It's not very effective...";
+    Hit = new Audio(HitSoundWeak);
+  } else if (Type > 1) {
+    effectiveMessage = "It's super effective!";
+    Hit = new Audio(HitSoundSuper);
+  } else {
+    Hit = new Audio(HitSound);
   }
 
-  let modifier = RandomNumberGenerator(0.85, 1.0) * STAB * Type; //random * STAB * Type
+  //calc Critical hit
+  let critMessage = "";
+  let CriticalHit = 1;
+  //critical hit 'P' probability is 'baseSpeed / 512'
+  let threshold = Math.random();
+  let P = Math.round((SPD * 100) / 512);
+  console.log(P, threshold);
+
+  if (P <= threshold) {
+    CriticalHit = 2;
+    critMessage = "Critical Hit!";
+  }
+
+  let modifier = RandomNumberGenerator(0.85, 1.0) * STAB * Type * CriticalHit; //random * STAB * Type
+
   //formula taken from pokemon wiki, level * 2 / 5 + 2 * "move power" + (attack of attacker / defense of target) / 50 + 2 * modifier
   let Damage = 0;
   console.log("move category is: " + moveCategory);
@@ -120,36 +140,16 @@ const DealDamage = (
   if (PKMNtarget.hp < 0) {
     PKMNtarget.hp = 0;
   }
-  if (!effectiveMessage) {
-    handleForceUpdate();
-  } else {
-    setTimeout(() => handleForceUpdate(), 1500);
-  }
 
   let dmgDone = Math.round(origHealth * asPercentage);
   let updatedBarHP = origHealth - dmgDone;
 
   //if move does not do any damage, do not flash sprite
   if (Damage !== 0) {
+    //play hit sound
+    Hit.play();
     //update health bar to reflect damage
-    if (!effectiveMessage) {
-      UpdateHP(
-        TargetHP,
-        updatedBarHP,
-        PKMNtarget.name,
-        power,
-        player1Team,
-        player2Team,
-        player1CurrentPokemon,
-        player2CurrentPokemon,
-        playersTurn,
-        playerOneName,
-        playerTwoName,
-        resetMultipliers,
-        handleTeam,
-        handleFainted,
-        mode
-      );
+    if (effectiveMessage === "" && critMessage === "") {
       //flash sprite
       TargetSprite.fadeOut(100);
       TargetSprite.fadeIn(300);
@@ -157,7 +157,7 @@ const DealDamage = (
       TargetSprite.fadeIn(300);
       TargetSprite.fadeOut(100);
       TargetSprite.fadeIn(300);
-    } else {
+      setTimeout(() => handleForceUpdate(), 1500);
       setTimeout(
         () =>
           UpdateHP(
@@ -179,6 +179,7 @@ const DealDamage = (
           ),
         1500
       );
+    } else {
       //flash sprite
       TargetSprite.fadeOut(100);
       TargetSprite.fadeIn(300);
@@ -186,6 +187,30 @@ const DealDamage = (
       TargetSprite.fadeIn(300);
       TargetSprite.fadeOut(100);
       TargetSprite.fadeIn(300);
+      setTimeout(() => handleForceUpdate(), 2500);
+      setTimeout(
+        () =>
+          UpdateHP(
+            TargetHP,
+            updatedBarHP,
+            PKMNtarget.name,
+            power,
+            player1Team,
+            player2Team,
+            player1CurrentPokemon,
+            player2CurrentPokemon,
+            playersTurn,
+            playerOneName,
+            playerTwoName,
+            resetMultipliers,
+            handleTeam,
+            handleFainted,
+            mode
+          ),
+        2500
+      );
+      setTimeout(() => DisplayMessage(critMessage), 1500);
+      setTimeout(() => DisplayMessage(effectiveMessage), 2500);
     }
   } else {
     //damage was calced to 0
@@ -201,7 +226,7 @@ const DealDamage = (
   ) {
     //Check for and apply status effect after damage only if pokemon is not fainted
     if (statusEff !== "") {
-      if (!effectiveMessage) {
+      if (effectiveMessage === "" && critMessage === "") {
         checkForStatusEffect(
           statusEff,
           statusProb,
@@ -233,16 +258,16 @@ const DealDamage = (
               recoverDamage,
               isPoisonBurned
             ),
-          1500
+          2500
         );
       }
 
       if (isPoisonBurned) {
         console.log(PKMNuser.name + " is poisoned/burned");
-        if (!effectiveMessage) {
-          setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 2000);
-        } else {
+        if (effectiveMessage === "" && critMessage === "") {
           setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 3500);
+        } else {
+          setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 4500);
         }
       }
       // } else {
@@ -252,17 +277,17 @@ const DealDamage = (
     } else {
       if (isPoisonBurned) {
         console.log(PKMNuser.name + " is poisoned/burned");
-        if (!effectiveMessage) {
-          setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 2000);
-        } else {
+        if (effectiveMessage === "" && critMessage === "") {
           setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 3500);
+        } else {
+          setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 4500);
         }
       } else {
         //no effect from move, switch turns
-        if (!effectiveMessage) {
-          setTimeout(() => switchTurns(), 2000);
-        } else {
+        if (effectiveMessage === "" && critMessage === "") {
           setTimeout(() => switchTurns(), 3500);
+        } else {
+          setTimeout(() => switchTurns(), 4500);
         }
       }
     }

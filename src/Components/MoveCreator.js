@@ -1,3 +1,254 @@
+import Pound from "../Sounds/BattleSounds/Moves/Pound.wav";
+import KarateChop from "../Sounds/BattleSounds/Moves/KarateChop.wav";
+import DoubleSlap from "../Sounds/BattleSounds/Moves/DoubleSlap.wav";
+import CometPunch from "../Sounds/BattleSounds/Moves/CometPunch.wav";
+import MegaPunch from "../Sounds/BattleSounds/Moves/MegaPunch.wav";
+import PayDay from "../Sounds/BattleSounds/Moves/PayDay.wav";
+import FirePunch from "../Sounds/BattleSounds/Moves/FirePunch.wav";
+import IcePunch from "../Sounds/BattleSounds/Moves/IcePunch.wav";
+import ThunderPunch from "../Sounds/BattleSounds/Moves/ThunderPunch.wav";
+import Scratch from "../Sounds/BattleSounds/Moves/Scratch.wav";
+import ViceGrip from "../Sounds/BattleSounds/Moves/ViceGrip.wav";
+import Guillotine from "../Sounds/BattleSounds/Moves/Guillotine.wav";
+import RazorWind from "../Sounds/BattleSounds/Moves/RazorWind.wav";
+import SwordsDance from "../Sounds/BattleSounds/Moves/SwordsDance.wav";
+import Cut from "../Sounds/BattleSounds/Moves/Cut.wav";
+import Gust from "../Sounds/BattleSounds/Moves/Gust.wav";
+import WingAttack from "../Sounds/BattleSounds/Moves/WingAttack.wav";
+import Whirlwind from "../Sounds/BattleSounds/Moves/WhirlWind.wav";
+import Fly from "../Sounds/BattleSounds/Moves/Fly.wav";
+import Bind from "../Sounds/BattleSounds/Moves/Bind.wav";
+import Slam from "../Sounds/BattleSounds/Moves/Slam.wav";
+import VineWhip from "../Sounds/BattleSounds/Moves/VineWhip.wav";
+import Stomp from "../Sounds/BattleSounds/Moves/Stomp.wav";
+import DoubleKick from "../Sounds/BattleSounds/Moves/DoubleKick.wav";
+import MegaKick from "../Sounds/BattleSounds/Moves/MegaKick.wav";
+import JumpKick from "../Sounds/BattleSounds/Moves/JumpKick.wav";
+import RollingKick from "../Sounds/BattleSounds/Moves/RollingKick.wav";
+import SandAttack from "../Sounds/BattleSounds/Moves/SandAttack.wav";
+import Headbutt from "../Sounds/BattleSounds/Moves/HeadButt.wav";
+import HornAttack from "../Sounds/BattleSounds/Moves/HornAttack.wav";
+import FuryAttack from "../Sounds/BattleSounds/Moves/FuryAttack.wav";
+import HornDrill from "../Sounds/BattleSounds/Moves/HornDrill.wav";
+import Tackle from "../Sounds/BattleSounds/Moves/Tackle.wav";
+import BodySlam from "../Sounds/BattleSounds/Moves/BodySlam.wav";
+import Wrap from "../Sounds/BattleSounds/Moves/Wrap.wav";
+import TakeDown from "../Sounds/BattleSounds/Moves/TakeDown.wav";
+import Thrash from "../Sounds/BattleSounds/Moves/Thrash.wav";
+import DoubleEdge from "../Sounds/BattleSounds/Moves/DoubleEdge.wav";
+import TailWhip from "../Sounds/BattleSounds/Moves/TailWhip.wav";
+import PoisonSting from "../Sounds/BattleSounds/Moves/PoisonSting.wav";
+import Twineedle from "../Sounds/BattleSounds/Moves/Twineedle.wav";
+import PinMissile from "../Sounds/BattleSounds/Moves/PinMissile.wav";
+import Leer from "../Sounds/BattleSounds/Moves/Leer.wav";
+import Bite from "../Sounds/BattleSounds/Moves/Bite.wav";
+import Growl from "../Sounds/BattleSounds/Moves/Growl.wav";
+import Roar from "../Sounds/BattleSounds/Moves/Roar.wav";
+import Sing from "../Sounds/BattleSounds/Moves/Sing.wav";
+import Supersonic from "../Sounds/BattleSounds/Moves/SuperSonic.wav";
+import SonicBoom from "../Sounds/BattleSounds/Moves/Sonicboom.wav";
+import Disable from "../Sounds/BattleSounds/Moves/Disable.wav";
+import Acid from "../Sounds/BattleSounds/Moves/Acid.wav";
+import Ember from "../Sounds/BattleSounds/Moves/Ember.wav";
+import Flamethrower from "../Sounds/BattleSounds/Moves/Flamethrower.wav";
+import Mist from "../Sounds/BattleSounds/Moves/Mist.wav";
+import WaterGun from "../Sounds/BattleSounds/Moves/WaterGun.wav";
+import HydroPump from "../Sounds/BattleSounds/Moves/HydroPump.wav";
+import Surf from "../Sounds/BattleSounds/Moves/Surf.wav";
+import IceBeam from "../Sounds/BattleSounds/Moves/IceBeam.wav";
+import Blizzard from "../Sounds/BattleSounds/Moves/Blizzard.wav";
+import Psybeam from "../Sounds/BattleSounds/Moves/Psybeam.wav";
+import BubbleBeam from "../Sounds/BattleSounds/Moves/Bubblebeam.wav";
+import AuroraBeam from "../Sounds/BattleSounds/Moves/AuroraBeam.wav";
+import HyperBeam from "../Sounds/BattleSounds/Moves/HyperBeam.wav";
+import Peck from "../Sounds/BattleSounds/Moves/Peck.wav";
+import DrillPeck from "../Sounds/BattleSounds/Moves/DrillPeck.wav";
+import Submission from "../Sounds/BattleSounds/Moves/Submission.wav";
+import LowKick from "../Sounds/BattleSounds/Moves/LowKick.wav";
+import Counter from "../Sounds/BattleSounds/Moves/Counter.wav";
+import SeismicToss from "../Sounds/BattleSounds/Moves/SeismicToss.wav";
+import Strength from "../Sounds/BattleSounds/Moves/Strength.wav";
+import Absorb from "../Sounds/BattleSounds/Moves/Absorb.wav";
+import MegaDrain from "../Sounds/BattleSounds/Moves/MegaDrain.wav";
+import LeechSeed from "../Sounds/BattleSounds/Moves/LeechSeed.wav";
+import Growth from "../Sounds/BattleSounds/Moves/Growth.wav";
+import RazorLeaf from "../Sounds/BattleSounds/Moves/RazorLeaf.wav";
+import SolarBeam from "../Sounds/BattleSounds/Moves/SolarBeam.wav";
+import PoisonPowder from "../Sounds/BattleSounds/Moves/Poisonpowder.wav";
+import StunSpore from "../Sounds/BattleSounds/Moves/StunSpore.wav";
+import SleepPowder from "../Sounds/BattleSounds/Moves/SleepPowder.wav";
+import PetalDance from "../Sounds/BattleSounds/Moves/PetalDance.wav";
+import StringShot from "../Sounds/BattleSounds/Moves/StringShot.wav";
+import DragonRage from "../Sounds/BattleSounds/Moves/DragonRage.wav";
+import FireSpin from "../Sounds/BattleSounds/Moves/FireSpin.wav";
+import ThunderShock from "../Sounds/BattleSounds/Moves/ThunderShock.wav";
+import Thunderbolt from "../Sounds/BattleSounds/Moves/Thunderbolt.wav";
+import ThunderWave from "../Sounds/BattleSounds/Moves/ThunderWave.wav";
+import Thunder from "../Sounds/BattleSounds/Moves/Thunder.wav";
+import RockThrow from "../Sounds/BattleSounds/Moves/RockThrow.wav";
+import Earthquake from "../Sounds/BattleSounds/Moves/Earthquake.wav";
+import Fissure from "../Sounds/BattleSounds/Moves/Fissure.wav";
+import Dig from "../Sounds/BattleSounds/Moves/Dig.wav";
+import Toxic from "../Sounds/BattleSounds/Moves/Toxic.wav";
+import Confusion from "../Sounds/BattleSounds/Moves/Confusion.wav";
+import Psychic from "../Sounds/BattleSounds/Moves/Psychic.wav";
+import Hypnosis from "../Sounds/BattleSounds/Moves/Hypnosis.wav";
+import Meditate from "../Sounds/BattleSounds/Moves/Meditate.wav";
+import Agility from "../Sounds/BattleSounds/Moves/Agility.wav";
+import QuickAttack from "../Sounds/BattleSounds/Moves/QuickAttack.wav";
+import Rage from "../Sounds/BattleSounds/Moves/Rage.wav";
+import Teleport from "../Sounds/BattleSounds/Moves/Teleport.wav";
+import NightShade from "../Sounds/BattleSounds/Moves/NightShade.wav";
+import Mimic from "../Sounds/BattleSounds/Moves/Mimic.wav";
+import Screech from "../Sounds/BattleSounds/Moves/Screech.wav";
+import DoubleTeam from "../Sounds/BattleSounds/Moves/DoubleTeam.wav";
+import Recover from "../Sounds/BattleSounds/Moves/Recover.wav";
+import Harden from "../Sounds/BattleSounds/Moves/Harden.wav";
+import Minimize from "../Sounds/BattleSounds/Moves/Minimize.wav";
+import Smokescreen from "../Sounds/BattleSounds/Moves/SmokeScreen.wav";
+import ConfuseRay from "../Sounds/BattleSounds/Moves/ConfuseRay.wav";
+import Withdraw from "../Sounds/BattleSounds/Moves/Withdraw.wav";
+import DefenseCurl from "../Sounds/BattleSounds/Moves/DefenseCurl.wav";
+import Barrier from "../Sounds/BattleSounds/Moves/Barrier.wav";
+import LightScreen from "../Sounds/BattleSounds/Moves/LightScreen.wav";
+import Haze from "../Sounds/BattleSounds/Moves/Haze.wav";
+import Reflect from "../Sounds/BattleSounds/Moves/Reflect.wav";
+import FocusEnergy from "../Sounds/BattleSounds/Moves/FocusEnergy.wav";
+import Bide from "../Sounds/BattleSounds/Moves/Bide.wav";
+import Metronome from "../Sounds/BattleSounds/Moves/Metronome.wav";
+import MirrorMove from "../Sounds/BattleSounds/Moves/MirrorMove.wav";
+import SelfDestruct from "../Sounds/BattleSounds/Moves/Selfdestruct.wav";
+import EggBomb from "../Sounds/BattleSounds/Moves/EggBomb.wav";
+import Lick from "../Sounds/BattleSounds/Moves/Lick.wav";
+import Smog from "../Sounds/BattleSounds/Moves/Smog.wav";
+import Sludge from "../Sounds/BattleSounds/Moves/Sludge.wav";
+import BoneClub from "../Sounds/BattleSounds/Moves/BoneClub.wav";
+import FireBlast from "../Sounds/BattleSounds/Moves/FireBlast.wav";
+import Waterfall from "../Sounds/BattleSounds/Moves/Waterfall.wav";
+import Clamp from "../Sounds/BattleSounds/Moves/Clamp.wav";
+import Swift from "../Sounds/BattleSounds/Moves/Swift.wav";
+import SkullBash from "../Sounds/BattleSounds/Moves/SkullBash.wav";
+import SpikeCannon from "../Sounds/BattleSounds/Moves/SpikeCannon.wav";
+import Constrict from "../Sounds/BattleSounds/Moves/Constrict.wav";
+import Amnesia from "../Sounds/BattleSounds/Moves/Amnesia.wav";
+import Kinesis from "../Sounds/BattleSounds/Moves/Kinesis.wav";
+import SoftBoiled from "../Sounds/BattleSounds/Moves/Softboiled.wav";
+import HighJumpKick from "../Sounds/BattleSounds/Moves/HighJumpKick.wav";
+import Glare from "../Sounds/BattleSounds/Moves/Glare.wav";
+import DreamEater from "../Sounds/BattleSounds/Moves/DreamEater.wav";
+import PoisonGas from "../Sounds/BattleSounds/Moves/PoisonGas.wav";
+import Barrage from "../Sounds/BattleSounds/Moves/Barrage.wav";
+import LeechLife from "../Sounds/BattleSounds/Moves/LeechLife.wav";
+import LovelyKiss from "../Sounds/BattleSounds/Moves/LovelyKiss.wav";
+import SkyAttack from "../Sounds/BattleSounds/Moves/SkyAttack.wav";
+import Transform from "../Sounds/BattleSounds/Moves/Transform.wav";
+import Bubble from "../Sounds/BattleSounds/Moves/Bubble.wav";
+import DizzyPunch from "../Sounds/BattleSounds/Moves/DizzyPunch.wav";
+import Spore from "../Sounds/BattleSounds/Moves/Spore.wav";
+import Flash from "../Sounds/BattleSounds/Moves/Flash.wav";
+import Psywave from "../Sounds/BattleSounds/Moves/Psywave.wav";
+import Splash from "../Sounds/BattleSounds/Moves/Splash.wav";
+import AcidArmor from "../Sounds/BattleSounds/Moves/AcidArmor.wav";
+import Crabhammer from "../Sounds/BattleSounds/Moves/Crabhammer.wav";
+import Explosion from "../Sounds/BattleSounds/Moves/Explosion.wav";
+import FurySwipes from "../Sounds/BattleSounds/Moves/FurySwipes.wav";
+import Bonemerang from "../Sounds/BattleSounds/Moves/Bonemerang.wav";
+import Rest from "../Sounds/BattleSounds/Moves/Rest.wav";
+import RockSlide from "../Sounds/BattleSounds/Moves/RockSlide.wav";
+import HyperFang from "../Sounds/BattleSounds/Moves/HyperFang.wav";
+import Sharpen from "../Sounds/BattleSounds/Moves/Sharpen.wav";
+import Conversion from "../Sounds/BattleSounds/Moves/Conversion.wav";
+import TriAttack from "../Sounds/BattleSounds/Moves/TriAttack.wav";
+import SuperFang from "../Sounds/BattleSounds/Moves/SuperFang.wav";
+import Slash from "../Sounds/BattleSounds/Moves/Slash.wav";
+import Substitute from "../Sounds/BattleSounds/Moves/Substitute.wav";
+import Struggle from "../Sounds/BattleSounds/Moves/Struggle.wav";
+import Sketch from "../Sounds/BattleSounds/Moves/Sketch.wav";
+import TripleKick from "../Sounds/BattleSounds/Moves/TripleKick.wav";
+import Thief from "../Sounds/BattleSounds/Moves/Thief.wav";
+import SpiderWeb from "../Sounds/BattleSounds/Moves/SpiderWeb.wav";
+import MindReader from "../Sounds/BattleSounds/Moves/MindReader.wav";
+import Nightmare from "../Sounds/BattleSounds/Moves/Nightmare.wav";
+import FlameWheel from "../Sounds/BattleSounds/Moves/FlameWheel.wav";
+import Snore from "../Sounds/BattleSounds/Moves/Snore.wav";
+import Curse from "../Sounds/BattleSounds/Moves/Curse.wav";
+import Flail from "../Sounds/BattleSounds/Moves/Flail.wav";
+import Conversion2 from "../Sounds/BattleSounds/Moves/Conversion2.wav";
+import Aeroblast from "../Sounds/BattleSounds/Moves/Aeroblast.wav";
+import CottonSpore from "../Sounds/BattleSounds/Moves/CottonSpore.wav";
+import Reversal from "../Sounds/BattleSounds/Moves/Reversal.wav";
+import Spite from "../Sounds/BattleSounds/Moves/Spite.wav";
+import PowderSnow from "../Sounds/BattleSounds/Moves/PowderSnow.wav";
+import Protect from "../Sounds/BattleSounds/Moves/Protect.wav";
+import MachPunch from "../Sounds/BattleSounds/Moves/MachPunch.wav";
+import ScaryFace from "../Sounds/BattleSounds/Moves/ScaryFace.wav";
+import FeintAttack from "../Sounds/BattleSounds/Moves/FaintAttack.wav";
+import SweetKiss from "../Sounds/BattleSounds/Moves/SweetKiss.wav";
+import BellyDrum from "../Sounds/BattleSounds/Moves/BellyDrum.wav";
+import SludgeBomb from "../Sounds/BattleSounds/Moves/SludgeBomb.wav";
+import MudSlap from "../Sounds/BattleSounds/Moves/MudSlap.wav";
+import Octazooka from "../Sounds/BattleSounds/Moves/Octazooka.wav";
+import Spikes from "../Sounds/BattleSounds/Moves/Spikes.wav";
+import ZapCannon from "../Sounds/BattleSounds/Moves/ZapCannon.wav";
+import Foresight from "../Sounds/BattleSounds/Moves/Foresight.wav";
+import DestinyBond from "../Sounds/BattleSounds/Moves/DestinyBond.wav";
+import PerishSong from "../Sounds/BattleSounds/Moves/PerishSong.wav";
+import IcyWind from "../Sounds/BattleSounds/Moves/IcyWind.wav";
+import Detect from "../Sounds/BattleSounds/Moves/Detect.wav";
+import BoneRush from "../Sounds/BattleSounds/Moves/BoneRush.wav";
+import LockOn from "../Sounds/BattleSounds/Moves/LockOn.wav";
+import Outrage from "../Sounds/BattleSounds/Moves/Outrage.wav";
+import Sandstorm from "../Sounds/BattleSounds/Moves/Sandstorm.wav";
+import GigaDrain from "../Sounds/BattleSounds/Moves/GigaDrain.wav";
+import Endure from "../Sounds/BattleSounds/Moves/Endure.wav";
+import Charm from "../Sounds/BattleSounds/Moves/Charm.wav";
+import Rollout from "../Sounds/BattleSounds/Moves/Rollout.wav";
+import FalseSwipe from "../Sounds/BattleSounds/Moves/FalseSwipe.wav";
+import Swagger from "../Sounds/BattleSounds/Moves/Swagger.wav";
+import MilkDrink from "../Sounds/BattleSounds/Moves/MilkDrink.wav";
+import Spark from "../Sounds/BattleSounds/Moves/Spark.wav";
+import FuryCutter from "../Sounds/BattleSounds/Moves/FuryCutter.wav";
+import SteelWing from "../Sounds/BattleSounds/Moves/SteelWing.wav";
+import MeanLook from "../Sounds/BattleSounds/Moves/MeanLook.wav";
+import Attract from "../Sounds/BattleSounds/Moves/Attract.wav";
+import SleepTalk from "../Sounds/BattleSounds/Moves/SleepTalk.wav";
+import HealBell from "../Sounds/BattleSounds/Moves/HealBell.wav";
+import Return from "../Sounds/BattleSounds/Moves/Return.wav";
+import Present from "../Sounds/BattleSounds/Moves/Present.wav";
+import Frustration from "../Sounds/BattleSounds/Moves/Frustration.wav";
+import Safeguard from "../Sounds/BattleSounds/Moves/Safeguard.wav";
+import SacredFire from "../Sounds/BattleSounds/Moves/SacredFire.wav";
+import Magnitude from "../Sounds/BattleSounds/Moves/Magnitude.wav";
+import DynamicPunch from "../Sounds/BattleSounds/Moves/DynamicPunch.wav";
+import Megahorn from "../Sounds/BattleSounds/Moves/Megahorn.wav";
+import DragonBreath from "../Sounds/BattleSounds/Moves/Dragonbreath.wav";
+import BatonPass from "../Sounds/BattleSounds/Moves/BatonPass.wav";
+import Encore from "../Sounds/BattleSounds/Moves/Encore.wav";
+import Pursuit from "../Sounds/BattleSounds/Moves/Pursuit.wav";
+import RapidSpin from "../Sounds/BattleSounds/Moves/RapidSpin.wav";
+import SweetScent from "../Sounds/BattleSounds/Moves/SweetScent.wav";
+import IronTail from "../Sounds/BattleSounds/Moves/IronTail.wav";
+import MetalClaw from "../Sounds/BattleSounds/Moves/MetalClaw.wav";
+import VitalThrow from "../Sounds/BattleSounds/Moves/VitalThrow.wav";
+import MorningSun from "../Sounds/BattleSounds/Moves/MorningSun.wav";
+import Synthesis from "../Sounds/BattleSounds/Moves/Synthesis.wav";
+import Moonlight from "../Sounds/BattleSounds/Moves/Moonlight.wav";
+import HiddenPower from "../Sounds/BattleSounds/Moves/HiddenPower.wav";
+import CrossChop from "../Sounds/BattleSounds/Moves/CrossChop.wav";
+import Twister from "../Sounds/BattleSounds/Moves/Twister.wav";
+import RainDance from "../Sounds/BattleSounds/Moves/RainDance.wav";
+import SunnyDay from "../Sounds/BattleSounds/Moves/SunnyDay.wav";
+import Crunch from "../Sounds/BattleSounds/Moves/Crunch.wav";
+import MirrorCoat from "../Sounds/BattleSounds/Moves/MirrorCoat.wav";
+import PsychUp from "../Sounds/BattleSounds/Moves/PsychUp.wav";
+import Extremespeed from "../Sounds/BattleSounds/Moves/ExtremeSpeed.wav";
+import AncientPower from "../Sounds/BattleSounds/Moves/AncientPower.wav";
+import ShadowBall from "../Sounds/BattleSounds/Moves/ShadowBall.wav";
+import FutureSight from "../Sounds/BattleSounds/Moves/FutureSight.wav";
+import RockSmash from "../Sounds/BattleSounds/Moves/RockSmash.wav";
+import Whirlpool from "../Sounds/BattleSounds/Moves/Whirlpool.wav";
+import BeatUp from "../Sounds/BattleSounds/Moves/BeatUp.wav";
+
 const CreateMoves = moveName => {
   if (moveName === "Pound") {
     return {
@@ -8,7 +259,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 30,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Pound
     };
   }
   if (moveName === "Karate Chop") {
@@ -20,7 +272,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 25,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: KarateChop
     };
   }
   if (moveName === "Double Slap") {
@@ -32,7 +285,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 10,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: DoubleSlap
     };
   }
   if (moveName === "Comet Punch") {
@@ -44,7 +298,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 15,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: CometPunch
     };
   }
   if (moveName === "Mega Punch") {
@@ -56,7 +311,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 20,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: MegaPunch
     };
   }
   if (moveName === "Pay Day") {
@@ -68,7 +324,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 20,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: PayDay
     };
   }
   if (moveName === "Fire Punch") {
@@ -80,7 +337,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 15,
       statusEff: "Burn",
-      statusProb: 0.1
+      statusProb: 0.1,
+      sound: FirePunch
     };
   }
   if (moveName === "Ice Punch") {
@@ -92,7 +350,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 15,
       statusEff: "Frozen",
-      statusProb: 0.1
+      statusProb: 0.1,
+      sound: IcePunch
     };
   }
   if (moveName === "Thunder Punch") {
@@ -104,7 +363,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 15,
       statusEff: "Paralyze",
-      statusProb: 0.1
+      statusProb: 0.1,
+      sound: ThunderPunch
     };
   }
   if (moveName === "Scratch") {
@@ -116,7 +376,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 30,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Scratch
     };
   }
   if (moveName === "Vice Grip") {
@@ -128,7 +389,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 30,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: ViceGrip
     };
   }
   if (moveName === "Guillotine") {
@@ -140,8 +402,9 @@ const CreateMoves = moveName => {
       accuracy: 20,
       pp: 5,
       statusEff: "",
-      statusProb: 1
-    }; //one-hit KO if lands
+      statusProb: 1,
+      sound: Guillotine
+    };
   }
   if (moveName === "Razor Wind") {
     return {
@@ -152,7 +415,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 10,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: RazorWind
     };
   }
   if (moveName === "Swords Dance") {
@@ -164,7 +428,8 @@ const CreateMoves = moveName => {
       accuracy: 999,
       pp: 25,
       statusEff: "raisesUserAtk",
-      statusProb: 1
+      statusProb: 1,
+      sound: SwordsDance
     };
   }
   if (moveName === "Cut") {
@@ -176,7 +441,8 @@ const CreateMoves = moveName => {
       accuracy: 95,
       pp: 30,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Cut
     };
   }
   if (moveName === "Gust") {
@@ -188,7 +454,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 30,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Gust
     };
   }
   if (moveName === "Wing Attack") {
@@ -200,7 +467,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 30,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: WingAttack
     };
   }
   if (moveName === "Whirlwind") {
@@ -212,7 +480,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Whirlwind
     };
   }
   if (moveName === "Fly") {
@@ -224,7 +493,8 @@ const CreateMoves = moveName => {
       accuracy: 95,
       pp: 15,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Fly
     };
   }
   if (moveName === "Bind") {
@@ -236,7 +506,8 @@ const CreateMoves = moveName => {
       accuracy: 85,
       pp: 20,
       statusEff: "Bound",
-      statusProb: 1
+      statusProb: 1,
+      sound: Bind
     }; //hits for 2-5 turns
   }
   if (moveName === "Slam") {
@@ -248,7 +519,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 20,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Slam
     };
   }
   if (moveName === "Vine Whip") {
@@ -260,7 +532,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 25,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: VineWhip
     };
   }
   if (moveName === "Stomp") {
@@ -272,7 +545,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 20,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Stomp
     };
   }
   if (moveName === "Double Kick") {
@@ -284,7 +558,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 30,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: DoubleKick
     }; //hits 2 times in one turn
   }
   if (moveName === "Mega Kick") {
@@ -296,7 +571,8 @@ const CreateMoves = moveName => {
       accuracy: 75,
       pp: 5,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: MegaKick
     };
   }
   if (moveName === "Jump Kick") {
@@ -308,7 +584,8 @@ const CreateMoves = moveName => {
       accuracy: 95,
       pp: 10,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: JumpKick
     };
   }
   if (moveName === "Rolling Kick") {
@@ -320,7 +597,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 15,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: RollingKick
     };
   }
   if (moveName === "Sand Attack") {
@@ -332,8 +610,9 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 15,
       statusEff: "lowersTargetAcc",
-      statusProb: 1
-    }; //lowers accuracy
+      statusProb: 1,
+      sound: SandAttack
+    };
   }
   if (moveName === "Headbutt") {
     return {
@@ -344,7 +623,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 15,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Headbutt
     };
   }
   if (moveName === "Horn Attack") {
@@ -356,7 +636,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 25,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: HornAttack
     };
   }
   if (moveName === "Fury Attack") {
@@ -368,7 +649,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 20,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: FuryAttack
     }; //hits 2-5 times
   }
   if (moveName === "Horn Drill") {
@@ -380,8 +662,9 @@ const CreateMoves = moveName => {
       accuracy: 20,
       pp: 5,
       statusEff: "",
-      statusProb: 1
-    }; //One-hit KO if lands
+      statusProb: 1,
+      sound: HornDrill
+    };
   }
   if (moveName === "Tackle") {
     return {
@@ -392,7 +675,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 30,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Tackle
     };
   }
   if (moveName === "Body Slam") {
@@ -404,7 +688,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 15,
       statusEff: "Paralyze",
-      statusProb: 0.3
+      statusProb: 0.3,
+      sound: BodySlam
     };
   }
   if (moveName === "Wrap") {
@@ -416,7 +701,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 20,
       statusEff: "Bound",
-      statusProb: 1
+      statusProb: 1,
+      sound: Wrap
     }; //hits 4-5 times
   }
   if (moveName === "Take Down") {
@@ -428,8 +714,9 @@ const CreateMoves = moveName => {
       accuracy: 85,
       pp: 20,
       statusEff: "recoil",
-      statusProb: 1
-    }; //user receives recoil (10% of damage dealt)
+      statusProb: 1,
+      sound: TakeDown
+    };
   }
   if (moveName === "Thrash") {
     return {
@@ -440,7 +727,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 10,
       statusEff: "ConfusionUser",
-      statusProb: 1
+      statusProb: 1,
+      sound: Thrash
     };
   }
   if (moveName === "Double Edge") {
@@ -452,8 +740,9 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 15,
       statusEff: "recoil",
-      statusProb: 1
-    }; //causes recoil
+      statusProb: 1,
+      sound: DoubleEdge
+    };
   }
   if (moveName === "Tail Whip") {
     return {
@@ -464,7 +753,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 30,
       statusEff: "lowersTargetDef",
-      statusProb: 1
+      statusProb: 1,
+      sound: TailWhip
     };
   }
   if (moveName === "Poison Sting") {
@@ -476,7 +766,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 30,
       statusEff: "Poison",
-      statusProb: 0.4
+      statusProb: 0.4,
+      sound: PoisonSting
     };
   }
   if (moveName === "Twineedle") {
@@ -488,7 +779,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 20,
       statusEff: "Poison",
-      statusProb: 0.2
+      statusProb: 0.2,
+      sound: Twineedle
     };
   }
   if (moveName === "Pin Missile") {
@@ -500,7 +792,8 @@ const CreateMoves = moveName => {
       accuracy: 95,
       pp: 20,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: PinMissile
     }; //hits 2-5 times
   }
   if (moveName === "Leer") {
@@ -512,8 +805,9 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 30,
       statusEff: "lowersTargetDef",
-      statusProb: 1
-    }; //lowers defense
+      statusProb: 1,
+      sound: Leer
+    };
   }
   if (moveName === "Bite") {
     return {
@@ -524,7 +818,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 25,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Bite
     }; //may cause flinch
   }
   if (moveName === "Growl") {
@@ -536,8 +831,9 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 40,
       statusEff: "lowersTargetAtk",
-      statusProb: 1
-    }; //lowers attack
+      statusProb: 1,
+      sound: Growl
+    };
   }
   if (moveName === "Roar") {
     return {
@@ -548,8 +844,9 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 20,
       statusEff: "lowersTargetAtk",
-      statusProb: 1
-    }; //greatly lowers attack
+      statusProb: 1,
+      sound: Roar
+    };
   }
   if (moveName === "Sing") {
     return {
@@ -560,7 +857,8 @@ const CreateMoves = moveName => {
       accuracy: 55,
       pp: 15,
       statusEff: "Sleep",
-      statusProb: 1
+      statusProb: 1,
+      sound: Sing
     };
   }
   if (moveName === "Supersonic") {
@@ -572,7 +870,8 @@ const CreateMoves = moveName => {
       accuracy: 55,
       pp: 20,
       statusEff: "ConfusionTarget",
-      statusProb: 1
+      statusProb: 1,
+      sound: Supersonic
     };
   }
   if (moveName === "Sonic Boom") {
@@ -584,8 +883,9 @@ const CreateMoves = moveName => {
       accuracy: 90,
       pp: 20,
       statusEff: "",
-      statusProb: 1
-    }; //always deals 20 hp
+      statusProb: 1,
+      sound: SonicBoom
+    };
   }
   if (moveName === "Disable") {
     return {
@@ -596,7 +896,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Disable
     }; //prevents random move from being used
   }
   if (moveName === "Acid") {
@@ -608,7 +909,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 30,
       statusEff: "lowersTargetSpcDef",
-      statusProb: 0.2
+      statusProb: 0.2,
+      sound: Acid
     };
   }
   if (moveName === "Ember") {
@@ -620,7 +922,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 25,
       statusEff: "Burn",
-      statusProb: 0.1
+      statusProb: 0.1,
+      sound: Ember
     };
   }
   if (moveName === "Flamethrower") {
@@ -632,7 +935,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 15,
       statusEff: "Burn",
-      statusProb: 0.1
+      statusProb: 0.1,
+      sound: Flamethrower
     };
   }
   if (moveName === "Mist") {
@@ -644,7 +948,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 30,
       statusEff: "lowersTargetAcc",
-      statusProb: 1
+      statusProb: 1,
+      sound: Mist
     };
   }
   if (moveName === "Water Gun") {
@@ -656,7 +961,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 25,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: WaterGun
     };
   }
   if (moveName === "Hydro Pump") {
@@ -668,7 +974,8 @@ const CreateMoves = moveName => {
       accuracy: 80,
       pp: 5,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: HydroPump
     };
   }
   if (moveName === "Surf") {
@@ -680,7 +987,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 15,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Surf
     };
   }
   if (moveName === "Ice Beam") {
@@ -692,7 +1000,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 10,
       statusEff: "Frozen",
-      statusProb: 0.1
+      statusProb: 0.1,
+      sound: IceBeam
     };
   }
   if (moveName === "Blizzard") {
@@ -704,7 +1013,8 @@ const CreateMoves = moveName => {
       accuracy: 70,
       pp: 5,
       statusEff: "Frozen",
-      statusProb: 0.1
+      statusProb: 0.1,
+      sound: Blizzard
     };
   }
   if (moveName === "Psybeam") {
@@ -716,7 +1026,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 20,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Psybeam
     };
   }
   if (moveName === "Bubble Beam") {
@@ -728,7 +1039,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 20,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: BubbleBeam
     };
   }
   if (moveName === "Aurora Beam") {
@@ -740,7 +1052,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 20,
       statusEff: "lowersTargetAtk",
-      statusProb: 0.1
+      statusProb: 0.1,
+      sound: AuroraBeam
     };
   }
   if (moveName === "Hyper Beam") {
@@ -752,7 +1065,8 @@ const CreateMoves = moveName => {
       accuracy: 90,
       pp: 5,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: HyperBeam
     };
   }
   if (moveName === "Peck") {
@@ -764,7 +1078,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 30,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Peck
     };
   }
   if (moveName === "Drill Peck") {
@@ -776,7 +1091,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 20,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: DrillPeck
     };
   }
   if (moveName === "Submission") {
@@ -788,8 +1104,9 @@ const CreateMoves = moveName => {
       accuracy: 80,
       pp: 20,
       statusEff: "recoil",
-      statusProb: 1
-    }; //cause recoil
+      statusProb: 1,
+      sound: Submission
+    };
   }
   if (moveName === "Low Kick") {
     return {
@@ -800,7 +1117,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 20,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: LowKick
     };
   }
   if (moveName === "Counter") {
@@ -812,7 +1130,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 20,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Counter
     };
   }
   if (moveName === "Seismic Toss") {
@@ -824,7 +1143,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 20,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: SeismicToss
     }; //damage equal to users level
   }
   if (moveName === "Strength") {
@@ -836,7 +1156,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 15,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Strength
     };
   }
   if (moveName === "Absorb") {
@@ -848,7 +1169,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 25,
       statusEff: "recoverDamage",
-      statusProb: 1
+      statusProb: 1,
+      sound: Absorb
     }; //adds 1/2 damage done back to users HP
   }
   if (moveName === "Mega Drain") {
@@ -860,7 +1182,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 15,
       statusEff: "recoverDamage",
-      statusProb: 1
+      statusProb: 1,
+      sound: MegaDrain
     }; //adds 1/2 damage done back to users HP
   }
   if (moveName === "Leech Seed") {
@@ -872,7 +1195,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "recoverDamage",
-      statusProb: 1
+      statusProb: 1,
+      sound: LeechSeed
     }; //adds 1/2 damage done back to users HP
   }
   if (moveName === "Growth") {
@@ -884,7 +1208,8 @@ const CreateMoves = moveName => {
       accuracy: 999,
       pp: 40,
       statusEff: "raisesUserSpcAtk",
-      statusProb: 1
+      statusProb: 1,
+      sound: Growth
     };
   }
   if (moveName === "Razor Leaf") {
@@ -896,7 +1221,8 @@ const CreateMoves = moveName => {
       accuracy: 95,
       pp: 25,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: RazorLeaf
     };
   }
   if (moveName === "Solar Beam") {
@@ -908,7 +1234,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 10,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: SolarBeam
     };
   }
   if (moveName === "Poison Powder") {
@@ -920,7 +1247,8 @@ const CreateMoves = moveName => {
       accuracy: 75,
       pp: 30,
       statusEff: "Poison",
-      statusProb: 1
+      statusProb: 1,
+      sound: PoisonPowder
     };
   }
   if (moveName === "Stun Spore") {
@@ -932,7 +1260,8 @@ const CreateMoves = moveName => {
       accuracy: 75,
       pp: 30,
       statusEff: "Paralyze",
-      statusProb: 1
+      statusProb: 1,
+      sound: StunSpore
     };
   }
   if (moveName === "Sleep Powder") {
@@ -944,7 +1273,8 @@ const CreateMoves = moveName => {
       accuracy: 75,
       pp: 15,
       statusEff: "Sleep",
-      statusProb: 1
+      statusProb: 1,
+      sound: SleepPowder
     };
   }
   if (moveName === "Petal Dance") {
@@ -956,7 +1286,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 10,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: PetalDance
     };
   }
   if (moveName === "String Shot") {
@@ -968,7 +1299,8 @@ const CreateMoves = moveName => {
       accuracy: 95,
       pp: 40,
       statusEff: "lowersTargetSpd",
-      statusProb: 1
+      statusProb: 1,
+      sound: StringShot
     }; //lowers speed
   }
   if (moveName === "Dragon Rage") {
@@ -980,7 +1312,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 20,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: DragonRage
     }; //alaways does 40hp damage
   }
   if (moveName === "Fire Spin") {
@@ -992,8 +1325,9 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 15,
       statusEff: "Bound",
-      statusProb: 0.5
-    }; //hits for 2-5 turns
+      statusProb: 0.5,
+      sound: FireSpin
+    }; //hits for 2-5 turFire Spin
   }
   if (moveName === "Thunder Shock") {
     return {
@@ -1004,7 +1338,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 30,
       statusEff: "Paralyze",
-      statusProb: 0.1
+      statusProb: 0.1,
+      sound: ThunderShock
     };
   }
   if (moveName === "Thunderbolt") {
@@ -1016,7 +1351,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 15,
       statusEff: "Paralyze",
-      statusProb: 0.1
+      statusProb: 0.1,
+      sound: Thunderbolt
     };
   }
   if (moveName === "Thunder Wave") {
@@ -1028,7 +1364,8 @@ const CreateMoves = moveName => {
       accuracy: 90,
       pp: 20,
       statusEff: "Paralyze",
-      statusProb: 1
+      statusProb: 1,
+      sound: ThunderWave
     };
   }
   if (moveName === "Thunder") {
@@ -1040,7 +1377,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 10,
       statusEff: "Paralyze",
-      statusProb: 0.3
+      statusProb: 0.3,
+      sound: Thunder
     };
   }
   if (moveName === "Rock Throw") {
@@ -1052,7 +1390,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 15,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: RockThrow
     };
   }
   if (moveName === "Earthquake") {
@@ -1064,7 +1403,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 10,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Earthquake
     };
   }
   if (moveName === "Fissure") {
@@ -1076,8 +1416,9 @@ const CreateMoves = moveName => {
       accuracy: 20,
       pp: 5,
       statusEff: "",
-      statusProb: 1
-    }; //One-hit KO if lands
+      statusProb: 1,
+      sound: Fissure
+    };
   }
   if (moveName === "Dig") {
     return {
@@ -1088,7 +1429,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 10,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Dig
     };
   }
   if (moveName === "Toxic") {
@@ -1100,7 +1442,8 @@ const CreateMoves = moveName => {
       accuracy: 90,
       pp: 10,
       statusEff: "Poison",
-      statusProb: 0.2
+      statusProb: 0.2,
+      sound: Toxic
     };
   }
   if (moveName === "Confusion") {
@@ -1112,7 +1455,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 25,
       statusEff: "ConfusionTarget",
-      statusProb: 0.3
+      statusProb: 0.3,
+      sound: Confusion
     };
   }
   if (moveName === "Psychic") {
@@ -1124,8 +1468,9 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 10,
       statusEff: "lowerTargetSpc",
-      statusProb: 1
-    }; //may lower special
+      statusProb: 1,
+      sound: Psychic
+    };
   }
   if (moveName === "Hypnosis") {
     return {
@@ -1136,7 +1481,8 @@ const CreateMoves = moveName => {
       accuracy: 60,
       pp: 20,
       statusEff: "Sleep",
-      statusProb: 1
+      statusProb: 1,
+      sound: Hypnosis
     };
   }
   if (moveName === "Meditate") {
@@ -1148,7 +1494,8 @@ const CreateMoves = moveName => {
       accuracy: 999,
       pp: 40,
       statusEff: "raisesUserAtk",
-      statusProb: 1
+      statusProb: 1,
+      sound: Meditate
     };
   }
   if (moveName === "Agility") {
@@ -1160,8 +1507,9 @@ const CreateMoves = moveName => {
       accuracy: 999,
       pp: 30,
       statusEff: "raisesUserSpd",
-      statusProb: 1
-    }; //raises users speed
+      statusProb: 1,
+      sound: Agility
+    };
   }
   if (moveName === "Quick Attack") {
     return {
@@ -1172,7 +1520,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 30,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: QuickAttack
     };
   }
   if (moveName === "Rage") {
@@ -1184,7 +1533,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Rage
     };
   }
   if (moveName === "Teleport") {
@@ -1196,7 +1546,8 @@ const CreateMoves = moveName => {
       accuracy: 999,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Teleport
     }; //Does nothing in battle
   }
   if (moveName === "Night Shade") {
@@ -1208,7 +1559,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 15,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: NightShade
     };
   }
   if (moveName === "Mimic") {
@@ -1220,7 +1572,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Mimic
     };
   }
   if (moveName === "Screech") {
@@ -1232,7 +1585,8 @@ const CreateMoves = moveName => {
       accuracy: 85,
       pp: 40,
       statusEff: "lowersTargetDef",
-      statusProb: 1
+      statusProb: 1,
+      sound: Screech
     }; //greatly lowers defense
   }
   if (moveName === "Double Team") {
@@ -1244,7 +1598,8 @@ const CreateMoves = moveName => {
       accuracy: 999,
       pp: 15,
       statusEff: "raisesUserEva",
-      statusProb: 1
+      statusProb: 1,
+      sound: DoubleTeam
     }; //raises evasion
   }
   if (moveName === "Recover") {
@@ -1256,7 +1611,8 @@ const CreateMoves = moveName => {
       accuracy: 999,
       pp: 30,
       statusEff: "recoverHP",
-      statusProb: 1
+      statusProb: 1,
+      sound: Recover
     };
   }
   if (moveName === "Harden") {
@@ -1268,7 +1624,8 @@ const CreateMoves = moveName => {
       accuracy: 999,
       pp: 30,
       statusEff: "raisesUserDef",
-      statusProb: 1
+      statusProb: 1,
+      sound: Harden
     }; //increases defense
   }
   if (moveName === "Minimize") {
@@ -1280,7 +1637,8 @@ const CreateMoves = moveName => {
       accuracy: 999,
       pp: 10,
       statusEff: "raisesUserEva",
-      statusProb: 1
+      statusProb: 1,
+      sound: Minimize
     }; //increases evasion
   }
   if (moveName === "Smokescreen") {
@@ -1292,7 +1650,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 20,
       statusEff: "lowersTargetAcc",
-      statusProb: 1
+      statusProb: 1,
+      sound: Smokescreen
     }; //lowers opponent accuracy
   }
   if (moveName === "Confuse Ray") {
@@ -1304,7 +1663,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 10,
       statusEff: "ConfusionTarget",
-      statusProb: 1
+      statusProb: 1,
+      sound: ConfuseRay
     };
   }
   if (moveName === "Withdraw") {
@@ -1316,7 +1676,8 @@ const CreateMoves = moveName => {
       accuracy: 999,
       pp: 30,
       statusEff: "raisesUserDef",
-      statusProb: 1
+      statusProb: 1,
+      sound: Withdraw
     }; //raises defense
   }
   if (moveName === "Defense Curl") {
@@ -1328,7 +1689,8 @@ const CreateMoves = moveName => {
       accuracy: 999,
       pp: 30,
       statusEff: "raisesUserDef",
-      statusProb: 1
+      statusProb: 1,
+      sound: DefenseCurl
     }; //raises defense
   }
   if (moveName === "Barrier") {
@@ -1340,7 +1702,8 @@ const CreateMoves = moveName => {
       accuracy: 999,
       pp: 20,
       statusEff: "raisesUserDef",
-      statusProb: 1
+      statusProb: 1,
+      sound: Barrier
     };
   }
   if (moveName === "Light Screen") {
@@ -1352,7 +1715,8 @@ const CreateMoves = moveName => {
       accuracy: 999,
       pp: 20,
       statusEff: "raisesUserSpcDef",
-      statusProb: 1
+      statusProb: 1,
+      sound: LightScreen
     };
   }
   if (moveName === "Haze") {
@@ -1364,7 +1728,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "lowersTargetAcc",
-      statusProb: 1
+      statusProb: 1,
+      sound: Haze
     };
   }
   if (moveName === "Reflect") {
@@ -1376,7 +1741,8 @@ const CreateMoves = moveName => {
       accuracy: 999,
       pp: 20,
       statusEff: "raisesUserDef",
-      statusProb: 1
+      statusProb: 1,
+      sound: Reflect
     };
   }
   if (moveName === "Focus Energy") {
@@ -1388,7 +1754,8 @@ const CreateMoves = moveName => {
       accuracy: 999,
       pp: 30,
       statusEff: "raisesUserAtk",
-      statusProb: 1
+      statusProb: 1,
+      sound: FocusEnergy
     };
   }
   if (moveName === "Bide") {
@@ -1400,7 +1767,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Bide
     };
   }
   if (moveName === "Metronome") {
@@ -1412,7 +1780,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Metronome
     };
   }
   if (moveName === "Mirror Move") {
@@ -1424,7 +1793,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: MirrorMove
     };
   }
   if (moveName === "Self Destruct") {
@@ -1436,7 +1806,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35, //5
       statusEff: "FaintsUser",
-      statusProb: 1
+      statusProb: 1,
+      sound: SelfDestruct
     };
   }
   if (moveName === "Egg Bomb") {
@@ -1448,7 +1819,8 @@ const CreateMoves = moveName => {
       accuracy: 75,
       pp: 10,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: EggBomb
     };
   }
   if (moveName === "Lick") {
@@ -1460,7 +1832,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 30,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Lick
     };
   }
   if (moveName === "Smog") {
@@ -1472,7 +1845,8 @@ const CreateMoves = moveName => {
       accuracy: 70,
       pp: 20,
       statusEff: "Poison",
-      statusProb: 0.4
+      statusProb: 0.4,
+      sound: Smog
     };
   }
   if (moveName === "Sludge") {
@@ -1484,7 +1858,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 20,
       statusEff: "Poison",
-      statusProb: 0.3
+      statusProb: 0.3,
+      sound: Sludge
     };
   }
   if (moveName === "Bone Club") {
@@ -1496,7 +1871,8 @@ const CreateMoves = moveName => {
       accuracy: 85,
       pp: 20,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: BoneClub
     };
   }
   if (moveName === "Fire Blast") {
@@ -1508,7 +1884,8 @@ const CreateMoves = moveName => {
       accuracy: 85,
       pp: 5,
       statusEff: "Burn",
-      statusProb: 0.1
+      statusProb: 0.1,
+      sound: FireBlast
     };
   }
   if (moveName === "Waterfall") {
@@ -1520,7 +1897,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 15,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Waterfall
     };
   }
   if (moveName === "Clamp") {
@@ -1532,7 +1910,8 @@ const CreateMoves = moveName => {
       accuracy: 85,
       pp: 10,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Clamp
     };
   }
   if (moveName === "Swift") {
@@ -1544,7 +1923,8 @@ const CreateMoves = moveName => {
       accuracy: 999,
       pp: 20,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Swift
     }; //never misses
   }
   if (moveName === "Skull Bash") {
@@ -1556,7 +1936,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 10,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: SkullBash
     };
   }
   if (moveName === "Spike Cannon") {
@@ -1568,7 +1949,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 15,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: SpikeCannon
     }; //hits 2-5 times
   }
   if (moveName === "Constrict") {
@@ -1580,7 +1962,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 30,
       statusEff: "Bound",
-      statusProb: 1
+      statusProb: 1,
+      sound: Constrict
     }; //hits 4-5 times
   }
   if (moveName === "Amnesia") {
@@ -1592,7 +1975,8 @@ const CreateMoves = moveName => {
       accuracy: 999,
       pp: 20,
       statusEff: "raisesUserSpcDef",
-      statusProb: 1
+      statusProb: 1,
+      sound: Amnesia
     };
   }
   if (moveName === "Kinesis") {
@@ -1604,7 +1988,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 15,
       statusEff: "lowersTargetAcc",
-      statusProb: 1
+      statusProb: 1,
+      sound: Kinesis
     };
   }
   if (moveName === "Soft Boiled") {
@@ -1616,7 +2001,8 @@ const CreateMoves = moveName => {
       accuracy: 999,
       pp: 10,
       statusEff: "recoverHP",
-      statusProb: 1
+      statusProb: 1,
+      sound: SoftBoiled
     }; //recovers 1/2 max HP
   }
   if (moveName === "High Jump-kick") {
@@ -1628,7 +2014,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 10,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: HighJumpKick
     };
   }
   if (moveName === "Glare") {
@@ -1640,7 +2027,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 30,
       statusEff: "Paralyze",
-      statusProb: 1
+      statusProb: 1,
+      sound: Glare
     };
   }
   if (moveName === "Dream Eater") {
@@ -1652,7 +2040,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: DreamEater
     };
   }
   if (moveName === "Poison Gas") {
@@ -1664,7 +2053,8 @@ const CreateMoves = moveName => {
       accuracy: 90,
       pp: 40,
       statusEff: "Poison",
-      statusProb: 1
+      statusProb: 1,
+      sound: PoisonGas
     };
   }
   if (moveName === "Barrage") {
@@ -1676,7 +2066,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Barrage
     };
   }
   if (moveName === "Leech Life") {
@@ -1688,8 +2079,9 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 10,
       statusEff: "recoverDamage",
-      statusProb: 1
-    }; //add 1/2 damage back to hp
+      statusProb: 1,
+      sound: LeechLife
+    };
   }
   if (moveName === "Lovely Kiss") {
     return {
@@ -1700,7 +2092,8 @@ const CreateMoves = moveName => {
       accuracy: 75,
       pp: 10,
       statusEff: "Sleep",
-      statusProb: 1
+      statusProb: 1,
+      sound: LovelyKiss
     };
   }
   if (moveName === "Sky Attack") {
@@ -1712,7 +2105,8 @@ const CreateMoves = moveName => {
       accuracy: 90,
       pp: 5,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: SkyAttack
     };
   }
   if (moveName === "Transform") {
@@ -1724,7 +2118,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 10,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Transform
     };
   }
   if (moveName === "Bubble") {
@@ -1736,7 +2131,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 30,
       statusEff: "lowersTargetSpd",
-      statusProb: 1
+      statusProb: 1,
+      sound: Bubble
     };
   }
   if (moveName === "Dizzy Punch") {
@@ -1748,7 +2144,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 10,
       statusEff: "ConfusionTarget",
-      statusProb: 0.2
+      statusProb: 0.2,
+      sound: DizzyPunch
     };
   }
   if (moveName === "Spore") {
@@ -1760,7 +2157,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 15,
       statusEff: "Sleep",
-      statusProb: 1
+      statusProb: 1,
+      sound: Spore
     };
   }
   if (moveName === "Flash") {
@@ -1772,7 +2170,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 20,
       statusEff: "lowersTargetAcc",
-      statusProb: 1
+      statusProb: 1,
+      sound: Flash
     };
   }
   if (moveName === "Psywave") {
@@ -1784,7 +2183,8 @@ const CreateMoves = moveName => {
       accuracy: 80,
       pp: 15,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Psywave
     };
   }
   if (moveName === "Splash") {
@@ -1796,7 +2196,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Splash
     }; //does nothing in battle
   }
   if (moveName === "Acid Armor") {
@@ -1808,7 +2209,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 20,
       statusEff: "raisesUserDef",
-      statusProb: 1
+      statusProb: 1,
+      sound: AcidArmor
     };
   }
   if (moveName === "Crabhammer") {
@@ -1820,7 +2222,8 @@ const CreateMoves = moveName => {
       accuracy: 90,
       pp: 10,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Crabhammer
     };
   }
   if (moveName === "Explosion") {
@@ -1832,7 +2235,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35, //5
       statusEff: "FaintsUser",
-      statusProb: 1
+      statusProb: 1,
+      sound: Explosion
     };
   }
   if (moveName === "Fury Swipes") {
@@ -1844,7 +2248,8 @@ const CreateMoves = moveName => {
       accuracy: 80,
       pp: 15,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: FurySwipes
     };
   }
   if (moveName === "Bonemerang") {
@@ -1856,7 +2261,8 @@ const CreateMoves = moveName => {
       accuracy: 90,
       pp: 10,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Bonemerang
     };
   }
   if (moveName === "Rest") {
@@ -1868,8 +2274,9 @@ const CreateMoves = moveName => {
       accuracy: 999,
       pp: 10,
       statusEff: "Rest",
-      statusProb: 1
-    }; //recovers all HP, puts user to sleep
+      statusProb: 1,
+      sound: Rest
+    };
   }
   if (moveName === "Rock Slide") {
     return {
@@ -1880,7 +2287,8 @@ const CreateMoves = moveName => {
       accuracy: 90,
       pp: 10,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: RockSlide
     };
   }
   if (moveName === "Hyper Fang") {
@@ -1892,7 +2300,8 @@ const CreateMoves = moveName => {
       accuracy: 90,
       pp: 15,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: HyperFang
     };
   }
   if (moveName === "Sharpen") {
@@ -1904,7 +2313,8 @@ const CreateMoves = moveName => {
       accuracy: 999,
       pp: 30,
       statusEff: "raisesUserAtk",
-      statusProb: 1
+      statusProb: 1,
+      sound: Sharpen
     };
   }
   if (moveName === "Conversion") {
@@ -1916,7 +2326,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 30,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Conversion
     };
   }
   if (moveName === "Tri Attack") {
@@ -1928,7 +2339,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 10,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: TriAttack
     };
   }
   if (moveName === "Super Fang") {
@@ -1940,7 +2352,8 @@ const CreateMoves = moveName => {
       accuracy: 90,
       pp: 10,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: SuperFang
     };
   }
   if (moveName === "Slash") {
@@ -1952,7 +2365,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 20,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Slash
     };
   }
   if (moveName === "Substitute") {
@@ -1964,7 +2378,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Substitute
     };
   }
   if (moveName === "Struggle") {
@@ -1976,7 +2391,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Struggle
     };
   }
   if (moveName === "Sketch") {
@@ -1988,7 +2404,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Sketch
     };
   }
   if (moveName === "Triple Kick") {
@@ -2000,7 +2417,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: TripleKick
     };
   }
   if (moveName === "Thief") {
@@ -2012,7 +2430,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Thief
     };
   }
   if (moveName === "Spider Web") {
@@ -2024,7 +2443,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: SpiderWeb
     };
   }
   if (moveName === "Mind Reader") {
@@ -2036,7 +2456,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: MindReader
     };
   }
   if (moveName === "Nightmare") {
@@ -2048,7 +2469,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Nightmare
     };
   }
   if (moveName === "Flame Wheel") {
@@ -2060,7 +2482,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "Burn",
-      statusProb: 0.1
+      statusProb: 0.1,
+      sound: FlameWheel
     };
   }
   if (moveName === "Snore") {
@@ -2072,7 +2495,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Snore
     };
   }
   if (moveName === "Curse") {
@@ -2084,7 +2508,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Curse
     };
   }
   if (moveName === "Flail") {
@@ -2096,7 +2521,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Flail
     };
   }
   if (moveName === "Conversion 2") {
@@ -2108,7 +2534,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Conversion2
     };
   }
   if (moveName === "Aeroblast") {
@@ -2120,7 +2547,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Aeroblast
     };
   }
   if (moveName === "Cotton Spore") {
@@ -2132,7 +2560,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: CottonSpore
     };
   }
   if (moveName === "Reversal") {
@@ -2144,7 +2573,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Reversal
     };
   }
   if (moveName === "Spite") {
@@ -2156,7 +2586,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Spite
     };
   }
   if (moveName === "Powder Snow") {
@@ -2168,7 +2599,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "Frozen",
-      statusProb: 0.1
+      statusProb: 0.1,
+      sound: PowderSnow
     };
   }
   if (moveName === "Protect") {
@@ -2180,7 +2612,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Protect
     };
   }
   if (moveName === "Mach Punch") {
@@ -2192,7 +2625,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: MachPunch
     };
   }
   if (moveName === "Scary Face") {
@@ -2204,7 +2638,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "lowersTargetAtk",
-      statusProb: 1
+      statusProb: 1,
+      sound: ScaryFace
     };
   }
   if (moveName === "Feint Attack") {
@@ -2216,7 +2651,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: FeintAttack
     };
   }
   if (moveName === "Sweet Kiss") {
@@ -2228,7 +2664,8 @@ const CreateMoves = moveName => {
       accuracy: 75,
       pp: 35,
       statusEff: "ConfusionTarget",
-      statusProb: 1
+      statusProb: 1,
+      sound: SweetKiss
     };
   }
   if (moveName === "Belly Drum") {
@@ -2240,7 +2677,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: BellyDrum
     };
   }
   if (moveName === "Sludge Bomb") {
@@ -2252,7 +2690,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 10,
       statusEff: "Poison",
-      statusProb: 0.3
+      statusProb: 0.3,
+      sound: SludgeBomb
     };
   }
   if (moveName === "Sludge Wave") {
@@ -2262,9 +2701,10 @@ const CreateMoves = moveName => {
       power: 95,
       type: "poison",
       accuracy: 100,
-      pp: 10,
+      pp: 35,
       statusEff: "Poison",
-      statusProb: 0.3
+      statusProb: 0.3,
+      sound: null
     };
   }
   if (moveName === "Mud Slap") {
@@ -2276,7 +2716,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 10,
       statusEff: "lowersTargetAcc",
-      statusProb: 1
+      statusProb: 1,
+      sound: MudSlap
     };
   }
   if (moveName === "Octazooka") {
@@ -2288,7 +2729,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Octazooka
     };
   }
   if (moveName === "Spikes") {
@@ -2300,7 +2742,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Spikes
     };
   }
   if (moveName === "Zap Cannon") {
@@ -2312,7 +2755,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: ZapCannon
     };
   }
   if (moveName === "Foresight") {
@@ -2324,7 +2768,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Foresight
     };
   }
   if (moveName === "Destiny Bond") {
@@ -2336,7 +2781,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: DestinyBond
     };
   }
   if (moveName === "Perish Song") {
@@ -2348,7 +2794,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: PerishSong
     };
   }
   if (moveName === "Icy Wind") {
@@ -2360,7 +2807,8 @@ const CreateMoves = moveName => {
       accuracy: 95,
       pp: 15,
       statusEff: "lowersTargetSpd",
-      statusProb: 1
+      statusProb: 1,
+      sound: IcyWind
     };
   }
   if (moveName === "Detect") {
@@ -2372,7 +2820,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Detect
     };
   }
   if (moveName === "Bone Rush") {
@@ -2384,7 +2833,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: BoneRush
     };
   }
   if (moveName === "Lock On") {
@@ -2396,7 +2846,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: LockOn
     };
   }
   if (moveName === "Outrage") {
@@ -2408,7 +2859,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Outrage
     };
   }
   if (moveName === "Sandstorm") {
@@ -2420,7 +2872,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Sandstorm
     };
   }
   if (moveName === "Giga Drain") {
@@ -2432,8 +2885,9 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 10,
       statusEff: "recoverDamage",
-      statusProb: 1
-    }; //adds 1/2 damage done back to users HP
+      statusProb: 1,
+      sound: GigaDrain
+    };
   }
   if (moveName === "Endure") {
     return {
@@ -2444,7 +2898,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Endure
     };
   }
   if (moveName === "Charm") {
@@ -2456,7 +2911,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Charm
     };
   }
   if (moveName === "Rollout") {
@@ -2468,7 +2924,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Rollout
     };
   }
   if (moveName === "False Swipe") {
@@ -2480,7 +2937,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: FalseSwipe
     };
   }
   if (moveName === "Swagger") {
@@ -2492,7 +2950,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Swagger
     };
   }
   if (moveName === "Milk Drink") {
@@ -2504,7 +2963,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: MilkDrink
     };
   }
   if (moveName === "Spark") {
@@ -2516,7 +2976,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "Paralyze",
-      statusProb: 0.1
+      statusProb: 0.1,
+      sound: Spark
     };
   }
   if (moveName === "Fury Cutter") {
@@ -2528,7 +2989,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: FuryCutter
     };
   }
   if (moveName === "Steel Wing") {
@@ -2540,7 +3002,8 @@ const CreateMoves = moveName => {
       accuracy: 90,
       pp: 25,
       statusEff: "raisesUserDef",
-      statusProb: 1
+      statusProb: 1,
+      sound: SteelWing
     };
   }
   if (moveName === "Mean Look") {
@@ -2552,7 +3015,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: MeanLook
     };
   }
   if (moveName === "Attract") {
@@ -2564,7 +3028,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Attract
     };
   }
   if (moveName === "Sleep Talk") {
@@ -2576,7 +3041,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: SleepTalk
     };
   }
   if (moveName === "Heal Bell") {
@@ -2588,7 +3054,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: HealBell
     };
   }
   if (moveName === "Return") {
@@ -2600,7 +3067,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Return
     };
   }
   if (moveName === "Present") {
@@ -2612,7 +3080,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Present
     };
   }
   if (moveName === "Frustration") {
@@ -2624,7 +3093,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Frustration
     };
   }
   if (moveName === "Safeguard") {
@@ -2636,7 +3106,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Safeguard
     };
   }
   if (moveName === "Pain Split") {
@@ -2648,7 +3119,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Sacred Fire") {
@@ -2660,7 +3132,8 @@ const CreateMoves = moveName => {
       accuracy: 95,
       pp: 35,
       statusEff: "Burn",
-      statusProb: 0.5
+      statusProb: 0.5,
+      sound: SacredFire
     };
   }
   if (moveName === "Magnitude") {
@@ -2672,7 +3145,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Magnitude
     };
   }
   if (moveName === "Dynamic Punch") {
@@ -2684,7 +3158,8 @@ const CreateMoves = moveName => {
       accuracy: 50,
       pp: 5,
       statusEff: "ConfusionTarget",
-      statusProb: 1
+      statusProb: 1,
+      sound: DynamicPunch
     };
   }
   if (moveName === "Megahorn") {
@@ -2696,7 +3171,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Megahorn
     };
   }
   if (moveName === "Dragon Breath") {
@@ -2708,7 +3184,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: DragonBreath
     };
   }
   if (moveName === "Baton Pass") {
@@ -2720,7 +3197,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: BatonPass
     };
   }
   if (moveName === "Encore") {
@@ -2732,7 +3210,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Encore
     };
   }
   if (moveName === "Pursuit") {
@@ -2744,7 +3223,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Pursuit
     };
   }
   if (moveName === "Rapid Spin") {
@@ -2756,7 +3236,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: RapidSpin
     };
   }
   if (moveName === "Sweet Scent") {
@@ -2768,7 +3249,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: SweetScent
     };
   }
   if (moveName === "Iron Tail") {
@@ -2780,7 +3262,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: IronTail
     };
   }
   if (moveName === "Metal Claw") {
@@ -2792,7 +3275,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: MetalClaw
     };
   }
   if (moveName === "Vital Throw") {
@@ -2804,7 +3288,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: VitalThrow
     };
   }
   if (moveName === "Morning Sun") {
@@ -2816,7 +3301,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: MorningSun
     };
   }
   if (moveName === "Synthesis") {
@@ -2828,7 +3314,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Synthesis
     };
   }
   if (moveName === "Moonlight") {
@@ -2840,7 +3327,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Moonlight
     };
   }
   if (moveName === "Hidden Power") {
@@ -2852,7 +3340,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: HiddenPower
     };
   }
   if (moveName === "Cross Chop") {
@@ -2864,7 +3353,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: CrossChop
     };
   }
   if (moveName === "Twister") {
@@ -2876,7 +3366,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Twister
     };
   }
   if (moveName === "Rain Dance") {
@@ -2888,7 +3379,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: RainDance
     };
   }
   if (moveName === "Sunny Day") {
@@ -2900,7 +3392,8 @@ const CreateMoves = moveName => {
       accuracy: 999,
       pp: 35,
       statusEff: "raisesUserSpcAtk",
-      statusProb: 1
+      statusProb: 1,
+      sound: SunnyDay
     };
   }
   if (moveName === "Crunch") {
@@ -2912,7 +3405,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Crunch
     };
   }
   if (moveName === "Mirror Coat") {
@@ -2924,7 +3418,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: MirrorCoat
     };
   }
   if (moveName === "Psych Up") {
@@ -2936,7 +3431,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: PsychUp
     };
   }
   if (moveName === "Extremespeed") {
@@ -2948,7 +3444,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Extremespeed
     };
   }
   if (moveName === "Ancient Power") {
@@ -2960,7 +3457,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: AncientPower
     };
   }
   if (moveName === "Shadow Ball") {
@@ -2972,7 +3470,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: ShadowBall
     };
   }
   if (moveName === "Future Sight") {
@@ -2984,7 +3483,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: FutureSight
     };
   }
   if (moveName === "Rock Smash") {
@@ -2996,7 +3496,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 15,
       statusEff: "lowersTargetDef",
-      statusProb: 1
+      statusProb: 1,
+      sound: RockSmash
     };
   }
   if (moveName === "Whirlpool") {
@@ -3008,7 +3509,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: Whirlpool
     };
   }
   if (moveName === "Beat Up") {
@@ -3020,7 +3522,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: BeatUp
     };
   }
   if (moveName === "Fake Out") {
@@ -3032,7 +3535,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Uproar") {
@@ -3044,7 +3548,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Stockpile") {
@@ -3056,7 +3561,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Spit Up") {
@@ -3068,7 +3574,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Swallow") {
@@ -3080,7 +3587,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Heat Wave") {
@@ -3092,7 +3600,8 @@ const CreateMoves = moveName => {
       accuracy: 90,
       pp: 35,
       statusEff: "",
-      statusProb: 0.1
+      statusProb: 0.1,
+      sound: null
     };
   }
   if (moveName === "Hail") {
@@ -3104,7 +3613,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "Frozen",
-      statusProb: 0.1
+      statusProb: 0.1,
+      sound: null
     };
   }
   if (moveName === "Torment") {
@@ -3116,7 +3626,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Flatters") {
@@ -3128,7 +3639,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Will O-wisp") {
@@ -3140,7 +3652,8 @@ const CreateMoves = moveName => {
       accuracy: 85,
       pp: 5,
       statusEff: "Burn",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Memento") {
@@ -3152,7 +3665,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Facade") {
@@ -3164,7 +3678,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Focus Punch") {
@@ -3176,7 +3691,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Smellingsalt") {
@@ -3188,7 +3704,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Follow Me") {
@@ -3200,7 +3717,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Nature Power") {
@@ -3212,7 +3730,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Charge") {
@@ -3224,7 +3743,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Taunt") {
@@ -3236,7 +3756,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Helping Hand") {
@@ -3248,7 +3769,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Trick") {
@@ -3260,7 +3782,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Role Play") {
@@ -3272,7 +3795,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Wish") {
@@ -3284,7 +3808,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Assist") {
@@ -3296,7 +3821,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Ingrain") {
@@ -3308,7 +3834,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Superpower") {
@@ -3320,7 +3847,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Magic Coat") {
@@ -3332,7 +3860,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Recycle") {
@@ -3344,7 +3873,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Revenge") {
@@ -3356,7 +3886,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Brick Break") {
@@ -3368,7 +3899,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Yawn") {
@@ -3380,7 +3912,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Knock Off") {
@@ -3392,7 +3925,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Endeavor") {
@@ -3404,7 +3938,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Eruption") {
@@ -3416,7 +3951,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Skill Swap") {
@@ -3428,7 +3964,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Imprison") {
@@ -3440,7 +3977,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Refresh") {
@@ -3452,7 +3990,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Grudge") {
@@ -3464,7 +4003,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Snatch") {
@@ -3476,7 +4016,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Secret Power") {
@@ -3488,7 +4029,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Dive") {
@@ -3500,7 +4042,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Arm Thrust") {
@@ -3512,7 +4055,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Camouflage") {
@@ -3524,7 +4068,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Tail Glow") {
@@ -3536,7 +4081,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Luster Purge") {
@@ -3548,7 +4094,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Mist Ball") {
@@ -3560,7 +4107,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Feather Dance") {
@@ -3572,7 +4120,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Teeter Dance") {
@@ -3584,7 +4133,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Blaze Kick") {
@@ -3596,7 +4146,8 @@ const CreateMoves = moveName => {
       accuracy: 90,
       pp: 35,
       statusEff: "Burn",
-      statusProb: 0.1
+      statusProb: 0.1,
+      sound: null
     };
   }
   if (moveName === "Mud Sport") {
@@ -3608,7 +4159,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Ice Ball") {
@@ -3620,7 +4172,8 @@ const CreateMoves = moveName => {
       accuracy: 90,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Needle Arm") {
@@ -3632,7 +4185,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Slack Off") {
@@ -3644,7 +4198,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Hyper Voice") {
@@ -3656,7 +4211,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Poison Fang") {
@@ -3666,9 +4222,10 @@ const CreateMoves = moveName => {
       power: 50,
       type: "poison",
       accuracy: 100,
-      pp: 15,
+      pp: 35,
       statusEff: "Poison",
-      statusProb: 0.5
+      statusProb: 0.5,
+      sound: null
     };
   }
   if (moveName === "Crush Claw") {
@@ -3680,7 +4237,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Blast Burn") {
@@ -3692,7 +4250,8 @@ const CreateMoves = moveName => {
       accuracy: 90,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Hydro Cannon") {
@@ -3704,7 +4263,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Meteor Mash") {
@@ -3716,7 +4276,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Astonish") {
@@ -3728,7 +4289,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Weather Ball") {
@@ -3740,7 +4302,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Aromatherapy") {
@@ -3752,7 +4315,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Fake Tears") {
@@ -3764,7 +4328,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Air Cutter") {
@@ -3776,7 +4341,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Overheat") {
@@ -3788,7 +4354,8 @@ const CreateMoves = moveName => {
       accuracy: 90,
       pp: 35,
       statusEff: "lowersUserSpcAtk",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Odor Sleuth") {
@@ -3800,7 +4367,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Rock Tomb") {
@@ -3812,7 +4380,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Silver Wind") {
@@ -3824,7 +4393,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Metal Sound") {
@@ -3836,7 +4406,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Grass Whistle") {
@@ -3848,7 +4419,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Tickle") {
@@ -3860,7 +4432,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Cosmic Power") {
@@ -3872,7 +4445,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Water Spout") {
@@ -3884,7 +4458,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Signal Beam") {
@@ -3896,7 +4471,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Shadow Punch") {
@@ -3908,7 +4484,8 @@ const CreateMoves = moveName => {
       accuracy: 999,
       pp: 20,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Extrasensory") {
@@ -3920,7 +4497,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Sky Uppercut") {
@@ -3932,7 +4510,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Sand Tomb") {
@@ -3944,7 +4523,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Sheer Cold") {
@@ -3956,7 +4536,8 @@ const CreateMoves = moveName => {
       accuracy: 20,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Muddy Water") {
@@ -3968,7 +4549,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Bullet Seed") {
@@ -3980,7 +4562,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Aerial Ace") {
@@ -3992,7 +4575,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Icicle Spear") {
@@ -4004,7 +4588,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Iron Defense") {
@@ -4016,7 +4601,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Block") {
@@ -4028,7 +4614,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Howl") {
@@ -4040,7 +4627,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Dragon Claw") {
@@ -4052,7 +4640,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Frenzy Plant") {
@@ -4064,7 +4653,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Bulk Up") {
@@ -4076,7 +4666,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Bounce") {
@@ -4088,7 +4679,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Mud Shot") {
@@ -4100,7 +4692,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Poison Tail") {
@@ -4112,7 +4705,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "Poison",
-      statusProb: 0.1
+      statusProb: 0.1,
+      sound: null
     };
   }
   if (moveName === "Covet") {
@@ -4124,7 +4718,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Volt Tackle") {
@@ -4136,7 +4731,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Magical Leaf") {
@@ -4148,7 +4744,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Water Sport") {
@@ -4160,7 +4757,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Calm Mind") {
@@ -4172,7 +4770,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Leaf Blade") {
@@ -4184,7 +4783,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Dragon Dance") {
@@ -4196,7 +4796,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Rock Blast") {
@@ -4208,7 +4809,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Shock Wave") {
@@ -4220,7 +4822,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Water Pulse") {
@@ -4230,9 +4833,10 @@ const CreateMoves = moveName => {
       power: 60,
       type: "water",
       accuracy: 100,
-      pp: 20,
+      pp: 35,
       statusEff: "ConfusionTarget",
-      statusProb: 0.2
+      statusProb: 0.2,
+      sound: null
     };
   }
   if (moveName === "Doom Desire") {
@@ -4244,7 +4848,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Pyscho Boost") {
@@ -4256,7 +4861,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Roost") {
@@ -4268,7 +4874,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Gravity") {
@@ -4280,7 +4887,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Miracle Eye") {
@@ -4292,7 +4900,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Wake Up-slap") {
@@ -4304,7 +4913,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Hammer Arm") {
@@ -4316,7 +4926,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Gyro Ball") {
@@ -4328,7 +4939,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Healing Wish") {
@@ -4340,7 +4952,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Brine") {
@@ -4352,7 +4965,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Natural Gift") {
@@ -4364,7 +4978,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Feint") {
@@ -4376,7 +4991,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Pluck") {
@@ -4388,7 +5004,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Tailwind") {
@@ -4400,7 +5017,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Acupressure") {
@@ -4412,7 +5030,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Meatl Burst") {
@@ -4424,7 +5043,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "U Turn") {
@@ -4436,7 +5056,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Close Combat") {
@@ -4448,7 +5069,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Payback") {
@@ -4460,7 +5082,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Assurance") {
@@ -4472,7 +5095,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Embargo") {
@@ -4484,7 +5108,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Fling") {
@@ -4496,7 +5121,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Psycho Shift") {
@@ -4508,7 +5134,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Trump Card") {
@@ -4520,7 +5147,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Heal Block") {
@@ -4532,7 +5160,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Wring Out") {
@@ -4544,7 +5173,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Power Trick") {
@@ -4556,7 +5186,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Gastro Acid") {
@@ -4568,7 +5199,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Lucky Chant") {
@@ -4580,7 +5212,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Me First") {
@@ -4592,7 +5225,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Copycat") {
@@ -4604,7 +5238,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Power Swap") {
@@ -4616,7 +5251,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Guard Swap") {
@@ -4628,7 +5264,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Punishment") {
@@ -4640,7 +5277,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Last Resort") {
@@ -4652,7 +5290,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Worry Seed") {
@@ -4664,7 +5303,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Sucker Punch") {
@@ -4676,7 +5316,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Toxic Spikes") {
@@ -4688,7 +5329,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Heart Swap") {
@@ -4700,7 +5342,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Aqua Ring") {
@@ -4712,7 +5355,8 @@ const CreateMoves = moveName => {
       accuracy: 999,
       pp: 35,
       statusEff: "recoverHP",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Magnet Rise") {
@@ -4724,7 +5368,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Flare Blitz") {
@@ -4736,7 +5381,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "recoil",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Force Palm") {
@@ -4748,7 +5394,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Aura Sphere") {
@@ -4760,7 +5407,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Rock Polish") {
@@ -4772,7 +5420,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Poison Jab") {
@@ -4784,7 +5433,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "Poison",
-      statusProb: 0.3
+      statusProb: 0.3,
+      sound: null
     };
   }
   if (moveName === "Dark Pulse") {
@@ -4796,7 +5446,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Night Slash") {
@@ -4808,7 +5459,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Aqua Tail") {
@@ -4820,7 +5472,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Seed Bomb") {
@@ -4832,7 +5485,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Air Slash") {
@@ -4844,7 +5498,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "X Scissor") {
@@ -4856,7 +5511,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Bug Buzz") {
@@ -4868,7 +5524,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Dragon Pulse") {
@@ -4880,7 +5537,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Dragon Rush") {
@@ -4892,7 +5550,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Power Gem") {
@@ -4904,7 +5563,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Drain Punch") {
@@ -4916,7 +5576,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 10,
       statusEff: "recoverDamage",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Vacuum Wave") {
@@ -4928,7 +5589,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Focus Blast") {
@@ -4940,7 +5602,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Energy Ball") {
@@ -4952,7 +5615,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Brave Bird") {
@@ -4964,7 +5628,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Earth Power") {
@@ -4976,7 +5641,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Switcheroo") {
@@ -4988,7 +5654,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Giga Impact") {
@@ -5000,7 +5667,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Nasty Plot") {
@@ -5012,7 +5680,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Bullet Punch") {
@@ -5024,7 +5693,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Power Up-punch") {
@@ -5036,7 +5706,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Avalanche") {
@@ -5048,7 +5719,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Ice Shard") {
@@ -5060,7 +5732,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Shadow Claw") {
@@ -5072,7 +5745,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Thunder Fang") {
@@ -5082,9 +5756,10 @@ const CreateMoves = moveName => {
       power: 65,
       type: "electric",
       accuracy: 95,
-      pp: 15,
+      pp: 35,
       statusEff: "Paralyze",
-      statusProb: 0.1
+      statusProb: 0.1,
+      sound: null
     };
   }
   if (moveName === "Ice Fang") {
@@ -5096,7 +5771,8 @@ const CreateMoves = moveName => {
       accuracy: 95,
       pp: 15,
       statusEff: "Frozen",
-      statusProb: 0.1
+      statusProb: 0.1,
+      sound: null
     };
   }
   if (moveName === "Fire Fang") {
@@ -5106,9 +5782,10 @@ const CreateMoves = moveName => {
       power: 65,
       type: "fire",
       accuracy: 95,
-      pp: 15,
+      pp: 35,
       statusEff: "Burn",
-      statusProb: 0.1
+      statusProb: 0.1,
+      sound: null
     };
   }
   if (moveName === "Shadow Sneak") {
@@ -5120,7 +5797,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Mud Bomb") {
@@ -5132,7 +5810,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Psycho Cut") {
@@ -5144,7 +5823,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Zen Headbutt") {
@@ -5156,7 +5836,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Mirror Shot") {
@@ -5168,7 +5849,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Flash Cannon") {
@@ -5180,7 +5862,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Rock Climb") {
@@ -5192,7 +5875,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Defog") {
@@ -5204,7 +5888,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Trick Room") {
@@ -5216,7 +5901,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Draco Meteor") {
@@ -5228,7 +5914,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Discharge") {
@@ -5240,7 +5927,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Lava Plume") {
@@ -5252,7 +5940,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "Burn",
-      statusProb: 0.3
+      statusProb: 0.3,
+      sound: null
     };
   }
   if (moveName === "Leaf Storm") {
@@ -5264,7 +5953,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Power Whip") {
@@ -5276,7 +5966,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Rock Wrecker") {
@@ -5288,7 +5979,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Cross Poison") {
@@ -5300,7 +5992,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "Poison",
-      statusProb: 0.1
+      statusProb: 0.1,
+      sound: null
     };
   }
   if (moveName === "Gunk Shot") {
@@ -5312,7 +6005,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Iron Head") {
@@ -5324,7 +6018,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Magnet Bomb") {
@@ -5336,7 +6031,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Stone Edge") {
@@ -5348,7 +6044,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Captivate") {
@@ -5360,7 +6057,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Stealth Rock") {
@@ -5372,7 +6070,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Grass Knot") {
@@ -5384,7 +6083,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Chatter") {
@@ -5396,7 +6096,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Judgment") {
@@ -5408,7 +6109,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Bug Bite") {
@@ -5418,9 +6120,10 @@ const CreateMoves = moveName => {
       power: 60,
       type: "bug",
       accuracy: 100,
-      pp: 20,
+      pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Charge Beam") {
@@ -5432,7 +6135,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Wood Hammer") {
@@ -5444,7 +6148,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Aqua Jet") {
@@ -5456,7 +6161,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Attack Order") {
@@ -5468,7 +6174,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Defend Order") {
@@ -5480,7 +6187,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Heal Order") {
@@ -5492,7 +6200,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Head Smash") {
@@ -5504,7 +6213,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Double Hit") {
@@ -5516,7 +6226,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Roar of Time") {
@@ -5528,7 +6239,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Spacial Rend") {
@@ -5540,7 +6252,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Lunar Dance") {
@@ -5552,7 +6265,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Crush Grip") {
@@ -5564,7 +6278,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Magma Storm") {
@@ -5576,7 +6291,8 @@ const CreateMoves = moveName => {
       accuracy: 75,
       pp: 35,
       statusEff: "Bound",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Dark Void") {
@@ -5588,7 +6304,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Seed Flare") {
@@ -5600,7 +6317,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Shadow Force") {
@@ -5612,7 +6330,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Venoshock") {
@@ -5624,7 +6343,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Round") {
@@ -5636,7 +6356,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Echoed Voice") {
@@ -5648,7 +6369,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Grass Pledge") {
@@ -5660,7 +6382,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Work Up") {
@@ -5672,7 +6395,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Grassy Terrain") {
@@ -5684,7 +6408,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Electric Terrain") {
@@ -5696,7 +6421,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Misty Terrain") {
@@ -5708,7 +6434,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Psychic Terrain") {
@@ -5720,7 +6447,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Confide") {
@@ -5732,7 +6460,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Hone Claws") {
@@ -5744,7 +6473,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Flame Burst") {
@@ -5756,7 +6486,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Flame Charge") {
@@ -5768,7 +6499,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "raisesUserSpd",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Incinerate") {
@@ -5780,7 +6512,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "Burn",
-      statusProb: 0.3
+      statusProb: 0.3,
+      sound: null
     };
   }
   if (moveName === "Inferno") {
@@ -5792,7 +6525,8 @@ const CreateMoves = moveName => {
       accuracy: 50,
       pp: 35,
       statusEff: "Burn",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Fire Pledge") {
@@ -5804,7 +6538,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Water Pledge") {
@@ -5816,7 +6551,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Scald") {
@@ -5828,7 +6564,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "Burn",
-      statusProb: 0.3
+      statusProb: 0.3,
+      sound: null
     };
   }
   if (moveName === "Smack Down") {
@@ -5840,7 +6577,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Dragon Tail") {
@@ -5852,7 +6590,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Bulldoze") {
@@ -5864,7 +6603,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Petal Blizzard") {
@@ -5876,7 +6616,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Ominous Wind") {
@@ -5888,7 +6629,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Sky Drop") {
@@ -5900,7 +6642,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Brutal Swing") {
@@ -5912,7 +6655,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Electroweb") {
@@ -5924,7 +6668,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Rage Powder") {
@@ -5936,7 +6681,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Quiver Dance") {
@@ -5948,7 +6694,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Acrobatics") {
@@ -5960,7 +6707,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Struggle Bug") {
@@ -5972,7 +6720,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Infestation") {
@@ -5984,7 +6733,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Drill Run") {
@@ -5996,7 +6746,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Fell Stinger") {
@@ -6008,7 +6759,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Hurricane") {
@@ -6020,7 +6772,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Retaliate") {
@@ -6032,7 +6785,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Final Gambit") {
@@ -6044,7 +6798,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Wild Charge") {
@@ -6056,7 +6811,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Coil") {
@@ -6068,7 +6824,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Acid Spray") {
@@ -6080,7 +6837,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35, //20
       statusEff: "lowersTargetSpcDef",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Belch") {
@@ -6092,7 +6850,8 @@ const CreateMoves = moveName => {
       accuracy: 90,
       pp: 35, //10
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Electro Ball") {
@@ -6104,7 +6863,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Volt Switch") {
@@ -6116,7 +6876,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Play Nice") {
@@ -6128,7 +6889,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Play Rough") {
@@ -6140,7 +6902,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Nuzzle") {
@@ -6152,7 +6915,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Chip Away") {
@@ -6164,7 +6928,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Rototiller") {
@@ -6176,7 +6941,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Flatter") {
@@ -6188,7 +6954,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35, //15
       statusEff: "ConfusionTarget",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Venom Drench") {
@@ -6200,7 +6967,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Quash") {
@@ -6212,7 +6980,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Smart Strike") {
@@ -6224,7 +6993,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Wonder Room") {
@@ -6236,7 +7006,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Psyshock") {
@@ -6248,7 +7019,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Telekinesis") {
@@ -6260,7 +7032,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "After You") {
@@ -6272,7 +7045,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Stored Power") {
@@ -6284,7 +7058,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Bestow") {
@@ -6296,7 +7071,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Disarming Voice") {
@@ -6308,7 +7084,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Moonblast") {
@@ -6320,7 +7097,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Dazzling Gleam") {
@@ -6332,7 +7110,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Spotlight") {
@@ -6344,7 +7123,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Foul Play") {
@@ -6356,7 +7136,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Hex") {
@@ -6368,7 +7149,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Tail Slap") {
@@ -6380,7 +7162,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Baby Doll-eyes") {
@@ -6392,7 +7175,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Magic Room") {
@@ -6404,7 +7188,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Quick Guard") {
@@ -6416,7 +7201,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Wide Guard") {
@@ -6428,7 +7214,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Synchronoise") {
@@ -6440,7 +7227,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Soak") {
@@ -6452,7 +7240,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Simple Beam") {
@@ -6464,7 +7253,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Clear Smog") {
@@ -6476,7 +7266,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Low Sweep") {
@@ -6488,7 +7279,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Smelling Salts") {
@@ -6500,7 +7292,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Dual Chop") {
@@ -6512,7 +7305,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Power Trip") {
@@ -6524,7 +7318,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Stomping Tantrum") {
@@ -6536,7 +7331,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Snarl") {
@@ -6548,7 +7344,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Burn Up") {
@@ -6560,7 +7357,8 @@ const CreateMoves = moveName => {
       accuracy: 70,
       pp: 35, //5
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Extreme Speed") {
@@ -6572,7 +7370,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Circle Throw") {
@@ -6584,7 +7383,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Guard Split") {
@@ -6596,7 +7396,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Ally Switch") {
@@ -6608,7 +7409,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Heavy Slam") {
@@ -6620,7 +7422,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Leaf Tornado") {
@@ -6632,7 +7435,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Reflect Type") {
@@ -6644,7 +7448,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Autotomize") {
@@ -6656,7 +7461,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Steamroller") {
@@ -6668,7 +7474,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Heal Pulse") {
@@ -6680,7 +7487,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Entrainment") {
@@ -6692,7 +7500,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Frost Breath") {
@@ -6704,7 +7513,8 @@ const CreateMoves = moveName => {
       accuracy: 90,
       pp: 35, //10
       statusEff: "Frozen",
-      statusProb: 0.1
+      statusProb: 0.1,
+      sound: null
     };
   }
   if (moveName === "Shell Smash") {
@@ -6716,7 +7526,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Razor Shell") {
@@ -6728,7 +7539,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Icicle Crash") {
@@ -6740,7 +7552,8 @@ const CreateMoves = moveName => {
       accuracy: 90,
       pp: 35, //10
       statusEff: "Frozen",
-      statusProb: 0.1
+      statusProb: 0.1,
+      sound: null
     };
   }
   if (moveName === "Eerie Impulse") {
@@ -6752,7 +7565,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Magnetic Flux") {
@@ -6764,7 +7578,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Metal Burst") {
@@ -6776,7 +7591,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Power Split") {
@@ -6788,7 +7604,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Heart Stamp") {
@@ -6800,7 +7617,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Draining Kiss") {
@@ -6812,7 +7630,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35, //10
       statusEff: "recoverDamage",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Aurora Veil") {
@@ -6824,7 +7643,8 @@ const CreateMoves = moveName => {
       accuracy: 999,
       pp: 35, //20
       statusEff: "raisesUserSpcDef",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Storm Throw") {
@@ -6836,7 +7656,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Freeze Dry") {
@@ -6848,7 +7669,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35, //20
       statusEff: "Frozen",
-      statusProb: 0.1
+      statusProb: 0.1,
+      sound: null
     };
   }
   if (moveName === "High Horsepower") {
@@ -6860,7 +7682,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Psystrike") {
@@ -6872,7 +7695,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Laser Focus") {
@@ -6884,7 +7708,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "Strength Sap") {
@@ -6896,7 +7721,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   if (moveName === "First Impression") {
@@ -6908,7 +7734,8 @@ const CreateMoves = moveName => {
       accuracy: 100,
       pp: 35,
       statusEff: "",
-      statusProb: 1
+      statusProb: 1,
+      sound: null
     };
   }
   console.log("MOVE NOT FOUND: ", moveName);

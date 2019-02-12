@@ -10,6 +10,7 @@ import paralyzeheal from "./ItemsIcons/paralyzeheal.png";
 import awakening from "./ItemsIcons/awakening.png";
 import { UpdateHP } from "../UpdateHP";
 import { DisplayMessage } from "../DisplayMessage";
+import healSound from "../../Sounds/BattleSounds/General/USEITEM.wav";
 
 class Items extends Component {
   constructor(props) {
@@ -136,6 +137,9 @@ class Items extends Component {
     if (updatedBarHP > 560) {
       updatedBarHP = 560;
     }
+    //play heal sound
+    let heal = new Audio(healSound);
+    heal.play();
 
     setTimeout(
       () =>
@@ -177,6 +181,9 @@ class Items extends Component {
     DisplayMessage(
       PKMNuser.name + " was cured of " + PKMNuser.statusCondition + "!"
     );
+    //play heal sound
+    let heal = new Audio(healSound);
+    heal.play();
     //remove status condition
     setTimeout(() => (PKMNuser.statusCondition = ""), 500);
     this.props.handleItems();
