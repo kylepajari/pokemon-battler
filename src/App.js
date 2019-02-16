@@ -43,7 +43,10 @@ class App extends Component {
             <p>Pokémon Battler</p>
             <img className="pokeball" src={pokeball} alt="Pokeball" />
           </div>
-
+          <span style={{ fontSize: "8px", color: "red", marginTop: "5px" }}>
+            Warning: This game contains sound effects. Please keep volume at a
+            reasonable level!
+          </span>
           <TeamBuilder
             data={this.state.data}
             allData={this.state.allData}

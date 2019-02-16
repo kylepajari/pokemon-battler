@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import "./TeamBuilder.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.js";
 import BattleStage from "../BattleStage/BattleStage";
 import { CreateMoves } from "../MoveCreator";
 import { CryAssign } from "../CryAssign";
 import $ from "jquery";
 import BadgesContainer from "../BadgesContainer/BadgesContainer";
+import { RandomNumberGenerator } from "../RandomNumberGenerator";
+import { MatchIconWithType } from "../MatchTypeIcon";
 
 class TeamBuilder extends Component {
   constructor(props) {
@@ -13,6 +16,14 @@ class TeamBuilder extends Component {
 
     this.state = {
       data: null,
+      currentPokemon: null,
+      currentPokemonName: "",
+      currentPokemonTypes: [],
+      currentPokemonSprite: "",
+      currentPokemonHeight: 0,
+      currentPokemonWeight: 0,
+      currentPokemonId: 0,
+      sprite: null,
       isOpen: false, //to keep track of whether pokemon dropdown is open
       isTeamOpen: false, //to keep track of whether team size dropdown is open
       currentPlayer: "Player One", //player who starts the game
@@ -32,23 +43,25 @@ class TeamBuilder extends Component {
     this.handleFainted = this.handleFainted.bind(this);
     this.singlePlayer = this.singlePlayer.bind(this);
     this.multiPlayer = this.multiPlayer.bind(this);
+    this.cpuVScpu = this.cpuVScpu.bind(this);
     this.inputNames = this.inputNames.bind(this);
     this.handleLeaderNames = this.handleLeaderNames.bind(this);
   }
 
   componentDidMount() {
     $(document.getElementById("BattleButton")).fadeOut(10);
-    $(document.querySelector(".pokemonList")).fadeOut(10);
     $(document.querySelector(".teamList")).fadeOut(10);
     $(document.querySelector(".playerOneNameDiv")).fadeOut(10);
     $(document.querySelector(".playerTwoNameDiv")).fadeOut(10);
     $(document.querySelector(".teamsContainer")).fadeOut(10);
     $(document.querySelector(".badgesContainer")).fadeOut(10);
+    // this.getSprites();
   }
 
   singlePlayer() {
     $(document.querySelector("#btnSinglePlayer")).fadeOut(10);
     $(document.querySelector("#btnMultiPlayer")).fadeOut(10);
+    $(document.querySelector("#btnCPUVSCPU")).fadeOut(10);
     $(document.querySelector(".playerOneNameDiv")).fadeIn(300);
     this.setState({ mode: "Single" });
   }
@@ -56,8 +69,22 @@ class TeamBuilder extends Component {
   multiPlayer() {
     $(document.querySelector("#btnSinglePlayer")).fadeOut(10);
     $(document.querySelector("#btnMultiPlayer")).fadeOut(10);
+    $(document.querySelector("#btnCPUVSCPU")).fadeOut(10);
     $(document.querySelector(".playerOneNameDiv")).fadeIn(300);
     this.setState({ mode: "Multi" });
+  }
+
+  cpuVScpu() {
+    this.setState({ mode: "CPUVSCPU" });
+    this.setState({ playerOneName: "CPU1" });
+    this.setState({ playerTwoName: "CPU2" });
+    // this.forceUpdate();
+    console.log(this.state.mode);
+
+    $(document.querySelector("#btnSinglePlayer")).fadeOut(10);
+    $(document.querySelector("#btnMultiPlayer")).fadeOut(10);
+    $(document.querySelector("#btnCPUVSCPU")).fadeOut(10);
+    $(document.querySelector(".teamList")).fadeIn(300);
   }
 
   handleLeaderNames = num => {
@@ -118,9 +145,44 @@ class TeamBuilder extends Component {
   changeTeamSize = num => {
     console.log("Changing team size to " + num);
     $(document.querySelector(".teamsContainer")).fadeIn(300);
-    $(document.querySelector(".pokemonList")).fadeIn(300);
+    $(document.querySelector(".pokemonSheetContainer")).removeClass("deRender");
     $(document.querySelector(".teamList")).fadeOut(10);
     this.setState({ teamSize: num });
+    if (this.state.mode === "CPUVSCPU") {
+      //build cpu teams
+      let rand = 0;
+      //build CPU one team
+      rand = Math.round(RandomNumberGenerator(1, 151));
+      this.fetchPokemon(rand, 50, "team1");
+      rand = Math.round(RandomNumberGenerator(1, 151));
+      this.fetchPokemon(rand, 50, "team1");
+      rand = Math.round(RandomNumberGenerator(1, 151));
+      this.fetchPokemon(rand, 50, "team1");
+      rand = Math.round(RandomNumberGenerator(1, 151));
+      this.fetchPokemon(rand, 50, "team1");
+      rand = Math.round(RandomNumberGenerator(1, 151));
+      this.fetchPokemon(rand, 50, "team1");
+      rand = Math.round(RandomNumberGenerator(1, 151));
+      this.fetchPokemon(rand, 50, "team1");
+
+      //build CPU two team
+      rand = Math.round(RandomNumberGenerator(1, 151));
+      this.fetchPokemon(rand, 50, "team2");
+      rand = Math.round(RandomNumberGenerator(1, 151));
+      this.fetchPokemon(rand, 50, "team2");
+      rand = Math.round(RandomNumberGenerator(1, 151));
+      this.fetchPokemon(rand, 50, "team2");
+      rand = Math.round(RandomNumberGenerator(1, 151));
+      this.fetchPokemon(rand, 50, "team2");
+      rand = Math.round(RandomNumberGenerator(1, 151));
+      this.fetchPokemon(rand, 50, "team2");
+      rand = Math.round(RandomNumberGenerator(1, 151));
+      this.fetchPokemon(rand, 50, "team2");
+
+      $(document.querySelector(".teamList")).fadeOut(10);
+      $(document.querySelector(".pokemonSheetContainer")).addClass("deRender");
+      $(document.querySelector(".teamsContainer")).fadeIn(300);
+    }
   };
 
   displayBadges = () => {
@@ -203,24 +265,24 @@ class TeamBuilder extends Component {
         physical.push(move);
       }
     });
-    console.log("Number of Physical Moves: " + physical.length);
-    console.log("Number of Special Moves: " + special.length);
+    // console.log("Number of Physical Moves: " + physical.length);
+    // console.log("Number of Special Moves: " + special.length);
 
     //finally, go through physical, special, and status moves, and create final move list
     let finalMoves = [];
 
     //if pokemon has more than 4 moves available
     if (physical.length + special.length + status.length > 4) {
-      console.log("pokemon has more than 4 moves, distributing...");
+      // console.log("pokemon has more than 4 moves, distributing...");
 
       for (let i = 0; i < 2; i++) {
         if (physical.length > 2) {
           let randomMove =
             physical[Math.floor(Math.random() * physical.length)];
           if (i === 0) {
-            console.log(randomMove.name + " was chosen as FIRST MOVE");
+            // console.log(randomMove.name + " was chosen as FIRST MOVE");
           } else {
-            console.log(randomMove.name + " was chosen as SECOND MOVE");
+            // console.log(randomMove.name + " was chosen as SECOND MOVE");
           }
 
           finalMoves.push(randomMove);
@@ -231,12 +293,12 @@ class TeamBuilder extends Component {
       }
       for (let i = 0; i < 1; i++) {
         let randomMove = special[Math.floor(Math.random() * special.length)];
-        console.log(randomMove.name + " was chosen as THIRD MOVE");
+        // console.log(randomMove.name + " was chosen as THIRD MOVE");
         finalMoves.push(randomMove);
       }
       for (let i = 0; i < 1; i++) {
         let randomMove = status[Math.floor(Math.random() * status.length)];
-        console.log(randomMove.name + " was chosen FORTH MOVE");
+        // console.log(randomMove.name + " was chosen FORTH MOVE");
         finalMoves.push(randomMove);
       }
     } else {
@@ -255,6 +317,43 @@ class TeamBuilder extends Component {
         this.setState({ data }, () => this.addPokemon(level, team))
       );
   };
+
+  modalPokemon = num => {
+    console.log(num);
+
+    let url = "https://pokeapi.co/api/v2/pokemon/" + num;
+    fetch(url)
+      .then(response => response.json())
+      .then(currentPokemon =>
+        this.setState({ currentPokemon }, () => this.fillmodalPokeInfo())
+      );
+  };
+
+  fillmodalPokeInfo = () => {
+    this.setState({
+      currentPokemonName: this.state.currentPokemon.name,
+      currentPokemonSprite: this.state.currentPokemon.sprites.front_default,
+      currentPokemonTypes: this.state.currentPokemon.types,
+      currentPokemonHeight: this.state.currentPokemon.height,
+      currentPokemonWeight: this.state.currentPokemon.weight,
+      currentPokemonId: this.state.currentPokemon.id
+    });
+  };
+
+  // getSprites = () => {
+  //   let allPokesArr = [];
+  //   for (let i = 1; i < 151; i++) {
+  //     let url = "https://pokeapi.co/api/v2/pokemon/" + i;
+  //     fetch(url)
+  //       .then(response => response.json())
+  //       .then(result => {
+  //         allPokesArr.push(result);
+  //       });
+  //   }
+  //   console.log(allPokesArr);
+
+  //   this.setState({ allPokes: allPokesArr });
+  // };
 
   addPokemon = (level, team) => {
     let pokemonObj = null;
@@ -333,42 +432,51 @@ class TeamBuilder extends Component {
     };
 
     let player = null; //default to player one
-    if (
-      this.state.currentPlayer === "Player One" &&
-      this.state.mode === "Multi"
-    ) {
-      player = this.state.player1Team;
-    } else {
-      player = this.state.player2Team;
-    }
-    if (this.state.mode === "Single") {
+    if (this.state.mode === "Multi") {
+      if (this.state.currentPlayer === "Player One") {
+        player = this.state.player1Team;
+      } else if (this.state.currentPlayer === "Player Two") {
+        player = this.state.player2Team;
+      }
+    } else if (this.state.mode === "Single") {
       if (team === undefined) {
         player = this.state.player1Team;
+      } else if (team === "team2") {
+        player = this.state.player2Team;
       }
-      if (team === "team2") {
+    } else if (this.state.mode === "CPUVSCPU") {
+      if (team === "team1") {
+        player = this.state.player1Team;
+      } else if (team === "team2") {
         player = this.state.player2Team;
       }
     }
-    console.log(pokemonObj);
+
     if (player.length !== this.state.teamSize) {
-      if (
-        this.state.currentPlayer === "Player One" &&
-        this.state.mode === "Multi"
-      ) {
-        this.state.player1Team.push(pokemonObj);
-        this.setState({ player1Team: player });
-      } else if (
-        this.state.currentPlayer === "Player Two" &&
-        this.state.mode === "Multi"
-      ) {
-        this.state.player2Team.push(pokemonObj);
-        this.setState({ player2Team: player });
-      } else if (team === undefined) {
-        this.state.player1Team.push(pokemonObj);
-        this.setState({ player1Team: player });
-      } else if (team === "team2") {
-        this.state.player2Team.push(pokemonObj);
-        this.setState({ player2Team: player });
+      if (this.state.mode === "Multi") {
+        if (this.state.currentPlayer === "Player One") {
+          this.state.player1Team.push(pokemonObj);
+          this.setState({ player1Team: player });
+        } else if (this.state.currentPlayer === "Player Two") {
+          this.state.player2Team.push(pokemonObj);
+          this.setState({ player2Team: player });
+        }
+      } else if (this.state.mode === "Single") {
+        if (team === undefined) {
+          this.state.player1Team.push(pokemonObj);
+          this.setState({ player1Team: player });
+        } else if (team === "team2") {
+          this.state.player2Team.push(pokemonObj);
+          this.setState({ player2Team: player });
+        }
+      } else if (this.state.mode === "CPUVSCPU") {
+        if (team === "team1") {
+          this.state.player1Team.push(pokemonObj);
+          this.setState({ player1Team: player });
+        } else if (team === "team2") {
+          this.state.player2Team.push(pokemonObj);
+          this.setState({ player2Team: player });
+        }
       }
     }
 
@@ -376,8 +484,8 @@ class TeamBuilder extends Component {
       this.state.player1Team.length === this.state.teamSize &&
       this.state.player2Team.length === this.state.teamSize
     ) {
-      console.log("both teams full! Revealing Battle button!");
       $(document.querySelectorAll(".dropdown")).fadeOut(100);
+      $(document.querySelector(".pokemonSheetContainer")).addClass("deRender");
       $(document.getElementById("BattleButton")).fadeIn(300);
     }
 
@@ -412,7 +520,6 @@ class TeamBuilder extends Component {
     poke1.inBattle = true;
     poke2.inBattle = true;
     this.setState({ battleReady: true });
-    console.log("starting battle...");
     $(document.getElementById("BattleButton")).fadeOut(300);
   };
 
@@ -439,6 +546,16 @@ class TeamBuilder extends Component {
     this.forceUpdate();
   };
 
+  //TYPES FUNCTION ///////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+  Types = array => {
+    var typesList = array.map((item, i) => {
+      console.log(item);
+      return MatchIconWithType(item.type.name);
+    });
+    return <span>{typesList}</span>;
+  };
+
   render() {
     let playerName = null;
     if (this.state.currentPlayer === "Player One") {
@@ -463,6 +580,14 @@ class TeamBuilder extends Component {
           onClick={this.multiPlayer}
         >
           Multi-Player (Local Battle)
+        </button>
+        <button
+          type="button"
+          className="btn btn-dark"
+          id="btnCPUVSCPU"
+          onClick={this.cpuVScpu}
+        >
+          CPU vs. CPU
         </button>
         <div className="playerOneNameDiv">
           <p>Enter a name for Player One:</p>
@@ -572,40 +697,74 @@ class TeamBuilder extends Component {
             </a>
           </div>
         </div>
-        <div
-          className="btn-group dropdown pokemonList"
-          onClick={this.toggleOpen}
-        >
-          <button
-            type="button"
-            className="btn btn-dark dropdown-toggle"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-            id="dropdownMenu1"
-          >
-            {playerName}: Select a Pokemon
-          </button>
-          <div
-            className={`"dropdown-menu" ${
-              this.state.isOpen ? "dropdown-menu show" : "dropdown-menu"
-            }`}
-            aria-labelledby="dropdownMenu1"
-          >
+        <div className="pokemonSheetContainer deRender">
+          <div>{playerName}: Select a Pokemon</div>
+          <div className="pokemonSheet">
             {this.props.allData.results.map((item, i) => {
               return (
-                <a
-                  className="dropdown-item"
+                <button
+                  className="sheetBlock btn btn-primary"
                   key={i}
-                  href="#!"
-                  onClick={() =>
-                    this.fetchPokemon(i + 1, this.state.globalLevel)
-                  }
+                  data-toggle="modal"
+                  data-target=".pokemonPopup"
+                  onClick={() => this.modalPokemon(i + 1)}
                 >
+                  {/* <img src={item.sprites.front_default} alt="" /> */}
                   {this.Capitalize(item.name)}
-                </a>
+                </button>
               );
             })}
+          </div>
+        </div>
+        <div className="modal fade pokemonPopup">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h4 className="modal-title">
+                  {this.Capitalize(this.state.currentPokemonName)}
+                </h4>
+              </div>
+              <div className="modal-body">
+                <img
+                  src={this.state.currentPokemonSprite}
+                  alt=""
+                  className="modalSprite"
+                />
+                <div>{this.Types(this.state.currentPokemonTypes)}</div>
+                <div>
+                  Height:{" "}
+                  {Math.round((this.state.currentPokemonHeight / 10) * 3.281)}{" "}
+                  ft
+                </div>
+                <div>
+                  Weight:{" "}
+                  {Math.round((this.state.currentPokemonWeight / 10) * 2.205)}{" "}
+                  lbs
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-success"
+                  data-dismiss="modal"
+                  onClick={() =>
+                    this.fetchPokemon(
+                      this.state.currentPokemonId,
+                      this.state.globalLevel
+                    )
+                  }
+                >
+                  Add to Team
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
           </div>
         </div>
         <div>
@@ -613,7 +772,7 @@ class TeamBuilder extends Component {
             type="button"
             className="btn btn-primary"
             id="BattleButton"
-            onClick={this.startBattle}
+            onClick={() => this.startBattle()}
           >
             Battle!
           </button>
@@ -626,29 +785,28 @@ class TeamBuilder extends Component {
         </div>
         <div className="teamsContainer container-fluid row">
           <div className="team1 col">
-            <p>{this.state.playerOneName}:</p>
-            <div>
-              <ul>
-                {this.state.player1Team.map((pokemon, i) => {
-                  return (
-                    <li
-                      className={`"sprite" ${
-                        pokemon.fainted ? "sprite faded" : "sprite"
-                      }`}
-                      key={i}
-                    >
-                      <img src={pokemon.frontSprite} alt={pokemon.name} />
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
+            <p className="header">{this.state.playerOneName}:</p>
+            {this.state.player1Team.map((pokemon, i) => {
+              return (
+                <div
+                  className={`${
+                    pokemon.fainted
+                      ? `sprite faded box-${i + 1}`
+                      : `sprite box-${i + 1}`
+                  }`}
+                  key={i}
+                >
+                  <img src={pokemon.frontSprite} alt={pokemon.name} />
+                </div>
+              );
+            })}
           </div>
           <BattleStage
             className="battleStage col"
             battleReady={this.state.battleReady}
             player1Team={this.state.player1Team}
             player2Team={this.state.player2Team}
+            teamSize={this.state.teamSize}
             Capitalize={this.Capitalize}
             handleFainted={this.handleFainted}
             playerOneName={this.state.playerOneName}
@@ -656,23 +814,21 @@ class TeamBuilder extends Component {
             mode={this.state.mode}
           />
           <div className="team2 col">
-            <p>{this.state.playerTwoName}:</p>
-            <div>
-              <ul>
-                {this.state.player2Team.map((pokemon, i) => {
-                  return (
-                    <li
-                      className={`"sprite" ${
-                        pokemon.fainted ? "sprite faded" : "sprite"
-                      }`}
-                      key={i}
-                    >
-                      <img src={pokemon.frontSprite} alt={pokemon.name} />
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
+            <p className="header">{this.state.playerTwoName}:</p>
+            {this.state.player2Team.map((pokemon, i) => {
+              return (
+                <div
+                  className={`${
+                    pokemon.fainted
+                      ? `sprite faded box-${i + 1}`
+                      : `sprite box-${i + 1}`
+                  }`}
+                  key={i}
+                >
+                  <img src={pokemon.frontSprite} alt={pokemon.name} />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

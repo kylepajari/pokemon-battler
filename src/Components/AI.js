@@ -1,6 +1,7 @@
 import React from "react";
 import { RandomNumberGenerator } from "./RandomNumberGenerator";
 import { UseMove } from "./Moves/UseMove";
+import { CalcTypeAdvantage } from "./TypeAdvantage";
 
 const handleAI = (
   player1CurrentPokemon,
@@ -22,32 +23,87 @@ const handleAI = (
   isPoisonBurned,
   checkForStatusEffect
 ) => {
-  let PKMNuser = player2Team[player2CurrentPokemon];
-  let PKMNtarget = player1Team[player1CurrentPokemon];
+  let PKMNuser = null;
+  let PKMNtarget = null;
+  console.log("handleAI mode is: " + mode);
+
+  if (mode === "Single") {
+    PKMNuser = player2Team[player2CurrentPokemon];
+    PKMNtarget = player1Team[player1CurrentPokemon];
+  } else if (mode === "CPUVSCPU") {
+    if (playersTurn === "Player One") {
+      PKMNuser = player1Team[player1CurrentPokemon];
+      PKMNtarget = player2Team[player2CurrentPokemon];
+    } else {
+      PKMNuser = player2Team[player2CurrentPokemon];
+      PKMNtarget = player1Team[player1CurrentPokemon];
+    }
+  }
+
   //get types from target
   let targetType1 = PKMNtarget.types[0][0];
   let targetType2 = null;
   if (PKMNtarget.types[0][1] !== null) {
     targetType2 = PKMNtarget.types[0][1];
   }
+  let moveChosen = null;
+  let num = 0;
+  let chosen4 = false;
+  let random = Math.random();
+  for (let i = 0; i < PKMNuser.moves.length; i++) {
+    let advanNum = CalcTypeAdvantage(
+      PKMNuser.moves[i].type,
+      targetType1,
+      targetType2
+    );
+    console.log(
+      "AI Move: " + PKMNuser.moves[i].name + ", advan calced to " + advanNum
+    );
 
-  //use random move from pokemon
-  let num = Math.round(RandomNumberGenerator(0, 3));
-  console.log("move num chosen is: " + num);
+    if (advanNum === 4) {
+      //double type advan
+      num = i;
+      moveChosen = PKMNuser.moves[i];
+      chosen4 = true;
+    } else if (advanNum === 2 && !chosen4) {
+      //single type advan
+      num = i;
+      moveChosen = PKMNuser.moves[i];
+    }
+  }
+  if (moveChosen === null) {
+    console.log("no type advan, choosing random...");
+
+    let rand = Math.round(RandomNumberGenerator(0, PKMNuser.moves.length - 1));
+    moveChosen = PKMNuser.moves[rand];
+    num = rand;
+  } else {
+    console.log("found type advan, might choose it...");
+    if (random < 0.3) {
+      console.log("choosing random...");
+      let rand = Math.round(
+        RandomNumberGenerator(0, PKMNuser.moves.length - 1)
+      );
+      moveChosen = PKMNuser.moves[rand];
+      num = rand;
+    }
+  }
+
+  //console.log("move num chosen is: " + num);
   if (PKMNuser.hp <= 0) {
     setTimeout(
       () =>
         UseMove(
           num,
-          PKMNuser.moves[num].name,
-          PKMNuser.moves[num].category,
-          PKMNuser.moves[num].type,
-          PKMNuser.moves[num].power,
-          PKMNuser.moves[num].pp,
-          PKMNuser.moves[num].accuracy,
-          PKMNuser.moves[num].statusEff,
-          PKMNuser.moves[num].statusProb,
-          PKMNuser.moves[num].sound,
+          moveChosen.name,
+          moveChosen.category,
+          moveChosen.type,
+          moveChosen.power,
+          moveChosen.pp,
+          moveChosen.accuracy,
+          moveChosen.statusEff,
+          moveChosen.statusProb,
+          moveChosen.sound,
           PKMNuser.lv,
           player1CurrentPokemon,
           player2CurrentPokemon,
@@ -73,15 +129,15 @@ const handleAI = (
   } else {
     UseMove(
       num,
-      PKMNuser.moves[num].name,
-      PKMNuser.moves[num].category,
-      PKMNuser.moves[num].type,
-      PKMNuser.moves[num].power,
-      PKMNuser.moves[num].pp,
-      PKMNuser.moves[num].accuracy,
-      PKMNuser.moves[num].statusEff,
-      PKMNuser.moves[num].statusProb,
-      PKMNuser.moves[num].sound,
+      moveChosen.name,
+      moveChosen.category,
+      moveChosen.type,
+      moveChosen.power,
+      moveChosen.pp,
+      moveChosen.accuracy,
+      moveChosen.statusEff,
+      moveChosen.statusProb,
+      moveChosen.sound,
       PKMNuser.lv,
       player1CurrentPokemon,
       player2CurrentPokemon,

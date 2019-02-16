@@ -25,6 +25,7 @@ class BattleStage extends Component {
       playersTurn: "Player One",
       player1Team: [],
       player2Team: [],
+      battleStarted: false,
       displayItems: false,
       displayMoves: false,
       displayTeam: false,
@@ -72,11 +73,6 @@ class BattleStage extends Component {
     this.resetMultipliers = this.resetMultipliers.bind(this);
   }
 
-  componentDidMount() {
-    $(document.querySelector(".message")).fadeOut(10);
-    $(document.querySelector(".playermessage")).fadeOut(10);
-  }
-
   componentWillReceiveProps(props) {
     this.setState({
       player1Team: props.player1Team,
@@ -84,9 +80,98 @@ class BattleStage extends Component {
     });
   }
 
-  handleForceUpdate() {
-    console.log("updating...");
+  startBattle = () => {
+    setTimeout(
+      () =>
+        DisplayMessage(
+          this.props.playerOneName +
+            " was challenged by " +
+            this.props.playerTwoName +
+            "!"
+        ),
+      1000
+    );
 
+    setTimeout(
+      () =>
+        DisplayMessage(
+          this.props.playerTwoName +
+            " sent out " +
+            this.state.player2Team[0].name +
+            "!"
+        ),
+      3000
+    );
+    let cry1 = null;
+    let cry2 = null;
+    setTimeout(
+      () => $(document.querySelector(".player2Sprite")).removeClass("hideMe"),
+      4000
+    );
+    cry1 = new Audio(this.state.player2Team[0].cry);
+    setTimeout(() => cry1.play(), 4500);
+
+    if (this.props.mode === "Single") {
+      setTimeout(
+        () => DisplayMessage("Go " + this.state.player1Team[0].name + "!"),
+        5500
+      );
+    } else {
+      setTimeout(
+        () =>
+          DisplayMessage(
+            this.props.playerOneName +
+              " sent out " +
+              this.state.player1Team[0].name +
+              "!"
+          ),
+        5500
+      );
+    }
+
+    setTimeout(
+      () => $(document.querySelector(".player1Sprite")).removeClass("hideMe"),
+      6500
+    );
+    cry2 = new Audio(this.state.player1Team[0].cry);
+    setTimeout(() => cry2.play(), 7000);
+
+    if (this.props.mode === "CPUVSCPU") {
+      setTimeout(
+        () =>
+          handleAI(
+            this.state.player1CurrentPokemon,
+            this.state.player2CurrentPokemon,
+            this.state.playersTurn,
+            this.handleMoves,
+            this.handlePoisonBurn,
+            this.dealPoisonBurn,
+            this.switchTurns,
+            this.handleForceUpdate,
+            this.state.player1Team,
+            this.state.player2Team,
+            this.props.playerOneName,
+            this.props.playerTwoName,
+            this.resetMultipliers,
+            this.handleTeam,
+            this.props.handleFainted,
+            this.props.mode,
+            this.state.isPoisonBurned,
+            this.checkForStatusEffect
+          ),
+        8000
+      );
+    } else {
+      setTimeout(
+        () => $(document.querySelector(".options")).removeClass("hideMe"),
+        8000
+      );
+    }
+
+    this.state.battleStarted = true;
+  };
+
+  handleForceUpdate() {
     this.forceUpdate();
   }
 
@@ -193,6 +278,7 @@ class BattleStage extends Component {
       ) {
         //dont switch turns
       } else {
+        console.log("pokemon just fainted from attack hit, switch");
         this.switchTurns();
       }
 
@@ -206,7 +292,7 @@ class BattleStage extends Component {
         $(document.querySelector(".fightButton")).hide(500);
         $(document.querySelector(".pkmnButton")).hide(500);
         $(document.querySelector(".itemsButton")).hide(500);
-      } else {
+      } else if (this.props.mode === "Single") {
         if (this.state.playersTurn === "Player One") {
           this.setState({
             displayTeam: !this.state.displayTeam,
@@ -291,8 +377,99 @@ class BattleStage extends Component {
               );
             }
             if (this.state.faintedByRecoilPoisonBurn === true) {
+              console.log("fainted from recoil/poison/burn switching turns");
               setTimeout(() => this.switchTurns(), 4000);
             }
+          }
+        }
+      }
+      if (this.props.mode === "CPUVSCPU") {
+        //AI's turn, only swap if current pokemon fainted
+        let Team = null;
+        let PKMN = null;
+        let HPbar = null;
+        let Sprite = null;
+        let swapPoke = null;
+        let name = null;
+        if (this.state.playersTurn === "Player One") {
+          name = this.props.playerOneName;
+          PKMN = this.state.player1CurrentPokemon;
+          Team = this.state.player1Team;
+          HPbar = $(document.querySelector(".player1HP"));
+          Sprite = $(document.querySelector(".player1Sprite"));
+          swapPoke = this.state.player1CurrentPokemon + 1;
+        } else {
+          name = this.props.playerTwoName;
+          PKMN = this.state.player2CurrentPokemon;
+          Team = this.state.player2Team;
+          HPbar = $(document.querySelector(".player2HP"));
+          Sprite = $(document.querySelector(".player2Sprite"));
+          swapPoke = this.state.player2CurrentPokemon + 1;
+        }
+        if (Team[PKMN].hp <= 0) {
+          //increment current pokemon to send out next one
+          this.resetMultipliers("fainted");
+          //take current pokemon out of battle
+          Team[PKMN].inBattle = false;
+          //place swapped pokemon into battle
+          Team[swapPoke].inBattle = true;
+          //hide sprite
+          Sprite.fadeOut(1000);
+          setTimeout(
+            () => DisplayMessage(name + " withdrew " + Team[PKMN].name),
+            500
+          );
+          setTimeout(
+            () => DisplayMessage("and sent out " + Team[swapPoke].name),
+            2500
+          );
+          let switchSound = new Audio(swapSound);
+          setTimeout(() => switchSound.play(), 1000);
+          //update current pokemon to swapped pokemon
+          setTimeout(() => this.handleSwapPokemon(swapPoke), 2500);
+
+          //play new pokemon's cry
+          let cry = new Audio(Team[swapPoke].cry);
+          setTimeout(cry.play.bind(cry), 3200);
+
+          //fade sprite back in
+          setTimeout(() => Sprite.fadeIn(1000), 3000);
+          // calculate percent difference between current poke and swap pole hp in percentage
+          let asPercentage = Team[swapPoke].hp / Team[swapPoke].OrigHp;
+          //if swapped pokemon has full hp, make bar full
+          if (Team[swapPoke].hp >= Team[swapPoke].OrigHp) {
+            setTimeout(() => HPbar.css("width", "100%"), 2500);
+            setTimeout(() => HPbar.removeClass("halfhp"), 2500);
+            setTimeout(() => HPbar.removeClass("onefifthhp"), 2500);
+            setTimeout(() => HPbar.addClass("fullhp"), 2500);
+          } else {
+            let updatedBarHP = 560 * asPercentage;
+            //update health bar to reflect damage
+            setTimeout(
+              () =>
+                UpdateHP(
+                  HPbar,
+                  updatedBarHP,
+                  swapPoke.name,
+                  0,
+                  this.state.player1Team,
+                  this.state.player2Team,
+                  this.state.player1CurrentPokemon,
+                  this.state.player2CurrentPokemon,
+                  this.state.playersTurn,
+                  this.props.playerOneName,
+                  this.props.playerTwoName,
+                  this.resetMultipliers,
+                  this.handleTeam,
+                  this.handleFainted,
+                  this.props.mode
+                ),
+              2500
+            );
+          }
+          if (this.state.faintedByRecoilPoisonBurn === true) {
+            console.log("fainted from recoil/poison/burn switching turns");
+            setTimeout(() => this.switchTurns(), 4000);
           }
         }
       }
@@ -310,8 +487,6 @@ class BattleStage extends Component {
   //HANDLE SWAP POKEMON ////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////
   handleSwapPokemon(swapPoke) {
-    console.log("changing current pokemon", swapPoke);
-
     if (this.state.playersTurn === "Player One") {
       this.setState({ player1CurrentPokemon: swapPoke });
     } else {
@@ -418,7 +593,6 @@ class BattleStage extends Component {
   //SWITCH TURNS FUNCTION ////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////
   switchTurns = () => {
-    console.log("switching turns...");
     //reset faintedByRecoilPoisonBurn
     this.handleFaintedByRecoilPoisonBurn(false);
     this.handlePoisonBurn(false);
@@ -431,7 +605,7 @@ class BattleStage extends Component {
         this.setState({ playersTurn: "Player One" });
       }
       setTimeout(() => $(document.querySelector(".options")).fadeIn(300), 500);
-    } else {
+    } else if (this.props.mode === "Single") {
       //mode is single
       if (this.state.playersTurn === "Player One") {
         console.log("switching to AI's turn...");
@@ -496,6 +670,116 @@ class BattleStage extends Component {
           500
         );
       }
+    } else if (this.props.mode === "CPUVSCPU") {
+      if (this.state.playersTurn === "Player One") {
+        this.setState({ playersTurn: "Player Two" });
+        this.handleForceUpdate();
+        if (this.state.player2Team[this.state.player2CurrentPokemon].hp <= 0) {
+          setTimeout(
+            () =>
+              handleAI(
+                this.state.player1CurrentPokemon,
+                this.state.player2CurrentPokemon,
+                this.state.playersTurn,
+                this.handleMoves,
+                this.handlePoisonBurn,
+                this.dealPoisonBurn,
+                this.switchTurns,
+                this.handleForceUpdate,
+                this.state.player1Team,
+                this.state.player2Team,
+                this.props.playerOneName,
+                this.props.playerTwoName,
+                this.resetMultipliers,
+                this.handleTeam,
+                this.props.handleFainted,
+                this.props.mode,
+                this.state.isPoisonBurned,
+                this.checkForStatusEffect
+              ),
+            4500
+          );
+        } else {
+          setTimeout(
+            () =>
+              handleAI(
+                this.state.player1CurrentPokemon,
+                this.state.player2CurrentPokemon,
+                this.state.playersTurn,
+                this.handleMoves,
+                this.handlePoisonBurn,
+                this.dealPoisonBurn,
+                this.switchTurns,
+                this.handleForceUpdate,
+                this.state.player1Team,
+                this.state.player2Team,
+                this.props.playerOneName,
+                this.props.playerTwoName,
+                this.resetMultipliers,
+                this.handleTeam,
+                this.props.handleFainted,
+                this.props.mode,
+                this.state.isPoisonBurned,
+                this.checkForStatusEffect
+              ),
+            500
+          );
+        }
+      } else {
+        this.setState({ playersTurn: "Player One" });
+        this.handleForceUpdate();
+        if (this.state.player1Team[this.state.player1CurrentPokemon].hp <= 0) {
+          setTimeout(
+            () =>
+              handleAI(
+                this.state.player1CurrentPokemon,
+                this.state.player2CurrentPokemon,
+                this.state.playersTurn,
+                this.handleMoves,
+                this.handlePoisonBurn,
+                this.dealPoisonBurn,
+                this.switchTurns,
+                this.handleForceUpdate,
+                this.state.player1Team,
+                this.state.player2Team,
+                this.props.playerOneName,
+                this.props.playerTwoName,
+                this.resetMultipliers,
+                this.handleTeam,
+                this.props.handleFainted,
+                this.props.mode,
+                this.state.isPoisonBurned,
+                this.checkForStatusEffect
+              ),
+            4500
+          );
+        } else {
+          setTimeout(
+            () =>
+              handleAI(
+                this.state.player1CurrentPokemon,
+                this.state.player2CurrentPokemon,
+                this.state.playersTurn,
+                this.handleMoves,
+                this.handlePoisonBurn,
+                this.dealPoisonBurn,
+                this.switchTurns,
+                this.handleForceUpdate,
+                this.state.player1Team,
+                this.state.player2Team,
+                this.props.playerOneName,
+                this.props.playerTwoName,
+                this.resetMultipliers,
+                this.handleTeam,
+                this.props.handleFainted,
+                this.props.mode,
+                this.state.isPoisonBurned,
+                this.checkForStatusEffect
+              ),
+            500
+          );
+        }
+      }
     }
   };
 
@@ -515,7 +799,7 @@ class BattleStage extends Component {
     recoverDamage,
     isUserPoisonedOrBurned
   ) => {
-    console.log("checking for status effect...", "mode is: " + this.props.mode);
+    console.log("checking for status effect...");
     let atkMultiplierUp = 0;
     let atkMultiplierDown = 0;
     let defMultiplierUp = 0;
@@ -1279,6 +1563,10 @@ class BattleStage extends Component {
       } else {
         player = this.props.playerTwoName;
       }
+      if (!this.state.battleStarted) {
+        this.startBattle();
+      }
+
       return (
         <div className="battleWindow">
           <div className="battleContainer container">
@@ -1329,7 +1617,7 @@ class BattleStage extends Component {
               </p>
               <div className="spriteContainer">
                 <img
-                  className="sprite player2Sprite"
+                  className="sprite player2Sprite hideMe"
                   src={
                     this.state.player2Team[this.state.player2CurrentPokemon]
                       .frontSprite
@@ -1387,7 +1675,7 @@ class BattleStage extends Component {
               </p>
               <div className="spriteContainer">
                 <img
-                  className="sprite player1Sprite"
+                  className="sprite player1Sprite hideMe"
                   src={
                     this.state.player1Team[this.state.player1CurrentPokemon]
                       .backSprite
@@ -1406,7 +1694,7 @@ class BattleStage extends Component {
           </div>
           <div className="battleInputs container">
             <div>{player}'s Turn</div>
-            <div className="options row">
+            <div className="options row hideMe">
               <button
                 type="button"
                 className="btn btn-light fightButton"

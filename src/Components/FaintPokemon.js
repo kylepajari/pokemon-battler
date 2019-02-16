@@ -50,9 +50,11 @@ const FaintPokemon = (
     }
   }
   console.log("running fainted function...");
-  //play fainted sound
+  //play fainted sound/cry
+  let cry = new Audio(Team[PKMN].cry);
+  cry.play();
   let faint = new Audio(FaintSound);
-  faint.play();
+  setTimeout(() => faint.play(), 1000);
 
   //set fainted property to true on pokemon
   Team[PKMN].fainted = true;
@@ -86,7 +88,7 @@ const FaintPokemon = (
       );
       //display list of available pokemon that are not inbattle/fainted
       setTimeout(() => handleTeam("fainted"), 3000);
-    } else {
+    } else if (mode === "Single") {
       //if in single mode, only show message for player one
       if (
         PlayersTurn === "Player One" &&
@@ -98,6 +100,8 @@ const FaintPokemon = (
         );
       }
       //display list of available pokemon that are not inbattle/fainted
+      setTimeout(() => handleTeam("fainted"), 3000);
+    } else if (mode === "CPUVSCPU") {
       setTimeout(() => handleTeam("fainted"), 3000);
     }
   } else {

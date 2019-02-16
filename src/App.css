@@ -72,3 +72,11 @@
 .muted {
   opacity: 0.6;
 }
+
+.hideMe {
+  opacity: 0;
+}
+
+.deRender {
+  display: none;
+}

@@ -102,10 +102,10 @@ const DealDamage = (
   let CriticalHit = 1;
   //critical hit 'P' probability is 'baseSpeed / 512'
   let threshold = Math.random();
-  let P = Math.round((SPD * 100) / 512);
-  console.log(P, threshold);
-
-  if (P <= threshold) {
+  // let P = Math.round((SPD * 100) / 512);
+  // console.log(P, threshold);
+  //6.25% chance of critical hit
+  if (threshold <= 0.0625) {
     CriticalHit = 2;
     critMessage = "Critical Hit!";
   }
@@ -137,26 +137,30 @@ const DealDamage = (
 
   //update target pokemon hp after damage dealt
   PKMNtarget.hp = PKMNtarget.hp - Damage;
-  if (PKMNtarget.hp < 0) {
+  if (PKMNtarget.hp < 1) {
     PKMNtarget.hp = 0;
   }
 
   let dmgDone = Math.round(origHealth * asPercentage);
   let updatedBarHP = origHealth - dmgDone;
+  if (updatedBarHP < 1) {
+    updatedBarHP = 0;
+  }
 
   //if move does not do any damage, do not flash sprite
   if (Damage !== 0) {
     //play hit sound
     Hit.play();
+    //flash sprite
+    TargetSprite.fadeOut(100);
+    TargetSprite.fadeIn(300);
+    TargetSprite.fadeOut(100);
+    TargetSprite.fadeIn(300);
+    TargetSprite.fadeOut(100);
+    TargetSprite.fadeIn(300);
+
     //update health bar to reflect damage
     if (effectiveMessage === "" && critMessage === "") {
-      //flash sprite
-      TargetSprite.fadeOut(100);
-      TargetSprite.fadeIn(300);
-      TargetSprite.fadeOut(100);
-      TargetSprite.fadeIn(300);
-      TargetSprite.fadeOut(100);
-      TargetSprite.fadeIn(300);
       setTimeout(() => handleForceUpdate(), 1500);
       setTimeout(
         () =>
@@ -179,15 +183,8 @@ const DealDamage = (
           ),
         1500
       );
-    } else {
-      //flash sprite
-      TargetSprite.fadeOut(100);
-      TargetSprite.fadeIn(300);
-      TargetSprite.fadeOut(100);
-      TargetSprite.fadeIn(300);
-      TargetSprite.fadeOut(100);
-      TargetSprite.fadeIn(300);
-      setTimeout(() => handleForceUpdate(), 2500);
+    } else if (critMessage !== "" && effectiveMessage === "") {
+      setTimeout(() => handleForceUpdate(), 1500);
       setTimeout(
         () =>
           UpdateHP(
@@ -207,10 +204,58 @@ const DealDamage = (
             handleFainted,
             mode
           ),
-        2500
+        1500
       );
-      setTimeout(() => DisplayMessage(critMessage), 1500);
-      setTimeout(() => DisplayMessage(effectiveMessage), 2500);
+      setTimeout(() => DisplayMessage(critMessage), 3000);
+    } else if (critMessage === "" && effectiveMessage !== "") {
+      setTimeout(() => handleForceUpdate(), 1500);
+      setTimeout(
+        () =>
+          UpdateHP(
+            TargetHP,
+            updatedBarHP,
+            PKMNtarget.name,
+            power,
+            player1Team,
+            player2Team,
+            player1CurrentPokemon,
+            player2CurrentPokemon,
+            playersTurn,
+            playerOneName,
+            playerTwoName,
+            resetMultipliers,
+            handleTeam,
+            handleFainted,
+            mode
+          ),
+        1500
+      );
+      setTimeout(() => DisplayMessage(effectiveMessage), 3000);
+    } else if (critMessage !== "" && effectiveMessage !== "") {
+      setTimeout(() => handleForceUpdate(), 1500);
+      setTimeout(
+        () =>
+          UpdateHP(
+            TargetHP,
+            updatedBarHP,
+            PKMNtarget.name,
+            power,
+            player1Team,
+            player2Team,
+            player1CurrentPokemon,
+            player2CurrentPokemon,
+            playersTurn,
+            playerOneName,
+            playerTwoName,
+            resetMultipliers,
+            handleTeam,
+            handleFainted,
+            mode
+          ),
+        1500
+      );
+      setTimeout(() => DisplayMessage(critMessage), 3500);
+      setTimeout(() => DisplayMessage(effectiveMessage), 5000);
     }
   } else {
     //damage was calced to 0
@@ -265,9 +310,9 @@ const DealDamage = (
       if (isPoisonBurned) {
         console.log(PKMNuser.name + " is poisoned/burned");
         if (effectiveMessage === "" && critMessage === "") {
-          setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 3500);
+          setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 2500);
         } else {
-          setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 4500);
+          setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 4000);
         }
       }
       // } else {
@@ -278,16 +323,16 @@ const DealDamage = (
       if (isPoisonBurned) {
         console.log(PKMNuser.name + " is poisoned/burned");
         if (effectiveMessage === "" && critMessage === "") {
-          setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 3500);
+          setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 2500);
         } else {
-          setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 4500);
+          setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 4000);
         }
       } else {
         //no effect from move, switch turns
         if (effectiveMessage === "" && critMessage === "") {
-          setTimeout(() => switchTurns(), 3500);
+          setTimeout(() => switchTurns(), 2500);
         } else {
-          setTimeout(() => switchTurns(), 4500);
+          setTimeout(() => switchTurns(), 4000);
         }
       }
     }

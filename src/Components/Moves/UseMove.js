@@ -5,6 +5,7 @@ import Confused from "../../Sounds/BattleSounds/General/CONFUSED.wav";
 import ConfusedHitSelf from "../../Sounds/BattleSounds/General/ConfusedHitSelf.wav";
 import Sleeping from "../../Sounds/BattleSounds/General/Sleeping.wav";
 import $ from "jquery";
+import { Transform } from "stream";
 
 const UseMove = (
   index,
@@ -71,23 +72,17 @@ const UseMove = (
     //hide move list/ options
     if (mode === "Multi") {
       handleMoves();
-    } else {
+      //subtract 1 pp from move used
+      PKMNuser.moves[index].pp -= 1;
+    } else if (mode === "Single") {
       //mode is single, only show moves for player
       if (PlayersTurn === "Player One") {
         handleMoves();
-      }
-    }
-
-    options.hide(500);
-    if (mode === "Multi") {
-      //subtract 1 pp from move used
-      PKMNuser.moves[index].pp -= 1;
-    } else {
-      if (PlayersTurn === "Player One") {
         //subtract 1 pp from move used
         PKMNuser.moves[index].pp -= 1;
       }
     }
+    options.hide(500);
 
     let isUserPoisonedOrBurned = false;
     //check if user is poisoned or burned, set up for hp loss
@@ -208,8 +203,7 @@ const UseMove = (
             let updatedBarHP = origHealth - dmgDone;
 
             setTimeout(
-              () =>
-                DisplayMessage(PKMNuser.name + " hurt itself in confusion!"),
+              () => DisplayMessage("It hurt itself in confusion!"),
               1500
             );
 
@@ -262,11 +256,30 @@ const UseMove = (
         console.log(PKMNuser.name + " used " + moveName);
         if (PKMNuser.isConfused) {
           setTimeout(
-            () => DisplayMessage(PKMNuser.name + " used " + moveName),
+            () => DisplayMessage(PKMNuser.name + " used " + moveName + "!"),
             1500
           );
         } else {
-          DisplayMessage(PKMNuser.name + " used " + moveName);
+          DisplayMessage(PKMNuser.name + " used " + moveName + "!");
+        }
+        if (PlayersTurn === "Player One" && power > 0) {
+          setTimeout(
+            () =>
+              Sprite.animate({ marginLeft: "+=25" }, 50, function() {
+                //animation complete
+                Sprite.animate({ marginLeft: "-=25" });
+              }),
+            1400
+          );
+        } else if (PlayersTurn === "Player Two" && power > 0) {
+          setTimeout(
+            () =>
+              Sprite.animate({ marginLeft: "-=25" }, 50, function() {
+                //animation complete
+                Sprite.animate({ marginLeft: "+=25" });
+              }),
+            1400
+          );
         }
 
         //play move sound
@@ -388,7 +401,7 @@ const UseMove = (
       ) {
         console.log(PKMNuser.name + " used " + moveName);
         setTimeout(
-          () => DisplayMessage(PKMNuser.name + " used " + moveName),
+          () => DisplayMessage(PKMNuser.name + " used " + moveName + "!"),
           2000
         );
         //play move sound
