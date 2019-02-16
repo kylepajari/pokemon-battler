@@ -4,16 +4,16 @@ self.__precacheManifest = [
     "url": "/pokemon-battler/static/media/Detect.e615c8a6.wav"
   },
   {
-    "revision": "bdd73552cbf1488fe1cd",
-    "url": "/pokemon-battler/static/css/main.e22cf228.chunk.css"
+    "revision": "c6ce49b173940bba0f69",
+    "url": "/pokemon-battler/static/css/main.0eb4369c.chunk.css"
   },
   {
     "revision": "de20ffb61759ca92878b995bd1ed6eb9",
     "url": "/pokemon-battler/static/media/rockicon.de20ffb6.png"
   },
   {
-    "revision": "70a988de30674592ced2",
-    "url": "/pokemon-battler/static/js/1.70a988de.chunk.js"
+    "revision": "0d2e7dba62b63d5a781b",
+    "url": "/pokemon-battler/static/js/1.0d2e7dba.chunk.js"
   },
   {
     "revision": "3ea546017eb653ef3879",
@@ -24,12 +24,12 @@ self.__precacheManifest = [
     "url": "/pokemon-battler/static/media/pokeball.f7375521.png"
   },
   {
-    "revision": "1552bf9646da5d4caa4e54b2dbeaf72c",
-    "url": "/pokemon-battler/static/media/victory.1552bf96.mp3"
-  },
-  {
     "revision": "2a53a7299c7e817ab03209e4591e1693",
     "url": "/pokemon-battler/static/media/SWITCHIN.2a53a729.wav"
+  },
+  {
+    "revision": "1552bf9646da5d4caa4e54b2dbeaf72c",
+    "url": "/pokemon-battler/static/media/victory.1552bf96.mp3"
   },
   {
     "revision": "b9e149cb442d97743425ab67c2833db3",
@@ -864,8 +864,8 @@ self.__precacheManifest = [
     "url": "/pokemon-battler/static/media/IcyWind.7749740f.wav"
   },
   {
-    "revision": "bdd73552cbf1488fe1cd",
-    "url": "/pokemon-battler/static/js/main.bdd73552.chunk.js"
+    "revision": "c6ce49b173940bba0f69",
+    "url": "/pokemon-battler/static/js/main.c6ce49b1.chunk.js"
   },
   {
     "revision": "2de796223fbbdfb5199c426e8c03c4bd",
@@ -1724,11 +1724,11 @@ self.__precacheManifest = [
     "url": "/pokemon-battler/static/media/physicicon.1ce7dca6.png"
   },
   {
-    "revision": "70a988de30674592ced2",
-    "url": "/pokemon-battler/static/css/1.9d9df78b.chunk.css"
+    "revision": "0d2e7dba62b63d5a781b",
+    "url": "/pokemon-battler/static/css/1.a8331561.chunk.css"
   },
   {
-    "revision": "1d8852a9f4bd7b46bad89882fe7b97e1",
+    "revision": "7e2fa97dc06e2e707130493d417b67ae",
     "url": "/pokemon-battler/index.html"
   }
 ];
