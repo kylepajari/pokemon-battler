@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/pokemon-battler/precache-manifest.69a2994c3031e352670000ea247b30f1.js"
+  "/pokemon-battler/precache-manifest.df00389fc8eb33b36708b296bcdcff28.js"
 );
 
 workbox.clientsClaim();
