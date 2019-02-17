@@ -3650,7 +3650,7 @@ const CreateMoves = moveName => {
       power: 0,
       type: "fire",
       accuracy: 85,
-      pp: 5,
+      pp: 35, //5
       statusEff: "Burn",
       statusProb: 1,
       sound: null

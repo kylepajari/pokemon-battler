@@ -8,7 +8,6 @@
 }
 
 .team1 {
-  text-decoration: underline;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
@@ -18,11 +17,18 @@
     "box-3 box-4"
     "box-5 box-6";
 }
+.team > .header {
+  text-decoration: underline;
+  margin-bottom: 0;
+}
+
+.team > div > p {
+  font-size: 10px;
+}
 .battleStage {
   width: 100%;
 }
 .team2 {
-  text-decoration: underline;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
@@ -33,8 +39,8 @@
     "box-5 box-6";
 }
 div > img {
-  height: 75px;
-  width: 75px;
+  height: 70px;
+  width: 70px;
 }
 .header {
   grid-area: header;
@@ -69,7 +75,7 @@ div > img {
   align-items: center;
   justify-content: baseline;
   width: 100%;
-  height: 55%;
+  height: 45%;
   margin: 8px;
 }
 
@@ -116,6 +122,12 @@ div > img {
 }
 
 .modalSprite {
-  height: 220px;
-  width: 220px;
+  height: 200px;
+  width: 200px;
+}
+
+.modalStats > div > ul {
+  text-align: left;
+  list-style-type: none;
+  margin-left: 25%;
 }

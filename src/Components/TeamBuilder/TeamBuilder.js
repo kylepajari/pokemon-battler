@@ -23,6 +23,12 @@ class TeamBuilder extends Component {
       currentPokemonHeight: 0,
       currentPokemonWeight: 0,
       currentPokemonId: 0,
+      currentPokemonAtk: 0,
+      currentPokemonDef: 0,
+      currentPokemonHP: 0,
+      currentPokemonSpd: 0,
+      currentPokemonSpcAtk: 0,
+      currentPokemonSpcDef: 0,
       sprite: null,
       isOpen: false, //to keep track of whether pokemon dropdown is open
       isTeamOpen: false, //to keep track of whether team size dropdown is open
@@ -330,13 +336,44 @@ class TeamBuilder extends Component {
   };
 
   fillmodalPokeInfo = () => {
+    let level = this.state.globalLevel;
     this.setState({
       currentPokemonName: this.state.currentPokemon.name,
       currentPokemonSprite: this.state.currentPokemon.sprites.front_default,
       currentPokemonTypes: this.state.currentPokemon.types,
       currentPokemonHeight: this.state.currentPokemon.height,
       currentPokemonWeight: this.state.currentPokemon.weight,
-      currentPokemonId: this.state.currentPokemon.id
+      currentPokemonId: this.state.currentPokemon.id,
+      currentPokemonHP: this.calcStats(
+        "hp",
+        this.state.currentPokemon.stats[5].base_stat,
+        level
+      ),
+      currentPokemonAtk: this.calcStats(
+        "attack",
+        this.state.currentPokemon.stats[4].base_stat,
+        level
+      ),
+      currentPokemonDef: this.calcStats(
+        "defense",
+        this.state.currentPokemon.stats[3].base_stat,
+        level
+      ),
+      currentPokemonSpd: this.calcStats(
+        "speed",
+        this.state.currentPokemon.stats[0].base_stat,
+        level
+      ),
+      currentPokemonSpcAtk: this.calcStats(
+        "specialattack",
+        this.state.currentPokemon.stats[2].base_stat,
+        level
+      ),
+      currentPokemonSpcDef: this.calcStats(
+        "specialdefense",
+        this.state.currentPokemon.stats[1].base_stat,
+        level
+      )
     });
   };
 
@@ -698,7 +735,7 @@ class TeamBuilder extends Component {
           </div>
         </div>
         <div className="pokemonSheetContainer deRender">
-          <div>{playerName}: Select a Pokemon</div>
+          <div>{playerName} - Select a Pokemon:</div>
           <div className="pokemonSheet">
             {this.props.allData.results.map((item, i) => {
               return (
@@ -721,6 +758,7 @@ class TeamBuilder extends Component {
             <div className="modal-content">
               <div className="modal-header">
                 <h4 className="modal-title">
+                  #{this.state.currentPokemonId}:{" "}
                   {this.Capitalize(this.state.currentPokemonName)}
                 </h4>
               </div>
@@ -731,15 +769,32 @@ class TeamBuilder extends Component {
                   className="modalSprite"
                 />
                 <div>{this.Types(this.state.currentPokemonTypes)}</div>
-                <div>
-                  Height:{" "}
-                  {Math.round((this.state.currentPokemonHeight / 10) * 3.281)}{" "}
-                  ft
-                </div>
-                <div>
-                  Weight:{" "}
-                  {Math.round((this.state.currentPokemonWeight / 10) * 2.205)}{" "}
-                  lbs
+                <br />
+                <div className="modalStats">
+                  <div>
+                    <ul>
+                      <li>
+                        Height:{" "}
+                        {Math.round(
+                          (this.state.currentPokemonHeight / 10) * 3.281
+                        )}{" "}
+                        ft
+                      </li>
+                      <li>
+                        Weight:{" "}
+                        {Math.round(
+                          (this.state.currentPokemonWeight / 10) * 2.205
+                        )}{" "}
+                        lbs
+                      </li>
+                      <li>HP: {this.state.currentPokemonHP}</li>
+                      <li>ATK: {this.state.currentPokemonAtk}</li>
+                      <li>DEF: {this.state.currentPokemonDef}</li>
+                      <li>SPD: {this.state.currentPokemonSpd}</li>
+                      <li>SPC ATK: {this.state.currentPokemonSpcAtk}</li>
+                      <li>SPC DEF: {this.state.currentPokemonSpcDef}</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
               <div className="modal-footer">
@@ -784,7 +839,7 @@ class TeamBuilder extends Component {
           />
         </div>
         <div className="teamsContainer container-fluid row">
-          <div className="team1 col">
+          <div className="team team1 col">
             <p className="header">{this.state.playerOneName}:</p>
             {this.state.player1Team.map((pokemon, i) => {
               return (
@@ -797,6 +852,7 @@ class TeamBuilder extends Component {
                   key={i}
                 >
                   <img src={pokemon.frontSprite} alt={pokemon.name} />
+                  <p>{pokemon.name}</p>
                 </div>
               );
             })}
@@ -813,7 +869,7 @@ class TeamBuilder extends Component {
             playerTwoName={this.state.playerTwoName}
             mode={this.state.mode}
           />
-          <div className="team2 col">
+          <div className="team team2 col">
             <p className="header">{this.state.playerTwoName}:</p>
             {this.state.player2Team.map((pokemon, i) => {
               return (
@@ -826,6 +882,7 @@ class TeamBuilder extends Component {
                   key={i}
                 >
                   <img src={pokemon.frontSprite} alt={pokemon.name} />
+                  <p>{pokemon.name}</p>
                 </div>
               );
             })}

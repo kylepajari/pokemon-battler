@@ -19,10 +19,10 @@ class Items extends Component {
     this.state = {
       player1Items: [
         {
-          name: "Super Potion",
+          name: "Max Potion",
           sprite: potion,
-          effect: "Heals 50 HP",
-          count: this.props.player1Team.length
+          effect: "Heals All HP",
+          count: 1
         },
         {
           name: "Antidote",
@@ -57,10 +57,10 @@ class Items extends Component {
       ],
       player2Items: [
         {
-          name: "Super Potion",
+          name: "Max Potion",
           sprite: potion,
-          effect: "Heals 50 HP",
-          count: this.props.player1Team.length
+          effect: "Heals All HP",
+          count: 1
         },
         {
           name: "Antidote",
@@ -209,8 +209,8 @@ class Items extends Component {
     }
 
     //check if user trying to heal with potion
-    if (name === "Super Potion") {
-      healAmount = 50;
+    if (name === "Max Potion") {
+      healAmount = 999;
       //if user is at full health, deny usage
       if (PKMNuser.hp === PKMNuser.OrigHp) {
         this.itemDoesNotApply();
@@ -266,13 +266,14 @@ class Items extends Component {
                   onClick={() => this.useItem(item.name, i)}
                   key={item.name}
                 >
-                  <p className="smallText">{item.name}</p>
                   <img
                     className="itemSprite"
                     src={item.sprite}
                     alt={item.name}
                     key={i}
                   />
+                  <p className="smallText">{item.name}</p>
+                  &nbsp; &nbsp; &nbsp;
                   <p className="smallText">{item.count}</p>
                 </div>
               );
