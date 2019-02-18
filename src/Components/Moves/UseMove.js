@@ -63,6 +63,9 @@ const UseMove = (
     targetType2 = PKMNtarget.types[0][1];
   }
 
+  //play move sound
+  attack = new Audio(moveSound);
+
   //does move have PP remaining?
   if (pp === 0) {
     //out of pp for move
@@ -282,49 +285,45 @@ const UseMove = (
           );
         }
 
-        //play move sound
-        attack = new Audio(moveSound);
         //if so, does move land hit (accuracy check)
         //formula: percentChance = moveAcc * (attacker accuracy / target evasion)
         let percentChance =
           (moveAcc * (PKMNuser.accuracy / PKMNtarget.evasion)) / 100;
         let rand = Math.random();
-
+        if (PKMNuser.isConfused) {
+          setTimeout(() => attack.play(), 3000);
+        } else {
+          setTimeout(() => attack.play(), 1500);
+        }
         if (rand > percentChance) {
           console.log(PKMNuser.name + "'s attack Missed!");
           if (PKMNuser.isConfused) {
             setTimeout(
               () => DisplayMessage(PKMNuser.name + "'s attack Missed!"),
-              3500
+              4500
             );
           } else {
             setTimeout(
               () => DisplayMessage(PKMNuser.name + "'s attack Missed!"),
-              2000
+              3000
             );
           }
 
           if (isUserPoisonedOrBurned) {
             console.log(PKMNuser.name + " is poisoned/burned");
             if (PKMNuser.isConfused) {
-              setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 5500);
+              setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 6500);
             } else {
-              setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 4000);
+              setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 5000);
             }
           } else {
             if (PKMNuser.isConfused) {
-              setTimeout(() => switchTurns(), 5500);
+              setTimeout(() => switchTurns(), 6500);
             } else {
-              setTimeout(() => switchTurns(), 4000);
+              setTimeout(() => switchTurns(), 5000);
             }
           }
         } else {
-          if (PKMNuser.isConfused) {
-            setTimeout(() => attack.play(), 3000);
-          } else {
-            setTimeout(() => attack.play(), 1500);
-          }
-
           //does move have power, if so deal damage
           if (power > 0) {
             //if move lands, continue with deal damage
@@ -350,7 +349,7 @@ const UseMove = (
                   handleFainted,
                   handleForceUpdate,
                   checkForStatusEffect,
-                  isPoisonBurned,
+                  isUserPoisonedOrBurned,
                   dealPoisonBurn,
                   switchTurns,
                   mode
@@ -451,9 +450,10 @@ const UseMove = (
                   handleFainted,
                   handleForceUpdate,
                   checkForStatusEffect,
-                  isPoisonBurned,
+                  isUserPoisonedOrBurned,
                   dealPoisonBurn,
-                  switchTurns
+                  switchTurns,
+                  mode
                 ),
               5500
             );

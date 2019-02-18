@@ -2115,9 +2115,9 @@ const CreateMoves = moveName => {
       category: "physical",
       power: 0,
       type: "normal",
-      accuracy: 100,
+      accuracy: 999,
       pp: 10,
-      statusEff: "",
+      statusEff: "Transform",
       statusProb: 1,
       sound: Transform
     };

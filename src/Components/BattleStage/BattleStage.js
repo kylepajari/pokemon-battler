@@ -836,6 +836,61 @@ class BattleStage extends Component {
     }
     console.log("move has status effect: " + statusEff);
 
+    //TRANSFORM/////////////////////////////////////////////////////////////////////////////
+    //if effect is Transform, apply moveset/details of target to user
+    if (statusEff === "Transform") {
+      //get properties of target
+      let frontSpriteTarget = PKMNtarget.frontSprite;
+      let backSpriteTarget = PKMNtarget.backSprite;
+      let attackTarget = PKMNtarget.attack;
+      let defenseTarget = PKMNtarget.defense;
+      let speedTarget = PKMNtarget.speed;
+      let specialattackTarget = PKMNtarget.specialattack;
+      let specialdefenseTarget = PKMNtarget.specialdefense;
+      let typesTarget = PKMNtarget.types.map(type => {
+        return type;
+      });
+      let movesTarget = PKMNtarget.moves.map(move => {
+        return move;
+      });
+
+      PKMNuser.frontSprite = frontSpriteTarget;
+      PKMNuser.backSprite = backSpriteTarget;
+      PKMNuser.attack = attackTarget;
+      PKMNuser.defense = defenseTarget;
+      PKMNuser.speed = speedTarget;
+      PKMNuser.specialattack = specialattackTarget;
+      PKMNuser.specialdefense = specialdefenseTarget;
+      PKMNuser.types = typesTarget;
+      PKMNuser.moves = movesTarget;
+      PKMNuser.isTransformed = true;
+
+      //tint sprites to be purple
+      if (this.state.playersTurn === "Player One") {
+        $(document.querySelector(".player1Sprite")).fadeOut(500);
+        setTimeout(
+          () => $(document.querySelector(".player1Sprite")).fadeIn(500),
+          2000
+        );
+      } else {
+        $(document.querySelector(".player2Sprite")).fadeOut(500);
+        setTimeout(
+          () => $(document.querySelector(".player2Sprite")).fadeIn(500),
+          2000
+        );
+      }
+
+      setTimeout(() => this.forceUpdate(), 2000);
+
+      setTimeout(
+        () =>
+          DisplayMessage(
+            PKMNuser.name + " transformed into " + PKMNtarget.name + "!"
+          ),
+        2000
+      );
+    }
+
     //CONFUSION USER/////////////////////////////////////////////////////////////////////////////
     //if condition is ConfusionUser, only apply if user is not already confused
     if (statusEff === "ConfusionUser") {
@@ -1617,7 +1672,12 @@ class BattleStage extends Component {
               </p>
               <div className="spriteContainer">
                 <img
-                  className="sprite player2Sprite hideMe"
+                  className={`${
+                    this.state.player2Team[this.state.player2CurrentPokemon]
+                      .isTransformed
+                      ? `sprite player2Sprite transformed`
+                      : `sprite player2Sprite`
+                  }`}
                   src={
                     this.state.player2Team[this.state.player2CurrentPokemon]
                       .frontSprite
@@ -1675,7 +1735,12 @@ class BattleStage extends Component {
               </p>
               <div className="spriteContainer">
                 <img
-                  className="sprite player1Sprite hideMe"
+                  className={`${
+                    this.state.player1Team[this.state.player1CurrentPokemon]
+                      .isTransformed
+                      ? `sprite player1Sprite transformed`
+                      : `sprite player1Sprite`
+                  }`}
                   src={
                     this.state.player1Team[this.state.player1CurrentPokemon]
                       .backSprite
