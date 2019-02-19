@@ -313,8 +313,8 @@ const DealDamage = (
         );
       }
 
-      if (isPoisonBurned) {
-        console.log(PKMNuser.name + " is poisoned/burned");
+      if (isPoisonBurned || PKMNuser.isBound) {
+        console.log(PKMNuser.name + " is poisoned/burned/bound");
         if (effectiveMessage === "" && critMessage === "") {
           setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 2500);
         } else {
@@ -326,8 +326,8 @@ const DealDamage = (
       //   setTimeout(() => switchTurns(), 2500);
       // }
     } else {
-      if (isPoisonBurned) {
-        console.log(PKMNuser.name + " is poisoned/burned");
+      if (isPoisonBurned || PKMNuser.isBound) {
+        console.log(PKMNuser.name + " is poisoned/burned/bound");
         if (effectiveMessage === "" && critMessage === "") {
           setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 2500);
         } else {

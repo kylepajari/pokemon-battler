@@ -271,24 +271,50 @@ class TeamBuilder extends Component {
         physical.push(move);
       }
     });
-    // console.log("Number of Physical Moves: " + physical.length);
-    // console.log("Number of Special Moves: " + special.length);
+    console.log("Number of Physical Moves: " + physical.length);
+    console.log("Number of Special Moves: " + special.length);
 
     //finally, go through physical, special, and status moves, and create final move list
     let finalMoves = [];
 
     //if pokemon has more than 4 moves available
     if (physical.length + special.length + status.length > 4) {
-      // console.log("pokemon has more than 4 moves, distributing...");
+      console.log("pokemon has more than 4 moves, distributing...");
 
+      for (let i = 0; i < 1; i++) {
+        // if (physical.length > 2) {
+        //   let randomMove =
+        //     physical[Math.floor(Math.random() * physical.length)];
+
+        //   if (i === 0) {
+        //     console.log(randomMove.name + " was chosen as FIRST MOVE");
+        //   } else {
+        //     console.log(randomMove.name + " was chosen as SECOND MOVE");
+        //   }
+
+        //   finalMoves.push(randomMove);
+        // } else {
+        //   //has 2 or less physical moves, add them
+        //   finalMoves.concat(physical);
+        // }
+        let randomMove = physical[Math.floor(Math.random() * physical.length)];
+        console.log(randomMove.name + " was chosen as FIRST MOVE");
+        finalMoves.push(randomMove);
+      }
       for (let i = 0; i < 2; i++) {
-        if (physical.length > 2) {
-          let randomMove =
-            physical[Math.floor(Math.random() * physical.length)];
+        if (special.length > 2) {
+          //on second move
+          let randomMove = special[Math.floor(Math.random() * special.length)];
+          if (i === 1) {
+            do {
+              randomMove = special[Math.floor(Math.random() * special.length)];
+            } while (finalMoves[1].name === randomMove.name);
+          }
+
           if (i === 0) {
-            // console.log(randomMove.name + " was chosen as FIRST MOVE");
+            console.log(randomMove.name + " was chosen as SECOND MOVE");
           } else {
-            // console.log(randomMove.name + " was chosen as SECOND MOVE");
+            console.log(randomMove.name + " was chosen as THIRD MOVE");
           }
 
           finalMoves.push(randomMove);
@@ -298,13 +324,8 @@ class TeamBuilder extends Component {
         }
       }
       for (let i = 0; i < 1; i++) {
-        let randomMove = special[Math.floor(Math.random() * special.length)];
-        // console.log(randomMove.name + " was chosen as THIRD MOVE");
-        finalMoves.push(randomMove);
-      }
-      for (let i = 0; i < 1; i++) {
         let randomMove = status[Math.floor(Math.random() * status.length)];
-        // console.log(randomMove.name + " was chosen FORTH MOVE");
+        console.log(randomMove.name + " was chosen FORTH MOVE");
         finalMoves.push(randomMove);
       }
     } else {
@@ -463,6 +484,7 @@ class TeamBuilder extends Component {
       isConfused: false,
       isAsleep: false,
       isBound: false,
+      turnsBound: 0,
       statusCondition: "",
       turnsAsleep: 0,
       turnsConfused: 0,

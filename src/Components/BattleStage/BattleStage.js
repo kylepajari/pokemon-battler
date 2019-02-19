@@ -554,7 +554,7 @@ class BattleStage extends Component {
     if (damage < 1) {
       damage = 1;
     }
-    console.log("poison/burn damage: " + damage);
+    console.log("poison/burn/bound damage: " + damage);
 
     //store original bar percent
     let origHealth = 0;
@@ -580,6 +580,11 @@ class BattleStage extends Component {
     } else if (PKMNuser.statusCondition === "Burn") {
       setTimeout(
         () => DisplayMessage(PKMNuser.name + " was hurt by Burn!"),
+        500
+      );
+    } else if (PKMNuser.isBound) {
+      setTimeout(
+        () => DisplayMessage(PKMNuser.name + " was hurt by Wrap!"),
         500
       );
     }
@@ -968,6 +973,28 @@ class BattleStage extends Component {
             2000
           );
         }
+      }
+    }
+
+    //BOUND/////////////////////////////////////////////////////////////
+    if (statusEff === "Bound") {
+      if (!PKMNtarget.isBound) {
+        PKMNtarget.isBound = true;
+        PKMNtarget.turnsBound = Math.round(RandomNumberGenerator(2, 5));
+        console.log(
+          PKMNuser.name +
+            " will be bound for " +
+            PKMNtarget.turnsBound +
+            "turns"
+        );
+
+        setTimeout(
+          () =>
+            DisplayMessage(
+              PKMNtarget.name + " was wrapped by " + moveName + "!"
+            ),
+          2000
+        );
       }
     }
 
@@ -1617,6 +1644,9 @@ class BattleStage extends Component {
       //if user is poisonedburned, delay switching turns
       if (isUserPoisonedOrBurned === true) {
         console.log(PKMNuser.name + " is poisoned/burned");
+        setTimeout(() => this.dealPoisonBurn(PKMNuser, HPbar), 4000);
+      } else if (PKMNuser.isBound) {
+        console.log(PKMNuser.name + " is bound");
         setTimeout(() => this.dealPoisonBurn(PKMNuser, HPbar), 4000);
       } else {
         setTimeout(() => this.switchTurns(), 4000);

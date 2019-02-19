@@ -83,6 +83,7 @@ class Team extends Component {
 
     //play new pokemon's cry
     let cry = new Audio(Team[swapPoke].cry);
+    cry.volume = this.props.volume;
     setTimeout(cry.play.bind(cry), 3200);
 
     //fade sprite back in
