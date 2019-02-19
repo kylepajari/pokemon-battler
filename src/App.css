@@ -56,23 +56,6 @@
   filter: brightness(10%);
 }
 
-.volume {
-  position: absolute;
-  margin-left: 70vw;
-  margin-top: -15px;
-  height: 30px;
-  width: 30px;
-}
-
-.volume:hover {
-  height: 35px;
-  width: 35px;
-}
-
-.muted {
-  opacity: 0.6;
-}
-
 .hideMe {
   opacity: 0;
 }

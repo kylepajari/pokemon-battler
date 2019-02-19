@@ -10,53 +10,20 @@ class Music extends Component {
     super(props);
 
     this.state = {
-      volume: 0,
-      battle: Sound.status.PLAYING,
-      victory: Sound.status.STOPPED
+      volume: 50
     };
   }
 
-  toggleSound = () => {
-    if (this.state.volume === 0) {
-      this.setState({
-        volume: 50
-      });
-    } else {
-      this.setState({
-        volume: 0
-      });
+  componentWillReceiveProps(props) {
+    if (props.volume === 0) {
+      this.setState({ volume: 0 });
+    } else if (props.volume === 0.5) {
+      this.setState({ volume: 50 });
     }
-  };
+  }
 
   render() {
-    return (
-      <div className="MusicPlayer">
-        <Sound
-          url={BattleTheme}
-          loop={true}
-          autoLoad={true}
-          autoPlay={true}
-          volume={this.state.volume}
-          playStatus={this.state.battle}
-        />
-        <Sound
-          url={Victory}
-          loop={false}
-          autoLoad={false}
-          autoPlay={false}
-          volume={this.state.volume}
-          playStatus={this.state.victory}
-        />
-        <img
-          className={`"volume" ${
-            this.state.volume === 0 ? "volume muted" : "volume"
-          }`}
-          src={volumeIcon}
-          alt="SOUND"
-          onClick={() => this.toggleSound()}
-        />
-      </div>
-    );
+    return null;
   }
 }
 

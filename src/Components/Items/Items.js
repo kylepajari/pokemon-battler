@@ -139,6 +139,7 @@ class Items extends Component {
     }
     //play heal sound
     let heal = new Audio(healSound);
+    heal.volume = this.props.volume;
     heal.play();
 
     setTimeout(
@@ -158,7 +159,8 @@ class Items extends Component {
           this.props.resetMultipliers,
           this.props.handleTeam,
           this.props.handleFainted,
-          this.props.mode
+          this.props.mode,
+          this.props.volume
         ),
       300
     );
@@ -183,6 +185,7 @@ class Items extends Component {
     );
     //play heal sound
     let heal = new Audio(healSound);
+    heal.volume = this.props.volume;
     heal.play();
     //remove status condition
     setTimeout(() => (PKMNuser.statusCondition = ""), 500);

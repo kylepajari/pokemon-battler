@@ -30,9 +30,10 @@ const DealDamage = (
   isPoisonBurned,
   dealPoisonBurn,
   switchTurns,
-  mode
+  mode,
+  Volume
 ) => {
-  console.log("dealing damage...");
+  console.log("dealing damage...volume is " + Volume);
   let PKMNuser = "";
   let PKMNtarget = "";
   let UserHP = "";
@@ -96,6 +97,7 @@ const DealDamage = (
   } else {
     Hit = new Audio(HitSound);
   }
+  Hit.volume = Volume;
 
   //calc Critical hit
   let critMessage = "";
@@ -179,7 +181,8 @@ const DealDamage = (
             resetMultipliers,
             handleTeam,
             handleFainted,
-            mode
+            mode,
+            Volume
           ),
         1500
       );
@@ -202,7 +205,8 @@ const DealDamage = (
             resetMultipliers,
             handleTeam,
             handleFainted,
-            mode
+            mode,
+            Volume
           ),
         1500
       );
@@ -226,7 +230,8 @@ const DealDamage = (
             resetMultipliers,
             handleTeam,
             handleFainted,
-            mode
+            mode,
+            Volume
           ),
         1500
       );
@@ -250,7 +255,8 @@ const DealDamage = (
             resetMultipliers,
             handleTeam,
             handleFainted,
-            mode
+            mode,
+            Volume
           ),
         1500
       );

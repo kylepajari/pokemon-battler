@@ -69,7 +69,8 @@ class Moves extends Component {
                     this.props.handleFainted,
                     this.props.mode,
                     this.props.isPoisonBurned,
-                    this.props.checkForStatusEffect
+                    this.props.checkForStatusEffect,
+                    this.props.volume
                   )
                 }
               >

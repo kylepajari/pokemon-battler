@@ -24,7 +24,7 @@
   width: 100%;
 }
 
-.side > p > img {
+.pokeball-team {
   height: 16px;
   width: 16px;
 }
@@ -115,4 +115,21 @@
 
 .transformed {
   filter: sepia(100%) contrast(60%) saturate(500%) hue-rotate(220deg);
+}
+
+.volume {
+  position: absolute;
+  margin-left: 99%;
+  margin-top: -3%;
+  height: 25px;
+  width: 25px;
+}
+
+.volume:hover {
+  height: 30px;
+  width: 30px;
+}
+
+.muted {
+  opacity: 0.6;
 }

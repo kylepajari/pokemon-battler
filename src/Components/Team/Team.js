@@ -76,6 +76,7 @@ class Team extends Component {
       2500
     );
     let switchSound = new Audio(swapSound);
+    switchSound.volume = this.props.volume;
     setTimeout(() => switchSound.play(), 1000);
     //update current pokemon to swapped pokemon
     setTimeout(() => this.props.handleSwapPokemon(swapPoke), 2500);
@@ -118,7 +119,8 @@ class Team extends Component {
             this.props.resetMultipliers,
             this.props.handleTeam,
             this.props.handleFainted,
-            this.props.mode
+            this.props.mode,
+            this.props.volume
           ),
         2500
       );

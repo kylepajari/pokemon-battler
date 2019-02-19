@@ -5577,7 +5577,7 @@ const CreateMoves = moveName => {
       pp: 10,
       statusEff: "recoverDamage",
       statusProb: 1,
-      sound: null
+      sound: MegaDrain
     };
   }
   if (moveName === "Vacuum Wave") {

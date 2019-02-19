@@ -16,12 +16,14 @@ import swapSound from "../../Sounds/BattleSounds/General/SWITCHIN.wav";
 import statRise from "../../Sounds/BattleSounds/General/STATRISE.wav";
 import statLower from "../../Sounds/BattleSounds/General/STATLOWER.wav";
 import recoverSound from "../../Sounds/BattleSounds/General/RECOVER.wav";
+import volumeIcon from "../../volume.png";
 
 class BattleStage extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      volume: 0.5,
       playersTurn: "Player One",
       player1Team: [],
       player2Team: [],
@@ -71,6 +73,7 @@ class BattleStage extends Component {
     this.handleForceUpdate = this.handleForceUpdate.bind(this);
     this.dealPoisonBurn = this.dealPoisonBurn.bind(this);
     this.resetMultipliers = this.resetMultipliers.bind(this);
+    this.handleVolume = this.handleVolume.bind(this);
   }
 
   componentWillReceiveProps(props) {
@@ -81,6 +84,7 @@ class BattleStage extends Component {
   }
 
   startBattle = () => {
+    this.props.handleBattlePlaying();
     setTimeout(
       () =>
         DisplayMessage(
@@ -157,7 +161,8 @@ class BattleStage extends Component {
             this.props.handleFainted,
             this.props.mode,
             this.state.isPoisonBurned,
-            this.checkForStatusEffect
+            this.checkForStatusEffect,
+            this.state.volume
           ),
         8000
       );
@@ -169,6 +174,20 @@ class BattleStage extends Component {
     }
 
     this.state.battleStarted = true;
+  };
+
+  handleVolume = () => {
+    console.log("toggling sound");
+
+    if (this.state.volume === 0) {
+      console.log("unmuting");
+      this.setState({ volume: 0.5 });
+      this.props.handleBattleVol();
+    } else {
+      console.log("muting");
+      this.setState({ volume: 0 });
+      this.props.handleBattleVol();
+    }
   };
 
   handleForceUpdate() {
@@ -278,7 +297,6 @@ class BattleStage extends Component {
       ) {
         //dont switch turns
       } else {
-        console.log("pokemon just fainted from attack hit, switch");
         this.switchTurns();
       }
 
@@ -332,12 +350,14 @@ class BattleStage extends Component {
               2500
             );
             let switchSound = new Audio(swapSound);
+            switchSound.volume = this.state.volume;
             setTimeout(() => switchSound.play(), 1000);
             //update current pokemon to swapped pokemon
             setTimeout(() => this.handleSwapPokemon(swapPoke), 2500);
 
             //play new pokemon's cry
             let cry = new Audio(Team[swapPoke].cry);
+            cry.volume = this.state.volume;
             setTimeout(cry.play.bind(cry), 3200);
 
             //fade sprite back in
@@ -424,12 +444,14 @@ class BattleStage extends Component {
             2500
           );
           let switchSound = new Audio(swapSound);
+          switchSound.volume = this.state.volume;
           setTimeout(() => switchSound.play(), 1000);
           //update current pokemon to swapped pokemon
           setTimeout(() => this.handleSwapPokemon(swapPoke), 2500);
 
           //play new pokemon's cry
           let cry = new Audio(Team[swapPoke].cry);
+          cry.volume = this.state.volume;
           setTimeout(cry.play.bind(cry), 3200);
 
           //fade sprite back in
@@ -577,6 +599,8 @@ class BattleStage extends Component {
           this.state.player1CurrentPokemon,
           this.state.player2CurrentPokemon,
           this.state.playersTurn,
+          this.props.playerOneName,
+          this.props.playerTwoName,
           this.resetMultipliers,
           this.handleTeam,
           this.props.handleFainted,
@@ -633,7 +657,8 @@ class BattleStage extends Component {
                 this.props.handleFainted,
                 this.props.mode,
                 this.state.isPoisonBurned,
-                this.checkForStatusEffect
+                this.checkForStatusEffect,
+                this.state.volume
               ),
             4500
           );
@@ -658,7 +683,8 @@ class BattleStage extends Component {
                 this.props.handleFainted,
                 this.props.mode,
                 this.state.isPoisonBurned,
-                this.checkForStatusEffect
+                this.checkForStatusEffect,
+                this.state.volume
               ),
             500
           );
@@ -695,7 +721,8 @@ class BattleStage extends Component {
                 this.props.handleFainted,
                 this.props.mode,
                 this.state.isPoisonBurned,
-                this.checkForStatusEffect
+                this.checkForStatusEffect,
+                this.state.volume
               ),
             4500
           );
@@ -720,7 +747,8 @@ class BattleStage extends Component {
                 this.props.handleFainted,
                 this.props.mode,
                 this.state.isPoisonBurned,
-                this.checkForStatusEffect
+                this.checkForStatusEffect,
+                this.state.volume
               ),
             500
           );
@@ -749,7 +777,8 @@ class BattleStage extends Component {
                 this.props.handleFainted,
                 this.props.mode,
                 this.state.isPoisonBurned,
-                this.checkForStatusEffect
+                this.checkForStatusEffect,
+                this.state.volume
               ),
             4500
           );
@@ -774,7 +803,8 @@ class BattleStage extends Component {
                 this.props.handleFainted,
                 this.props.mode,
                 this.state.isPoisonBurned,
-                this.checkForStatusEffect
+                this.checkForStatusEffect,
+                this.state.volume
               ),
             500
           );
@@ -799,7 +829,7 @@ class BattleStage extends Component {
     recoverDamage,
     isUserPoisonedOrBurned
   ) => {
-    console.log("checking for status effect...");
+    console.log("checking for status effect...volume is " + this.state.volume);
     let atkMultiplierUp = 0;
     let atkMultiplierDown = 0;
     let defMultiplierUp = 0;
@@ -984,7 +1014,8 @@ class BattleStage extends Component {
             this.resetMultipliers,
             this.handleTeam,
             this.props.handleFainted,
-            this.props.mode
+            this.props.mode,
+            this.state.volume
           ),
         2000
       );
@@ -1037,11 +1068,13 @@ class BattleStage extends Component {
             this.resetMultipliers,
             this.handleTeam,
             this.props.handleFainted,
-            this.props.mode
+            this.props.mode,
+            this.state.volume
           ),
         2000
       );
       let recover = new Audio(recoverSound);
+      recover.volume = this.state.volume;
       setTimeout(() => recover.play(), 2000);
       setTimeout(() => DisplayMessage(PKMNuser.name + " recovered HP!"), 2000);
     }
@@ -1085,11 +1118,13 @@ class BattleStage extends Component {
             this.resetMultipliers,
             this.handleTeam,
             this.props.handleFainted,
-            this.props.mode
+            this.props.mode,
+            this.state.volume
           ),
         2000
       );
       let recover = new Audio(recoverSound);
+      recover.volume = this.state.volume;
       setTimeout(() => recover.play(), 2000);
       setTimeout(() => DisplayMessage(PKMNuser.name + " recovered HP!"), 2000);
     }
@@ -1277,7 +1312,9 @@ class BattleStage extends Component {
     // lowersTargetAtk, lowersTargetDef,lowersTargetSpd,lowersTargetSpcAtk,lowersTargetSpcDef,lowersTargetAcc,lowersTargetEva
     //RAISES USER////////////////////////////////////////////////////////////
     let statUpSound = new Audio(statRise);
+    statUpSound.volume = this.state.volume;
     let statDownSound = new Audio(statLower);
+    statDownSound.volume = this.state.volume;
     if (statusEff === "raisesUserAtk") {
       PKMNuser.attack = PKMNuser.OrigAttack * atkMultiplierUp;
 
@@ -1629,7 +1666,13 @@ class BattleStage extends Component {
               <p className="row">
                 {this.state.player2Team.map((item, i) => {
                   return (
-                    <img id={"p2" + i} key={i} src={pokeball} alt="pokeball" />
+                    <img
+                      className="pokeball-team"
+                      id={"p2" + i}
+                      key={i}
+                      src={pokeball}
+                      alt="pokeball"
+                    />
                   );
                 })}
 
@@ -1647,6 +1690,14 @@ class BattleStage extends Component {
                   this.state.player2Team[this.state.player2CurrentPokemon]
                     .isConfused
                 )}
+                <img
+                  className={` ${
+                    this.state.volume === 0 ? "volume muted" : "volume"
+                  }`}
+                  src={volumeIcon}
+                  alt="SOUND"
+                  onClick={() => this.handleVolume()}
+                />
               </p>
 
               <div className="progress">
@@ -1693,7 +1744,13 @@ class BattleStage extends Component {
               <p className="row">
                 {this.state.player1Team.map((item, i) => {
                   return (
-                    <img id={"p1" + i} key={i} src={pokeball} alt="pokeball" />
+                    <img
+                      className="pokeball-team"
+                      id={"p1" + i}
+                      key={i}
+                      src={pokeball}
+                      alt="pokeball"
+                    />
                   );
                 })}
                 {this.state.player1Team[this.state.player1CurrentPokemon].name}
@@ -1798,6 +1855,7 @@ class BattleStage extends Component {
               playerOneName={this.props.playerOneName}
               playerTwoName={this.props.playerTwoName}
               mode={this.props.mode}
+              volume={this.state.volume}
             />
             <Items
               displayItems={this.state.displayItems}
@@ -1817,6 +1875,7 @@ class BattleStage extends Component {
               playerOneName={this.props.playerOneName}
               playerTwoName={this.props.playerTwoName}
               mode={this.props.mode}
+              volume={this.state.volume}
             />
             <Moves
               displayMoves={this.state.displayMoves}
@@ -1838,6 +1897,7 @@ class BattleStage extends Component {
               playerOneName={this.props.playerOneName}
               playerTwoName={this.props.playerTwoName}
               mode={this.props.mode}
+              volume={this.state.volume}
             />
           </div>
         </div>

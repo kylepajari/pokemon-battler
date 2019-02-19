@@ -21,7 +21,8 @@ const handleAI = (
   handleFainted,
   mode,
   isPoisonBurned,
-  checkForStatusEffect
+  checkForStatusEffect,
+  volume
 ) => {
   let PKMNuser = null;
   let PKMNtarget = null;
@@ -122,7 +123,8 @@ const handleAI = (
           handleFainted,
           mode,
           isPoisonBurned,
-          checkForStatusEffect
+          checkForStatusEffect,
+          volume
         ),
       4500
     );
@@ -156,7 +158,8 @@ const handleAI = (
       handleFainted,
       mode,
       isPoisonBurned,
-      checkForStatusEffect
+      checkForStatusEffect,
+      volume
     );
   }
 };

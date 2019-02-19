@@ -36,9 +36,10 @@ const UseMove = (
   handleFainted,
   mode,
   isPoisonBurned,
-  checkForStatusEffect
+  checkForStatusEffect,
+  Volume
 ) => {
-  console.log("using move...");
+  console.log("using move...volume is " + Volume);
   let options = $(document.querySelector(".options"));
   let PKMNuser = null;
   let PKMNtarget = null;
@@ -65,6 +66,7 @@ const UseMove = (
 
   //play move sound
   attack = new Audio(moveSound);
+  attack.volume = Volume;
 
   //does move have PP remaining?
   if (pp === 0) {
@@ -113,6 +115,7 @@ const UseMove = (
       );
       DisplayMessage(PKMNuser.name + " is fast asleep... ");
       let sleepingSound = new Audio(Sleeping);
+      sleepingSound.volume = Volume;
       sleepingSound.play();
       if (isUserPoisonedOrBurned) {
         console.log(PKMNuser.name + " is poisoned/burned");
@@ -176,6 +179,7 @@ const UseMove = (
           console.log(PKMNuser.name + " is confused...");
           DisplayMessage(PKMNuser.name + " is confused...");
           let confusedSound = new Audio(Confused);
+          confusedSound.volume = Volume;
           confusedSound.play();
 
           let rand = Math.random();
@@ -215,6 +219,7 @@ const UseMove = (
             setTimeout(() => Sprite.fadeIn(300), 1600);
             //play hurt itself clip
             let hit = new Audio(ConfusedHitSelf);
+            hit.volume = Volume;
             setTimeout(() => hit.play(), 1500);
             //update health bar to reflect damage
             setTimeout(
@@ -234,7 +239,8 @@ const UseMove = (
                   resetMultipliers,
                   handleTeam,
                   handleFainted,
-                  mode
+                  mode,
+                  Volume
                 ),
               2500
             );
@@ -352,7 +358,8 @@ const UseMove = (
                   isUserPoisonedOrBurned,
                   dealPoisonBurn,
                   switchTurns,
-                  mode
+                  mode,
+                  Volume
                 ),
               3500
             );
@@ -405,6 +412,7 @@ const UseMove = (
         );
         //play move sound
         attack = new Audio(moveSound);
+        attack.volume = Volume;
         //if so, does move land hit (accuracy check)
         //formula: percentChance = moveAcc * (attacker accuracy / target evasion)
         let percentChance =
@@ -453,7 +461,8 @@ const UseMove = (
                   isUserPoisonedOrBurned,
                   dealPoisonBurn,
                   switchTurns,
-                  mode
+                  mode,
+                  Volume
                 ),
               5500
             );

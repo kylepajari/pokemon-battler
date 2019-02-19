@@ -14,7 +14,8 @@ const FaintPokemon = (
   resetMultipliers,
   handleTeam,
   handleFainted,
-  mode
+  mode,
+  Volume
 ) => {
   let Sprite = null;
   let Pokeball = null;
@@ -50,10 +51,14 @@ const FaintPokemon = (
     }
   }
   console.log("running fainted function...");
+  console.log("fainted function volume is" + Volume);
+
   //play fainted sound/cry
   let cry = new Audio(Team[PKMN].cry);
+  cry.volume = Volume;
   cry.play();
   let faint = new Audio(FaintSound);
+  faint.volume = Volume;
   setTimeout(() => faint.play(), 1000);
 
   //set fainted property to true on pokemon
@@ -80,7 +85,6 @@ const FaintPokemon = (
     //increase currentPokemon number for team to send out next in party
     //reset stat modifiers to defaults, for new pokemon
     resetMultipliers("fainted");
-    console.log(mode);
     if (mode === "Multi") {
       setTimeout(
         () => DisplayMessage("Select which Pokémon to send out..."),
@@ -114,7 +118,8 @@ const FaintPokemon = (
     $(document.querySelector(".options")).hide(500);
     //play victory music
     let win = new Audio(Victory);
-    setTimeout(win.play(), 3000);
+    win.volume = 1;
+    setTimeout(() => win.play(), 3000);
 
     let faintedCountTeam1 = 0;
     let faintedCountTeam2 = 0;

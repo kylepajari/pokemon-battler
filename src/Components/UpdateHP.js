@@ -17,9 +17,12 @@ const UpdateHP = (
   resetMultipliers,
   handleTeam,
   handleFainted,
-  mode
+  mode,
+  Volume
 ) => {
   console.log("changing HP Bar...", mode);
+  console.log("update HP volume is " + Volume);
+
   value = parseInt(value);
   HPbar.css("width", value);
   if (value >= 0 && value <= 104) {
@@ -27,6 +30,7 @@ const UpdateHP = (
     HPbar.removeClass("halfhp");
     HPbar.addClass("onefifthhp");
     let boop = new Audio(lowhealth);
+    boop.volume = Volume;
     boop.play();
   } else if (value > 104 && value <= 280) {
     HPbar.removeClass("fullhp");
@@ -58,7 +62,8 @@ const UpdateHP = (
           resetMultipliers,
           handleTeam,
           handleFainted,
-          mode
+          mode,
+          Volume
         ),
       2000
     );

@@ -588,7 +588,6 @@ class TeamBuilder extends Component {
   ////////////////////////////////////////////////////////////////////////////////////////////////
   Types = array => {
     var typesList = array.map((item, i) => {
-      console.log(item);
       return MatchIconWithType(item.type.name);
     });
     return <span>{typesList}</span>;
@@ -869,6 +868,9 @@ class TeamBuilder extends Component {
             playerOneName={this.state.playerOneName}
             playerTwoName={this.state.playerTwoName}
             mode={this.state.mode}
+            volume={this.props.volume}
+            handleBattleVol={this.props.handleBattleVol}
+            handleBattlePlaying={this.props.handleBattlePlaying}
           />
           <div className="team team2 col">
             <p className="header">{this.state.playerTwoName}:</p>
