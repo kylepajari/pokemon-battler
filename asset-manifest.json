@@ -1,7 +1,7 @@
 {
   "main.css": "/pokemon-battler/static/css/main.40e7650f.chunk.css",
-  "main.js": "/pokemon-battler/static/js/main.0aeb498b.chunk.js",
-  "main.js.map": "/pokemon-battler/static/js/main.0aeb498b.chunk.js.map",
+  "main.js": "/pokemon-battler/static/js/main.6e3021b0.chunk.js",
+  "main.js.map": "/pokemon-battler/static/js/main.6e3021b0.chunk.js.map",
   "static/css/1.a8331561.chunk.css": "/pokemon-battler/static/css/1.a8331561.chunk.css",
   "static/js/1.f1249e72.chunk.js": "/pokemon-battler/static/js/1.f1249e72.chunk.js",
   "static/js/1.f1249e72.chunk.js.map": "/pokemon-battler/static/js/1.f1249e72.chunk.js.map",
@@ -437,6 +437,6 @@
   "static/css/1.a8331561.chunk.css.map": "/pokemon-battler/static/css/1.a8331561.chunk.css.map",
   "static/css/main.40e7650f.chunk.css.map": "/pokemon-battler/static/css/main.40e7650f.chunk.css.map",
   "index.html": "/pokemon-battler/index.html",
-  "precache-manifest.6c817078c88d7cd9e7d311b1faa92688.js": "/pokemon-battler/precache-manifest.6c817078c88d7cd9e7d311b1faa92688.js",
+  "precache-manifest.194f7990f011a088ec398c8c48551423.js": "/pokemon-battler/precache-manifest.194f7990f011a088ec398c8c48551423.js",
   "service-worker.js": "/pokemon-battler/service-worker.js"
 }

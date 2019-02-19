@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/pokemon-battler/static/media/IcyWind.7749740f.wav"
   },
   {
-    "revision": "0aeb498b5acddfb80537",
+    "revision": "6e3021b0c92d65ba4649",
     "url": "/pokemon-battler/static/css/main.40e7650f.chunk.css"
   },
   {
@@ -864,8 +864,8 @@ self.__precacheManifest = [
     "url": "/pokemon-battler/static/media/PerishSong.a8f6b9c5.wav"
   },
   {
-    "revision": "0aeb498b5acddfb80537",
-    "url": "/pokemon-battler/static/js/main.0aeb498b.chunk.js"
+    "revision": "6e3021b0c92d65ba4649",
+    "url": "/pokemon-battler/static/js/main.6e3021b0.chunk.js"
   },
   {
     "revision": "e615c8a62e761c1ed706fd90d4417c43",
@@ -1728,7 +1728,7 @@ self.__precacheManifest = [
     "url": "/pokemon-battler/static/css/1.a8331561.chunk.css"
   },
   {
-    "revision": "438baa96e00920891c20048d7cd1641c",
+    "revision": "dd6697048b186c0ef646ec7c83c4af4a",
     "url": "/pokemon-battler/index.html"
   }
 ];
