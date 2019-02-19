@@ -14,7 +14,7 @@ class App extends Component {
 
     this.state = {
       allData: null,
-      battleVol: 50,
+      battleVol: 30,
       battlePlaying: Sound.status.STOPPED
     };
 
@@ -31,10 +31,10 @@ class App extends Component {
   }
 
   handleBattleVol = () => {
-    if (this.state.battleVol === 50) {
+    if (this.state.battleVol === 30) {
       this.setState({ battleVol: 0 });
     } else {
-      this.setState({ battleVol: 50 });
+      this.setState({ battleVol: 30 });
     }
   };
 

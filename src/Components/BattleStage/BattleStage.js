@@ -23,7 +23,7 @@ class BattleStage extends Component {
     super(props);
 
     this.state = {
-      volume: 0.5,
+      volume: 0.7,
       playersTurn: "Player One",
       player1Team: [],
       player2Team: [],
@@ -181,7 +181,7 @@ class BattleStage extends Component {
 
     if (this.state.volume === 0) {
       console.log("unmuting");
-      this.setState({ volume: 0.5 });
+      this.setState({ volume: 0.7 });
       this.props.handleBattleVol();
     } else {
       console.log("muting");
@@ -391,7 +391,8 @@ class BattleStage extends Component {
                     this.resetMultipliers,
                     this.handleTeam,
                     this.handleFainted,
-                    this.props.mode
+                    this.props.mode,
+                    this.state.volume
                   ),
                 2500
               );
@@ -484,7 +485,8 @@ class BattleStage extends Component {
                   this.resetMultipliers,
                   this.handleTeam,
                   this.handleFainted,
-                  this.props.mode
+                  this.props.mode,
+                  this.state.volume
                 ),
               2500
             );
@@ -604,7 +606,8 @@ class BattleStage extends Component {
           this.resetMultipliers,
           this.handleTeam,
           this.props.handleFainted,
-          this.props.mode
+          this.props.mode,
+          this.state.volume
         ),
       500
     );
