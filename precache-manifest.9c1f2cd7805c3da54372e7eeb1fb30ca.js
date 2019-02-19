@@ -1,19 +1,19 @@
 self.__precacheManifest = [
   {
-    "revision": "e615c8a62e761c1ed706fd90d4417c43",
-    "url": "/pokemon-battler/static/media/Detect.e615c8a6.wav"
+    "revision": "7749740f7ef760c462fd0658130074aa",
+    "url": "/pokemon-battler/static/media/IcyWind.7749740f.wav"
   },
   {
-    "revision": "11ef5887b4b4c9ca80eb",
-    "url": "/pokemon-battler/static/css/main.7ccf5e15.chunk.css"
+    "revision": "48cb3e59b6316a73a5f0",
+    "url": "/pokemon-battler/static/css/main.40e7650f.chunk.css"
   },
   {
     "revision": "de20ffb61759ca92878b995bd1ed6eb9",
     "url": "/pokemon-battler/static/media/rockicon.de20ffb6.png"
   },
   {
-    "revision": "0d2e7dba62b63d5a781b",
-    "url": "/pokemon-battler/static/js/1.0d2e7dba.chunk.js"
+    "revision": "f1249e720a8602b83870",
+    "url": "/pokemon-battler/static/js/1.f1249e72.chunk.js"
   },
   {
     "revision": "3ea546017eb653ef3879",
@@ -28,16 +28,20 @@ self.__precacheManifest = [
     "url": "/pokemon-battler/static/media/SWITCHIN.2a53a729.wav"
   },
   {
-    "revision": "1552bf9646da5d4caa4e54b2dbeaf72c",
-    "url": "/pokemon-battler/static/media/victory.1552bf96.mp3"
-  },
-  {
     "revision": "b9e149cb442d97743425ab67c2833db3",
     "url": "/pokemon-battler/static/media/USEITEM.b9e149cb.wav"
   },
   {
     "revision": "4e8e463dca072fba6dfd502c8c26b5ae",
     "url": "/pokemon-battler/static/media/RECOVER.4e8e463d.wav"
+  },
+  {
+    "revision": "10a2da12700909e4ae25f692b3f9ca67",
+    "url": "/pokemon-battler/static/media/MegaDrain.10a2da12.wav"
+  },
+  {
+    "revision": "1552bf9646da5d4caa4e54b2dbeaf72c",
+    "url": "/pokemon-battler/static/media/victory.1552bf96.mp3"
   },
   {
     "revision": "e2037eb4998fd028b8a9671854ee8b74",
@@ -78,6 +82,10 @@ self.__precacheManifest = [
   {
     "revision": "dc677a31f1fb620ad2308a81d9b7cc06",
     "url": "/pokemon-battler/static/media/STATLOWER.dc677a31.wav"
+  },
+  {
+    "revision": "128b63e315fc574fe7a5a74ed81a7802",
+    "url": "/pokemon-battler/static/media/volume.128b63e3.png"
   },
   {
     "revision": "3aa646920905da2e11d928f9059583e3",
@@ -362,10 +370,6 @@ self.__precacheManifest = [
   {
     "revision": "5831194e3b6dd05adfdc6f1585810b32",
     "url": "/pokemon-battler/static/media/Absorb.5831194e.wav"
-  },
-  {
-    "revision": "10a2da12700909e4ae25f692b3f9ca67",
-    "url": "/pokemon-battler/static/media/MegaDrain.10a2da12.wav"
   },
   {
     "revision": "c95f7e5171a066c93c12950f32362eed",
@@ -860,12 +864,12 @@ self.__precacheManifest = [
     "url": "/pokemon-battler/static/media/PerishSong.a8f6b9c5.wav"
   },
   {
-    "revision": "7749740f7ef760c462fd0658130074aa",
-    "url": "/pokemon-battler/static/media/IcyWind.7749740f.wav"
+    "revision": "48cb3e59b6316a73a5f0",
+    "url": "/pokemon-battler/static/js/main.48cb3e59.chunk.js"
   },
   {
-    "revision": "11ef5887b4b4c9ca80eb",
-    "url": "/pokemon-battler/static/js/main.11ef5887.chunk.js"
+    "revision": "e615c8a62e761c1ed706fd90d4417c43",
+    "url": "/pokemon-battler/static/media/Detect.e615c8a6.wav"
   },
   {
     "revision": "2de796223fbbdfb5199c426e8c03c4bd",
@@ -1688,10 +1692,6 @@ self.__precacheManifest = [
     "url": "/pokemon-battler/static/media/battleTheme.533ff0a1.mp3"
   },
   {
-    "revision": "128b63e315fc574fe7a5a74ed81a7802",
-    "url": "/pokemon-battler/static/media/volume.128b63e3.png"
-  },
-  {
     "revision": "81c0aae9bb2eb54bf8fe07e1b68d829e",
     "url": "/pokemon-battler/static/media/PressStart2P-Regular.81c0aae9.ttf"
   },
@@ -1724,11 +1724,11 @@ self.__precacheManifest = [
     "url": "/pokemon-battler/static/media/physicicon.1ce7dca6.png"
   },
   {
-    "revision": "0d2e7dba62b63d5a781b",
+    "revision": "f1249e720a8602b83870",
     "url": "/pokemon-battler/static/css/1.a8331561.chunk.css"
   },
   {
-    "revision": "3aae5434485c042f6c6de48ce08f72e4",
+    "revision": "96338a6084d08aa962eb465e6efd00d0",
     "url": "/pokemon-battler/index.html"
   }
 ];
