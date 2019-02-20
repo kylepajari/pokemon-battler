@@ -118,7 +118,12 @@ const FaintPokemon = (
     $(document.querySelector(".options")).hide(500);
     //play victory music
     let win = new Audio(Victory);
-    win.volume = 1;
+    if (Volume === 0) {
+      win.volume = 0;
+    } else {
+      win.volume = 1;
+    }
+
     setTimeout(() => win.play(), 3000);
 
     let faintedCountTeam1 = 0;
