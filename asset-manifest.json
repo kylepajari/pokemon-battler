@@ -1,7 +1,7 @@
 {
   "main.css": "/pokemon-battler/static/css/main.7e9a8eb7.chunk.css",
-  "main.js": "/pokemon-battler/static/js/main.6dca0a09.chunk.js",
-  "main.js.map": "/pokemon-battler/static/js/main.6dca0a09.chunk.js.map",
+  "main.js": "/pokemon-battler/static/js/main.3bc360d7.chunk.js",
+  "main.js.map": "/pokemon-battler/static/js/main.3bc360d7.chunk.js.map",
   "static/css/1.a8331561.chunk.css": "/pokemon-battler/static/css/1.a8331561.chunk.css",
   "static/js/1.f1249e72.chunk.js": "/pokemon-battler/static/js/1.f1249e72.chunk.js",
   "static/js/1.f1249e72.chunk.js.map": "/pokemon-battler/static/js/1.f1249e72.chunk.js.map",
@@ -434,9 +434,9 @@
   "static/media/iceicon.png": "/pokemon-battler/static/media/iceicon.af25d647.png",
   "static/media/physicicon.png": "/pokemon-battler/static/media/physicicon.1ce7dca6.png",
   "static/media/rockicon.png": "/pokemon-battler/static/media/rockicon.de20ffb6.png",
-  "static/css/main.7e9a8eb7.chunk.css.map": "/pokemon-battler/static/css/main.7e9a8eb7.chunk.css.map",
   "static/css/1.a8331561.chunk.css.map": "/pokemon-battler/static/css/1.a8331561.chunk.css.map",
+  "static/css/main.7e9a8eb7.chunk.css.map": "/pokemon-battler/static/css/main.7e9a8eb7.chunk.css.map",
   "index.html": "/pokemon-battler/index.html",
-  "precache-manifest.0c1863ccb736c4d23f9fe0c37f7bf4fd.js": "/pokemon-battler/precache-manifest.0c1863ccb736c4d23f9fe0c37f7bf4fd.js",
+  "precache-manifest.457d9a82bc00da2a80fffb4bbb92d0fd.js": "/pokemon-battler/precache-manifest.457d9a82bc00da2a80fffb4bbb92d0fd.js",
   "service-worker.js": "/pokemon-battler/service-worker.js"
 }
