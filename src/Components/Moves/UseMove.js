@@ -296,24 +296,48 @@ const UseMove = (
         } else {
           DisplayMessage(PKMNuser.name + " used " + moveName + "!");
         }
-        if (PlayersTurn === "Player One" && power > 0) {
-          setTimeout(
-            () =>
-              Sprite.animate({ marginLeft: "+=25" }, 50, function() {
-                //animation complete
-                Sprite.animate({ marginLeft: "-=25" });
-              }),
-            1400
-          );
-        } else if (PlayersTurn === "Player Two" && power > 0) {
-          setTimeout(
-            () =>
-              Sprite.animate({ marginLeft: "-=25" }, 50, function() {
-                //animation complete
-                Sprite.animate({ marginLeft: "+=25" });
-              }),
-            1400
-          );
+        if (PlayersTurn === "Player One") {
+          if (power > 0) {
+            setTimeout(
+              () =>
+                Sprite.animate({ marginLeft: "+=25" }, 50, function() {
+                  //animation complete
+                  Sprite.animate({ marginLeft: "-=25" });
+                }),
+              1400
+            );
+          } else {
+            //power is 0, animate sprite down
+            setTimeout(
+              () =>
+                Sprite.animate({ marginTop: "+=15" }, 80, function() {
+                  //animation complete
+                  Sprite.animate({ marginTop: "-=15" });
+                }),
+              1400
+            );
+          }
+        } else if (PlayersTurn === "Player Two") {
+          if (power > 0) {
+            setTimeout(
+              () =>
+                Sprite.animate({ marginLeft: "-=25" }, 50, function() {
+                  //animation complete
+                  Sprite.animate({ marginLeft: "+=25" });
+                }),
+              1400
+            );
+          } else {
+            //power is 0, animate sprite down
+            setTimeout(
+              () =>
+                Sprite.animate({ marginTop: "+=15" }, 80, function() {
+                  //animation complete
+                  Sprite.animate({ marginTop: "-=15" });
+                }),
+              1400
+            );
+          }
         }
 
         //if so, does move land hit (accuracy check)
