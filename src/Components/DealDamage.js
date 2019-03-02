@@ -1,5 +1,6 @@
 import $ from "jquery";
 import { UpdateHP } from "./UpdateHP";
+import { FaintPokemon } from "./FaintPokemon";
 import { CalcTypeAdvantage } from "./TypeAdvantage";
 import { RandomNumberGenerator } from "./RandomNumberGenerator";
 import { DisplayMessage } from "./DisplayMessage";
@@ -171,21 +172,32 @@ const DealDamage = (
             updatedBarHP,
             PKMNtarget.name,
             power,
-            player1Team,
-            player2Team,
-            player1CurrentPokemon,
-            player2CurrentPokemon,
-            playersTurn,
-            playerOneName,
-            playerTwoName,
-            resetMultipliers,
-            handleTeam,
-            handleFainted,
             mode,
             Volume
           ),
         1500
       );
+      if (PKMNtarget.hp <= 0) {
+        //pokemon fainted
+        setTimeout(
+          () =>
+            FaintPokemon(
+              player1Team,
+              player2Team,
+              player1CurrentPokemon,
+              player2CurrentPokemon,
+              playersTurn,
+              playerOneName,
+              playerTwoName,
+              resetMultipliers,
+              handleTeam,
+              handleFainted,
+              mode,
+              Volume
+            ),
+          3200
+        );
+      }
     } else if (critMessage !== "" && effectiveMessage === "") {
       setTimeout(
         () =>
@@ -194,23 +206,36 @@ const DealDamage = (
             updatedBarHP,
             PKMNtarget.name,
             power,
-            player1Team,
-            player2Team,
-            player1CurrentPokemon,
-            player2CurrentPokemon,
-            playersTurn,
-            playerOneName,
-            playerTwoName,
-            resetMultipliers,
-            handleTeam,
-            handleFainted,
             mode,
             Volume
           ),
         1500
       );
       setTimeout(() => handleForceUpdate(), 1500);
+
       setTimeout(() => DisplayMessage(critMessage), 3000);
+
+      if (PKMNtarget.hp <= 0) {
+        //pokemon fainted
+        setTimeout(
+          () =>
+            FaintPokemon(
+              player1Team,
+              player2Team,
+              player1CurrentPokemon,
+              player2CurrentPokemon,
+              playersTurn,
+              playerOneName,
+              playerTwoName,
+              resetMultipliers,
+              handleTeam,
+              handleFainted,
+              mode,
+              Volume
+            ),
+          4700
+        );
+      }
     } else if (critMessage === "" && effectiveMessage !== "") {
       setTimeout(
         () =>
@@ -219,25 +244,37 @@ const DealDamage = (
             updatedBarHP,
             PKMNtarget.name,
             power,
-            player1Team,
-            player2Team,
-            player1CurrentPokemon,
-            player2CurrentPokemon,
-            playersTurn,
-            playerOneName,
-            playerTwoName,
-            resetMultipliers,
-            handleTeam,
-            handleFainted,
             mode,
             Volume
           ),
         1500
       );
       setTimeout(() => handleForceUpdate(), 1500);
+
       setTimeout(() => DisplayMessage(effectiveMessage), 3000);
+
+      if (PKMNtarget.hp <= 0) {
+        //pokemon fainted
+        setTimeout(
+          () =>
+            FaintPokemon(
+              player1Team,
+              player2Team,
+              player1CurrentPokemon,
+              player2CurrentPokemon,
+              playersTurn,
+              playerOneName,
+              playerTwoName,
+              resetMultipliers,
+              handleTeam,
+              handleFainted,
+              mode,
+              Volume
+            ),
+          4700
+        );
+      }
     } else if (critMessage !== "" && effectiveMessage !== "") {
-      setTimeout(() => handleForceUpdate(), 1500);
       setTimeout(
         () =>
           UpdateHP(
@@ -245,23 +282,37 @@ const DealDamage = (
             updatedBarHP,
             PKMNtarget.name,
             power,
-            player1Team,
-            player2Team,
-            player1CurrentPokemon,
-            player2CurrentPokemon,
-            playersTurn,
-            playerOneName,
-            playerTwoName,
-            resetMultipliers,
-            handleTeam,
-            handleFainted,
             mode,
             Volume
           ),
         1500
       );
-      setTimeout(() => DisplayMessage(critMessage), 3500);
-      setTimeout(() => DisplayMessage(effectiveMessage), 5000);
+      setTimeout(() => handleForceUpdate(), 1500);
+
+      setTimeout(() => DisplayMessage(critMessage), 3000);
+      setTimeout(() => DisplayMessage(effectiveMessage), 4500);
+
+      if (PKMNtarget.hp <= 0) {
+        //pokemon fainted
+        setTimeout(
+          () =>
+            FaintPokemon(
+              player1Team,
+              player2Team,
+              player1CurrentPokemon,
+              player2CurrentPokemon,
+              playersTurn,
+              playerOneName,
+              playerTwoName,
+              resetMultipliers,
+              handleTeam,
+              handleFainted,
+              mode,
+              Volume
+            ),
+          6200
+        );
+      }
     }
   } else {
     //damage was calced to 0
@@ -275,6 +326,7 @@ const DealDamage = (
     // statusEff === "recoverDamage" ||
     // statusEff === "recoil"
   ) {
+    //If pokemon did not faint from attack
     //Check for and apply status effect after damage only if pokemon is not fainted
     if (statusEff !== "") {
       if (effectiveMessage === "" && critMessage === "") {
@@ -332,9 +384,9 @@ const DealDamage = (
       } else {
         //no effect from move, switch turns
         if (effectiveMessage === "" && critMessage === "") {
-          setTimeout(() => switchTurns(), 2500);
+          setTimeout(() => switchTurns(), 3000);
         } else {
-          setTimeout(() => switchTurns(), 4000);
+          setTimeout(() => switchTurns(), 4500);
         }
       }
     }

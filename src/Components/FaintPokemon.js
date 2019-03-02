@@ -52,7 +52,7 @@ const FaintPokemon = (
   }
   console.log("running fainted function...");
   console.log("fainted function volume is" + Volume);
-
+  DisplayMessage(Team[PKMN].name + " fainted!");
   //play fainted sound/cry
   let cry = new Audio(Team[PKMN].cry);
   cry.volume = Volume;

@@ -8,6 +8,7 @@ import Items from "../Items/Items";
 import Moves from "../Moves/Moves";
 import Team from "../Team/Team";
 import { UpdateHP } from "../UpdateHP";
+import { FaintPokemon } from "../FaintPokemon";
 import { Conditions } from "../Conditions";
 import { RandomNumberGenerator } from "../RandomNumberGenerator";
 import { DisplayMessage } from "../DisplayMessage";
@@ -384,16 +385,6 @@ class BattleStage extends Component {
                     updatedBarHP,
                     swapPoke.name,
                     0,
-                    this.state.player1Team,
-                    this.state.player2Team,
-                    this.state.player1CurrentPokemon,
-                    this.state.player2CurrentPokemon,
-                    this.state.playersTurn,
-                    this.props.playerOneName,
-                    this.props.playerTwoName,
-                    this.resetMultipliers,
-                    this.handleTeam,
-                    this.handleFainted,
                     this.props.mode,
                     this.state.volume
                   ),
@@ -478,16 +469,6 @@ class BattleStage extends Component {
                   updatedBarHP,
                   swapPoke.name,
                   0,
-                  this.state.player1Team,
-                  this.state.player2Team,
-                  this.state.player1CurrentPokemon,
-                  this.state.player2CurrentPokemon,
-                  this.state.playersTurn,
-                  this.props.playerOneName,
-                  this.props.playerTwoName,
-                  this.resetMultipliers,
-                  this.handleTeam,
-                  this.handleFainted,
                   this.props.mode,
                   this.state.volume
                 ),
@@ -604,21 +585,32 @@ class BattleStage extends Component {
           updatedBarHP,
           PKMNuser.name,
           0,
-          this.state.player1Team,
-          this.state.player2Team,
-          this.state.player1CurrentPokemon,
-          this.state.player2CurrentPokemon,
-          this.state.playersTurn,
-          this.props.playerOneName,
-          this.props.playerTwoName,
-          this.resetMultipliers,
-          this.handleTeam,
-          this.props.handleFainted,
           this.props.mode,
           this.state.volume
         ),
       500
     );
+    if (faintedPoisonBurn) {
+      //pokemon fainted
+      setTimeout(
+        () =>
+          FaintPokemon(
+            this.state.player1Team,
+            this.state.player2Team,
+            this.state.player1CurrentPokemon,
+            this.state.player2CurrentPokemon,
+            this.state.playersTurn,
+            this.props.playerOneName,
+            this.props.playerTwoName,
+            this.resetMultipliers,
+            this.handleTeam,
+            this.props.handleFainted,
+            this.props.mode,
+            this.props.volume
+          ),
+        4500
+      );
+    }
 
     if (!faintedPoisonBurn) {
       setTimeout(() => this.switchTurns(), 2500);
@@ -1012,21 +1004,32 @@ class BattleStage extends Component {
             updatedBarHP,
             PKMNuser.name,
             power,
-            this.state.player1Team,
-            this.state.player2Team,
-            this.state.player1CurrentPokemon,
-            this.state.player2CurrentPokemon,
-            this.state.playersTurn,
-            this.props.playerOneName,
-            this.props.playerTwoName,
-            this.resetMultipliers,
-            this.handleTeam,
-            this.props.handleFainted,
             this.props.mode,
             this.state.volume
           ),
         2000
       );
+      if (PKMNuser.hp <= 0) {
+        //pokemon fainted
+        setTimeout(
+          () =>
+            FaintPokemon(
+              this.state.player1Team,
+              this.state.player2Team,
+              this.state.player1CurrentPokemon,
+              this.state.player2CurrentPokemon,
+              this.state.playersTurn,
+              this.props.playerOneName,
+              this.props.playerTwoName,
+              this.resetMultipliers,
+              this.handleTeam,
+              this.props.handleFainted,
+              this.props.mode,
+              this.props.volume
+            ),
+          3500
+        );
+      }
       setTimeout(() => this.handleForceUpdate(), 2000);
 
       setTimeout(
@@ -1065,16 +1068,6 @@ class BattleStage extends Component {
             updatedBarHP,
             PKMNuser.name,
             power,
-            this.state.player1Team,
-            this.state.player2Team,
-            this.state.player1CurrentPokemon,
-            this.state.player2CurrentPokemon,
-            this.state.playersTurn,
-            this.props.playerOneName,
-            this.props.playerTwoName,
-            this.resetMultipliers,
-            this.handleTeam,
-            this.props.handleFainted,
             this.props.mode,
             this.state.volume
           ),
@@ -1115,16 +1108,6 @@ class BattleStage extends Component {
             updatedBarHP,
             PKMNuser.name,
             power,
-            this.state.player1Team,
-            this.state.player2Team,
-            this.state.player1CurrentPokemon,
-            this.state.player2CurrentPokemon,
-            this.state.playersTurn,
-            this.props.playerOneName,
-            this.props.playerTwoName,
-            this.resetMultipliers,
-            this.handleTeam,
-            this.props.handleFainted,
             this.props.mode,
             this.state.volume
           ),

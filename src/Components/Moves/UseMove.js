@@ -1,11 +1,11 @@
 import { UpdateHP } from "../UpdateHP";
+import { FaintPokemon } from "../FaintPokemon";
 import { DealDamage } from "../DealDamage";
 import { DisplayMessage } from "../DisplayMessage";
 import Confused from "../../Sounds/BattleSounds/General/CONFUSED.wav";
 import ConfusedHitSelf from "../../Sounds/BattleSounds/General/ConfusedHitSelf.wav";
 import Sleeping from "../../Sounds/BattleSounds/General/Sleeping.wav";
 import $ from "jquery";
-import { Transform } from "stream";
 
 const UseMove = (
   index,
@@ -243,21 +243,32 @@ const UseMove = (
                   updatedBarHP,
                   PKMNuser.name,
                   power,
-                  player1Team,
-                  player2Team,
-                  Player1Poke,
-                  Player2Poke,
-                  PlayersTurn,
-                  playerOneName,
-                  playerTwoName,
-                  resetMultipliers,
-                  handleTeam,
-                  handleFainted,
                   mode,
                   Volume
                 ),
               2500
             );
+            if (PKMNuser.hp <= 0) {
+              //pokemon fainted
+              setTimeout(
+                () =>
+                  FaintPokemon(
+                    player1Team,
+                    player2Team,
+                    Player1Poke,
+                    Player2Poke,
+                    PlayersTurn,
+                    playerOneName,
+                    playerTwoName,
+                    resetMultipliers,
+                    handleTeam,
+                    handleFainted,
+                    mode,
+                    Volume
+                  ),
+                4500
+              );
+            }
             //if user is poisonedburned, delay switching turns
             if (isUserPoisonedOrBurned || isUserBound) {
               console.log(PKMNuser.name + " is poisoned/burned");

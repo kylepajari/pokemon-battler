@@ -2,24 +2,7 @@ import { FaintPokemon } from "./FaintPokemon";
 import { DisplayMessage } from "./DisplayMessage";
 import lowhealth from "../Sounds/BattleSounds/General/LOWHEALTH.wav";
 
-const UpdateHP = (
-  HPbar,
-  value,
-  pokemon,
-  power,
-  player1Team,
-  player2Team,
-  player1CurrentPokemon,
-  player2CurrentPokemon,
-  playersTurn,
-  playerOneName,
-  playerTwoName,
-  resetMultipliers,
-  handleTeam,
-  handleFainted,
-  mode,
-  Volume
-) => {
+const UpdateHP = (HPbar, value, pokemon, power, mode, Volume) => {
   console.log("changing HP Bar...", mode);
   console.log("update HP volume is " + Volume);
 
@@ -40,33 +23,6 @@ const UpdateHP = (
     HPbar.removeClass("onefifthhp");
     HPbar.removeClass("halfhp");
     HPbar.addClass("fullhp");
-  }
-  if (value <= 3) {
-    console.log(pokemon + " fainted");
-    if (power === 999) {
-      setTimeout(() => DisplayMessage("One-Hit KO!"), 1000);
-    } else {
-      setTimeout(() => DisplayMessage(pokemon + " fainted!"), 1000);
-    }
-
-    setTimeout(
-      () =>
-        FaintPokemon(
-          player1Team,
-          player2Team,
-          player1CurrentPokemon,
-          player2CurrentPokemon,
-          playersTurn,
-          playerOneName,
-          playerTwoName,
-          resetMultipliers,
-          handleTeam,
-          handleFainted,
-          mode,
-          Volume
-        ),
-      2000
-    );
   }
 };
 
