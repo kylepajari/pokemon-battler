@@ -1,10 +1,7 @@
-import { FaintPokemon } from "./FaintPokemon";
-import { DisplayMessage } from "./DisplayMessage";
 import lowhealth from "../Sounds/BattleSounds/General/LOWHEALTH.wav";
 
 const UpdateHP = (HPbar, value, pokemon, power, mode, Volume) => {
   console.log("changing HP Bar...", mode);
-  console.log("update HP volume is " + Volume);
 
   value = parseInt(value);
   HPbar.css("width", value);

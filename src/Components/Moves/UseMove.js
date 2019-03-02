@@ -39,7 +39,7 @@ const UseMove = (
   checkForStatusEffect,
   Volume
 ) => {
-  console.log("using move...volume is " + Volume);
+  console.log("using move...");
   let options = $(document.querySelector(".options"));
   let PKMNuser = null;
   let PKMNtarget = null;
@@ -129,7 +129,7 @@ const UseMove = (
           PKMNuser.turnsAsleep +
           " more turns..."
       );
-      DisplayMessage(PKMNuser.name + " is fast asleep... ");
+      DisplayMessage(PKMNuser.name + " is fast asleep...");
       let sleepingSound = new Audio(Sleeping);
       sleepingSound.volume = Volume;
       sleepingSound.play();
@@ -285,7 +285,7 @@ const UseMove = (
         }
       }
 
-      //if pokemon was woken up, snapped out of confusion, hurt itself from confusion, blocked by paralysis, or frozen; skip rest of move
+      //if pokemon has not woken up, snapped out of confusion, hurt itself from confusion, blocked by paralysis, or frozen; skip rest of move
       if (!wokeup && !snappedOut && !hurtitself && !paralysis && !frozen) {
         console.log(PKMNuser.name + " used " + moveName);
         if (PKMNuser.isConfused) {
@@ -467,6 +467,7 @@ const UseMove = (
         let percentChance =
           (moveAcc * (PKMNuser.accuracy / PKMNtarget.evasion)) / 100;
         let rand = Math.random();
+        console.log("miss chance calced to: " + percentChance);
 
         if (rand > percentChance) {
           console.log(PKMNuser.name + "'s attack Missed!");

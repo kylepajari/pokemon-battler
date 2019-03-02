@@ -130,8 +130,8 @@ const DealDamage = (
   console.log("Damage is: " + Damage);
 
   //set up recoil/recover damage
-  let recoilDamage = Damage / 4;
-  let recoverDamage = Damage / 2;
+  let recoilDamage = Math.round(Damage / 4);
+  let recoverDamage = Math.round(Damage / 2);
   //store original bar percent
   let origHealth = parseInt(TargetHP.css("width"));
 
@@ -163,6 +163,7 @@ const DealDamage = (
     TargetSprite.fadeIn(300);
 
     //update health bar to reflect damage
+    //if no messages are shown
     if (effectiveMessage === "" && critMessage === "") {
       setTimeout(() => handleForceUpdate(), 1500);
       setTimeout(
@@ -198,6 +199,7 @@ const DealDamage = (
           3200
         );
       }
+      //if critical message is shown
     } else if (critMessage !== "" && effectiveMessage === "") {
       setTimeout(
         () =>
@@ -236,6 +238,7 @@ const DealDamage = (
           4700
         );
       }
+      //if effective message is shown
     } else if (critMessage === "" && effectiveMessage !== "") {
       setTimeout(
         () =>
@@ -274,6 +277,7 @@ const DealDamage = (
           4700
         );
       }
+      //if both critical and effective messages are shown
     } else if (critMessage !== "" && effectiveMessage !== "") {
       setTimeout(
         () =>
@@ -316,7 +320,7 @@ const DealDamage = (
     }
   } else {
     //damage was calced to 0
-    DisplayMessage(PKMNtarget.name + " was unaffected");
+    DisplayMessage(PKMNtarget.name + " was unaffected...");
   }
   console.log("HP left after damage: " + PKMNtarget.hp);
 
@@ -344,7 +348,7 @@ const DealDamage = (
           recoverDamage,
           isPoisonBurned
         );
-      } else {
+      } else if (effectiveMessage !== "" && critMessage === "") {
         setTimeout(
           () =>
             checkForStatusEffect(
@@ -362,6 +366,44 @@ const DealDamage = (
               isPoisonBurned
             ),
           2500
+        );
+      } else if (effectiveMessage === "" && critMessage !== "") {
+        setTimeout(
+          () =>
+            checkForStatusEffect(
+              statusEff,
+              statusProb,
+              PKMNuser,
+              PKMNtarget,
+              targetType1,
+              targetType2,
+              moveName,
+              UserHP,
+              power,
+              recoilDamage,
+              recoverDamage,
+              isPoisonBurned
+            ),
+          2500
+        );
+      } else if (effectiveMessage !== "" && critMessage !== "") {
+        setTimeout(
+          () =>
+            checkForStatusEffect(
+              statusEff,
+              statusProb,
+              PKMNuser,
+              PKMNtarget,
+              targetType1,
+              targetType2,
+              moveName,
+              UserHP,
+              power,
+              recoilDamage,
+              recoverDamage,
+              isPoisonBurned
+            ),
+          4000
         );
       }
 
