@@ -187,7 +187,6 @@ const DealDamage = (
         1500
       );
     } else if (critMessage !== "" && effectiveMessage === "") {
-      setTimeout(() => handleForceUpdate(), 1500);
       setTimeout(
         () =>
           UpdateHP(
@@ -210,9 +209,9 @@ const DealDamage = (
           ),
         1500
       );
+      setTimeout(() => handleForceUpdate(), 1500);
       setTimeout(() => DisplayMessage(critMessage), 3000);
     } else if (critMessage === "" && effectiveMessage !== "") {
-      setTimeout(() => handleForceUpdate(), 1500);
       setTimeout(
         () =>
           UpdateHP(
@@ -235,6 +234,7 @@ const DealDamage = (
           ),
         1500
       );
+      setTimeout(() => handleForceUpdate(), 1500);
       setTimeout(() => DisplayMessage(effectiveMessage), 3000);
     } else if (critMessage !== "" && effectiveMessage !== "") {
       setTimeout(() => handleForceUpdate(), 1500);
@@ -321,10 +321,6 @@ const DealDamage = (
           setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 4000);
         }
       }
-      // } else {
-      //   console.log(PKMNuser.name + " is not poisoned/burned, switching turns");
-      //   setTimeout(() => switchTurns(), 2500);
-      // }
     } else {
       if (isPoisonBurned || PKMNuser.isBound) {
         console.log(PKMNuser.name + " is poisoned/burned/bound");

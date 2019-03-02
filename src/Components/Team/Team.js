@@ -57,7 +57,7 @@ class Team extends Component {
       setTimeout(
         () =>
           DisplayMessage(
-            this.props.playerOneName + " withdrew " + Team[PKMN].name
+            this.props.playerOneName + " withdrew " + Team[PKMN].name + "..."
           ),
         500
       );
@@ -65,14 +65,14 @@ class Team extends Component {
       setTimeout(
         () =>
           DisplayMessage(
-            this.props.playerTwoName + " withdrew " + Team[PKMN].name
+            this.props.playerTwoName + " withdrew " + Team[PKMN].name + "..."
           ),
         500
       );
     }
 
     setTimeout(
-      () => DisplayMessage("and sent out " + Team[swapPoke].name),
+      () => DisplayMessage("and sent out " + Team[swapPoke].name + "!"),
       2500
     );
     let switchSound = new Audio(swapSound);

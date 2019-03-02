@@ -107,16 +107,13 @@ const UseMove = (
       //subtract one turn from bound
       if (PKMNuser.turnsBound > 1) {
         isUserBound = true;
-        PKMNtarget.turnsBound = PKMNtarget.turnsBound - 1;
-        console.log(
-          PKMNuser.name +
-            " will be bound for " +
-            PKMNtarget.turnsBound +
-            " more turns"
-        );
+        //subtract one turn from bound
+        PKMNtarget.turnsBound -= 1;
+        console.log("bound turns remaining: " + PKMNtarget.turnsBound);
       } else {
         //set isbound to false
         PKMNtarget.isBound = false;
+        PKMNtarget.turnsBound = 0;
       }
     }
 
@@ -136,11 +133,8 @@ const UseMove = (
       let sleepingSound = new Audio(Sleeping);
       sleepingSound.volume = Volume;
       sleepingSound.play();
-      if (isUserPoisonedOrBurned) {
+      if (isUserPoisonedOrBurned || isUserBound) {
         console.log(PKMNuser.name + " is poisoned/burned");
-        setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 2000);
-      } else if (isUserBound) {
-        console.log(PKMNuser.name + " is bound");
         setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 2000);
       } else {
         setTimeout(() => switchTurns(), 2000);
@@ -162,7 +156,7 @@ const UseMove = (
         console.log(PKMNuser.name + " is frozen...");
         frozen = true;
         DisplayMessage(PKMNuser.name + " is Frozen Solid!");
-        if (isUserPoisonedOrBurned) {
+        if (isUserPoisonedOrBurned || isUserBound) {
           console.log(PKMNuser.name + " is poisoned/burned");
           setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 2000);
         } else {
@@ -181,11 +175,8 @@ const UseMove = (
           console.log(PKMNuser.name + " is paralyzed...");
           paralysis = true;
           DisplayMessage(PKMNuser.name + " is paralyzed!");
-          if (isUserPoisonedOrBurned) {
+          if (isUserPoisonedOrBurned || isUserBound) {
             console.log(PKMNuser.name + " is poisoned/burned");
-            setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 2000);
-          } else if (isUserBound) {
-            console.log(PKMNuser.name + " is bound");
             setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 2000);
           } else {
             setTimeout(() => switchTurns(), 2000);
@@ -200,8 +191,6 @@ const UseMove = (
         if (PKMNuser.turnsConfused > 0) {
           //subtract one turn from confused
           PKMNuser.turnsConfused = PKMNuser.turnsConfused - 1;
-
-          console.log(PKMNuser.name + " is confused...");
           DisplayMessage(PKMNuser.name + " is confused...");
           let confusedSound = new Audio(Confused);
           confusedSound.volume = Volume;
@@ -229,7 +218,7 @@ const UseMove = (
             if (PKMNuser.hp < 0) {
               PKMNuser.hp = 0;
             }
-            handleForceUpdate();
+            setTimeout(() => handleForceUpdate(), 2500);
 
             let dmgDone = origHealth * asPercentage;
             let updatedBarHP = origHealth - dmgDone;
@@ -270,12 +259,9 @@ const UseMove = (
               2500
             );
             //if user is poisonedburned, delay switching turns
-            if (isUserPoisonedOrBurned) {
+            if (isUserPoisonedOrBurned || isUserBound) {
               console.log(PKMNuser.name + " is poisoned/burned");
               setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 4500);
-            } else if (isUserBound) {
-              console.log(PKMNuser.name + " is bound");
-              setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 2000);
             } else {
               setTimeout(() => switchTurns(), 4500);
             }
@@ -343,19 +329,12 @@ const UseMove = (
             );
           }
 
-          if (isUserPoisonedOrBurned) {
+          if (isUserPoisonedOrBurned || isUserBound) {
             console.log(PKMNuser.name + " is poisoned/burned");
             if (PKMNuser.isConfused) {
               setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 6500);
             } else {
               setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 5000);
-            }
-          } else if (isUserBound) {
-            console.log(PKMNuser.name + " is bound");
-            if (PKMNuser.isConfused) {
-              setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 6500);
-            } else {
-              setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 2000);
             }
           } else {
             if (PKMNuser.isConfused) {
@@ -426,12 +405,9 @@ const UseMove = (
               2000
             );
 
-            if (isUserPoisonedOrBurned) {
+            if (isUserPoisonedOrBurned || isUserBound) {
               console.log(PKMNuser.name + " is poisoned/burned");
               setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 4000);
-            } else if (isUserBound) {
-              console.log(PKMNuser.name + " is bound");
-              setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 2000);
             } else {
               setTimeout(() => switchTurns(), 4000);
             }
@@ -463,12 +439,9 @@ const UseMove = (
             () => DisplayMessage(PKMNuser.name + "'s attack Missed!"),
             4000
           );
-          if (isUserPoisonedOrBurned) {
+          if (isUserPoisonedOrBurned || isUserBound) {
             console.log(PKMNuser.name + " is poisoned/burned");
             setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 6000);
-          } else if (isUserBound) {
-            console.log(PKMNuser.name + " is bound");
-            setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 2000);
           } else {
             setTimeout(() => switchTurns(), 6000);
           }
@@ -535,12 +508,9 @@ const UseMove = (
               4000
             );
 
-            if (isUserPoisonedOrBurned) {
+            if (isUserPoisonedOrBurned || isUserBound) {
               console.log(PKMNuser.name + " is poisoned/burned");
               setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 6000);
-            } else if (isUserBound) {
-              console.log(PKMNuser.name + " is bound");
-              setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 2000);
             } else {
               setTimeout(() => switchTurns(), 6000);
             }

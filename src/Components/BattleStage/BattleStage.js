@@ -341,12 +341,15 @@ class BattleStage extends Component {
             setTimeout(
               () =>
                 DisplayMessage(
-                  this.props.playerTwoName + " withdrew " + Team[PKMN].name
+                  this.props.playerTwoName +
+                    " withdrew " +
+                    Team[PKMN].name +
+                    "..."
                 ),
               500
             );
             setTimeout(
-              () => DisplayMessage("and sent out " + Team[swapPoke].name),
+              () => DisplayMessage("and sent out " + Team[swapPoke].name + "!"),
               2500
             );
             let switchSound = new Audio(swapSound);
@@ -437,11 +440,11 @@ class BattleStage extends Component {
           //hide sprite
           Sprite.fadeOut(1000);
           setTimeout(
-            () => DisplayMessage(name + " withdrew " + Team[PKMN].name),
+            () => DisplayMessage(name + " withdrew " + Team[PKMN].name + "..."),
             500
           );
           setTimeout(
-            () => DisplayMessage("and sent out " + Team[swapPoke].name),
+            () => DisplayMessage("and sent out " + Team[swapPoke].name + "!"),
             2500
           );
           let switchSound = new Audio(swapSound);
@@ -837,7 +840,7 @@ class BattleStage extends Component {
     recoverDamage,
     isUserPoisonedOrBurned
   ) => {
-    console.log("checking for status effect...volume is " + this.state.volume);
+    console.log("checking for status effect...");
     let atkMultiplierUp = 0;
     let atkMultiplierDown = 0;
     let defMultiplierUp = 0;
@@ -918,7 +921,7 @@ class BattleStage extends Component {
         );
       }
 
-      setTimeout(() => this.forceUpdate(), 2000);
+      setTimeout(() => this.handleForceUpdate(), 2000);
 
       setTimeout(
         () =>
@@ -934,16 +937,8 @@ class BattleStage extends Component {
     if (statusEff === "ConfusionUser") {
       if (PKMNuser.isConfused === false) {
         setTimeout(() => (PKMNuser.isConfused = true), 2000);
-
-        let amountTurnsConfused = Math.round(RandomNumberGenerator(1, 4));
-        console.log(
-          PKMNuser.name +
-            " will be confused for " +
-            amountTurnsConfused +
-            " turns..."
-        );
-        PKMNuser.turnsConfused = amountTurnsConfused;
-
+        //confuse user for 1 to 4 turns
+        PKMNuser.turnsConfused = Math.round(RandomNumberGenerator(1, 4));
         setTimeout(
           () => DisplayMessage(PKMNuser.name + " became Confused!"),
           2000
@@ -958,16 +953,8 @@ class BattleStage extends Component {
         let rand = Math.random();
         if (rand < statusProb) {
           setTimeout(() => (PKMNtarget.isConfused = true), 2000);
-
-          let amountTurnsConfused = Math.round(RandomNumberGenerator(1, 4));
-          console.log(
-            PKMNtarget.name +
-              " will be confused for " +
-              amountTurnsConfused +
-              " turns..."
-          );
-          PKMNtarget.turnsConfused = amountTurnsConfused;
-
+          //confuse target for 1 to 4 turns
+          PKMNtarget.turnsConfused = Math.round(RandomNumberGenerator(1, 4));
           setTimeout(
             () => DisplayMessage(PKMNtarget.name + " became Confused!"),
             2000
@@ -977,26 +964,20 @@ class BattleStage extends Component {
     }
 
     //BOUND/////////////////////////////////////////////////////////////
-    if (statusEff === "Bound") {
-      if (!PKMNtarget.isBound) {
-        PKMNtarget.isBound = true;
-        PKMNtarget.turnsBound = Math.round(RandomNumberGenerator(2, 5));
-        console.log(
-          PKMNuser.name +
-            " will be bound for " +
-            PKMNtarget.turnsBound +
-            "turns"
-        );
+    // if (statusEff === "Bound") {
+    //   if (!PKMNtarget.isBound) {
+    //     PKMNtarget.isBound = true;
+    //     PKMNtarget.turnsBound = Math.round(RandomNumberGenerator(2, 5));
 
-        setTimeout(
-          () =>
-            DisplayMessage(
-              PKMNtarget.name + " was wrapped by " + moveName + "!"
-            ),
-          2000
-        );
-      }
-    }
+    //     setTimeout(
+    //       () =>
+    //         DisplayMessage(
+    //           PKMNtarget.name + " was wrapped by " + PKMNuser.name + "!"
+    //         ),
+    //       2000
+    //     );
+    //   }
+    // }
 
     //RECOIL/////////////////////////////////////////////////////////////
     let faintedByRecoil = false;
@@ -1013,12 +994,9 @@ class BattleStage extends Component {
         setTimeout(() => (PKMNuser.hp = 0), 2000);
         faintedByRecoil = true;
         this.setState({ faintedByRecoilPoisonBurn: true });
-        this.handleForceUpdate();
       } else {
         setTimeout(() => (PKMNuser.hp = PKMNuser.hp - Damage), 2000);
       }
-      setTimeout(() => this.handleForceUpdate(), 2000);
-
       let dmgDone = origHealth * asPercentage;
       let updatedBarHP = origHealth - dmgDone;
       if (updatedBarHP < 3) {
@@ -1049,6 +1027,7 @@ class BattleStage extends Component {
           ),
         2000
       );
+      setTimeout(() => this.handleForceUpdate(), 2000);
 
       setTimeout(
         () => DisplayMessage(PKMNuser.name + " was hit with recoil!"),
@@ -1073,10 +1052,8 @@ class BattleStage extends Component {
       if (PKMNuser.hp + Damage > PKMNuser.OrigHp) {
         setTimeout(() => (PKMNuser.hp = PKMNuser.OrigHp), 2000);
       } else {
-        setTimeout(() => (PKMNuser.hp = PKMNuser.hp + Damage), 2000);
+        setTimeout(() => (PKMNuser.hp += Damage), 2000);
       }
-      setTimeout(() => this.handleForceUpdate(), 2000);
-
       let hpRecovered = origHealth * asPercentage;
       let updatedBarHP = origHealth + hpRecovered;
 
@@ -1103,6 +1080,8 @@ class BattleStage extends Component {
           ),
         2000
       );
+      setTimeout(() => this.handleForceUpdate(), 2000);
+
       let recover = new Audio(recoverSound);
       recover.volume = this.state.volume;
       setTimeout(() => recover.play(), 2000);
@@ -1125,8 +1104,6 @@ class BattleStage extends Component {
       } else {
         PKMNuser.hp = PKMNuser.hp + recoveryAmount;
       }
-      this.handleForceUpdate();
-
       let hpRecovered = origHealth * asPercentage;
       let updatedBarHP = origHealth + hpRecovered;
 
@@ -1153,6 +1130,8 @@ class BattleStage extends Component {
           ),
         2000
       );
+      setTimeout(() => this.handleForceUpdate(), 2000);
+
       let recover = new Audio(recoverSound);
       recover.volume = this.state.volume;
       setTimeout(() => recover.play(), 2000);
@@ -1642,11 +1621,8 @@ class BattleStage extends Component {
       console.log(isUserPoisonedOrBurned);
 
       //if user is poisonedburned, delay switching turns
-      if (isUserPoisonedOrBurned === true) {
+      if (isUserPoisonedOrBurned || PKMNuser.isBound) {
         console.log(PKMNuser.name + " is poisoned/burned");
-        setTimeout(() => this.dealPoisonBurn(PKMNuser, HPbar), 4000);
-      } else if (PKMNuser.isBound) {
-        console.log(PKMNuser.name + " is bound");
         setTimeout(() => this.dealPoisonBurn(PKMNuser, HPbar), 4000);
       } else {
         setTimeout(() => this.switchTurns(), 4000);
