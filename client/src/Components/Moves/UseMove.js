@@ -1,5 +1,5 @@
 import { UpdateHP } from "../UpdateHP";
-import { FaintPokemon } from "../FaintPokemon";
+import FaintPokemon from "../FaintPokemon";
 import { DealDamage } from "../DealDamage";
 import { DisplayMessage } from "../DisplayMessage";
 import Confused from "../../Sounds/BattleSounds/General/CONFUSED.wav";

@@ -1,6 +1,6 @@
 import $ from "jquery";
 import { UpdateHP } from "./UpdateHP";
-import { FaintPokemon } from "./FaintPokemon";
+import FaintPokemon from "./FaintPokemon";
 import { CalcTypeAdvantage } from "./TypeAdvantage";
 import { RandomNumberGenerator } from "./RandomNumberGenerator";
 import { DisplayMessage } from "./DisplayMessage";

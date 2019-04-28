@@ -3,8 +3,7 @@ import { DisplayMessage } from "./DisplayMessage";
 import Victory from "../Sounds/victory.mp3";
 import FaintSound from "../Sounds/BattleSounds/General/IMDOWN.wav";
 import { setBadges } from "../actions";
-import state from "../state";
-import { connect } from "net";
+import { connect } from "react-redux";
 
 const FaintPokemon = (
   player1Team,

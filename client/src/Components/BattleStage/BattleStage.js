@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import $ from "jquery";
 import { MatchIconWithType } from "../MatchTypeIcon";
 import { UpdateHP } from "../UpdateHP";
-import { FaintPokemon } from "../FaintPokemon";
+import FaintPokemon from "../FaintPokemon";
 import { Conditions } from "../Conditions";
 import { RandomNumberGenerator } from "../RandomNumberGenerator";
 import { DisplayMessage } from "../DisplayMessage";
