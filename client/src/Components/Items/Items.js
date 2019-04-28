@@ -142,18 +142,7 @@ class Items extends Component {
     heal.volume = this.props.volume;
     heal.play();
 
-    setTimeout(
-      () =>
-        UpdateHP(
-          HPbar,
-          updatedBarHP,
-          PKMNuser,
-          0,
-          this.props.mode,
-          this.props.volume
-        ),
-      300
-    );
+    setTimeout(() => UpdateHP(HPbar, updatedBarHP, this.props.volume), 300);
     this.props.handleItems();
     if (
       PKMNuser.statusCondition === "Poison" ||

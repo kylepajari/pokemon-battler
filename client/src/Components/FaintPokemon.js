@@ -2,6 +2,9 @@ import $ from "jquery";
 import { DisplayMessage } from "./DisplayMessage";
 import Victory from "../Sounds/victory.mp3";
 import FaintSound from "../Sounds/BattleSounds/General/IMDOWN.wav";
+import { setBadges } from "../actions";
+import state from "../state";
+import { connect } from "net";
 
 const FaintPokemon = (
   player1Team,
@@ -51,7 +54,6 @@ const FaintPokemon = (
     }
   }
   console.log("running fainted function...");
-  console.log("fainted function volume is" + Volume);
   DisplayMessage(Team[PKMN].name + " fainted!");
   //play fainted sound/cry
   let cry = new Audio(Team[PKMN].cry);
@@ -172,9 +174,75 @@ const FaintPokemon = (
           ),
         4500
       );
+
+      //badge earning
+      ////////////////////////////////////////////////////////////////
+      if (mode === "Single") {
+        let badge = null;
+
+        //get users current badges
+        let badgesCount = this.props.badges;
+        //increase badge count by 1 if less than 8, give player badge
+        if (badgesCount < 8) {
+          badgesCount += 1;
+          this.props.setBadges(badgesCount);
+          switch (playerTwoName) {
+            case "Brock":
+              badge = "Boulder Badge";
+              break;
+            case "Misty":
+              badge = "Cascade Badge";
+              break;
+            case "Lt. Surge":
+              badge = "Thunder Badge";
+              break;
+            case "Erika":
+              badge = "Rainbow Badge";
+              break;
+            case "Koga":
+              badge = "Soul Badge";
+              break;
+            case "Sabrina":
+              badge = "Marsh Badge";
+              break;
+            case "Blaine":
+              badge = "Volcano Badge";
+              break;
+            case "Giovanni":
+              badge = "Earth Badge";
+              break;
+            default:
+              badge = "Badge";
+              break;
+          }
+          setTimeout(
+            () =>
+              $(document.querySelector(".playermessage")).text(
+                playerOneName + " earned the " + badge + "!"
+              ),
+            6000
+          );
+        }
+      }
     }
     setTimeout(() => $(document.querySelector(".options")).hide(300), 4500);
+    setTimeout(() => $(document.querySelector(".mainmenu")).show(300), 7000);
   }
 };
 
-export { FaintPokemon };
+const mapStateToProps = state => {
+  return {
+    badges: state.badges
+  };
+};
+
+function mapDispatchToProps(dispatch) {
+  return {
+    setBadges: num => dispatch(setBadges(num))
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FaintPokemon);

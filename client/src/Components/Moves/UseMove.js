@@ -236,18 +236,7 @@ const UseMove = (
             hit.volume = Volume;
             setTimeout(() => hit.play(), 1500);
             //update health bar to reflect damage
-            setTimeout(
-              () =>
-                UpdateHP(
-                  HPbar,
-                  updatedBarHP,
-                  PKMNuser.name,
-                  power,
-                  mode,
-                  Volume
-                ),
-              2500
-            );
+            setTimeout(() => UpdateHP(HPbar, updatedBarHP, Volume), 2500);
             if (PKMNuser.hp <= 0) {
               //pokemon fainted
               setTimeout(

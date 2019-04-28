@@ -103,18 +103,7 @@ class Team extends Component {
       console.log(updatedBarHP, HPbar.css("width"));
 
       //update health bar to reflect damage
-      setTimeout(
-        () =>
-          UpdateHP(
-            HPbar,
-            updatedBarHP,
-            swapPoke.name,
-            0,
-            this.props.mode,
-            this.props.volume
-          ),
-        2500
-      );
+      setTimeout(() => UpdateHP(HPbar, updatedBarHP, this.props.volume), 2500);
     }
     setTimeout(() => $(document.querySelector(".options")).show(500), 4000);
     setTimeout(() => $(document.querySelector(".fightButton")).show(500), 4000);

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./TeamBuilder.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.js";
-import BattleStage from "../BattleStage/BattleStage";
+import BattleStageContainer from "../../Containers/BattleStageContainer";
 import { CreateMoves } from "../MoveCreator";
 import { CryAssign } from "../CryAssign";
 import $ from "jquery";
@@ -29,18 +29,9 @@ class TeamBuilder extends Component {
       currentPokemonSpd: 0,
       currentPokemonSpcAtk: 0,
       currentPokemonSpcDef: 0,
-      sprite: null,
       isOpen: false, //to keep track of whether pokemon dropdown is open
       isTeamOpen: false, //to keep track of whether team size dropdown is open
-      currentPlayer: "Player One", //player who starts the game
-      playerOneName: "Player One",
-      playerTwoName: "Player Two",
-      mode: "",
-      teamSize: 6, //max number of pokemon per team, adjust to allow more/less
-      player1Team: [], //used to hold player one team
-      player2Team: [], //used to hold player two team
-      battleReady: false, //set when teams are picked
-      globalLevel: 50 //level to set all pokemon too, also used to scale stats,
+      globalLevel: 50 //level to set all pokemon too, also used in formula that scales stats
     };
 
     this.fetchPokemon = this.fetchPokemon.bind(this);
@@ -52,6 +43,7 @@ class TeamBuilder extends Component {
     this.cpuVScpu = this.cpuVScpu.bind(this);
     this.inputNames = this.inputNames.bind(this);
     this.handleLeaderNames = this.handleLeaderNames.bind(this);
+    this.returnToMainMenu = this.returnToMainMenu.bind(this);
   }
 
   componentDidMount() {
@@ -61,100 +53,115 @@ class TeamBuilder extends Component {
     $(document.querySelector(".playerTwoNameDiv")).fadeOut(10);
     $(document.querySelector(".teamsContainer")).fadeOut(10);
     $(document.querySelector(".badgesContainer")).fadeOut(10);
-    // this.getSprites();
   }
 
   singlePlayer() {
     $(document.querySelector("#btnSinglePlayer")).fadeOut(10);
     $(document.querySelector("#btnMultiPlayer")).fadeOut(10);
     $(document.querySelector("#btnCPUVSCPU")).fadeOut(10);
-    $(document.querySelector(".playerOneNameDiv")).fadeIn(300);
-    this.setState({ mode: "Single" });
+    this.props.setMode("Single");
+    $(document.querySelector(".badgesContainer")).fadeIn(300);
   }
 
   multiPlayer() {
     $(document.querySelector("#btnSinglePlayer")).fadeOut(10);
     $(document.querySelector("#btnMultiPlayer")).fadeOut(10);
     $(document.querySelector("#btnCPUVSCPU")).fadeOut(10);
-    $(document.querySelector(".playerOneNameDiv")).fadeIn(300);
-    this.setState({ mode: "Multi" });
+    $(document.querySelector(".playerTwoNameDiv")).fadeIn(300);
+    this.props.setMode("Multi");
   }
 
   cpuVScpu() {
-    this.setState({ mode: "CPUVSCPU" });
-    this.setState({ playerOneName: "CPU1" });
-    this.setState({ playerTwoName: "CPU2" });
-    // this.forceUpdate();
-    console.log(this.state.mode);
+    this.props.setMode("CPUVSCPU");
+    this.props.setPlayerOneName("CPU1");
+    this.props.setPlayerTwoName("CPU2");
 
+    //hide main menu buttons, show team list
     $(document.querySelector("#btnSinglePlayer")).fadeOut(10);
     $(document.querySelector("#btnMultiPlayer")).fadeOut(10);
     $(document.querySelector("#btnCPUVSCPU")).fadeOut(10);
     $(document.querySelector(".teamList")).fadeIn(300);
   }
 
+  returnToMainMenu() {
+    // clear variables, reset back to main menu
+    this.props.setMode("");
+    this.props.setBattleReady(false);
+    this.props.setBattleStarted(false);
+    this.props.setPlayer1Team([]);
+    this.props.setPlayer2Team([]);
+    this.props.setPlayer1CurrentPokemon(0);
+    this.props.setPlayer2CurrentPokemon(0);
+    this.props.setPlayerTwoName("Player Two");
+    this.props.setPlayersTurn("Player One");
+    this.props.setTeamSize(6);
+    $(document.querySelector("#btnSinglePlayer")).fadeIn(300);
+    $(document.querySelector("#btnMultiPlayer")).fadeIn(300);
+    $(document.querySelector("#btnCPUVSCPU")).fadeIn(300);
+    $(document.querySelector(".teamList")).fadeOut(10);
+    $(document.querySelector(".teamsContainer")).fadeOut(10);
+  }
+
   handleLeaderNames = num => {
     switch (num) {
       case 1:
-        this.setState({ playerTwoName: "Brock" });
+        // this.setState({ playerTwoName: "Brock" });
+        this.props.setPlayerTwoName("Brock");
         break;
       case 2:
-        this.setState({ playerTwoName: "Misty" });
+        // this.setState({ playerTwoName: "Misty" });
+        this.props.setPlayerTwoName("Misty");
         break;
       case 3:
-        this.setState({ playerTwoName: "Lt. Surge" });
+        // this.setState({ playerTwoName: "Lt. Surge" });
+        this.props.setPlayerTwoName("Lt. Surge");
         break;
       case 4:
-        this.setState({ playerTwoName: "Erika" });
+        // this.setState({ playerTwoName: "Erika" });
+        this.props.setPlayerTwoName("Erika");
         break;
       case 5:
-        this.setState({ playerTwoName: "Koga" });
+        // this.setState({ playerTwoName: "Koga" });
+        this.props.setPlayerTwoName("Koga");
         break;
       case 6:
-        this.setState({ playerTwoName: "Sabrina" });
+        // this.setState({ playerTwoName: "Sabrina" });
+        this.props.setPlayerTwoName("Sabrina");
         break;
       case 7:
-        this.setState({ playerTwoName: "Blaine" });
+        // this.setState({ playerTwoName: "Blaine" });
+        this.props.setPlayerTwoName("Blaine");
         break;
       case 8:
-        this.setState({ playerTwoName: "Giovanni" });
+        // this.setState({ playerTwoName: "Giovanni" });
+        this.props.setPlayerTwoName("Giovanni");
         break;
       case 9:
-        this.setState({ playerTwoName: "Rival" });
+        // this.setState({ playerTwoName: "Rival" });
+        this.props.setPlayerTwoName("Rival");
         break;
       default:
-        this.setState({ playerTwoName: "Gym Leader" });
+        // this.setState({ playerTwoName: "Gym Leader" });
+        this.props.setPlayerTwoName("Gym Leader");
         break;
     }
   };
 
   inputNames = (player, input) => {
-    if (player === "P1") {
-      if (input !== "") {
-        this.setState({ playerOneName: this.Capitalize(input) });
-      }
-      if (this.state.mode === "Single") {
-        this.displayBadges();
-      } else {
-        $(document.querySelector(".playerOneNameDiv")).fadeOut(10);
-        $(document.querySelector(".playerTwoNameDiv")).fadeIn(300);
-      }
-    } else if (player === "P2") {
-      if (input !== "") {
-        this.setState({ playerTwoName: this.Capitalize(input) });
-      }
-      $(document.querySelector(".playerTwoNameDiv")).fadeOut(10);
-      $(document.querySelector(".teamList")).fadeIn(300);
+    if (input !== "") {
+      // this.setState({ playerTwoName: this.Capitalize(input) });
+      this.props.setPlayerTwoName(this.Capitalize(input));
     }
+    $(document.querySelector(".playerTwoNameDiv")).fadeOut(10);
+    $(document.querySelector(".teamList")).fadeIn(300);
   };
 
   changeTeamSize = num => {
-    console.log("Changing team size to " + num);
     $(document.querySelector(".teamsContainer")).fadeIn(300);
     $(document.querySelector(".pokemonSheetContainer")).removeClass("deRender");
     $(document.querySelector(".teamList")).fadeOut(10);
-    this.setState({ teamSize: num });
-    if (this.state.mode === "CPUVSCPU") {
+    this.props.setTeamSize(num);
+    if (this.props.mode === "CPUVSCPU") {
       //build cpu teams
       let rand = 0;
       //build CPU one team
@@ -191,11 +198,6 @@ class TeamBuilder extends Component {
     }
   };
 
-  displayBadges = () => {
-    $(document.querySelector(".playerOneNameDiv")).fadeOut(10);
-    $(document.querySelector(".badgesContainer")).fadeIn(300);
-  };
-
   //Returns passed string with upper-case first letter
   Capitalize = str => {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -220,7 +222,7 @@ class TeamBuilder extends Component {
   toCamelCase = str => {
     return str
       .split(" ")
-      .map(function(word, index) {
+      .map(function(word) {
         return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
       })
       .join(" ");
@@ -233,7 +235,6 @@ class TeamBuilder extends Component {
   //MOVES LIST BUILDER FUNCTION //////////////////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
   movesBuilder = movesToMap => {
-    let discardedMoves = [];
     let usableMoves = [];
     //go through moves, and create new list with objects for each one
     let movesList = movesToMap.map((item, i) => {
@@ -243,9 +244,7 @@ class TeamBuilder extends Component {
 
     //go through new object list, and place unwanted moves in serperate array
     movesList.forEach(move => {
-      if (move.pp === 35) {
-        discardedMoves.push(move);
-      } else {
+      if (move.pp !== 35) {
         usableMoves.push(move);
       }
     });
@@ -298,6 +297,9 @@ class TeamBuilder extends Component {
         //   finalMoves.concat(physical);
         // }
         let randomMove = physical[Math.floor(Math.random() * physical.length)];
+        do {
+          randomMove = physical[Math.floor(Math.random() * physical.length)];
+        } while (randomMove.statusEff !== "recoil");
         console.log(randomMove.name + " was chosen as FIRST MOVE");
         finalMoves.push(randomMove);
       }
@@ -346,8 +348,6 @@ class TeamBuilder extends Component {
   };
 
   modalPokemon = num => {
-    console.log(num);
-
     let url = "https://pokeapi.co/api/v2/pokemon/" + num;
     fetch(url)
       .then(response => response.json())
@@ -398,21 +398,6 @@ class TeamBuilder extends Component {
     });
   };
 
-  // getSprites = () => {
-  //   let allPokesArr = [];
-  //   for (let i = 1; i < 151; i++) {
-  //     let url = "https://pokeapi.co/api/v2/pokemon/" + i;
-  //     fetch(url)
-  //       .then(response => response.json())
-  //       .then(result => {
-  //         allPokesArr.push(result);
-  //       });
-  //   }
-  //   console.log(allPokesArr);
-
-  //   this.setState({ allPokes: allPokesArr });
-  // };
-
   addPokemon = (level, team) => {
     let pokemonObj = null;
     pokemonObj = {
@@ -423,7 +408,9 @@ class TeamBuilder extends Component {
       backSpriteShiny: this.state.data.sprites.back_shiny,
       lv: level,
       OrigHp: this.calcStats("hp", this.state.data.stats[5].base_stat, level),
+      // OrigHp: 3,
       hp: this.calcStats("hp", this.state.data.stats[5].base_stat, level),
+      // hp: 3,
       OrigAttack: this.calcStats(
         "attack",
         this.state.data.stats[4].base_stat,
@@ -492,57 +479,63 @@ class TeamBuilder extends Component {
     };
 
     let player = null; //default to player one
-    if (this.state.mode === "Multi") {
-      if (this.state.currentPlayer === "Player One") {
-        player = this.state.player1Team;
-      } else if (this.state.currentPlayer === "Player Two") {
-        player = this.state.player2Team;
+    if (this.props.mode === "Multi") {
+      if (this.props.currentPlayer === "Player One") {
+        player = this.props.player1Team;
+      } else if (this.props.currentPlayer === "Player Two") {
+        player = this.props.player2Team;
       }
-    } else if (this.state.mode === "Single") {
+    } else if (this.props.mode === "Single") {
       if (team === undefined) {
-        player = this.state.player1Team;
+        player = this.props.player1Team;
       } else if (team === "team2") {
-        player = this.state.player2Team;
+        player = this.props.player2Team;
       }
-    } else if (this.state.mode === "CPUVSCPU") {
+    } else if (this.props.mode === "CPUVSCPU") {
       if (team === "team1") {
-        player = this.state.player1Team;
+        player = this.props.player1Team;
       } else if (team === "team2") {
-        player = this.state.player2Team;
+        player = this.props.player2Team;
       }
     }
 
-    if (player.length !== this.state.teamSize) {
-      if (this.state.mode === "Multi") {
-        if (this.state.currentPlayer === "Player One") {
-          this.state.player1Team.push(pokemonObj);
-          this.setState({ player1Team: player });
-        } else if (this.state.currentPlayer === "Player Two") {
-          this.state.player2Team.push(pokemonObj);
-          this.setState({ player2Team: player });
+    if (player.length !== this.props.teamSize) {
+      if (this.props.mode === "Multi") {
+        if (this.props.currentPlayer === "Player One") {
+          this.props.player1Team.push(pokemonObj);
+          // this.setState({ player1Team: player });
+          this.props.setPlayer1Team(player);
+        } else if (this.props.currentPlayer === "Player Two") {
+          this.props.player2Team.push(pokemonObj);
+          // this.setState({ player2Team: player });
+          this.props.setPlayer2Team(player);
         }
-      } else if (this.state.mode === "Single") {
+      } else if (this.props.mode === "Single") {
         if (team === undefined) {
-          this.state.player1Team.push(pokemonObj);
-          this.setState({ player1Team: player });
+          this.props.player1Team.push(pokemonObj);
+          // this.setState({ player1Team: player });
+          this.props.setPlayer1Team(player);
         } else if (team === "team2") {
-          this.state.player2Team.push(pokemonObj);
-          this.setState({ player2Team: player });
+          this.props.player2Team.push(pokemonObj);
+          // this.setState({ player2Team: player });
+          this.props.setPlayer2Team(player);
         }
-      } else if (this.state.mode === "CPUVSCPU") {
+      } else if (this.props.mode === "CPUVSCPU") {
         if (team === "team1") {
-          this.state.player1Team.push(pokemonObj);
-          this.setState({ player1Team: player });
+          this.props.player1Team.push(pokemonObj);
+          // this.setState({ player1Team: player });
+          this.props.setPlayer1Team(player);
         } else if (team === "team2") {
-          this.state.player2Team.push(pokemonObj);
-          this.setState({ player2Team: player });
+          this.props.player2Team.push(pokemonObj);
+          // this.setState({ player2Team: player });
+          this.props.setPlayer2Team(player);
         }
       }
     }
 
     if (
-      this.state.player1Team.length === this.state.teamSize &&
-      this.state.player2Team.length === this.state.teamSize
+      this.props.player1Team.length === this.props.teamSize &&
+      this.props.player2Team.length === this.props.teamSize
     ) {
       $(document.querySelectorAll(".dropdown")).fadeOut(100);
       $(document.querySelector(".pokemonSheetContainer")).addClass("deRender");
@@ -550,15 +543,17 @@ class TeamBuilder extends Component {
     }
 
     if (
-      this.state.currentPlayer === "Player One" &&
-      this.state.mode === "Multi"
+      this.props.currentPlayer === "Player One" &&
+      this.props.mode === "Multi"
     ) {
-      this.setState({ currentPlayer: "Player Two" });
+      // this.setState({ currentPlayer: "Player Two" });
+      this.props.setCurrentPlayer("Player Two");
     } else if (
-      this.state.currentPlayer === "Player Two" &&
-      this.state.mode === "Multi"
+      this.props.currentPlayer === "Player Two" &&
+      this.props.mode === "Multi"
     ) {
-      this.setState({ currentPlayer: "Player One" });
+      // this.setState({ currentPlayer: "Player One" });
+      this.props.setCurrentPlayer("Player One");
     } else {
       this.forceUpdate();
     }
@@ -575,11 +570,12 @@ class TeamBuilder extends Component {
   };
 
   startBattle = () => {
-    const poke1 = this.state.player1Team[0];
-    const poke2 = this.state.player2Team[0];
+    const poke1 = this.props.player1Team[0];
+    const poke2 = this.props.player2Team[0];
     poke1.inBattle = true;
     poke2.inBattle = true;
-    this.setState({ battleReady: true });
+    // this.setState({ battleReady: true });
+    this.props.setBattleReady(true);
     $(document.getElementById("BattleButton")).fadeOut(300);
   };
 
@@ -587,19 +583,19 @@ class TeamBuilder extends Component {
     let poke = null;
     if (playersTurn === "Player One") {
       if (faintedFromRecoil) {
-        poke = this.state.player1Team[index];
+        poke = this.props.player1Team[index];
         poke.fainted = true;
       } else {
-        poke = this.state.player2Team[index];
+        poke = this.props.player2Team[index];
         poke.fainted = true;
       }
     } else {
       //player twos turn
       if (faintedFromRecoil) {
-        poke = this.state.player2Team[index];
+        poke = this.props.player2Team[index];
         poke.fainted = true;
       } else {
-        poke = this.state.player1Team[index];
+        poke = this.props.player1Team[index];
         poke.fainted = true;
       }
     }
@@ -617,10 +613,10 @@ class TeamBuilder extends Component {
 
   render() {
     let playerName = null;
-    if (this.state.currentPlayer === "Player One") {
-      playerName = this.state.playerOneName;
+    if (this.props.currentPlayer === "Player One") {
+      playerName = this.props.playerOneName;
     } else {
-      playerName = this.state.playerTwoName;
+      playerName = this.props.playerTwoName;
     }
     return (
       <div className="teamBuilder">
@@ -648,25 +644,6 @@ class TeamBuilder extends Component {
         >
           CPU vs. CPU
         </button>
-        <div className="playerOneNameDiv">
-          <p>Enter a name for Player One:</p>
-          <input
-            type="text"
-            id="playerOneNameBox"
-            placeholder="Player One..."
-          />
-          <button
-            type="button"
-            onClick={() =>
-              this.inputNames(
-                "P1",
-                document.getElementById("playerOneNameBox").value
-              )
-            }
-          >
-            Enter
-          </button>
-        </div>
         <div className="playerTwoNameDiv">
           <p>Enter a name for Player Two:</p>
           <input
@@ -759,7 +736,7 @@ class TeamBuilder extends Component {
         <div className="pokemonSheetContainer deRender">
           <div>{playerName} - Select a Pokemon:</div>
           <div className="pokemonSheet">
-            {this.props.allData.results.map((item, i) => {
+            {this.props.allData.map((item, i) => {
               return (
                 <button
                   className="sheetBlock btn btn-primary"
@@ -862,8 +839,8 @@ class TeamBuilder extends Component {
         </div>
         <div className="teamsContainer container-fluid row">
           <div className="team team1 col">
-            <p className="header">{this.state.playerOneName}:</p>
-            {this.state.player1Team.map((pokemon, i) => {
+            <p className="header">{this.props.playerOneName}:</p>
+            {this.props.player1Team.map((pokemon, i) => {
               return (
                 <div
                   className={`${
@@ -879,24 +856,17 @@ class TeamBuilder extends Component {
               );
             })}
           </div>
-          <BattleStage
+          <BattleStageContainer
             className="battleStage col"
-            battleReady={this.state.battleReady}
-            player1Team={this.state.player1Team}
-            player2Team={this.state.player2Team}
-            teamSize={this.state.teamSize}
             Capitalize={this.Capitalize}
             handleFainted={this.handleFainted}
-            playerOneName={this.state.playerOneName}
-            playerTwoName={this.state.playerTwoName}
-            mode={this.state.mode}
-            volume={this.props.volume}
             handleBattleVol={this.props.handleBattleVol}
             handleBattlePlaying={this.props.handleBattlePlaying}
+            returnToMainMenu={this.returnToMainMenu}
           />
           <div className="team team2 col">
-            <p className="header">{this.state.playerTwoName}:</p>
-            {this.state.player2Team.map((pokemon, i) => {
+            <p className="header">{this.props.playerTwoName}:</p>
+            {this.props.player2Team.map((pokemon, i) => {
               return (
                 <div
                   className={`${

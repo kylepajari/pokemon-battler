@@ -1,8 +1,6 @@
 import lowhealth from "../Sounds/BattleSounds/General/LOWHEALTH.wav";
 
-const UpdateHP = (HPbar, value, pokemon, power, mode, Volume) => {
-  console.log("changing HP Bar...", mode);
-
+const UpdateHP = (HPbar, value, Volume) => {
   value = parseInt(value);
   HPbar.css("width", value);
   if (value >= 0 && value <= 104) {
