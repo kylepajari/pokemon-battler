@@ -63,3 +63,14 @@
 .deRender {
   display: none;
 }
+
+.logoutBox {
+  position: fixed;
+  left: 81%;
+  top: 4%;
+}
+
+span {
+  margin-right: 5px;
+  font-size: 16px;
+}

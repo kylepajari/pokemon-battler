@@ -3,6 +3,7 @@ export default {
   username: "",
   password: "",
   badges: 0,
+  id: "",
   loggedIn: false,
   volume: 0.7,
   playersTurn: "Player One",

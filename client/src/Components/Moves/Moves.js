@@ -70,7 +70,8 @@ class Moves extends Component {
                     this.props.mode,
                     this.props.isPoisonBurned,
                     this.props.checkForStatusEffect,
-                    this.props.volume
+                    this.props.volume,
+                    this.props.checkWin
                   )
                 }
               >

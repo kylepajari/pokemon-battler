@@ -52,6 +52,7 @@ class App extends Component {
     this.props.setPlayersTurn("Player One");
     this.props.setTeamSize(6);
     this.props.setBadges(0);
+    this.props.setId("");
   };
 
   render() {
@@ -108,10 +109,12 @@ class App extends Component {
           <div className="title">
             <p>Pokémon Battler</p>
             <img className="pokeball" src={pokeball} alt="Pokeball" />
-            &nbsp;
-            <button className="btn btn-dark" onClick={this.logout}>
-              Logout
-            </button>
+            <div className="logoutBox">
+              <span>Hi, {this.props.username}</span>
+              <button className="btn btn-dark" onClick={this.logout}>
+                Logout
+              </button>
+            </div>
           </div>
           <span style={{ fontSize: "8px", color: "red", marginTop: "5px" }}>
             Warning: This game contains sound effects. Please keep volume at a

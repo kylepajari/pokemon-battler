@@ -5,11 +5,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import $ from "jquery";
 import { MatchIconWithType } from "../MatchTypeIcon";
 import { UpdateHP } from "../UpdateHP";
-import FaintPokemon from "../FaintPokemon";
+import { FaintPokemon } from "../FaintPokemon";
 import { Conditions } from "../Conditions";
 import { RandomNumberGenerator } from "../RandomNumberGenerator";
 import { DisplayMessage } from "../DisplayMessage";
 import { handleAI } from "../AI";
+import Victory from "../../Sounds/victory.mp3";
 import swapSound from "../../Sounds/BattleSounds/General/SWITCHIN.wav";
 import statRise from "../../Sounds/BattleSounds/General/STATRISE.wav";
 import statLower from "../../Sounds/BattleSounds/General/STATLOWER.wav";
@@ -70,6 +71,7 @@ class BattleStage extends Component {
     this.dealPoisonBurn = this.dealPoisonBurn.bind(this);
     this.resetMultipliers = this.resetMultipliers.bind(this);
     this.handleVolume = this.handleVolume.bind(this);
+    this.checkWin = this.checkWin.bind(this);
   }
 
   componentWillReceiveProps(props) {
@@ -160,7 +162,8 @@ class BattleStage extends Component {
             this.props.mode,
             this.state.isPoisonBurned,
             this.checkForStatusEffect,
-            this.props.volume
+            this.props.volume,
+            this.checkWin
           ),
         8000
       );
@@ -192,6 +195,150 @@ class BattleStage extends Component {
   handleForceUpdate() {
     this.forceUpdate();
   }
+
+  //CHECKWIN /////////////////////////////////////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////
+  checkWin = () => {
+    let faintedCountTeam1 = 0;
+    let faintedCountTeam2 = 0;
+    this.state.player1Team.forEach(poke => {
+      if (poke.fainted) {
+        faintedCountTeam1++;
+      }
+    });
+    this.state.player2Team.forEach(poke => {
+      if (poke.fainted) {
+        faintedCountTeam2++;
+      }
+    });
+    console.log(
+      "checkWin",
+      "team1: " + faintedCountTeam1,
+      "team 2: " + faintedCountTeam2,
+      "team size: " + this.props.teamSize
+    );
+
+    if (faintedCountTeam1 === this.props.teamSize) {
+      setTimeout(
+        () => $(document.querySelector(".playermessage")).fadeIn(500),
+        2000
+      );
+      //everyone on player ones team has fainted
+      $(document.querySelector(".options")).hide(500);
+      //play victory music
+      let win = new Audio(Victory);
+      if (this.props.volume === 0) {
+        win.volume = 0;
+      } else {
+        win.volume = 1;
+      }
+      setTimeout(() => win.play(), 2000);
+      setTimeout(
+        () =>
+          $(document.querySelector(".playermessage")).text(
+            this.props.playerOneName + " is out of Pokémon! "
+          ),
+        2000
+      );
+      setTimeout(
+        () =>
+          $(document.querySelector(".playermessage")).text(
+            this.props.playerTwoName +
+              " defeated " +
+              this.props.playerOneName +
+              "!"
+          ),
+        3500
+      );
+    }
+
+    if (faintedCountTeam2 === this.props.teamSize) {
+      setTimeout(
+        () => $(document.querySelector(".playermessage")).fadeIn(500),
+        2000
+      );
+      //everyone on player twos team has fainted
+      $(document.querySelector(".options")).hide(500);
+      //play victory music
+      let win = new Audio(Victory);
+      if (this.props.volume === 0) {
+        win.volume = 0;
+      } else {
+        win.volume = 1;
+      }
+      setTimeout(() => win.play(), 2000);
+      setTimeout(
+        () =>
+          $(document.querySelector(".playermessage")).text(
+            this.props.playerTwoName + " is out of Pokémon! "
+          ),
+        2000
+      );
+      setTimeout(
+        () =>
+          $(document.querySelector(".playermessage")).text(
+            this.props.playerOneName +
+              " defeated " +
+              this.props.playerTwoName +
+              "!"
+          ),
+        3500
+      );
+
+      //badge earning
+      ////////////////////////////////////////////////////////////////
+      if (this.props.mode === "Single") {
+        let badge = null;
+
+        //get users current badges
+        let badgesCount = this.props.badges;
+        //increase badge count by 1 if less than 8, give player badge
+        if (badgesCount < 8) {
+          badgesCount += 1;
+          this.props.setBadges(badgesCount);
+          this.props.updateBadges(this.props.id, badgesCount);
+          switch (this.props.playerTwoName) {
+            case "Brock":
+              badge = "Boulder Badge";
+              break;
+            case "Misty":
+              badge = "Cascade Badge";
+              break;
+            case "Lt. Surge":
+              badge = "Thunder Badge";
+              break;
+            case "Erika":
+              badge = "Rainbow Badge";
+              break;
+            case "Koga":
+              badge = "Soul Badge";
+              break;
+            case "Sabrina":
+              badge = "Marsh Badge";
+              break;
+            case "Blaine":
+              badge = "Volcano Badge";
+              break;
+            case "Giovanni":
+              badge = "Earth Badge";
+              break;
+            default:
+              badge = "Badge";
+              break;
+          }
+          setTimeout(
+            () =>
+              $(document.querySelector(".playermessage")).text(
+                this.props.playerOneName + " earned the " + badge + "!"
+              ),
+            5000
+          );
+        }
+      }
+      setTimeout(() => $(document.querySelector(".options")).hide(300), 3500);
+      setTimeout(() => $(document.querySelector(".mainmenu")).show(300), 6000);
+    }
+  };
 
   //RESET MULTPLIERS ////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -631,7 +778,8 @@ class BattleStage extends Component {
                 this.props.mode,
                 this.state.isPoisonBurned,
                 this.checkForStatusEffect,
-                this.props.volume
+                this.props.volume,
+                this.checkWin
               ),
             4500
           );
@@ -657,7 +805,8 @@ class BattleStage extends Component {
                 this.props.mode,
                 this.state.isPoisonBurned,
                 this.checkForStatusEffect,
-                this.props.volume
+                this.props.volume,
+                this.checkWin
               ),
             500
           );
@@ -695,7 +844,8 @@ class BattleStage extends Component {
                 this.props.mode,
                 this.state.isPoisonBurned,
                 this.checkForStatusEffect,
-                this.props.volume
+                this.props.volume,
+                this.checkWin
               ),
             4500
           );
@@ -721,7 +871,8 @@ class BattleStage extends Component {
                 this.props.mode,
                 this.state.isPoisonBurned,
                 this.checkForStatusEffect,
-                this.props.volume
+                this.props.volume,
+                this.checkWin
               ),
             500
           );
@@ -751,7 +902,8 @@ class BattleStage extends Component {
                 this.props.mode,
                 this.state.isPoisonBurned,
                 this.checkForStatusEffect,
-                this.props.volume
+                this.props.volume,
+                this.checkWin
               ),
             4500
           );
@@ -777,7 +929,8 @@ class BattleStage extends Component {
                 this.props.mode,
                 this.state.isPoisonBurned,
                 this.checkForStatusEffect,
-                this.props.volume
+                this.props.volume,
+                this.checkWin
               ),
             500
           );
@@ -1538,7 +1691,6 @@ class BattleStage extends Component {
     //if move is not a damaging one, end turn
     if (power === 0) {
       console.log("move has 0 power...");
-      console.log(isUserPoisonedOrBurned);
 
       //if user is poisonedburned, delay switching turns
       if (isUserPoisonedOrBurned || PKMNuser.isBound) {
@@ -1813,6 +1965,7 @@ class BattleStage extends Component {
               handleFainted={this.props.handleFainted}
               handleForceUpdate={this.handleForceUpdate}
               resetMultipliers={this.resetMultipliers}
+              checkWin={this.checkWin}
             />
           </div>
         </div>

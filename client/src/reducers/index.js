@@ -21,6 +21,13 @@ function password(state = "", action) {
   return state;
 }
 
+function id(state = "", action) {
+  if (action.type === "SET_ID") {
+    return action.value;
+  }
+  return state;
+}
+
 function loggedIn(state = false, action) {
   if (action.type === "SET_LOGGED_IN") {
     return action.value;
@@ -172,6 +179,7 @@ export default combineReducers({
   allData,
   username,
   password,
+  id,
   loggedIn,
   volume,
   playersTurn,

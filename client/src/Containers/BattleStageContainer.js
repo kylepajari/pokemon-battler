@@ -5,7 +5,9 @@ import {
   setPlayersTurn,
   setBattleStarted,
   setPlayer1CurrentPokemon,
-  setPlayer2CurrentPokemon
+  setPlayer2CurrentPokemon,
+  setBadges,
+  updateBadges
 } from "../actions";
 
 function mapStateToProps(state) {
@@ -21,7 +23,9 @@ function mapStateToProps(state) {
     teamSize: state.teamSize,
     mode: state.mode,
     volume: state.volume,
-    playersTurn: state.playersTurn
+    playersTurn: state.playersTurn,
+    badges: state.badges,
+    id: state.id
   };
 }
 
@@ -31,7 +35,9 @@ function mapDispatchToProps(dispatch) {
     setPlayersTurn: name => dispatch(setPlayersTurn(name)),
     setBattleStarted: isStarted => dispatch(setBattleStarted(isStarted)),
     setPlayer1CurrentPokemon: num => dispatch(setPlayer1CurrentPokemon(num)),
-    setPlayer2CurrentPokemon: num => dispatch(setPlayer2CurrentPokemon(num))
+    setPlayer2CurrentPokemon: num => dispatch(setPlayer2CurrentPokemon(num)),
+    setBadges: num => dispatch(setBadges(num)),
+    updateBadges: (id, num) => dispatch(updateBadges(id, num))
   };
 }
 

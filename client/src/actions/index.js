@@ -22,7 +22,7 @@ export const loadAllData = () => dispatch => {
 
 export const setUserName = name => {
   return {
-    type: "SET_USER_NAME",
+    type: "SET_USERNAME",
     value: name
   };
 };
@@ -139,6 +139,13 @@ export const setBadges = num => {
   };
 };
 
+export const setId = id => {
+  return {
+    type: "SET_ID",
+    value: id
+  };
+};
+
 export const login = ({ username, password }) => {
   return dispatch => {
     return axios({
@@ -174,6 +181,21 @@ export const signUp = ({ username, password }) => {
     }).catch(err => Promise.reject(err));
   };
 };
+
+export function updateBadges(id, badgesCount) {
+  console.log("actions update badges", id, badgesCount);
+
+  return dispatch => {
+    return axios({
+      url: "/api/updatebadges",
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      data: JSON.stringify({ id, badgesCount })
+    }).catch(err => Promise.reject(err));
+  };
+}
 
 export const getAllUsers = () => {
   return dispatch => {

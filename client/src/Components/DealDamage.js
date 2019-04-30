@@ -1,6 +1,6 @@
 import $ from "jquery";
 import { UpdateHP } from "./UpdateHP";
-import FaintPokemon from "./FaintPokemon";
+import { FaintPokemon } from "./FaintPokemon";
 import { CalcTypeAdvantage } from "./TypeAdvantage";
 import { RandomNumberGenerator } from "./RandomNumberGenerator";
 import { DisplayMessage } from "./DisplayMessage";
@@ -32,9 +32,9 @@ const DealDamage = (
   dealPoisonBurn,
   switchTurns,
   mode,
-  Volume
+  Volume,
+  checkWin
 ) => {
-  console.log("dealing damage...volume is " + Volume);
   let PKMNuser = "";
   let PKMNtarget = "";
   let UserHP = "";
@@ -190,6 +190,7 @@ const DealDamage = (
             ),
           3200
         );
+        setTimeout(() => checkWin(), 6200);
         if (statusEff === "recoil" && PKMNuser.hp - recoilDamage <= 0) {
           setTimeout(() => switchTurns(), 3100);
         }
@@ -224,6 +225,7 @@ const DealDamage = (
             ),
           4700
         );
+        setTimeout(() => checkWin(), 7700);
         if (statusEff === "recoil" && PKMNuser.hp - recoilDamage <= 0) {
           setTimeout(() => switchTurns(), 4600);
         }
@@ -258,6 +260,7 @@ const DealDamage = (
             ),
           4700
         );
+        setTimeout(() => checkWin(), 7700);
         if (statusEff === "recoil" && PKMNuser.hp - recoilDamage <= 0) {
           setTimeout(() => switchTurns(), 4600);
         }
@@ -293,6 +296,7 @@ const DealDamage = (
             ),
           6200
         );
+        setTimeout(() => checkWin(), 9200);
         if (statusEff === "recoil" && PKMNuser.hp - recoilDamage <= 0) {
           setTimeout(() => switchTurns(), 6100);
         }

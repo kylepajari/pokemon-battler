@@ -34,6 +34,12 @@ const updateUser = (name, updates) => {
   );
 };
 
+const UpdateBadges = (id, badges) => {
+  console.log("controller update badges");
+
+  return UsersModel.updateOne({ _id: ObjectId(id) }, { $set: { badges } });
+};
+
 const Login = ({ username, password }) => {
   const hash = crypto
     .createHash("md5")
@@ -46,4 +52,11 @@ const getUserById = id => {
   return UsersModel.findOne({ _id: ObjectId(id) });
 };
 
-module.exports = { getAllUsers, createUser, updateUser, Login, getUserById };
+module.exports = {
+  getAllUsers,
+  createUser,
+  updateUser,
+  UpdateBadges,
+  Login,
+  getUserById
+};

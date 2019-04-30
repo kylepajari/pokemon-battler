@@ -9,6 +9,14 @@ import $ from "jquery";
 import BadgesContainer from "../BadgesContainer/BadgesContainer";
 import { RandomNumberGenerator } from "../RandomNumberGenerator";
 import { MatchIconWithType } from "../MatchTypeIcon";
+import Boulder_Badge from "../BadgesContainer/Badges/Boulder_Badge.png";
+import Cascade_Badge from "../BadgesContainer/Badges/Cascade_Badge.png";
+import Thunder_Badge from "../BadgesContainer/Badges/Thunder_Badge.png";
+import Rainbow_Badge from "../BadgesContainer/Badges/Rainbow_Badge.png";
+import Marsh_Badge from "../BadgesContainer/Badges/Marsh_Badge.png";
+import Soul_Badge from "../BadgesContainer/Badges/Soul_Badge.png";
+import Volcano_Badge from "../BadgesContainer/Badges/Volcano_Badge.png";
+import Earth_Badge from "../BadgesContainer/Badges/Earth_Badge.png";
 
 class TeamBuilder extends Component {
   constructor(props) {
@@ -61,6 +69,7 @@ class TeamBuilder extends Component {
     $(document.querySelector("#btnCPUVSCPU")).fadeOut(10);
     this.props.setMode("Single");
     $(document.querySelector(".badgesContainer")).fadeIn(300);
+    $(document.querySelector(".badgesShowcase")).fadeOut(10);
   }
 
   multiPlayer() {
@@ -100,6 +109,7 @@ class TeamBuilder extends Component {
     $(document.querySelector("#btnCPUVSCPU")).fadeIn(300);
     $(document.querySelector(".teamList")).fadeOut(10);
     $(document.querySelector(".teamsContainer")).fadeOut(10);
+    $(document.querySelector(".badgesShowcase")).fadeIn(300);
   }
 
   handleLeaderNames = num => {
@@ -160,6 +170,7 @@ class TeamBuilder extends Component {
     $(document.querySelector(".teamsContainer")).fadeIn(300);
     $(document.querySelector(".pokemonSheetContainer")).removeClass("deRender");
     $(document.querySelector(".teamList")).fadeOut(10);
+    $(document.querySelector(".badgesShowcase")).fadeOut(10);
     this.props.setTeamSize(num);
     if (this.props.mode === "CPUVSCPU") {
       //build cpu teams
@@ -644,6 +655,57 @@ class TeamBuilder extends Component {
         >
           CPU vs. CPU
         </button>
+        <div className="badgesShowcase">
+          <p className="badgesHeader">Badges Earned:</p>
+          <div
+            className={`${this.props.badges < 1 ? `faded badge-1` : `badge-1`}`}
+            key={"badge1"}
+          >
+            <img src={Boulder_Badge} alt="Boulder Badge" />
+          </div>
+          <div
+            className={`${this.props.badges < 2 ? `faded badge-2` : `badge-2`}`}
+            key={"badge2"}
+          >
+            <img src={Cascade_Badge} alt="Cascade Badge" />
+          </div>
+          <div
+            className={`${this.props.badges < 3 ? `faded badge-3` : `badge-3`}`}
+            key={"badge3"}
+          >
+            <img src={Thunder_Badge} alt="Thunder Badge" />
+          </div>
+          <div
+            className={`${this.props.badges < 4 ? `faded badge-4` : `badge-4`}`}
+            key={"badge4"}
+          >
+            <img src={Rainbow_Badge} alt="Rainbow Badge" />
+          </div>
+          <div
+            className={`${this.props.badges < 5 ? `faded badge-5` : `badge-5`}`}
+            key={"badge5"}
+          >
+            <img src={Soul_Badge} alt="Soul Badge" />
+          </div>
+          <div
+            className={`${this.props.badges < 6 ? `faded badge-6` : `badge-6`}`}
+            key={"badge6"}
+          >
+            <img src={Marsh_Badge} alt="Marsh Badge" />
+          </div>
+          <div
+            className={`${this.props.badges < 7 ? `faded badge-7` : `badge-7`}`}
+            key={"badge7"}
+          >
+            <img src={Volcano_Badge} alt="Volcano Badge" />
+          </div>
+          <div
+            className={`${this.props.badges < 8 ? `faded badge-8` : `badge-8`}`}
+            key={"badge8"}
+          >
+            <img src={Earth_Badge} alt="Earth Badge" />
+          </div>
+        </div>
         <div className="playerTwoNameDiv">
           <p>Enter a name for Player Two:</p>
           <input

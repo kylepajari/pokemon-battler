@@ -131,3 +131,50 @@ div > img {
   list-style-type: none;
   margin-left: 25%;
 }
+
+.badgesShowcase {
+  position: fixed;
+  left: 82%;
+  top: 15%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "badgesHeader badgesHeader"
+    "badge-1 badge-2"
+    "badge-3 badge-4"
+    "badge-5 badge-6"
+    "badge-7 badge-8";
+  width: 230px;
+  height: 300px;
+}
+
+.badgesHeader {
+  grid-area: badgesHeader;
+  text-decoration: underline;
+  margin-bottom: 15px;
+}
+
+.badge-1 {
+  grid-area: badge-1;
+}
+.badge-2 {
+  grid-area: badge-2;
+}
+.badge-3 {
+  grid-area: badge-3;
+}
+.badge-4 {
+  grid-area: badge-4;
+}
+.badge-5 {
+  grid-area: badge-5;
+}
+.badge-6 {
+  grid-area: badge-6;
+}
+
+.badgesShowcase img {
+  height: 50px;
+  width: 50px;
+}

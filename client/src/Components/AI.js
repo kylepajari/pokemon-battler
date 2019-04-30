@@ -22,11 +22,11 @@ const handleAI = (
   mode,
   isPoisonBurned,
   checkForStatusEffect,
-  volume
+  volume,
+  checkWin
 ) => {
   let PKMNuser = null;
   let PKMNtarget = null;
-  console.log("handleAI mode is: " + mode);
 
   if (mode === "Single") {
     PKMNuser = player2Team[player2CurrentPokemon];
@@ -124,7 +124,8 @@ const handleAI = (
           mode,
           isPoisonBurned,
           checkForStatusEffect,
-          volume
+          volume,
+          checkWin
         ),
       4500
     );
@@ -159,7 +160,8 @@ const handleAI = (
       mode,
       isPoisonBurned,
       checkForStatusEffect,
-      volume
+      volume,
+      checkWin
     );
   }
 };

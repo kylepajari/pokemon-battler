@@ -8,7 +8,8 @@ import {
   setUserName,
   setPassword,
   setPlayerOneName,
-  setBadges
+  setBadges,
+  setId
 } from "../actions";
 
 function mapDispatchToProps(dispatch) {
@@ -20,7 +21,8 @@ function mapDispatchToProps(dispatch) {
     setUserName: username => dispatch(setUserName(username)),
     setPassword: password => dispatch(setPassword(password)),
     setPlayerOneName: name => dispatch(setPlayerOneName(name)),
-    setBadges: num => dispatch(setBadges(num))
+    setBadges: num => dispatch(setBadges(num)),
+    setId: id => dispatch(setId(id))
   };
 }
 

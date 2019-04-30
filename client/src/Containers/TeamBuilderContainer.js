@@ -27,7 +27,8 @@ function mapStateToProps(state) {
     battleReady: state.battleReady,
     teamSize: state.teamSize,
     username: state.username,
-    mode: state.mode
+    mode: state.mode,
+    badges: state.badges
   };
 }
 

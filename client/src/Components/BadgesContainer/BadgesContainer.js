@@ -24,6 +24,10 @@ class BadgesContainer extends Component {
     this.loadBadgeProgress();
   }
 
+  componentDidUpdate() {
+    this.loadBadgeProgress();
+  }
+
   loadBadgeProgress = () => {
     const badges = this.props.badges;
     switch (badges) {

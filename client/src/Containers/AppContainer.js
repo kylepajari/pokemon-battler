@@ -14,13 +14,18 @@ import {
   setBattleStarted,
   setTeamSize,
   setMode,
-  setBadges
+  setBadges,
+  setId
 } from "../actions";
 
 function mapStateToProps(state) {
   return {
     allData: state.allData,
-    loggedIn: state.loggedIn
+    loggedIn: state.loggedIn,
+    username: state.username,
+    id: state.id,
+    player1Team: state.player1Team,
+    player2Team: state.player2Team
   };
 }
 
@@ -28,6 +33,7 @@ function mapDispatchToProps(dispatch) {
   return {
     loadAllData: () => dispatch(loadAllData()),
     setLoggedIn: log => dispatch(setLoggedIn(log)),
+    setId: id => dispatch(setId(id)),
     setPlayer1Team: team => dispatch(setPlayer1Team(team)),
     setPlayer2Team: team => dispatch(setPlayer2Team(team)),
     setPlayerOneName: name => dispatch(setPlayerOneName(name)),

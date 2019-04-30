@@ -1,5 +1,5 @@
 import { UpdateHP } from "../UpdateHP";
-import FaintPokemon from "../FaintPokemon";
+import { FaintPokemon } from "../FaintPokemon";
 import { DealDamage } from "../DealDamage";
 import { DisplayMessage } from "../DisplayMessage";
 import Confused from "../../Sounds/BattleSounds/General/CONFUSED.wav";
@@ -37,9 +37,9 @@ const UseMove = (
   mode,
   isPoisonBurned,
   checkForStatusEffect,
-  Volume
+  Volume,
+  checkWin
 ) => {
-  console.log("using move...");
   let options = $(document.querySelector(".options"));
   let PKMNuser = null;
   let PKMNtarget = null;
@@ -397,7 +397,8 @@ const UseMove = (
                   dealPoisonBurn,
                   switchTurns,
                   mode,
-                  Volume
+                  Volume,
+                  checkWin
                 ),
               3500
             );
@@ -501,7 +502,8 @@ const UseMove = (
                   dealPoisonBurn,
                   switchTurns,
                   mode,
-                  Volume
+                  Volume,
+                  checkWin
                 ),
               5500
             );

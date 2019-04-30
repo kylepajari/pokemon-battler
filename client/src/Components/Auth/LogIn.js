@@ -29,11 +29,12 @@ class Login extends Component {
       this.props
         .login({ ...this.state })
         .then(result => {
-          console.log(result);
+          console.log(result["_id"]);
           this.props.setBadges(result["badges"]);
           this.props.setLoggedIn(true);
           this.props.setUserName(result["username"]);
           this.props.setPassword(result["password"]);
+          this.props.setId(result["_id"]);
           this.props.setPlayerOneName(this.state.username);
         })
         .catch(err =>
