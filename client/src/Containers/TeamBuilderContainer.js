@@ -12,11 +12,14 @@ import {
   setBattleReady,
   setBattleStarted,
   setTeamSize,
-  setMode
+  setMode,
+  updateTeam,
+  getTeam
 } from "../actions";
 
 function mapStateToProps(state) {
   return {
+    user: state.user,
     player1Team: state.player1Team,
     player2Team: state.player2Team,
     playerOneName: state.playerOneName,
@@ -28,7 +31,8 @@ function mapStateToProps(state) {
     teamSize: state.teamSize,
     username: state.username,
     mode: state.mode,
-    badges: state.badges
+    badges: state.badges,
+    id: state.id
   };
 }
 
@@ -45,7 +49,9 @@ function mapDispatchToProps(dispatch) {
     setBattleReady: isReady => dispatch(setBattleReady(isReady)),
     setBattleStarted: isStarted => dispatch(setBattleStarted(isStarted)),
     setTeamSize: num => dispatch(setTeamSize(num)),
-    setMode: mode => dispatch(setMode(mode))
+    setMode: mode => dispatch(setMode(mode)),
+    updateTeam: (id, team) => dispatch(updateTeam(id, team)),
+    getTeam: id => dispatch(getTeam(id))
   };
 }
 

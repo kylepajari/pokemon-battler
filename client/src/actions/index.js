@@ -157,7 +157,9 @@ export const login = ({ username, password }) => {
       data: JSON.stringify({ username, password })
     })
       .then(res => {
-        document.cookie = `id_token=${res.data.token};max-age=300;`;
+        console.log("actions login", res.data);
+        //1 hr cookie expire
+        document.cookie = `id_token=${res.data.token};max-age=3600;`;
         const payload = jwt.verify(res.data.token, "secret");
         dispatch({
           type: "LOGIN",
@@ -197,8 +199,45 @@ export function updateBadges(id, badgesCount) {
   };
 }
 
+export function updateTeam(id, team) {
+  console.log("actions update team", id, team);
+
+  return dispatch => {
+    return axios({
+      url: "/api/updateteam",
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      data: JSON.stringify({ id, team })
+    }).catch(err => Promise.reject(err));
+  };
+}
+
+export const getTeam = id => {
+  return dispatch => {
+    return axios
+      .get("/api/getteam/" + id)
+      .then(res => dispatch(setPlayer1Team(res.data.team)))
+      .catch(err => Promise.reject(err));
+  };
+};
+
 export const getAllUsers = () => {
   return dispatch => {
     return fetch("/api/users").then(res => res.json(res));
   };
 };
+
+export function setUser(user) {
+  return {
+    type: "SET_USER",
+    value: user
+  };
+}
+
+export function logout() {
+  return {
+    type: "LOGOUT"
+  };
+}

@@ -1,4 +1,5 @@
 export default {
+  user: {},
   allData: null,
   username: "",
   password: "",

@@ -175,6 +175,18 @@ function badges(state = 0, action) {
   return state;
 }
 
+const user = (state = {}, action) => {
+  switch (action.type) {
+    case "LOGIN":
+    case "SET_USER":
+      return action.value;
+    case "LOGOUT":
+      return {};
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   allData,
   username,
@@ -200,5 +212,6 @@ export default combineReducers({
   teamSize,
   battleReady,
   battleStarted,
-  badges
+  badges,
+  user
 });

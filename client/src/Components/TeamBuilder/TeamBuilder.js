@@ -61,6 +61,7 @@ class TeamBuilder extends Component {
     $(document.querySelector(".playerTwoNameDiv")).fadeOut(10);
     $(document.querySelector(".teamsContainer")).fadeOut(10);
     $(document.querySelector(".badgesContainer")).fadeOut(10);
+    $(document.querySelector(".mainmenuButton")).fadeOut(10);
   }
 
   singlePlayer() {
@@ -70,6 +71,8 @@ class TeamBuilder extends Component {
     this.props.setMode("Single");
     $(document.querySelector(".badgesContainer")).fadeIn(300);
     $(document.querySelector(".badgesShowcase")).fadeOut(10);
+    $(document.querySelector(".teamShowcase")).fadeOut(10);
+    $(document.querySelector(".mainmenuButton")).fadeIn(300);
   }
 
   multiPlayer() {
@@ -77,6 +80,7 @@ class TeamBuilder extends Component {
     $(document.querySelector("#btnMultiPlayer")).fadeOut(10);
     $(document.querySelector("#btnCPUVSCPU")).fadeOut(10);
     $(document.querySelector(".playerTwoNameDiv")).fadeIn(300);
+    $(document.querySelector(".mainmenuButton")).fadeIn(300);
     this.props.setMode("Multi");
   }
 
@@ -84,12 +88,15 @@ class TeamBuilder extends Component {
     this.props.setMode("CPUVSCPU");
     this.props.setPlayerOneName("CPU1");
     this.props.setPlayerTwoName("CPU2");
+    this.props.setPlayer1Team([]);
+    this.props.setPlayer2Team([]);
 
     //hide main menu buttons, show team list
     $(document.querySelector("#btnSinglePlayer")).fadeOut(10);
     $(document.querySelector("#btnMultiPlayer")).fadeOut(10);
     $(document.querySelector("#btnCPUVSCPU")).fadeOut(10);
     $(document.querySelector(".teamList")).fadeIn(300);
+    $(document.querySelector(".mainmenuButton")).fadeIn(300);
   }
 
   returnToMainMenu() {
@@ -97,19 +104,33 @@ class TeamBuilder extends Component {
     this.props.setMode("");
     this.props.setBattleReady(false);
     this.props.setBattleStarted(false);
-    this.props.setPlayer1Team([]);
+    if (this.props.mode === "Multi" || this.props.mode === "CPUVSCPU") {
+      this.props.setPlayer1Team([]);
+    }
     this.props.setPlayer2Team([]);
     this.props.setPlayer1CurrentPokemon(0);
     this.props.setPlayer2CurrentPokemon(0);
+    if (this.props.mode === "CPUVSCPU") {
+      this.props.setPlayerOneName(this.props.user.username);
+    }
     this.props.setPlayerTwoName("Player Two");
     this.props.setPlayersTurn("Player One");
     this.props.setTeamSize(6);
+    if (this.props.player1Team !== this.props.user.team) {
+      this.props.getTeam(this.props.id);
+    }
     $(document.querySelector("#btnSinglePlayer")).fadeIn(300);
     $(document.querySelector("#btnMultiPlayer")).fadeIn(300);
     $(document.querySelector("#btnCPUVSCPU")).fadeIn(300);
     $(document.querySelector(".teamList")).fadeOut(10);
+    $(document.querySelector(".badgesContainer")).fadeOut(10);
     $(document.querySelector(".teamsContainer")).fadeOut(10);
+    $(document.querySelector(".mainmenuButton")).fadeOut(10);
+    $(document.querySelector(".playerTwoNameDiv")).fadeOut(10);
     $(document.querySelector(".badgesShowcase")).fadeIn(300);
+    $(document.querySelector(".teamShowcase")).fadeIn(300);
+    $(document.getElementById("BattleButton")).fadeOut(10);
+    $(document.querySelector(".pokemonSheetContainer")).addClass("deRender");
   }
 
   handleLeaderNames = num => {
@@ -171,7 +192,10 @@ class TeamBuilder extends Component {
     $(document.querySelector(".pokemonSheetContainer")).removeClass("deRender");
     $(document.querySelector(".teamList")).fadeOut(10);
     $(document.querySelector(".badgesShowcase")).fadeOut(10);
+    $(document.querySelector(".teamShowcase")).fadeOut(10);
     this.props.setTeamSize(num);
+    this.props.setPlayer1Team([]);
+    this.props.setPlayer2Team([]);
     if (this.props.mode === "CPUVSCPU") {
       //build cpu teams
       let rand = 0;
@@ -548,6 +572,13 @@ class TeamBuilder extends Component {
       this.props.player1Team.length === this.props.teamSize &&
       this.props.player2Team.length === this.props.teamSize
     ) {
+      //update team to DB if not exist
+      console.log(this.props.player1Team.length);
+
+      if (this.props.user.team.length === 0 && this.props.mode === "Single") {
+        this.props.updateTeam(this.props.id, this.props.player1Team);
+      }
+
       $(document.querySelectorAll(".dropdown")).fadeOut(100);
       $(document.querySelector(".pokemonSheetContainer")).addClass("deRender");
       $(document.getElementById("BattleButton")).fadeIn(300);
@@ -633,6 +664,13 @@ class TeamBuilder extends Component {
       <div className="teamBuilder">
         <button
           type="button"
+          className="btn btn-dark mainmenuButton"
+          onClick={() => this.returnToMainMenu()}
+        >
+          Main Menu
+        </button>
+        <button
+          type="button"
           className="btn btn-dark"
           id="btnSinglePlayer"
           onClick={this.singlePlayer}
@@ -655,6 +693,17 @@ class TeamBuilder extends Component {
         >
           CPU vs. CPU
         </button>
+        <div className="teamShowcase">
+          <p className="teamHeader">Team:</p>
+          {this.props.player1Team.map((pokemon, i) => {
+            return (
+              <div className={`${`sprite team-${i + 1}`}`} key={i}>
+                <img src={pokemon.frontSprite} alt={pokemon.name} />
+                <span>{pokemon.name}</span>
+              </div>
+            );
+          })}
+        </div>
         <div className="badgesShowcase">
           <p className="badgesHeader">Badges Earned:</p>
           <div

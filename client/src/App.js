@@ -4,6 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import pokeball from "./pokeball.png";
 import "isomorphic-fetch";
 import Promise from "es6-promise-promise";
+import cookie from "cookie";
+import jwt from "jsonwebtoken";
 import Sound from "react-sound";
 import battleTheme from "./Sounds/battleTheme.mp3";
 import LoginContainer from "./Containers/LoginContainer";
@@ -24,6 +26,11 @@ class App extends Component {
 
   componentDidMount() {
     this.props.loadAllData();
+    const cookies = cookie.parse(document.cookie);
+    if (cookies.id_token) {
+      const payload = jwt.verify(cookies.id_token, "secret");
+      this.props.setUser(payload._doc);
+    }
   }
 
   handleBattleVol = () => {

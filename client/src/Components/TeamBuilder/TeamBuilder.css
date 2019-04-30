@@ -145,8 +145,8 @@ div > img {
     "badge-3 badge-4"
     "badge-5 badge-6"
     "badge-7 badge-8";
-  width: 230px;
-  height: 300px;
+  width: 250px;
+  height: 350px;
 }
 
 .badgesHeader {
@@ -173,8 +173,70 @@ div > img {
 .badge-6 {
   grid-area: badge-6;
 }
+.badge-7 {
+  grid-area: badge-7;
+}
+.badge-8 {
+  grid-area: badge-8;
+}
 
 .badgesShowcase img {
-  height: 50px;
-  width: 50px;
+  height: 65px;
+  width: 65px;
+}
+
+.teamShowcase {
+  position: fixed;
+  left: 2%;
+  top: 15%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "teamHeader teamHeader"
+    "team-1 team-2"
+    "team-3 team-4"
+    "team-5 team-6";
+  width: 250px;
+  height: 300px;
+}
+
+.teamHeader {
+  grid-area: teamHeader;
+  text-decoration: underline;
+  margin-bottom: 15px;
+}
+
+.team-1 {
+  grid-area: team-1;
+}
+.team-2 {
+  grid-area: team-2;
+}
+.team-3 {
+  grid-area: team-3;
+}
+.team-4 {
+  grid-area: team-4;
+}
+.team-5 {
+  grid-area: team-5;
+}
+.team-6 {
+  grid-area: team-6;
+}
+
+.teamShowcase img {
+  height: 85px;
+  width: 85px;
+}
+
+.teamShowcase span {
+  font-size: 10px;
+}
+
+.mainmenuButton {
+  position: fixed;
+  left: 1%;
+  top: 4%;
 }

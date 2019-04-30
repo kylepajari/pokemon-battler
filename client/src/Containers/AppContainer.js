@@ -15,7 +15,8 @@ import {
   setTeamSize,
   setMode,
   setBadges,
-  setId
+  setId,
+  setUser
 } from "../actions";
 
 function mapStateToProps(state) {
@@ -45,7 +46,8 @@ function mapDispatchToProps(dispatch) {
     setBattleStarted: isStarted => dispatch(setBattleStarted(isStarted)),
     setTeamSize: num => dispatch(setTeamSize(num)),
     setMode: mode => dispatch(setMode(mode)),
-    setBadges: num => dispatch(setBadges(num))
+    setBadges: num => dispatch(setBadges(num)),
+    setUser: payload => dispatch(setUser(payload))
   };
 }
 

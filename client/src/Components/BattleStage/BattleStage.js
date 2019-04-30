@@ -336,7 +336,6 @@ class BattleStage extends Component {
         }
       }
       setTimeout(() => $(document.querySelector(".options")).hide(300), 3500);
-      setTimeout(() => $(document.querySelector(".mainmenu")).show(300), 6000);
     }
   };
 
@@ -495,7 +494,8 @@ class BattleStage extends Component {
               500
             );
             setTimeout(
-              () => DisplayMessage("and sent out " + Team[swapPoke].name + "!"),
+              () =>
+                DisplayMessage("...and sent out " + Team[swapPoke].name + "!"),
               2500
             );
             let switchSound = new Audio(swapSound);
@@ -572,7 +572,8 @@ class BattleStage extends Component {
             500
           );
           setTimeout(
-            () => DisplayMessage("and sent out " + Team[swapPoke].name + "!"),
+            () =>
+              DisplayMessage("...and sent out " + Team[swapPoke].name + "!"),
             2500
           );
           let switchSound = new Audio(swapSound);
@@ -1920,13 +1921,6 @@ class BattleStage extends Component {
                 Bag
               </button>
             </div>
-            <button
-              type="button"
-              className="btn btn-light mainmenuButton"
-              onClick={() => this.props.returnToMainMenu()}
-            >
-              Main Menu
-            </button>
             <TeamContainer
               displayTeam={this.state.displayTeam}
               player1Team={this.state.player1Team}

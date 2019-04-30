@@ -72,7 +72,7 @@ class Team extends Component {
     }
 
     setTimeout(
-      () => DisplayMessage("and sent out " + Team[swapPoke].name + "!"),
+      () => DisplayMessage("...and sent out " + Team[swapPoke].name + "!"),
       2500
     );
     let switchSound = new Audio(swapSound);

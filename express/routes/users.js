@@ -31,22 +31,26 @@ router.post("/login", (req, res) => {
 });
 
 router.put("/updatebadges", isAuthenticated, (req, res) => {
-  console.log("routes updatebadges", req.body);
-
   UsersController.UpdateBadges(req.body.id, req.body.badgesCount)
     .then(() => res.send("Badges updated successfully"))
     .catch(err => res.status(400).send(err));
 });
 
-router.put("/:username", isAuthenticated, (req, res) => {
-  UsersController.updateUser(req.params.username, req.body).then(() =>
-    res.status(204).send()
-  );
+router.put("/updateteam", isAuthenticated, (req, res) => {
+  UsersController.UpdateTeam(req.body.id, req.body.team)
+    .then(() => res.send("Team updated successfully"))
+    .catch(err => res.status(400).send(err));
 });
 
 router.get("/:id", (req, res) => {
   UsersController.getUserById(req.params.id)
     .then(result => res.json(result))
+    .catch(err => res.status(404).send(err.message));
+});
+
+router.get("/getteam/:id", (req, res) => {
+  UsersController.getTeamById(req.params.id)
+    .then(result => res.send(result))
     .catch(err => res.status(404).send(err.message));
 });
 

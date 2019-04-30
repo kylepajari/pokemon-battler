@@ -14,7 +14,7 @@ const createUser = user => {
   return UsersModel.create({
     username: user.username,
     password: hash,
-    team: null,
+    team: [],
     badges: 0
   });
 };
@@ -35,9 +35,11 @@ const updateUser = (name, updates) => {
 };
 
 const UpdateBadges = (id, badges) => {
-  console.log("controller update badges");
-
   return UsersModel.updateOne({ _id: ObjectId(id) }, { $set: { badges } });
+};
+
+const UpdateTeam = (id, team) => {
+  return UsersModel.updateOne({ _id: ObjectId(id) }, { $set: { team } });
 };
 
 const Login = ({ username, password }) => {
@@ -52,11 +54,17 @@ const getUserById = id => {
   return UsersModel.findOne({ _id: ObjectId(id) });
 };
 
+const getTeamById = id => {
+  return UsersModel.findOne({ _id: ObjectId(id) });
+};
+
 module.exports = {
   getAllUsers,
   createUser,
   updateUser,
   UpdateBadges,
+  UpdateTeam,
   Login,
-  getUserById
+  getUserById,
+  getTeamById
 };
