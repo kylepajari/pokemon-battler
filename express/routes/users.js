@@ -30,13 +30,13 @@ router.post("/login", (req, res) => {
   });
 });
 
-router.put("/updatebadges", isAuthenticated, (req, res) => {
+router.put("/updatebadges", (req, res) => {
   UsersController.UpdateBadges(req.body.id, req.body.badgesCount)
     .then(() => res.send("Badges updated successfully"))
     .catch(err => res.status(400).send(err));
 });
 
-router.put("/updateteam", isAuthenticated, (req, res) => {
+router.put("/updateteam", (req, res) => {
   UsersController.UpdateTeam(req.body.id, req.body.team)
     .then(() => res.send("Team updated successfully"))
     .catch(err => res.status(400).send(err));
