@@ -762,10 +762,10 @@ class TeamBuilder extends Component {
             );
           })}
           <button
-            className={`"teambtn btn btn-dark" ${
+            className={`"teambtn btn btn-danger" ${
               this.props.player1Team.length > 0
-                ? "teambtn btn btn-dark"
-                : "teambtn btn btn-dark deRender"
+                ? "teambtn btn btn-danger"
+                : "teambtn btn btn-danger deRender"
             }`}
             onClick={this.clearTeam}
           >
