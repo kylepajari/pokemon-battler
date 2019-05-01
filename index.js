@@ -11,7 +11,7 @@ mongoose.connect(
 const port = process.env.PORT || 4001;
 const app = express();
 
-if (process.env.NODE_ENV === "production") {
+if (true) {
   app.use(express.static("client/build"));
 }
 
