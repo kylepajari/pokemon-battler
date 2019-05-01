@@ -159,7 +159,7 @@ export const login = ({ username, password }) => {
       .then(res => {
         console.log("actions login", res.data);
         //1 hr cookie expire
-        document.cookie = `id_token=${res.data.token};max-age=3600;`;
+        document.cookie = `id_token=${res.data.token};max-age=1300;`;
         const payload = jwt.verify(res.data.token, "secret");
         dispatch({
           type: "LOGIN",

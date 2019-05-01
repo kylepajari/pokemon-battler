@@ -703,6 +703,7 @@ class TeamBuilder extends Component {
               </div>
             );
           })}
+          {/* <button>Edit Team</button> */}
         </div>
         <div className="badgesShowcase">
           <p className="badgesHeader">Badges Earned:</p>
