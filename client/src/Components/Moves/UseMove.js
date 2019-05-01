@@ -71,7 +71,6 @@ const UseMove = (
   //does move have PP remaining?
   if (pp === 0) {
     //out of pp for move
-    console.log("out of PP!");
     DisplayMessage(moveName + " is out of PP!");
   } else if (pp > 0) {
     //hide move list/ options
@@ -95,21 +94,17 @@ const UseMove = (
       PKMNuser.statusCondition === "Poison" ||
       PKMNuser.statusCondition === "Burn"
     ) {
-      console.log("using move function: detected user as poison or burned");
-
       isUserPoisonedOrBurned = true;
       handlePoisonBurn(true);
     }
 
     let isUserBound = false;
     if (PKMNuser.isBound) {
-      console.log("using move function: detected user as BOUND");
       //subtract one turn from bound
       if (PKMNuser.turnsBound > 1) {
         isUserBound = true;
         //subtract one turn from bound
         PKMNtarget.turnsBound -= 1;
-        console.log("bound turns remaining: " + PKMNtarget.turnsBound);
       } else {
         //set isbound to false
         PKMNtarget.isBound = false;
@@ -120,21 +115,13 @@ const UseMove = (
     //check if user is afflicted with sleep and has turns remaining
     let wokeup = false;
     if (PKMNuser.statusCondition === "Sleep" && PKMNuser.turnsAsleep > 0) {
-      console.log(PKMNuser.name + " is fast asleep...");
       //subtract one turn from asleep
       PKMNuser.turnsAsleep = PKMNuser.turnsAsleep - 1;
-      console.log(
-        PKMNuser.name +
-          " will stay asleep for " +
-          PKMNuser.turnsAsleep +
-          " more turns..."
-      );
       DisplayMessage(PKMNuser.name + " is fast asleep...");
       let sleepingSound = new Audio(Sleeping);
       sleepingSound.volume = Volume;
       sleepingSound.play();
       if (isUserPoisonedOrBurned || isUserBound) {
-        console.log(PKMNuser.name + " is poisoned/burned");
         setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 2000);
       } else {
         setTimeout(() => switchTurns(), 2000);
@@ -144,7 +131,6 @@ const UseMove = (
       if (PKMNuser.statusCondition === "Sleep" && PKMNuser.turnsAsleep === 0) {
         //wake up pokemon
         wokeup = true;
-        console.log(PKMNuser.name + " woke up!");
         DisplayMessage(PKMNuser.name + " woke up!");
         PKMNuser.statusCondition = "";
       }
@@ -153,11 +139,9 @@ const UseMove = (
       let frozen = false;
       if (PKMNuser.statusCondition === "Frozen") {
         //user is frozen
-        console.log(PKMNuser.name + " is frozen...");
         frozen = true;
         DisplayMessage(PKMNuser.name + " is Frozen Solid!");
         if (isUserPoisonedOrBurned || isUserBound) {
-          console.log(PKMNuser.name + " is poisoned/burned");
           setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 2000);
         } else {
           setTimeout(() => switchTurns(), 2000);
@@ -172,11 +156,9 @@ const UseMove = (
         //25% chance of paralysis
         if (rand < 0.25) {
           //blocked by paralysis
-          console.log(PKMNuser.name + " is paralyzed...");
           paralysis = true;
           DisplayMessage(PKMNuser.name + " is paralyzed!");
           if (isUserPoisonedOrBurned || isUserBound) {
-            console.log(PKMNuser.name + " is poisoned/burned");
             setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 2000);
           } else {
             setTimeout(() => switchTurns(), 2000);
@@ -260,14 +242,12 @@ const UseMove = (
             }
             //if user is poisonedburned, delay switching turns
             if (isUserPoisonedOrBurned || isUserBound) {
-              console.log(PKMNuser.name + " is poisoned/burned");
               setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 4500);
             } else {
               setTimeout(() => switchTurns(), 4500);
             }
           }
         } else {
-          console.log(PKMNuser.name + " snapped out of confusion");
           snappedOut = true;
           PKMNuser.isConfused = false;
           DisplayMessage(PKMNuser.name + " snapped out of confusion!");
@@ -276,7 +256,6 @@ const UseMove = (
 
       //if pokemon has not woken up, snapped out of confusion, hurt itself from confusion, blocked by paralysis, or frozen; skip rest of move
       if (!wokeup && !snappedOut && !hurtitself && !paralysis && !frozen) {
-        console.log(PKMNuser.name + " used " + moveName);
         if (PKMNuser.isConfused) {
           setTimeout(
             () => DisplayMessage(PKMNuser.name + " used " + moveName + "!"),
@@ -340,7 +319,6 @@ const UseMove = (
           setTimeout(() => attack.play(), 1500);
         }
         if (rand > percentChance) {
-          console.log(PKMNuser.name + "'s attack Missed!");
           if (PKMNuser.isConfused) {
             setTimeout(
               () => DisplayMessage(PKMNuser.name + "'s attack Missed!"),
@@ -354,7 +332,6 @@ const UseMove = (
           }
 
           if (isUserPoisonedOrBurned || isUserBound) {
-            console.log(PKMNuser.name + " is poisoned/burned");
             if (PKMNuser.isConfused) {
               setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 6500);
             } else {
@@ -403,7 +380,6 @@ const UseMove = (
               3500
             );
           } else if (power === 0 && statusEff !== "") {
-            console.log(isUserPoisonedOrBurned);
             setTimeout(
               () =>
                 checkForStatusEffect(
@@ -424,14 +400,12 @@ const UseMove = (
             );
           } else if (power === 0 && statusEff === "") {
             //move does nothing
-            console.log(moveName + " did nothing...");
             setTimeout(
               () => DisplayMessage(moveName + " did nothing..."),
               2000
             );
 
             if (isUserPoisonedOrBurned || isUserBound) {
-              console.log(PKMNuser.name + " is poisoned/burned");
               setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 4000);
             } else {
               setTimeout(() => switchTurns(), 4000);
@@ -444,7 +418,6 @@ const UseMove = (
         !paralysis &&
         !frozen
       ) {
-        console.log(PKMNuser.name + " used " + moveName);
         setTimeout(
           () => DisplayMessage(PKMNuser.name + " used " + moveName + "!"),
           2000
@@ -457,16 +430,13 @@ const UseMove = (
         let percentChance =
           (moveAcc * (PKMNuser.accuracy / PKMNtarget.evasion)) / 100;
         let rand = Math.random();
-        console.log("miss chance calced to: " + percentChance);
 
         if (rand > percentChance) {
-          console.log(PKMNuser.name + "'s attack Missed!");
           setTimeout(
             () => DisplayMessage(PKMNuser.name + "'s attack Missed!"),
             4000
           );
           if (isUserPoisonedOrBurned || isUserBound) {
-            console.log(PKMNuser.name + " is poisoned/burned");
             setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 6000);
           } else {
             setTimeout(() => switchTurns(), 6000);
@@ -508,7 +478,6 @@ const UseMove = (
               5500
             );
           } else if (power === 0 && statusEff !== "") {
-            console.log(isUserPoisonedOrBurned);
             setTimeout(
               () =>
                 checkForStatusEffect(
@@ -529,14 +498,12 @@ const UseMove = (
             );
           } else if (power === 0 && statusEff === "") {
             //move does nothing
-            console.log(moveName + " did nothing...");
             setTimeout(
               () => DisplayMessage(moveName + " did nothing..."),
               4000
             );
 
             if (isUserPoisonedOrBurned || isUserBound) {
-              console.log(PKMNuser.name + " is poisoned/burned");
               setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 6000);
             } else {
               setTimeout(() => switchTurns(), 6000);

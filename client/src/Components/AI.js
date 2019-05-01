@@ -57,9 +57,6 @@ const handleAI = (
       targetType1,
       targetType2
     );
-    console.log(
-      "AI Move: " + PKMNuser.moves[i].name + ", advan calced to " + advanNum
-    );
 
     if (advanNum === 4) {
       //double type advan
@@ -73,15 +70,11 @@ const handleAI = (
     }
   }
   if (moveChosen === null) {
-    console.log("no type advan, choosing random...");
-
     let rand = Math.round(RandomNumberGenerator(0, PKMNuser.moves.length - 1));
     moveChosen = PKMNuser.moves[rand];
     num = rand;
   } else {
-    console.log("found type advan, might choose it...");
     if (random < 0.3) {
-      console.log("choosing random...");
       let rand = Math.round(
         RandomNumberGenerator(0, PKMNuser.moves.length - 1)
       );
@@ -89,8 +82,6 @@ const handleAI = (
       num = rand;
     }
   }
-
-  //console.log("move num chosen is: " + num);
   if (PKMNuser.hp <= 0) {
     setTimeout(
       () =>

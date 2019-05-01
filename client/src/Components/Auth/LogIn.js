@@ -68,7 +68,6 @@ class Login extends Component {
   // };
 
   signUp = e => {
-    console.log("sign up");
     e.preventDefault();
     if (this.Validate()) {
       this.props

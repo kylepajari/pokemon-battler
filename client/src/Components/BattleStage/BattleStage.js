@@ -179,14 +179,10 @@ class BattleStage extends Component {
   };
 
   handleVolume = () => {
-    console.log("toggling sound");
-
     if (this.props.volume === 0) {
-      console.log("unmuting");
       this.props.setVolume(0.7);
       this.props.handleBattleVol();
     } else {
-      console.log("muting");
       this.props.setVolume(0);
       this.props.handleBattleVol();
     }
@@ -211,12 +207,6 @@ class BattleStage extends Component {
         faintedCountTeam2++;
       }
     });
-    console.log(
-      "checkWin",
-      "team1: " + faintedCountTeam1,
-      "team 2: " + faintedCountTeam2,
-      "team size: " + this.props.teamSize
-    );
 
     if (faintedCountTeam1 === this.props.teamSize) {
       setTimeout(
@@ -342,7 +332,6 @@ class BattleStage extends Component {
   //RESET MULTPLIERS ////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////
   resetMultipliers(reason) {
-    console.log("resetting multipliers...");
     if (this.props.playersTurn === "Player One") {
       if (reason === "swap") {
         this.setState({
@@ -406,7 +395,6 @@ class BattleStage extends Component {
   //HANDLE ITEMS ////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////
   handleItems() {
-    console.log("toggling items...");
     this.setState({
       displayItems: !this.state.displayItems,
       displayMoves: false,
@@ -417,7 +405,6 @@ class BattleStage extends Component {
   //HANDLE MOVES ////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////
   handleMoves() {
-    console.log("toggling moves...");
     this.setState({
       displayMoves: !this.state.displayMoves,
       displayItems: false,
@@ -428,7 +415,6 @@ class BattleStage extends Component {
   //HANDLE TEAM ////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////
   handleTeam(reason) {
-    console.log("toggling team..." + reason);
     if (reason === "fainted") {
       //switch turns to show list for player who lost pokemon
       if (
@@ -521,7 +507,6 @@ class BattleStage extends Component {
               setTimeout(() => HPbar.addClass("fullhp"), 2500);
             } else {
               let updatedBarHP = 560 * asPercentage;
-              console.log(updatedBarHP, HPbar.css("width"));
               //update health bar to reflect damage
               setTimeout(
                 () => UpdateHP(HPbar, updatedBarHP, this.props.volume),
@@ -529,7 +514,6 @@ class BattleStage extends Component {
               );
             }
             if (this.state.faintedByRecoilPoisonBurn === true) {
-              console.log("fainted from recoil/poison/burn switching turns");
               setTimeout(() => this.switchTurns(), 4000);
             }
           }
@@ -606,7 +590,6 @@ class BattleStage extends Component {
             );
           }
           if (this.state.faintedByRecoilPoisonBurn === true) {
-            console.log("fainted from recoil/poison/burn switching turns");
             setTimeout(() => this.switchTurns(), 4000);
           }
         }
@@ -636,10 +619,8 @@ class BattleStage extends Component {
   /////////////////////////////////////////////////////////////////////////////////////////////////////
   handleFaintedByRecoilPoisonBurn(bool) {
     if (bool) {
-      console.log("setting recoil/poison/burn fainted to true");
       this.setState({ faintedByRecoilPoisonBurn: true });
     } else {
-      console.log("resetting recoil/poison/burn fainted to false");
       this.setState({ faintedByRecoilPoisonBurn: false });
     }
   }
@@ -648,10 +629,8 @@ class BattleStage extends Component {
   /////////////////////////////////////////////////////////////////////////////////////////////////////
   handlePoisonBurn(bool) {
     if (bool) {
-      console.log("setting poison/burn damage to true");
       this.setState({ isPoisonBurned: true });
     } else {
-      console.log("setting poison/burn damage to false");
       this.setState({ isPoisonBurned: false });
     }
   }
@@ -668,7 +647,6 @@ class BattleStage extends Component {
     if (damage < 1) {
       damage = 1;
     }
-    console.log("poison/burn/bound damage: " + damage);
 
     //store original bar percent
     let origHealth = 0;
@@ -754,7 +732,6 @@ class BattleStage extends Component {
     } else if (this.props.mode === "Single") {
       //mode is single
       if (this.props.playersTurn === "Player One") {
-        console.log("switching to AI's turn...");
         this.props.setPlayersTurn("Player Two");
         this.handleForceUpdate();
         if (this.state.player2Team[this.props.player2CurrentPokemon].hp <= 0) {
@@ -956,7 +933,6 @@ class BattleStage extends Component {
     recoverDamage,
     isUserPoisonedOrBurned
   ) => {
-    console.log("checking for status effect...");
     let atkMultiplierUp = 0;
     let atkMultiplierDown = 0;
     let defMultiplierUp = 0;
@@ -991,7 +967,6 @@ class BattleStage extends Component {
       spcDefMultiplierUp = this.state.spcDefMultiplierUp2 + 0.5;
       spcDefMultiplierDown = this.state.spcDefMultiplierDown2 - 0.12;
     }
-    console.log("move has status effect: " + statusEff);
 
     //TRANSFORM/////////////////////////////////////////////////////////////////////////////
     //if effect is Transform, apply moveset/details of target to user
@@ -1118,7 +1093,6 @@ class BattleStage extends Component {
       if (updatedBarHP < 3) {
         updatedBarHP = 0;
       }
-      console.log("updatedhp: " + updatedBarHP);
 
       //update health bar to reflect damage
       setTimeout(() => UpdateHP(HPbar, updatedBarHP, this.props.volume), 2000);
@@ -1272,7 +1246,6 @@ class BattleStage extends Component {
         } else {
           //check probability chance from move to see if hits
           if (rand < statusProb) {
-            console.log(PKMNtarget.name + " was Poisoned!");
             setTimeout(() => (PKMNtarget.statusCondition = "Poison"), 2000);
             setTimeout(
               () => DisplayMessage(PKMNtarget.name + " was Poisoned!"),
@@ -1324,7 +1297,6 @@ class BattleStage extends Component {
           } else {
             //check probability chance from move to see if hits
             if (rand < statusProb) {
-              console.log(PKMNtarget.name + " was Burned!");
               setTimeout(() => (PKMNtarget.statusCondition = "Burn"), 2000);
               setTimeout(
                 () => DisplayMessage(PKMNtarget.name + " was Burned!"),
@@ -1353,7 +1325,6 @@ class BattleStage extends Component {
         } else {
           //check probability chance from move to see if hits
           if (rand < statusProb) {
-            console.log(PKMNtarget.name + " was Paralyzed!");
             setTimeout(() => (PKMNtarget.statusCondition = "Paralyze"), 2000);
             setTimeout(
               () => DisplayMessage(PKMNtarget.name + " was Paralyzed!"),
@@ -1367,10 +1338,6 @@ class BattleStage extends Component {
           setTimeout(() => (PKMNtarget.statusCondition = "Sleep"), 2000);
           let sleepTurns = Math.round(RandomNumberGenerator(2, 5));
           PKMNtarget.turnsAsleep = sleepTurns;
-          console.log(
-            PKMNtarget.name + " will sleep for " + sleepTurns + " turns..."
-          );
-
           setTimeout(
             () => DisplayMessage(PKMNtarget.name + " fell Asleep!"),
             2000
@@ -1399,7 +1366,6 @@ class BattleStage extends Component {
         } else {
           //check probability chance from move to see if hits
           if (rand < statusProb) {
-            console.log(PKMNtarget.name + " was Frozen!");
             setTimeout(() => (PKMNtarget.statusCondition = "Frozen"), 2000);
             setTimeout(
               () => DisplayMessage(PKMNtarget.name + " was Frozen solid!"),
@@ -1691,11 +1657,8 @@ class BattleStage extends Component {
     }
     //if move is not a damaging one, end turn
     if (power === 0) {
-      console.log("move has 0 power...");
-
       //if user is poisonedburned, delay switching turns
       if (isUserPoisonedOrBurned || PKMNuser.isBound) {
-        console.log(PKMNuser.name + " is poisoned/burned");
         setTimeout(() => this.dealPoisonBurn(PKMNuser, HPbar), 4000);
       } else {
         setTimeout(() => this.switchTurns(), 4000);
@@ -1703,15 +1666,9 @@ class BattleStage extends Component {
     } else {
       //move did damage
       if (faintedByRecoil) {
-        console.log("pokemon fainted from recoil...");
         //dont switch turns here
       } else {
-        console.log("move had status effect that did not cause fainting...");
         if (!isUserPoisonedOrBurned) {
-          console.log(
-            "user is not poisoned/burned and did not faint from move, switching turns..."
-          );
-
           setTimeout(() => this.switchTurns(), 3500);
         }
       }

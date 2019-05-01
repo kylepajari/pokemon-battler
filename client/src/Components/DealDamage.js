@@ -73,15 +73,6 @@ const DealDamage = (
   //calc STAB(Same-Type-Attack-Bonus) 1.5, if user is same as move type
   let STAB = 1;
   if (moveType === userType1 || moveType === userType2) {
-    console.log(
-      "move type " +
-        moveType +
-        " matches user type " +
-        userType1 +
-        " or " +
-        userType2 +
-        ", applying STAB 1.5x"
-    );
     STAB = 1.5;
   }
 
@@ -106,7 +97,6 @@ const DealDamage = (
   //critical hit 'P' probability is 'baseSpeed / 512'
   let threshold = Math.random();
   // let P = Math.round((SPD * 100) / 512);
-  // console.log(P, threshold);
   //6.25% chance of critical hit
   if (threshold <= 0.0625) {
     CriticalHit = 2;
@@ -117,7 +107,6 @@ const DealDamage = (
 
   //formula taken from pokemon wiki, level * 2 / 5 + 2 * "move power" + (attack of attacker / defense of target) / 50 + 2 * modifier
   let Damage = 0;
-  console.log("move category is: " + moveCategory);
 
   if (moveCategory === "physical") {
     //use attack/defense stats
@@ -127,7 +116,6 @@ const DealDamage = (
     Damage = ((((lv * 2) / 5 + 2) * power * (uSA / tSD)) / 50 + 2) * modifier;
   }
   Damage = Math.round(Damage);
-  console.log("Damage is: " + Damage);
 
   //set up recoil/recover damage
   let recoilDamage = Math.round(Damage / 4);
@@ -306,7 +294,6 @@ const DealDamage = (
     //damage was calced to 0
     DisplayMessage(PKMNtarget.name + " was unaffected...");
   }
-  console.log("HP left after damage: " + PKMNtarget.hp);
 
   if (
     PKMNtarget.hp > 0
@@ -392,7 +379,6 @@ const DealDamage = (
       }
 
       if (isPoisonBurned || PKMNuser.isBound) {
-        console.log(PKMNuser.name + " is poisoned/burned/bound");
         if (effectiveMessage === "" && critMessage === "") {
           setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 2500);
         } else {
@@ -401,7 +387,6 @@ const DealDamage = (
       }
     } else {
       if (isPoisonBurned || PKMNuser.isBound) {
-        console.log(PKMNuser.name + " is poisoned/burned/bound");
         if (effectiveMessage === "" && critMessage === "") {
           setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 2500);
         } else {

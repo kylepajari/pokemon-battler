@@ -14,6 +14,7 @@ import {
   setTeamSize,
   setMode,
   updateTeam,
+  updateLeaderTeam,
   getTeam
 } from "../actions";
 
@@ -51,6 +52,7 @@ function mapDispatchToProps(dispatch) {
     setTeamSize: num => dispatch(setTeamSize(num)),
     setMode: mode => dispatch(setMode(mode)),
     updateTeam: (id, team) => dispatch(updateTeam(id, team)),
+    updateLeaderTeam: (name, team) => dispatch(updateLeaderTeam(name, team)),
     getTeam: id => dispatch(getTeam(id))
   };
 }

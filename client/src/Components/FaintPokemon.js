@@ -49,7 +49,6 @@ const FaintPokemon = (
       Pokeball = $(document.getElementById("p1" + player1CurrentPokemon));
     }
   }
-  console.log("running fainted function...");
   DisplayMessage(Team[PKMN].name + " fainted!");
   //play fainted sound/cry
   let cry = new Audio(Team[PKMN].cry);
@@ -77,7 +76,6 @@ const FaintPokemon = (
       numFainted++;
     }
   });
-  console.log("number of pokemon fainted is: " + numFainted);
 
   if (numFainted < Team.length) {
     //increase currentPokemon number for team to send out next in party

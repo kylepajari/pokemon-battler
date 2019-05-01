@@ -24,7 +24,6 @@ class Team extends Component {
   //SWAP POKEMON FUNCTION ////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
   swapPokemon = swapPoke => {
-    console.log("swapping pokemon...");
     let Sprite = null;
     let PKMN = null;
     let Team = null;
@@ -100,7 +99,6 @@ class Team extends Component {
       setTimeout(() => HPbar.addClass("fullhp"), 2500);
     } else {
       let updatedBarHP = 560 * asPercentage;
-      console.log(updatedBarHP, HPbar.css("width"));
 
       //update health bar to reflect damage
       setTimeout(() => UpdateHP(HPbar, updatedBarHP, this.props.volume), 2500);

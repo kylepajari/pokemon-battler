@@ -196,7 +196,8 @@ div > img {
     "teamHeader teamHeader"
     "team-1 team-2"
     "team-3 team-4"
-    "team-5 team-6";
+    "team-5 team-6"
+    "teambtn teambtn";
   width: 250px;
   height: 300px;
 }
@@ -224,6 +225,10 @@ div > img {
 }
 .team-6 {
   grid-area: team-6;
+}
+
+.teambtn {
+  grid-area: teambtn;
 }
 
 .teamShowcase img {

@@ -39,7 +39,7 @@ class TeamBuilder extends Component {
       currentPokemonSpcDef: 0,
       isOpen: false, //to keep track of whether pokemon dropdown is open
       isTeamOpen: false, //to keep track of whether team size dropdown is open
-      globalLevel: 50 //level to set all pokemon too, also used in formula that scales stats
+      globalLevel: 50 //level to set all pokemon too, also used in formula that scales stats,
     };
 
     this.fetchPokemon = this.fetchPokemon.bind(this);
@@ -50,7 +50,6 @@ class TeamBuilder extends Component {
     this.multiPlayer = this.multiPlayer.bind(this);
     this.cpuVScpu = this.cpuVScpu.bind(this);
     this.inputNames = this.inputNames.bind(this);
-    this.handleLeaderNames = this.handleLeaderNames.bind(this);
     this.returnToMainMenu = this.returnToMainMenu.bind(this);
   }
 
@@ -133,51 +132,6 @@ class TeamBuilder extends Component {
     $(document.querySelector(".pokemonSheetContainer")).addClass("deRender");
   }
 
-  handleLeaderNames = num => {
-    switch (num) {
-      case 1:
-        // this.setState({ playerTwoName: "Brock" });
-        this.props.setPlayerTwoName("Brock");
-        break;
-      case 2:
-        // this.setState({ playerTwoName: "Misty" });
-        this.props.setPlayerTwoName("Misty");
-        break;
-      case 3:
-        // this.setState({ playerTwoName: "Lt. Surge" });
-        this.props.setPlayerTwoName("Lt. Surge");
-        break;
-      case 4:
-        // this.setState({ playerTwoName: "Erika" });
-        this.props.setPlayerTwoName("Erika");
-        break;
-      case 5:
-        // this.setState({ playerTwoName: "Koga" });
-        this.props.setPlayerTwoName("Koga");
-        break;
-      case 6:
-        // this.setState({ playerTwoName: "Sabrina" });
-        this.props.setPlayerTwoName("Sabrina");
-        break;
-      case 7:
-        // this.setState({ playerTwoName: "Blaine" });
-        this.props.setPlayerTwoName("Blaine");
-        break;
-      case 8:
-        // this.setState({ playerTwoName: "Giovanni" });
-        this.props.setPlayerTwoName("Giovanni");
-        break;
-      case 9:
-        // this.setState({ playerTwoName: "Rival" });
-        this.props.setPlayerTwoName("Rival");
-        break;
-      default:
-        // this.setState({ playerTwoName: "Gym Leader" });
-        this.props.setPlayerTwoName("Gym Leader");
-        break;
-    }
-  };
-
   inputNames = (player, input) => {
     if (input !== "") {
       // this.setState({ playerTwoName: this.Capitalize(input) });
@@ -200,32 +154,112 @@ class TeamBuilder extends Component {
       //build cpu teams
       let rand = 0;
       //build CPU one team
-      rand = Math.round(RandomNumberGenerator(1, 151));
-      this.fetchPokemon(rand, 50, "team1");
-      rand = Math.round(RandomNumberGenerator(1, 151));
-      this.fetchPokemon(rand, 50, "team1");
-      rand = Math.round(RandomNumberGenerator(1, 151));
-      this.fetchPokemon(rand, 50, "team1");
-      rand = Math.round(RandomNumberGenerator(1, 151));
-      this.fetchPokemon(rand, 50, "team1");
-      rand = Math.round(RandomNumberGenerator(1, 151));
-      this.fetchPokemon(rand, 50, "team1");
-      rand = Math.round(RandomNumberGenerator(1, 151));
-      this.fetchPokemon(rand, 50, "team1");
-
-      //build CPU two team
-      rand = Math.round(RandomNumberGenerator(1, 151));
-      this.fetchPokemon(rand, 50, "team2");
-      rand = Math.round(RandomNumberGenerator(1, 151));
-      this.fetchPokemon(rand, 50, "team2");
-      rand = Math.round(RandomNumberGenerator(1, 151));
-      this.fetchPokemon(rand, 50, "team2");
-      rand = Math.round(RandomNumberGenerator(1, 151));
-      this.fetchPokemon(rand, 50, "team2");
-      rand = Math.round(RandomNumberGenerator(1, 151));
-      this.fetchPokemon(rand, 50, "team2");
-      rand = Math.round(RandomNumberGenerator(1, 151));
-      this.fetchPokemon(rand, 50, "team2");
+      switch (num) {
+        case 1:
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team1");
+          ///
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team2");
+          break;
+        case 2:
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team1");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team1");
+          ///
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team2");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team2");
+          break;
+        case 3:
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team1");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team1");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team1");
+          ///
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team2");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team2");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team2");
+          break;
+        case 4:
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team1");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team1");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team1");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team1");
+          ///
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team2");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team2");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team2");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team2");
+          break;
+        case 5:
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team1");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team1");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team1");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team1");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team1");
+          ///
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team2");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team2");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team2");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team2");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team2");
+          break;
+        case 6:
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team1");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team1");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team1");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team1");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team1");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team1");
+          ///
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team2");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team2");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team2");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team2");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team2");
+          rand = Math.round(RandomNumberGenerator(1, 151));
+          this.fetchPokemon(rand, 50, "team2");
+          break;
+        default:
+          break;
+      }
 
       $(document.querySelector(".teamList")).fadeOut(10);
       $(document.querySelector(".pokemonSheetContainer")).addClass("deRender");
@@ -307,59 +341,79 @@ class TeamBuilder extends Component {
     });
     console.log("Number of Physical Moves: " + physical.length);
     console.log("Number of Special Moves: " + special.length);
+    console.log("Number of Status Moves: " + status.length);
 
     //finally, go through physical, special, and status moves, and create final move list
     let finalMoves = [];
 
     //if pokemon has more than 4 moves available
     if (physical.length + special.length + status.length > 4) {
-      console.log("pokemon has more than 4 moves, distributing...");
+      if (physical.length > special.length) {
+        //more physical moves than special
+        for (let i = 0; i < 2; i++) {
+          //add two physical moves
+          if (physical.length > 2) {
+            let randomMove =
+              physical[Math.floor(Math.random() * physical.length)];
 
-      for (let i = 0; i < 1; i++) {
-        // if (physical.length > 2) {
-        //   let randomMove =
-        //     physical[Math.floor(Math.random() * physical.length)];
+            //prevent duplicate moves
+            if (i === 1) {
+              do {
+                randomMove =
+                  physical[Math.floor(Math.random() * physical.length)];
+              } while (finalMoves[0].name === randomMove.name);
+            }
+            if (i === 0) {
+              console.log(randomMove.name + " was chosen as FIRST MOVE");
+            } else {
+              console.log(randomMove.name + " was chosen as SECOND MOVE");
+            }
 
-        //   if (i === 0) {
-        //     console.log(randomMove.name + " was chosen as FIRST MOVE");
-        //   } else {
-        //     console.log(randomMove.name + " was chosen as SECOND MOVE");
-        //   }
+            finalMoves.push(randomMove);
+          } else {
+            //has 2 or less physical moves, add them
+            finalMoves.concat(physical);
+          }
+        }
 
-        //   finalMoves.push(randomMove);
-        // } else {
-        //   //has 2 or less physical moves, add them
-        //   finalMoves.concat(physical);
-        // }
+        //add single special move
+        let randomMove = special[Math.floor(Math.random() * special.length)];
+        console.log(randomMove.name + " was chosen as THIRD MOVE");
+        finalMoves.push(randomMove);
+      } else {
+        //more special moves than physical
+        //add single physical move
         let randomMove = physical[Math.floor(Math.random() * physical.length)];
-        do {
-          randomMove = physical[Math.floor(Math.random() * physical.length)];
-        } while (randomMove.statusEff !== "recoil");
         console.log(randomMove.name + " was chosen as FIRST MOVE");
         finalMoves.push(randomMove);
-      }
-      for (let i = 0; i < 2; i++) {
-        if (special.length > 2) {
-          //on second move
-          let randomMove = special[Math.floor(Math.random() * special.length)];
-          if (i === 1) {
-            do {
-              randomMove = special[Math.floor(Math.random() * special.length)];
-            } while (finalMoves[1].name === randomMove.name);
-          }
 
-          if (i === 0) {
-            console.log(randomMove.name + " was chosen as SECOND MOVE");
+        for (let i = 0; i < 2; i++) {
+          //add two special moves
+          if (special.length > 2) {
+            let randomMove =
+              special[Math.floor(Math.random() * special.length)];
+            if (i === 1) {
+              do {
+                randomMove =
+                  special[Math.floor(Math.random() * special.length)];
+              } while (finalMoves[1].name === randomMove.name);
+            }
+
+            if (i === 0) {
+              console.log(randomMove.name + " was chosen as SECOND MOVE");
+            } else {
+              console.log(randomMove.name + " was chosen as THIRD MOVE");
+            }
+
+            finalMoves.push(randomMove);
           } else {
-            console.log(randomMove.name + " was chosen as THIRD MOVE");
+            //has 2 or less special moves, add them
+            finalMoves.concat(special);
           }
-
-          finalMoves.push(randomMove);
-        } else {
-          //has 2 or less special moves, add them
-          finalMoves.concat(special);
         }
       }
+
+      //add single status move
       for (let i = 0; i < 1; i++) {
         let randomMove = status[Math.floor(Math.random() * status.length)];
         console.log(randomMove.name + " was chosen FORTH MOVE");
@@ -373,12 +427,12 @@ class TeamBuilder extends Component {
     return finalMoves;
   };
 
-  fetchPokemon = (num, level, team) => {
+  fetchPokemon = (num, level, team, name) => {
     let url = "https://pokeapi.co/api/v2/pokemon/" + num;
     fetch(url)
       .then(response => response.json())
       .then(data =>
-        this.setState({ data }, () => this.addPokemon(level, team))
+        this.setState({ data }, () => this.addPokemon(level, team, name))
       );
   };
 
@@ -433,8 +487,9 @@ class TeamBuilder extends Component {
     });
   };
 
-  addPokemon = (level, team) => {
+  addPokemon = (level, team, name) => {
     let pokemonObj = null;
+    console.log("adding pokemon", this.state.data.name);
     pokemonObj = {
       name: this.Capitalize(this.state.data.name),
       frontSprite: this.state.data.sprites.front_default,
@@ -538,31 +593,25 @@ class TeamBuilder extends Component {
       if (this.props.mode === "Multi") {
         if (this.props.currentPlayer === "Player One") {
           this.props.player1Team.push(pokemonObj);
-          // this.setState({ player1Team: player });
           this.props.setPlayer1Team(player);
         } else if (this.props.currentPlayer === "Player Two") {
           this.props.player2Team.push(pokemonObj);
-          // this.setState({ player2Team: player });
           this.props.setPlayer2Team(player);
         }
       } else if (this.props.mode === "Single") {
         if (team === undefined) {
           this.props.player1Team.push(pokemonObj);
-          // this.setState({ player1Team: player });
           this.props.setPlayer1Team(player);
         } else if (team === "team2") {
           this.props.player2Team.push(pokemonObj);
-          // this.setState({ player2Team: player });
           this.props.setPlayer2Team(player);
         }
       } else if (this.props.mode === "CPUVSCPU") {
         if (team === "team1") {
           this.props.player1Team.push(pokemonObj);
-          // this.setState({ player1Team: player });
           this.props.setPlayer1Team(player);
         } else if (team === "team2") {
           this.props.player2Team.push(pokemonObj);
-          // this.setState({ player2Team: player });
           this.props.setPlayer2Team(player);
         }
       }
@@ -573,10 +622,12 @@ class TeamBuilder extends Component {
       this.props.player2Team.length === this.props.teamSize
     ) {
       //update team to DB if not exist
-      console.log(this.props.player1Team.length);
 
       if (this.props.user.team.length === 0 && this.props.mode === "Single") {
         this.props.updateTeam(this.props.id, this.props.player1Team);
+      }
+      if (this.props.mode === "Single") {
+        this.props.updateLeaderTeam(name, this.props.player2Team);
       }
 
       $(document.querySelectorAll(".dropdown")).fadeOut(100);
@@ -653,6 +704,13 @@ class TeamBuilder extends Component {
     return <span>{typesList}</span>;
   };
 
+  //CLEAR CURRENT TEAM////////////////////////////////////////////////////////////////
+  ///////////////////////////////////////////////////////////////////////
+  clearTeam = () => {
+    this.props.setPlayer1Team([]);
+    this.props.updateTeam(this.props.id, []);
+  };
+
   render() {
     let playerName = null;
     if (this.props.currentPlayer === "Player One") {
@@ -703,7 +761,16 @@ class TeamBuilder extends Component {
               </div>
             );
           })}
-          {/* <button>Edit Team</button> */}
+          <button
+            className={`"teambtn btn btn-dark" ${
+              this.props.player1Team.length > 0
+                ? "teambtn btn btn-dark"
+                : "teambtn btn btn-dark deRender"
+            }`}
+            onClick={this.clearTeam}
+          >
+            Delete Team
+          </button>
         </div>
         <div className="badgesShowcase">
           <p className="badgesHeader">Badges Earned:</p>
@@ -944,10 +1011,7 @@ class TeamBuilder extends Component {
           </button>
         </div>
         <div>
-          <BadgesContainer
-            fetchPokemon={this.fetchPokemon}
-            handleLeaderNames={this.handleLeaderNames}
-          />
+          <BadgesContainer fetchPokemon={this.fetchPokemon} />
         </div>
         <div className="teamsContainer container-fluid row">
           <div className="team team1 col">

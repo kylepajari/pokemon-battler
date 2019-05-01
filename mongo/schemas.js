@@ -8,4 +8,9 @@ const Users = new Schema({
   badges: Number
 });
 
-module.exports = { Users };
+const Leaders = new Schema({
+  name: String,
+  team: Array
+});
+
+module.exports = { Users, Leaders };

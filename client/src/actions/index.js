@@ -157,9 +157,8 @@ export const login = ({ username, password }) => {
       data: JSON.stringify({ username, password })
     })
       .then(res => {
-        console.log("actions login", res.data);
         //1 hr cookie expire
-        document.cookie = `id_token=${res.data.token};max-age=1300;`;
+        document.cookie = `id_token=${res.data.token};max-age=1800;`;
         const payload = jwt.verify(res.data.token, "secret");
         dispatch({
           type: "LOGIN",
@@ -185,8 +184,6 @@ export const signUp = ({ username, password }) => {
 };
 
 export function updateBadges(id, badgesCount) {
-  console.log("actions update badges", id, badgesCount);
-
   return dispatch => {
     return axios({
       url: "/api/updatebadges",
@@ -200,8 +197,6 @@ export function updateBadges(id, badgesCount) {
 }
 
 export function updateTeam(id, team) {
-  console.log("actions update team", id, team);
-
   return dispatch => {
     return axios({
       url: "/api/updateteam",
@@ -239,5 +234,40 @@ export function setUser(user) {
 export function logout() {
   return {
     type: "LOGOUT"
+  };
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
+//LEADERS
+export const createLeader = name => {
+  return dispatch => {
+    return axios({
+      url: "/leader/createleader/" + name,
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    }).catch(err => Promise.reject(err));
+  };
+};
+
+export const getLeaderTeam = name => {
+  return dispatch => {
+    return axios
+      .get("/leader/getteam/" + name)
+      .catch(err => Promise.reject(err));
+  };
+};
+
+export function updateLeaderTeam(name, team) {
+  return dispatch => {
+    return axios({
+      url: "/leader/updateteam",
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      data: JSON.stringify({ name, team })
+    }).catch(err => Promise.reject(err));
   };
 }

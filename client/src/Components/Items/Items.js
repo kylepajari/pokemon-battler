@@ -157,7 +157,6 @@ class Items extends Component {
   //HEAL STATUS FUNCTION ////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
   healStatus = PKMNuser => {
-    console.log(PKMNuser.name + " was cured of " + PKMNuser.statusCondition);
     $(document.querySelector(".options")).fadeOut(300);
     DisplayMessage(
       PKMNuser.name + " was cured of " + PKMNuser.statusCondition + "!"
@@ -175,7 +174,6 @@ class Items extends Component {
   //USE ITEM FUNCTION ////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
   useItem = (name, index) => {
-    console.log("attempting to use item " + name + " at index " + index);
     let PKMNuser = null;
     let HPbar = null;
     let healAmount = 0;
