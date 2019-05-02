@@ -111,6 +111,20 @@ export const setBattleStarted = isStarted => {
   };
 };
 
+export const setBattleVol = num => {
+  return {
+    type: "SET_BATTLE_VOLUME",
+    value: num
+  };
+};
+
+export const setBattlePlaying = isPlaying => {
+  return {
+    type: "SET_BATTLE_PLAYING",
+    value: isPlaying
+  };
+};
+
 export const setTeamSize = num => {
   return {
     type: "SET_TEAM_SIZE",

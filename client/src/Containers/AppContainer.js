@@ -26,7 +26,9 @@ function mapStateToProps(state) {
     username: state.username,
     id: state.id,
     player1Team: state.player1Team,
-    player2Team: state.player2Team
+    player2Team: state.player2Team,
+    battleVol: state.battleVol,
+    battlePlaying: state.battlePlaying
   };
 }
 

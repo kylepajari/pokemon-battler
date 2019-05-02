@@ -3,25 +3,18 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import pokeball from "./pokeball.png";
 import "isomorphic-fetch";
-import Promise from "es6-promise-promise";
 import cookie from "cookie";
 import jwt from "jsonwebtoken";
-import Sound from "react-sound";
-import battleTheme from "./Sounds/battleTheme.mp3";
 import LoginContainer from "./Containers/LoginContainer";
 import TeamBuilderContainer from "./Containers/TeamBuilderContainer";
+import Sound from "react-sound";
+import battleTheme from "./Sounds/battleTheme.mp3";
 
 class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      battleVol: 30,
-      battlePlaying: Sound.status.STOPPED
-    };
-
-    this.handleBattleVol = this.handleBattleVol.bind(this);
-    this.handleBattlePlaying = this.handleBattlePlaying.bind(this);
+    this.state = {};
   }
 
   componentDidMount() {
@@ -32,18 +25,6 @@ class App extends Component {
       this.props.setUser(payload._doc);
     }
   }
-
-  handleBattleVol = () => {
-    if (this.state.battleVol === 30) {
-      this.setState({ battleVol: 0 });
-    } else {
-      this.setState({ battleVol: 30 });
-    }
-  };
-
-  handleBattlePlaying = () => {
-    this.setState({ battlePlaying: Sound.status.PLAYING });
-  };
 
   logout = () => {
     this.props.setLoggedIn(false);
@@ -60,6 +41,7 @@ class App extends Component {
     this.props.setTeamSize(6);
     this.props.setBadges(0);
     this.props.setId("");
+    window.soundManager.muteAll();
   };
 
   render() {
@@ -67,16 +49,6 @@ class App extends Component {
       // if not logged in, show login form
       return (
         <div className="App">
-          <Sound
-            url={battleTheme}
-            playStatus={this.state.battlePlaying}
-            playFromPosition={0 /* in milliseconds */}
-            onLoading={this.handleSongLoading}
-            onPlaying={this.handleSongPlaying}
-            onFinishedPlaying={this.handleSongFinishedPlaying}
-            volume={this.state.battleVol}
-            loop={true}
-          />
           <div className="title">
             <p>Pokémon Battler</p>
             <img className="pokeball" src={pokeball} alt="Pokeball" />
@@ -105,12 +77,12 @@ class App extends Component {
         <div className="App">
           <Sound
             url={battleTheme}
-            playStatus={this.state.battlePlaying}
+            playStatus={this.props.battlePlaying}
             playFromPosition={0 /* in milliseconds */}
             onLoading={this.handleSongLoading}
             onPlaying={this.handleSongPlaying}
             onFinishedPlaying={this.handleSongFinishedPlaying}
-            volume={this.state.battleVol}
+            volume={this.props.battleVol}
             loop={true}
           />
           <div className="title">
@@ -127,10 +99,7 @@ class App extends Component {
             Warning: This game contains sound effects. Please keep volume at a
             reasonable level!
           </span>
-          <TeamBuilderContainer
-            handleBattleVol={this.handleBattleVol}
-            handleBattlePlaying={this.handleBattlePlaying}
-          />
+          <TeamBuilderContainer />
         </div>
       );
     }

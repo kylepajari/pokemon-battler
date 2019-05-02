@@ -130,6 +130,7 @@ class TeamBuilder extends Component {
     $(document.querySelector(".teamShowcase")).fadeIn(300);
     $(document.getElementById("BattleButton")).fadeOut(10);
     $(document.querySelector(".pokemonSheetContainer")).addClass("deRender");
+    window.soundManager.muteAll();
   }
 
   inputNames = (player, input) => {
@@ -667,9 +668,9 @@ class TeamBuilder extends Component {
     const poke2 = this.props.player2Team[0];
     poke1.inBattle = true;
     poke2.inBattle = true;
-    // this.setState({ battleReady: true });
     this.props.setBattleReady(true);
     $(document.getElementById("BattleButton")).fadeOut(300);
+    window.soundManager.unmuteAll();
   };
 
   handleFainted = (index, playersTurn, faintedFromRecoil) => {
@@ -1036,8 +1037,6 @@ class TeamBuilder extends Component {
             className="battleStage col"
             Capitalize={this.Capitalize}
             handleFainted={this.handleFainted}
-            handleBattleVol={this.props.handleBattleVol}
-            handleBattlePlaying={this.props.handleBattlePlaying}
             returnToMainMenu={this.returnToMainMenu}
           />
           <div className="team team2 col">

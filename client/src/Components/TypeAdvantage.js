@@ -499,9 +499,6 @@ const CalcTypeAdvantage = (moveType, targetType1, targetType2) => {
     }
   }
 
-  console.log("Type 1 Advantage Calced to: " + type1Advantage);
-  console.log("Type 2 Advantage Calced to: " + type2Advantage);
-
   return type1Advantage * type2Advantage;
 };
 

@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import Sound from "react-sound";
 
 function allData(state = null, action) {
   if (action.type === "SET_ALL_DATA") {
@@ -168,8 +169,29 @@ function battleStarted(state = false, action) {
   return state;
 }
 
+function battleVol(state = 0, action) {
+  if (action.type === "SET_BATTLE_VOLUME") {
+    return action.value;
+  }
+  return state;
+}
+
+function battlePlaying(state = Sound.status.STOPPED, action) {
+  if (action.type === "SET_BATTLE_PLAYING") {
+    return action.value;
+  }
+  return state;
+}
+
 function badges(state = 0, action) {
   if (action.type === "SET_BADGES") {
+    return action.value;
+  }
+  return state;
+}
+
+function aiItems(state = [{ name: "Max Potion", count: 1 }], action) {
+  if (action.type === "SET_AI_ITEMS") {
     return action.value;
   }
   return state;
@@ -212,6 +234,9 @@ export default combineReducers({
   teamSize,
   battleReady,
   battleStarted,
+  battleVol,
+  battlePlaying,
   badges,
-  user
+  user,
+  aiItems
 });

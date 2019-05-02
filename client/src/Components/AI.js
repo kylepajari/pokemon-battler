@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import $ from "jquery";
 import { RandomNumberGenerator } from "./RandomNumberGenerator";
 import { UseMove } from "./Moves/UseMove";
@@ -6,8 +5,9 @@ import { CalcTypeAdvantage } from "./TypeAdvantage";
 import { DisplayMessage } from "./DisplayMessage";
 import { UpdateHP } from "./UpdateHP";
 import healSound from "../Sounds/BattleSounds/General/USEITEM.wav";
+import store from "../store";
 
-const handleAI = (
+const HandleAI = (
   player1CurrentPokemon,
   player2CurrentPokemon,
   playersTurn,
@@ -30,7 +30,7 @@ const handleAI = (
   checkWin
 ) => {
   //setting up hooks
-  const [aiItems, useAiItems] = useState([{ name: "Max Potion", count: 1 }]);
+  const state = store.getState();
 
   ////////////////////////////////////////////////
   let PKMNuser = null;
@@ -49,15 +49,32 @@ const handleAI = (
     }
   }
 
-  //first, check if hp is low enough to use potion and at least one remaining in items list
-  if (PKMNuser.hp / PKMNuser.OrigHp <= 0.25 && aiItems[0].count > 0) {
+  //first, check if hp is low enough to use potion and is on either last two pokemon
+  let currentPoke =
+    playersTurn === "Player One"
+      ? player1CurrentPokemon
+      : player2CurrentPokemon;
+  let currentTeam = playersTurn === "Player One" ? player1Team : player2Team;
+  let currentPlayer =
+    playersTurn === "Player One" ? playerOneName : playerTwoName;
+
+  if (
+    PKMNuser.hp / PKMNuser.OrigHp <= 0.25 &&
+    (currentPoke === currentTeam.length - 1 ||
+      currentPoke === currentTeam.length - 2)
+  ) {
     //pokemon has less than or equal to 25% health
     DisplayMessage(
-      playerTwoName + " used " + aiItems[0].name + " on " + PKMNuser.name + "!"
+      currentPlayer +
+        " used " +
+        state.aiItems[0].name +
+        " on " +
+        PKMNuser.name +
+        "!"
     );
 
     //subtract one potion
-    useAiItems(aiItems[0].count--);
+    //TODO
 
     //heal hp
     //if increasing would bring them over full hp, cap hp
@@ -224,4 +241,4 @@ const handleAI = (
   }
 };
 
-export { handleAI };
+export { HandleAI };

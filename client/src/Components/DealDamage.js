@@ -57,7 +57,7 @@ const DealDamage = (
   //damage formula:
   let A = PKMNuser.attack; //attack stat of attacker
   let uSA = PKMNuser.specialattack; //special attack stat of attacker
-  let SPD = PKMNuser.speed; //speed stat of attacker
+  // let SPD = PKMNuser.speed; //speed stat of attacker
   let D = PKMNtarget.defense; //defense stat of target
   let tSD = PKMNtarget.specialdefense; //special defense stat of target
   let userType1 = PKMNuser.types[0][0];

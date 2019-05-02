@@ -1,3 +1,5 @@
+import Sound from "react-sound";
+
 export default {
   user: {},
   allData: null,
@@ -24,5 +26,8 @@ export default {
   mode: "", //mode of play
   teamSize: 6, //max number of pokemon per team, adjust to allow more/less
   battleReady: false, //set when teams are picked
-  battleStarted: false //set when battle starts
+  battleStarted: false, //set when battle starts
+  aiItems: [{ name: "Max Potion", count: 1 }],
+  battleVol: 30,
+  battlePlaying: Sound.status.STOPPED
 };

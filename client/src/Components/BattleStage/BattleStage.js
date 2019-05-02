@@ -9,7 +9,7 @@ import { FaintPokemon } from "../FaintPokemon";
 import { Conditions } from "../Conditions";
 import { RandomNumberGenerator } from "../RandomNumberGenerator";
 import { DisplayMessage } from "../DisplayMessage";
-import { handleAI } from "../AI";
+import { HandleAI } from "../AI";
 import Victory from "../../Sounds/victory.mp3";
 import swapSound from "../../Sounds/BattleSounds/General/SWITCHIN.wav";
 import statRise from "../../Sounds/BattleSounds/General/STATRISE.wav";
@@ -19,6 +19,7 @@ import volumeIcon from "../../volume.png";
 import TeamContainer from "../../Containers/TeamContainer";
 import ItemsContainer from "../../Containers/ItemsContainer";
 import MovesContainer from "../../Containers/MovesContainer";
+import Sound from "react-sound";
 
 class BattleStage extends Component {
   constructor(props) {
@@ -72,6 +73,8 @@ class BattleStage extends Component {
     this.resetMultipliers = this.resetMultipliers.bind(this);
     this.handleVolume = this.handleVolume.bind(this);
     this.checkWin = this.checkWin.bind(this);
+    this.handleBattleVol = this.handleBattleVol.bind(this);
+    this.handleBattlePlaying = this.handleBattlePlaying.bind(this);
   }
 
   componentWillReceiveProps(props) {
@@ -81,8 +84,20 @@ class BattleStage extends Component {
     });
   }
 
+  handleBattleVol = () => {
+    if (this.props.battleVol === 30) {
+      this.props.setBattleVol(0);
+    } else {
+      this.props.setBattleVol(30);
+    }
+  };
+
+  handleBattlePlaying = () => {
+    this.props.setBattlePlaying(Sound.status.PLAYING);
+  };
+
   startBattle = () => {
-    this.props.handleBattlePlaying();
+    this.handleBattlePlaying();
     if (this.props.mode === "Single") {
       setTimeout(
         () => DisplayMessage(this.props.playerTwoName + " wants to fight!"),
@@ -150,7 +165,7 @@ class BattleStage extends Component {
     if (this.props.mode === "CPUVSCPU") {
       setTimeout(
         () =>
-          handleAI(
+          HandleAI(
             this.props.player1CurrentPokemon,
             this.props.player2CurrentPokemon,
             this.props.playersTurn,
@@ -188,10 +203,10 @@ class BattleStage extends Component {
   handleVolume = () => {
     if (this.props.volume === 0) {
       this.props.setVolume(0.7);
-      this.props.handleBattleVol();
+      this.handleBattleVol();
     } else {
       this.props.setVolume(0);
-      this.props.handleBattleVol();
+      this.handleBattleVol();
     }
   };
 
@@ -291,45 +306,72 @@ class BattleStage extends Component {
         let badgesCount = this.props.badges;
         //increase badge count by 1 if less than 8, give player badge
         if (badgesCount < 8) {
-          badgesCount += 1;
-          this.props.setBadges(badgesCount);
-          this.props.updateBadges(this.props.id, badgesCount);
+          let earnBadge = false;
           switch (this.props.playerTwoName) {
             case "Brock":
               badge = "Boulder Badge";
+              if (badgesCount === 0) {
+                earnBadge = true;
+              }
               break;
             case "Misty":
               badge = "Cascade Badge";
+              if (badgesCount === 1) {
+                earnBadge = true;
+              }
               break;
             case "Lt. Surge":
               badge = "Thunder Badge";
+              if (badgesCount === 2) {
+                earnBadge = true;
+              }
               break;
             case "Erika":
               badge = "Rainbow Badge";
+              if (badgesCount === 3) {
+                earnBadge = true;
+              }
               break;
             case "Koga":
               badge = "Soul Badge";
+              if (badgesCount === 4) {
+                earnBadge = true;
+              }
               break;
             case "Sabrina":
               badge = "Marsh Badge";
+              if (badgesCount === 5) {
+                earnBadge = true;
+              }
               break;
             case "Blaine":
               badge = "Volcano Badge";
+              if (badgesCount === 6) {
+                earnBadge = true;
+              }
               break;
             case "Giovanni":
               badge = "Earth Badge";
+              if (badgesCount === 7) {
+                earnBadge = true;
+              }
               break;
             default:
               badge = "Badge";
               break;
           }
-          setTimeout(
-            () =>
-              $(document.querySelector(".playermessage")).text(
-                this.props.playerOneName + " earned the " + badge + "!"
-              ),
-            5000
-          );
+          if (earnBadge) {
+            badgesCount += 1;
+            this.props.setBadges(badgesCount);
+            this.props.updateBadges(this.props.id, badgesCount);
+            setTimeout(
+              () =>
+                $(document.querySelector(".playermessage")).text(
+                  this.props.playerOneName + " earned the " + badge + "!"
+                ),
+              5000
+            );
+          }
         }
       }
       setTimeout(() => $(document.querySelector(".options")).hide(300), 3500);
@@ -744,7 +786,7 @@ class BattleStage extends Component {
         if (this.state.player2Team[this.props.player2CurrentPokemon].hp <= 0) {
           setTimeout(
             () =>
-              handleAI(
+              HandleAI(
                 this.props.player1CurrentPokemon,
                 this.props.player2CurrentPokemon,
                 this.props.playersTurn,
@@ -771,7 +813,7 @@ class BattleStage extends Component {
         } else {
           setTimeout(
             () =>
-              handleAI(
+              HandleAI(
                 this.props.player1CurrentPokemon,
                 this.props.player2CurrentPokemon,
                 this.props.playersTurn,
@@ -810,7 +852,7 @@ class BattleStage extends Component {
         if (this.state.player2Team[this.props.player2CurrentPokemon].hp <= 0) {
           setTimeout(
             () =>
-              handleAI(
+              HandleAI(
                 this.props.player1CurrentPokemon,
                 this.props.player2CurrentPokemon,
                 this.props.playersTurn,
@@ -837,7 +879,7 @@ class BattleStage extends Component {
         } else {
           setTimeout(
             () =>
-              handleAI(
+              HandleAI(
                 this.props.player1CurrentPokemon,
                 this.props.player2CurrentPokemon,
                 this.props.playersTurn,
@@ -868,7 +910,7 @@ class BattleStage extends Component {
         if (this.state.player1Team[this.props.player1CurrentPokemon].hp <= 0) {
           setTimeout(
             () =>
-              handleAI(
+              HandleAI(
                 this.props.player1CurrentPokemon,
                 this.props.player2CurrentPokemon,
                 this.props.playersTurn,
@@ -895,7 +937,7 @@ class BattleStage extends Component {
         } else {
           setTimeout(
             () =>
-              handleAI(
+              HandleAI(
                 this.props.player1CurrentPokemon,
                 this.props.player2CurrentPokemon,
                 this.props.playersTurn,
