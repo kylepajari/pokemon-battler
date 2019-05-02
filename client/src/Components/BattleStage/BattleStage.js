@@ -83,16 +83,23 @@ class BattleStage extends Component {
 
   startBattle = () => {
     this.props.handleBattlePlaying();
-    setTimeout(
-      () =>
-        DisplayMessage(
-          this.props.playerOneName +
-            " was challenged by " +
-            this.props.playerTwoName +
-            "!"
-        ),
-      1000
-    );
+    if (this.props.mode === "Single") {
+      setTimeout(
+        () => DisplayMessage(this.props.playerTwoName + " wants to fight!"),
+        1000
+      );
+    } else {
+      setTimeout(
+        () =>
+          DisplayMessage(
+            this.props.playerOneName +
+              " was challenged by " +
+              this.props.playerTwoName +
+              "!"
+          ),
+        1000
+      );
+    }
 
     setTimeout(
       () =>
@@ -116,7 +123,7 @@ class BattleStage extends Component {
 
     if (this.props.mode === "Single") {
       setTimeout(
-        () => DisplayMessage("Go " + this.state.player1Team[0].name + "!"),
+        () => DisplayMessage("Go! " + this.state.player1Team[0].name + "!"),
         5500
       );
     } else {

@@ -49,7 +49,12 @@ const FaintPokemon = (
       Pokeball = $(document.getElementById("p1" + player1CurrentPokemon));
     }
   }
-  DisplayMessage(Team[PKMN].name + " fainted!");
+  if (Team === player1Team) {
+    DisplayMessage(Team[PKMN].name + " fainted!");
+  } else {
+    DisplayMessage("Enemy " + Team[PKMN].name + " fainted!");
+  }
+
   //play fainted sound/cry
   let cry = new Audio(Team[PKMN].cry);
   cry.volume = Volume;

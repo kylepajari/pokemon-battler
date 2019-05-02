@@ -418,10 +418,21 @@ const UseMove = (
         !paralysis &&
         !frozen
       ) {
-        setTimeout(
-          () => DisplayMessage(PKMNuser.name + " used " + moveName + "!"),
-          2000
-        );
+        if (PlayersTurn === "Player One") {
+          setTimeout(
+            () => DisplayMessage(PKMNuser.name + " used " + moveName + "!"),
+            2000
+          );
+        } else {
+          setTimeout(
+            () =>
+              DisplayMessage(
+                "Enemy " + PKMNuser.name + " used " + moveName + "!"
+              ),
+            2000
+          );
+        }
+
         //play move sound
         attack = new Audio(moveSound);
         attack.volume = Volume;

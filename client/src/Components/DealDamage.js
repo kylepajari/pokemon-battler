@@ -84,7 +84,7 @@ const DealDamage = (
     effectiveMessage = "It's not very effective...";
     Hit = new Audio(HitSoundWeak);
   } else if (Type > 1) {
-    effectiveMessage = "It's super effective!";
+    effectiveMessage = "It's super-effective!";
     Hit = new Audio(HitSoundSuper);
   } else {
     Hit = new Audio(HitSound);
