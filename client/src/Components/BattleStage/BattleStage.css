@@ -133,3 +133,12 @@
 .muted {
   opacity: 0.6;
 }
+
+.deRender {
+  display: none;
+}
+
+.gymLeaderDiv > img {
+  height: 400px;
+  width: 220px;
+}

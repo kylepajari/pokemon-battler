@@ -27,7 +27,9 @@ class TeamBuilder extends Component {
       currentPokemon: null,
       currentPokemonName: "",
       currentPokemonTypes: [],
+      currentPokemonTeamTypes: [],
       currentPokemonSprite: "",
+      currentPokemonSpriteBack: "",
       currentPokemonHeight: 0,
       currentPokemonWeight: 0,
       currentPokemonId: 0,
@@ -37,6 +39,8 @@ class TeamBuilder extends Component {
       currentPokemonSpd: 0,
       currentPokemonSpcAtk: 0,
       currentPokemonSpcDef: 0,
+      currentPokemonLevel: 0,
+      currentPokemonMoves: [],
       isOpen: false, //to keep track of whether pokemon dropdown is open
       isTeamOpen: false, //to keep track of whether team size dropdown is open
       globalLevel: 50 //level to set all pokemon too, also used in formula that scales stats,
@@ -446,6 +450,30 @@ class TeamBuilder extends Component {
       );
   };
 
+  modalTeamPokemon = num => {
+    this.setState({ currentPokemon: this.props.player1Team[num] }, () =>
+      this.fillmodalTeamPokeInfo()
+    );
+    $(".pokemonTeamPopup").modal("show");
+  };
+
+  fillmodalTeamPokeInfo = () => {
+    this.setState({
+      currentPokemonName: this.state.currentPokemon.name,
+      currentPokemonSprite: this.state.currentPokemon.frontSprite,
+      currentPokemonSpriteBack: this.state.currentPokemon.backSprite,
+      currentPokemonTeamTypes: this.state.currentPokemon.types,
+      currentPokemonHP: this.state.currentPokemon.OrigHp,
+      currentPokemonAtk: this.state.currentPokemon.OrigAttack,
+      currentPokemonDef: this.state.currentPokemon.OrigDefense,
+      currentPokemonSpd: this.state.currentPokemon.OrigSpeed,
+      currentPokemonSpcAtk: this.state.currentPokemon.OrigSpecialattack,
+      currentPokemonSpcDef: this.state.currentPokemon.OrigSpecialdefense,
+      currentPokemonLevel: this.state.currentPokemon.lv,
+      currentPokemonMoves: this.state.currentPokemon.moves
+    });
+  };
+
   fillmodalPokeInfo = () => {
     let level = this.state.globalLevel;
     this.setState({
@@ -640,16 +668,14 @@ class TeamBuilder extends Component {
       this.props.currentPlayer === "Player One" &&
       this.props.mode === "Multi"
     ) {
-      // this.setState({ currentPlayer: "Player Two" });
       this.props.setCurrentPlayer("Player Two");
     } else if (
       this.props.currentPlayer === "Player Two" &&
       this.props.mode === "Multi"
     ) {
-      // this.setState({ currentPlayer: "Player One" });
       this.props.setCurrentPlayer("Player One");
     } else {
-      this.forceUpdate();
+      // this.forceUpdate();
     }
   };
 
@@ -701,6 +727,12 @@ class TeamBuilder extends Component {
   Types = array => {
     var typesList = array.map((item, i) => {
       return MatchIconWithType(item.type.name);
+    });
+    return <span>{typesList}</span>;
+  };
+  TeamTypes = array => {
+    var typesList = array.map((item, i) => {
+      return MatchIconWithType(item);
     });
     return <span>{typesList}</span>;
   };
@@ -756,7 +788,12 @@ class TeamBuilder extends Component {
           <p className="teamHeader">Team:</p>
           {this.props.player1Team.map((pokemon, i) => {
             return (
-              <div className={`${`sprite team-${i + 1}`}`} key={i}>
+              <div
+                className={`${`sprite team-${i + 1}`}`}
+                key={i}
+                data-toggle="modal"
+                onClick={() => this.modalTeamPokemon(i)}
+              >
                 <img src={pokemon.frontSprite} alt={pokemon.name} />
                 <span>{pokemon.name}</span>
               </div>
@@ -772,6 +809,68 @@ class TeamBuilder extends Component {
           >
             Delete Team
           </button>
+          <div
+            className="modal pokemonTeamPopup"
+            data-backdrop=""
+            style={{ overflowY: "hidden" }}
+          >
+            <div
+              className="modal-dialog modal-dialog-centered"
+              style={{ overflowY: "hidden" }}
+            >
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title">
+                    {this.state.currentPokemonName}
+                  </h5>
+                  <p>Lv: {this.state.currentPokemonLevel}</p>
+                </div>
+                <div className="modal-body">
+                  <img
+                    src={this.state.currentPokemonSprite}
+                    alt=""
+                    className="modalTeamSprite"
+                  />
+                  <div className="modalStats">
+                    <div>
+                      <ul>
+                        <li>HP: {this.state.currentPokemonHP}</li>
+                        <li>ATK: {this.state.currentPokemonAtk}</li>
+                        <li>DEF: {this.state.currentPokemonDef}</li>
+                        <li>SPD: {this.state.currentPokemonSpd}</li>
+                        <li>SPC ATK: {this.state.currentPokemonSpcAtk}</li>
+                        <li>SPC DEF: {this.state.currentPokemonSpcDef}</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="modalMoves">
+                    <div>
+                      <p>Moves:</p>
+                      <ul>
+                        {this.state.currentPokemonMoves.map(move => {
+                          return (
+                            <li key={move.name}>
+                              {move.name.toUpperCase()}/ PP:{move.pp}/
+                              {MatchIconWithType(move.type)}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="badgesShowcase">
           <p className="badgesHeader">Badges Earned:</p>

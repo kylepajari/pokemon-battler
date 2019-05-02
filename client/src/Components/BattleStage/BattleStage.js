@@ -10,6 +10,7 @@ import { Conditions } from "../Conditions";
 import { RandomNumberGenerator } from "../RandomNumberGenerator";
 import { DisplayMessage } from "../DisplayMessage";
 import { HandleAI } from "../AI";
+import { PlayLeaderIntro } from "../LeaderIntro";
 import Victory from "../../Sounds/victory.mp3";
 import swapSound from "../../Sounds/BattleSounds/General/SWITCHIN.wav";
 import statRise from "../../Sounds/BattleSounds/General/STATRISE.wav";
@@ -20,6 +21,14 @@ import TeamContainer from "../../Containers/TeamContainer";
 import ItemsContainer from "../../Containers/ItemsContainer";
 import MovesContainer from "../../Containers/MovesContainer";
 import Sound from "react-sound";
+import Brock from "../../LeaderImages/Brock.png";
+import Misty from "../../LeaderImages/Misty.png";
+import LtSurge from "../../LeaderImages/LtSurge.png";
+import Erika from "../../LeaderImages/Erika.png";
+import Koga from "../../LeaderImages/Koga.png";
+import Sabrina from "../../LeaderImages/Sabrina.png";
+import Blaine from "../../LeaderImages/Blaine.png";
+import Giovanni from "../../LeaderImages/Giovanni.png";
 
 class BattleStage extends Component {
   constructor(props) {
@@ -56,7 +65,9 @@ class BattleStage extends Component {
       defMultiplierDown2: 1,
       spdMultiplierDown2: 1,
       spcAtkMultiplierDown2: 1,
-      spcDefMultiplierDown2: 1
+      spcDefMultiplierDown2: 1,
+
+      gymLeaderLogo: null
     };
     this.switchTurns = this.switchTurns.bind(this);
     this.checkForStatusEffect = this.checkForStatusEffect.bind(this);
@@ -82,6 +93,15 @@ class BattleStage extends Component {
       player1Team: props.player1Team,
       player2Team: props.player2Team
     });
+    if (props.mode !== "Single") {
+      $(document.querySelector(".gymLeaderDiv")).fadeOut(10);
+    }
+    if (!this.props.battleStarted) {
+      $(document.querySelectorAll(".side")).fadeOut(10);
+      $(document.querySelector(".player1Sprite")).fadeOut(10);
+      $(document.querySelector(".player2Sprite")).fadeOut(10);
+      $(document.querySelector(".options")).fadeOut(10);
+    }
   }
 
   handleBattleVol = () => {
@@ -98,12 +118,94 @@ class BattleStage extends Component {
 
   startBattle = () => {
     this.handleBattlePlaying();
+    $(document.querySelector(".mainmenuButton")).fadeOut(10);
+    $(document.querySelector(".leader")).fadeIn(500);
     if (this.props.mode === "Single") {
+      //SINGLE PLAYER ////////////////////////////////////////////////////////////////////////////////////////
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////
+      //set image src to correct gym leader
+      switch (this.props.playerTwoName) {
+        case "Brock":
+          this.setState({ gymLeaderLogo: Brock });
+          break;
+        case "Misty":
+          this.setState({ gymLeaderLogo: Misty });
+          break;
+        case "Lt. Surge":
+          this.setState({ gymLeaderLogo: LtSurge });
+          break;
+        case "Erika":
+          this.setState({ gymLeaderLogo: Erika });
+          break;
+        case "Koga":
+          this.setState({ gymLeaderLogo: Koga });
+          break;
+        case "Sabrina":
+          this.setState({ gymLeaderLogo: Sabrina });
+          break;
+        case "Blaine":
+          this.setState({ gymLeaderLogo: Blaine });
+          break;
+        case "Giovanni":
+          this.setState({ gymLeaderLogo: Giovanni });
+          break;
+        default:
+      }
+      //play leader intro scene
+      PlayLeaderIntro(this.props.playerTwoName);
+      setTimeout(
+        () => $(document.querySelectorAll(".side")).fadeIn(100),
+        10000
+      );
       setTimeout(
         () => DisplayMessage(this.props.playerTwoName + " wants to fight!"),
-        1000
+        10000
       );
+      setTimeout(
+        () =>
+          DisplayMessage(
+            this.props.playerTwoName +
+              " sent out " +
+              this.state.player2Team[0].name +
+              "!"
+          ),
+        12000
+      );
+      let cry1 = null;
+      let cry2 = null;
+      setTimeout(
+        () => $(document.querySelector(".player2Sprite")).fadeIn(500),
+        13000
+      );
+      cry1 = new Audio(this.state.player2Team[0].cry);
+      cry1.volume = this.props.volume;
+      setTimeout(() => cry1.play(), 13500);
+
+      setTimeout(
+        () => DisplayMessage("Go! " + this.state.player1Team[0].name + "!"),
+        14500
+      );
+      setTimeout(
+        () => $(document.querySelector(".player1Sprite")).fadeIn(500),
+        15500
+      );
+      cry2 = new Audio(this.state.player1Team[0].cry);
+      cry2.volume = this.props.volume;
+      setTimeout(() => cry2.play(), 16000);
+
+      setTimeout(
+        () => $(document.querySelector(".options")).fadeIn(300),
+        16500
+      );
+      setTimeout(
+        () => $(document.querySelector(".mainmenuButton")).fadeIn(300),
+        16500
+      );
+      ////////////////////////////////////////////////////////////////////////////
+      ////////////////////////////////////////////////////////////////////////////
     } else {
+      // MULTIPLAYER OR CPU VS CPU ////////////////////////////////////////////////////////////////////////////
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////
       setTimeout(
         () =>
           DisplayMessage(
@@ -114,34 +216,27 @@ class BattleStage extends Component {
           ),
         1000
       );
-    }
 
-    setTimeout(
-      () =>
-        DisplayMessage(
-          this.props.playerTwoName +
-            " sent out " +
-            this.state.player2Team[0].name +
-            "!"
-        ),
-      3000
-    );
-    let cry1 = null;
-    let cry2 = null;
-    setTimeout(
-      () => $(document.querySelector(".player2Sprite")).removeClass("hideMe"),
-      4000
-    );
-    cry1 = new Audio(this.state.player2Team[0].cry);
-    cry1.volume = this.props.volume;
-    setTimeout(() => cry1.play(), 4500);
-
-    if (this.props.mode === "Single") {
       setTimeout(
-        () => DisplayMessage("Go! " + this.state.player1Team[0].name + "!"),
-        5500
+        () =>
+          DisplayMessage(
+            this.props.playerTwoName +
+              " sent out " +
+              this.state.player2Team[0].name +
+              "!"
+          ),
+        3000
       );
-    } else {
+      let cry1 = null;
+      let cry2 = null;
+      setTimeout(
+        () => $(document.querySelector(".player2Sprite")).fadeIn(500),
+        4000
+      );
+      cry1 = new Audio(this.state.player2Team[0].cry);
+      cry1.volume = this.props.volume;
+      setTimeout(() => cry1.play(), 4500);
+
       setTimeout(
         () =>
           DisplayMessage(
@@ -152,50 +247,52 @@ class BattleStage extends Component {
           ),
         5500
       );
-    }
 
-    setTimeout(
-      () => $(document.querySelector(".player1Sprite")).removeClass("hideMe"),
-      6500
-    );
-    cry2 = new Audio(this.state.player1Team[0].cry);
-    cry2.volume = this.props.volume;
-    setTimeout(() => cry2.play(), 7000);
+      setTimeout(
+        () => $(document.querySelector(".player1Sprite")).fadeIn(500),
+        6500
+      );
+      cry2 = new Audio(this.state.player1Team[0].cry);
+      cry2.volume = this.props.volume;
+      setTimeout(() => cry2.play(), 7000);
 
-    if (this.props.mode === "CPUVSCPU") {
-      setTimeout(
-        () =>
-          HandleAI(
-            this.props.player1CurrentPokemon,
-            this.props.player2CurrentPokemon,
-            this.props.playersTurn,
-            this.handleMoves,
-            this.handlePoisonBurn,
-            this.dealPoisonBurn,
-            this.switchTurns,
-            this.handleForceUpdate,
-            this.state.player1Team,
-            this.state.player2Team,
-            this.props.playerOneName,
-            this.props.playerTwoName,
-            this.resetMultipliers,
-            this.handleTeam,
-            this.props.handleFainted,
-            this.props.mode,
-            this.state.isPoisonBurned,
-            this.checkForStatusEffect,
-            this.props.volume,
-            this.checkWin
-          ),
-        8000
-      );
-    } else {
-      setTimeout(
-        () => $(document.querySelector(".options")).removeClass("hideMe"),
-        8000
-      );
-      //make 1000 to shorten
+      if (this.props.mode === "CPUVSCPU") {
+        setTimeout(
+          () =>
+            HandleAI(
+              this.props.player1CurrentPokemon,
+              this.props.player2CurrentPokemon,
+              this.props.playersTurn,
+              this.handleMoves,
+              this.handlePoisonBurn,
+              this.dealPoisonBurn,
+              this.switchTurns,
+              this.handleForceUpdate,
+              this.state.player1Team,
+              this.state.player2Team,
+              this.props.playerOneName,
+              this.props.playerTwoName,
+              this.resetMultipliers,
+              this.handleTeam,
+              this.props.handleFainted,
+              this.props.mode,
+              this.state.isPoisonBurned,
+              this.checkForStatusEffect,
+              this.props.volume,
+              this.checkWin
+            ),
+          8000
+        );
+      } else {
+        setTimeout(
+          () => $(document.querySelector(".options")).fadeIn(300),
+          8000
+        );
+        //make 1000 to shorten
+      }
     }
+    /////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////
 
     this.props.setBattleStarted(true);
   };
@@ -236,7 +333,7 @@ class BattleStage extends Component {
         2000
       );
       //everyone on player ones team has fainted
-      $(document.querySelector(".options")).hide(500);
+      $(document.querySelector(".options")).fadeOut(300);
       //play victory music
       let win = new Audio(Victory);
       if (this.props.volume === 0) {
@@ -270,7 +367,7 @@ class BattleStage extends Component {
         2000
       );
       //everyone on player twos team has fainted
-      $(document.querySelector(".options")).hide(500);
+      $(document.querySelector(".options")).fadeOut(300);
       //play victory music
       let win = new Audio(Victory);
       if (this.props.volume === 0) {
@@ -374,7 +471,10 @@ class BattleStage extends Component {
           }
         }
       }
-      setTimeout(() => $(document.querySelector(".options")).hide(300), 3500);
+      setTimeout(
+        () => $(document.querySelector(".options")).fadeOut(300),
+        3500
+      );
     }
   };
 
@@ -782,7 +882,7 @@ class BattleStage extends Component {
       //mode is single
       if (this.props.playersTurn === "Player One") {
         this.props.setPlayersTurn("Player Two");
-        this.handleForceUpdate();
+        // this.handleForceUpdate();
         if (this.state.player2Team[this.props.player2CurrentPokemon].hp <= 0) {
           setTimeout(
             () =>
@@ -848,7 +948,7 @@ class BattleStage extends Component {
     } else if (this.props.mode === "CPUVSCPU") {
       if (this.props.playersTurn === "Player One") {
         this.props.setPlayersTurn("Player Two");
-        this.handleForceUpdate();
+        // this.handleForceUpdate();
         if (this.state.player2Team[this.props.player2CurrentPokemon].hp <= 0) {
           setTimeout(
             () =>
@@ -906,7 +1006,7 @@ class BattleStage extends Component {
         }
       } else {
         this.props.setPlayersTurn("Player One");
-        this.handleForceUpdate();
+        // this.handleForceUpdate();
         if (this.state.player1Team[this.props.player1CurrentPokemon].hp <= 0) {
           setTimeout(
             () =>
@@ -1061,7 +1161,7 @@ class BattleStage extends Component {
         );
       }
 
-      setTimeout(() => this.handleForceUpdate(), 2000);
+      // setTimeout(() => this.handleForceUpdate(), 2000);
 
       setTimeout(
         () =>
@@ -1188,7 +1288,7 @@ class BattleStage extends Component {
           );
         }
       }
-      setTimeout(() => this.handleForceUpdate(), 2000);
+      // setTimeout(() => this.handleForceUpdate(), 2000);
 
       setTimeout(
         () => DisplayMessage(PKMNuser.name + " was hit with recoil!"),
@@ -1220,7 +1320,7 @@ class BattleStage extends Component {
 
       //update health bar to reflect recovery
       setTimeout(() => UpdateHP(HPbar, updatedBarHP, this.props.volume), 2000);
-      setTimeout(() => this.handleForceUpdate(), 2000);
+      // setTimeout(() => this.handleForceUpdate(), 2000);
 
       let recover = new Audio(recoverSound);
       recover.volume = this.props.volume;
@@ -1249,7 +1349,7 @@ class BattleStage extends Component {
 
       //update health bar to reflect recovery
       setTimeout(() => UpdateHP(HPbar, updatedBarHP, this.props.volume), 2000);
-      setTimeout(() => this.handleForceUpdate(), 2000);
+      // setTimeout(() => this.handleForceUpdate(), 2000);
 
       let recover = new Audio(recoverSound);
       recover.volume = this.props.volume;
@@ -1750,6 +1850,17 @@ class BattleStage extends Component {
       return (
         <div className="battleWindow">
           <div className="battleContainer container">
+            <div className="gymLeaderDiv">
+              <img
+                className="leader"
+                id="gymLeader"
+                src={this.state.gymLeaderLogo}
+                alt="GYM_LEADER"
+              />
+              <br />
+              <br />
+              <h5>{this.props.playerTwoName}</h5>
+            </div>
             <div className="side side1 col">
               <p className="row">
                 {this.state.player2Team.map((item, i) => {
@@ -1904,7 +2015,7 @@ class BattleStage extends Component {
           </div>
           <div className="battleInputs container">
             <div>{player}'s Turn</div>
-            <div className="options row hideMe">
+            <div className="options row">
               <button
                 type="button"
                 className="btn btn-light fightButton"

@@ -126,10 +126,30 @@ div > img {
   width: 200px;
 }
 
+.modalTeamSprite {
+  height: 180px;
+  width: 180px;
+}
+
 .modalStats > div > ul {
   text-align: left;
   list-style-type: none;
-  margin-left: 25%;
+}
+.modalStats > div > p {
+  text-decoration: underline;
+}
+
+.modalMoves > div > ul {
+  text-align: left;
+  list-style-type: none;
+}
+.modalMoves > div > p {
+  text-decoration: underline;
+}
+
+.modalMoves > div > ul > li > img {
+  height: 25px;
+  width: 70px;
 }
 
 .badgesShowcase {
@@ -180,7 +200,7 @@ div > img {
   grid-area: badge-8;
 }
 
-.badgesShowcase img {
+.badgesShowcase > div > img {
   height: 65px;
   width: 65px;
 }
@@ -208,6 +228,10 @@ div > img {
   margin-bottom: 15px;
 }
 
+.teamShowcase > div > img {
+  cursor: pointer;
+}
+
 .team-1 {
   grid-area: team-1;
 }
@@ -231,12 +255,12 @@ div > img {
   grid-area: teambtn;
 }
 
-.teamShowcase img {
+.teamShowcase > div > img {
   height: 85px;
   width: 85px;
 }
 
-.teamShowcase span {
+.teamShowcase > div > span {
   font-size: 10px;
 }
 
