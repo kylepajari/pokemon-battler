@@ -119,8 +119,49 @@ const HandleAI = (
     } else {
       setTimeout(() => switchTurns(), 3500);
     }
+  } else if (
+    PKMNuser.statusCondition === "Poison" ||
+    PKMNuser.statusCondition === "Paralyze" ||
+    PKMNuser.statusCondition === "Burn" ||
+    PKMNuser.statusCondition === "Sleep" ||
+    PKMNuser.statusCondition === "Frozen"
+  ) {
+    //ai pokemon is afflicted with status condition
+    switch (PKMNuser.statusCondition) {
+      case "Poison":
+        DisplayMessage(playerTwoName + " used an Antidote!");
+        break;
+      case "Paralyze":
+        DisplayMessage(playerTwoName + " used a Paralyze Heal!");
+        break;
+      case "Burn":
+        DisplayMessage(playerTwoName + " used a Burn Heal!");
+        break;
+      case "Sleep":
+        DisplayMessage(playerTwoName + " used an Awakening!");
+        break;
+      case "Frozen":
+        DisplayMessage(playerTwoName + " used an Ice Heal!");
+        break;
+      default:
+    }
+
+    setTimeout(
+      () =>
+        DisplayMessage(
+          PKMNuser.name + " was cured of " + PKMNuser.statusCondition + "!"
+        ),
+      1800
+    );
+    //play heal sound
+    let heal = new Audio(healSound);
+    heal.volume = volume;
+    heal.play();
+    //remove status condition
+    setTimeout(() => (PKMNuser.statusCondition = ""), 1900);
+    setTimeout(() => switchTurns(), 3500);
   } else {
-    //continue using move as normal
+    // if not low hp, or afflicted, continue using move as normal
 
     //get types from target
     let targetType1 = PKMNtarget.types[0][0];
