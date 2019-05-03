@@ -133,7 +133,7 @@ const HandleAI = (
     (PKMNuser.statusCondition === "Sleep" && !aiUsedAwakening) ||
     (PKMNuser.statusCondition === "Frozen" && !aiUsedIceHeal)
   ) {
-    //ai pokemon is afflicted with status condition
+    //if not, check if ai pokemon is afflicted with status condition
     switch (PKMNuser.statusCondition) {
       case "Poison":
         DisplayMessage(playerTwoName + " used an Antidote!");
@@ -219,6 +219,7 @@ const HandleAI = (
       }
     }
     if (PKMNuser.hp <= 0) {
+      //if current pokemon is fainted, delay using move by 4.5 seconds to allow time for new pokemon to come out
       setTimeout(
         () =>
           UseMove(

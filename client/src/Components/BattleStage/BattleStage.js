@@ -124,12 +124,11 @@ class BattleStage extends Component {
   };
 
   startBattle = () => {
-    this.handleBattlePlaying();
     $(document.querySelector(".mainmenuButton")).fadeOut(10);
-    $(document.querySelector(".leader")).fadeIn(500);
     if (this.props.mode === "Single") {
       //SINGLE PLAYER ////////////////////////////////////////////////////////////////////////////////////////
       ///////////////////////////////////////////////////////////////////////////////////////////////////////
+      $(document.querySelector(".leader")).fadeIn(500);
       //set image src to correct gym leader
       switch (this.props.playerTwoName) {
         case "Brock":
@@ -160,6 +159,7 @@ class BattleStage extends Component {
       }
       //play leader intro scene
       PlayLeaderIntro(this.props.playerTwoName);
+      setTimeout(() => this.handleBattlePlaying(), 10000);
       setTimeout(
         () => $(document.querySelectorAll(".side")).fadeIn(100),
         10000
@@ -213,6 +213,8 @@ class BattleStage extends Component {
     } else {
       // MULTIPLAYER OR CPU VS CPU ////////////////////////////////////////////////////////////////////////////
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
+      setTimeout(() => this.handleBattlePlaying(), 1000);
+      setTimeout(() => $(document.querySelectorAll(".side")).fadeIn(100), 1000);
       setTimeout(
         () =>
           DisplayMessage(
@@ -262,6 +264,10 @@ class BattleStage extends Component {
       cry2 = new Audio(this.state.player1Team[0].cry);
       cry2.volume = this.props.volume;
       setTimeout(() => cry2.play(), 7000);
+      setTimeout(
+        () => $(document.querySelector(".mainmenuButton")).fadeIn(300),
+        6500
+      );
 
       if (this.props.mode === "CPUVSCPU") {
         setTimeout(

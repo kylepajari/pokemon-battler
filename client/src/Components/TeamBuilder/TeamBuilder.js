@@ -344,9 +344,6 @@ class TeamBuilder extends Component {
         physical.push(move);
       }
     });
-    console.log("Number of Physical Moves: " + physical.length);
-    console.log("Number of Special Moves: " + special.length);
-    console.log("Number of Status Moves: " + status.length);
 
     //finally, go through physical, special, and status moves, and create final move list
     let finalMoves = [];
@@ -369,9 +366,9 @@ class TeamBuilder extends Component {
               } while (finalMoves[0].name === randomMove.name);
             }
             if (i === 0) {
-              console.log(randomMove.name + " was chosen as FIRST MOVE");
+              // console.log(randomMove.name + " was chosen as FIRST MOVE");
             } else {
-              console.log(randomMove.name + " was chosen as SECOND MOVE");
+              // console.log(randomMove.name + " was chosen as SECOND MOVE");
             }
 
             finalMoves.push(randomMove);
@@ -383,13 +380,13 @@ class TeamBuilder extends Component {
 
         //add single special move
         let randomMove = special[Math.floor(Math.random() * special.length)];
-        console.log(randomMove.name + " was chosen as THIRD MOVE");
+        // console.log(randomMove.name + " was chosen as THIRD MOVE");
         finalMoves.push(randomMove);
       } else {
         //more special moves than physical
         //add single physical move
         let randomMove = physical[Math.floor(Math.random() * physical.length)];
-        console.log(randomMove.name + " was chosen as FIRST MOVE");
+        // console.log(randomMove.name + " was chosen as FIRST MOVE");
         finalMoves.push(randomMove);
 
         for (let i = 0; i < 2; i++) {
@@ -405,9 +402,9 @@ class TeamBuilder extends Component {
             }
 
             if (i === 0) {
-              console.log(randomMove.name + " was chosen as SECOND MOVE");
+              // console.log(randomMove.name + " was chosen as SECOND MOVE");
             } else {
-              console.log(randomMove.name + " was chosen as THIRD MOVE");
+              // console.log(randomMove.name + " was chosen as THIRD MOVE");
             }
 
             finalMoves.push(randomMove);
@@ -421,7 +418,7 @@ class TeamBuilder extends Component {
       //add single status move
       for (let i = 0; i < 1; i++) {
         let randomMove = status[Math.floor(Math.random() * status.length)];
-        console.log(randomMove.name + " was chosen FORTH MOVE");
+        // console.log(randomMove.name + " was chosen FORTH MOVE");
         finalMoves.push(randomMove);
       }
     } else {
@@ -675,7 +672,7 @@ class TeamBuilder extends Component {
     ) {
       this.props.setCurrentPlayer("Player One");
     } else {
-      // this.forceUpdate();
+      this.forceUpdate();
     }
   };
 

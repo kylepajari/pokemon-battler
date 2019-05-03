@@ -253,7 +253,7 @@ class Items extends Component {
                     key={i}
                   />
                   <p className="smallText">{item.name}</p>
-                  &nbsp; &nbsp; &nbsp;
+                  {/* &nbsp; &nbsp; &nbsp; */}
                   <p className="smallText">{item.count}</p>
                 </div>
               );
