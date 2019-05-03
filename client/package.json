@@ -1,8 +1,7 @@
 {
   "name": "pokemon-battler",
-  "version": "0.1.0",
+  "version": "1.2.0",
   "private": true,
-  "homepage": "https://kylepajari.github.io/pokemon-battler",
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "axios": "^0.18.0",
