@@ -43,6 +43,12 @@ class BattleStage extends Component {
       isPoisonBurned: false,
       faintedByRecoilPoisonBurn: false,
       recoilDamage: 0,
+      aiUsedMaxPotion: false,
+      aiUsedAntidote: false,
+      aiUsedBurnHeal: false,
+      aiUsedParalyzeHeal: false,
+      aiUsedAwakening: false,
+      aiUsedIceHeal: false,
       //stat multipliers for player 1
       atkMultiplierUp1: 1,
       defMultiplierUp1: 1,
@@ -86,6 +92,7 @@ class BattleStage extends Component {
     this.checkWin = this.checkWin.bind(this);
     this.handleBattleVol = this.handleBattleVol.bind(this);
     this.handleBattlePlaying = this.handleBattlePlaying.bind(this);
+    this.handleAIUseItems = this.handleAIUseItems.bind(this);
   }
 
   componentWillReceiveProps(props) {
@@ -279,7 +286,14 @@ class BattleStage extends Component {
               this.state.isPoisonBurned,
               this.checkForStatusEffect,
               this.props.volume,
-              this.checkWin
+              this.checkWin,
+              this.state.aiUsedMaxPotion,
+              this.state.aiUsedAntidote,
+              this.state.aiUsedBurnHeal,
+              this.state.aiUsedParalyzeHeal,
+              this.state.aiUsedAwakening,
+              this.state.aiUsedIceHeal,
+              this.handleAIUseItems
             ),
           8000
         );
@@ -540,6 +554,30 @@ class BattleStage extends Component {
       }
     }
   }
+
+  handleAIUseItems = item => {
+    switch (item) {
+      case "Max Potion":
+        this.setState({ aiUsedMaxPotion: true });
+        break;
+      case "Antidote":
+        this.setState({ aiUsedAntidote: true });
+        break;
+      case "Burn Heal":
+        this.setState({ aiUsedBurnHeal: true });
+        break;
+      case "Paralyze Heal":
+        this.setState({ aiUsedParalyzeHeal: true });
+        break;
+      case "Awakening":
+        this.setState({ aiUsedAwakening: true });
+        break;
+      case "Ice Heal":
+        this.setState({ aiUsedIceHeal: true });
+        break;
+      default:
+    }
+  };
 
   //HANDLE ITEMS ////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -906,7 +944,14 @@ class BattleStage extends Component {
                 this.state.isPoisonBurned,
                 this.checkForStatusEffect,
                 this.props.volume,
-                this.checkWin
+                this.checkWin,
+                this.state.aiUsedMaxPotion,
+                this.state.aiUsedAntidote,
+                this.state.aiUsedBurnHeal,
+                this.state.aiUsedParalyzeHeal,
+                this.state.aiUsedAwakening,
+                this.state.aiUsedIceHeal,
+                this.handleAIUseItems
               ),
             4500
           );
@@ -933,7 +978,14 @@ class BattleStage extends Component {
                 this.state.isPoisonBurned,
                 this.checkForStatusEffect,
                 this.props.volume,
-                this.checkWin
+                this.checkWin,
+                this.state.aiUsedMaxPotion,
+                this.state.aiUsedAntidote,
+                this.state.aiUsedBurnHeal,
+                this.state.aiUsedParalyzeHeal,
+                this.state.aiUsedAwakening,
+                this.state.aiUsedIceHeal,
+                this.handleAIUseItems
               ),
             500
           );
@@ -972,7 +1024,14 @@ class BattleStage extends Component {
                 this.state.isPoisonBurned,
                 this.checkForStatusEffect,
                 this.props.volume,
-                this.checkWin
+                this.checkWin,
+                this.state.aiUsedMaxPotion,
+                this.state.aiUsedAntidote,
+                this.state.aiUsedBurnHeal,
+                this.state.aiUsedParalyzeHeal,
+                this.state.aiUsedAwakening,
+                this.state.aiUsedIceHeal,
+                this.handleAIUseItems
               ),
             4500
           );
@@ -999,7 +1058,14 @@ class BattleStage extends Component {
                 this.state.isPoisonBurned,
                 this.checkForStatusEffect,
                 this.props.volume,
-                this.checkWin
+                this.checkWin,
+                this.state.aiUsedMaxPotion,
+                this.state.aiUsedAntidote,
+                this.state.aiUsedBurnHeal,
+                this.state.aiUsedParalyzeHeal,
+                this.state.aiUsedAwakening,
+                this.state.aiUsedIceHeal,
+                this.handleAIUseItems
               ),
             500
           );
@@ -1030,7 +1096,14 @@ class BattleStage extends Component {
                 this.state.isPoisonBurned,
                 this.checkForStatusEffect,
                 this.props.volume,
-                this.checkWin
+                this.checkWin,
+                this.state.aiUsedMaxPotion,
+                this.state.aiUsedAntidote,
+                this.state.aiUsedBurnHeal,
+                this.state.aiUsedParalyzeHeal,
+                this.state.aiUsedAwakening,
+                this.state.aiUsedIceHeal,
+                this.handleAIUseItems
               ),
             4500
           );
@@ -1057,7 +1130,14 @@ class BattleStage extends Component {
                 this.state.isPoisonBurned,
                 this.checkForStatusEffect,
                 this.props.volume,
-                this.checkWin
+                this.checkWin,
+                this.state.aiUsedMaxPotion,
+                this.state.aiUsedAntidote,
+                this.state.aiUsedBurnHeal,
+                this.state.aiUsedParalyzeHeal,
+                this.state.aiUsedAwakening,
+                this.state.aiUsedIceHeal,
+                this.handleAIUseItems
               ),
             500
           );

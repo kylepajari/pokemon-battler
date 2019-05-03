@@ -27,7 +27,14 @@ const HandleAI = (
   isPoisonBurned,
   checkForStatusEffect,
   volume,
-  checkWin
+  checkWin,
+  aiUsedMaxPotion,
+  aiUsedAntidote,
+  aiUsedBurnHeal,
+  aiUsedParalyzeHeal,
+  aiUsedAwakening,
+  aiUsedIceHeal,
+  handleAIUseItems
 ) => {
   //setting up hooks
   const state = store.getState();
@@ -61,7 +68,8 @@ const HandleAI = (
   if (
     PKMNuser.hp / PKMNuser.OrigHp <= 0.25 &&
     (currentPoke === currentTeam.length - 1 ||
-      currentPoke === currentTeam.length - 2)
+      currentPoke === currentTeam.length - 2) &&
+    !aiUsedMaxPotion
   ) {
     //pokemon has less than or equal to 25% health
     DisplayMessage(
@@ -73,8 +81,7 @@ const HandleAI = (
         "!"
     );
 
-    //subtract one potion
-    //TODO
+    handleAIUseItems("Max Potion");
 
     //heal hp
     //if increasing would bring them over full hp, cap hp
@@ -120,28 +127,33 @@ const HandleAI = (
       setTimeout(() => switchTurns(), 3500);
     }
   } else if (
-    PKMNuser.statusCondition === "Poison" ||
-    PKMNuser.statusCondition === "Paralyze" ||
-    PKMNuser.statusCondition === "Burn" ||
-    PKMNuser.statusCondition === "Sleep" ||
-    PKMNuser.statusCondition === "Frozen"
+    (PKMNuser.statusCondition === "Poison" && !aiUsedAntidote) ||
+    (PKMNuser.statusCondition === "Paralyze" && !aiUsedParalyzeHeal) ||
+    (PKMNuser.statusCondition === "Burn" && !aiUsedBurnHeal) ||
+    (PKMNuser.statusCondition === "Sleep" && !aiUsedAwakening) ||
+    (PKMNuser.statusCondition === "Frozen" && !aiUsedIceHeal)
   ) {
     //ai pokemon is afflicted with status condition
     switch (PKMNuser.statusCondition) {
       case "Poison":
         DisplayMessage(playerTwoName + " used an Antidote!");
+        handleAIUseItems("Antidote");
         break;
       case "Paralyze":
         DisplayMessage(playerTwoName + " used a Paralyze Heal!");
+        handleAIUseItems("Paralyze Heal");
         break;
       case "Burn":
         DisplayMessage(playerTwoName + " used a Burn Heal!");
+        handleAIUseItems("Burn Heal");
         break;
       case "Sleep":
         DisplayMessage(playerTwoName + " used an Awakening!");
+        handleAIUseItems("Awakening");
         break;
       case "Frozen":
         DisplayMessage(playerTwoName + " used an Ice Heal!");
+        handleAIUseItems("Ice Heal");
         break;
       default:
     }
