@@ -51,9 +51,10 @@ const PlayLeaderIntro = name => {
       introMessage4 = "..because my team is straight fire!";
       break;
     case "Giovanni":
-      introMessage1 = "So you've managed to make it this far.";
-      introMessage2 = "No matter...";
-      introMessage3 = "If you wish to challenge me, so be it.";
+      introMessage1 = "So you've managed to make it this far..";
+      introMessage2 =
+        "..and you think you can challenge the leader of Team Rocket?!";
+      introMessage3 = "You overestimate your abilites as a trainer.";
       introMessage4 = "This is the end of the line for you!";
       break;
     case "Lorelei":

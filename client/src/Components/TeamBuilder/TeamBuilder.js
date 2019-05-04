@@ -926,7 +926,11 @@ class TeamBuilder extends Component {
           </div>
           <div
             className={`${
-              this.props.badges < 12 ? `faded badge-9` : `badge-9`
+              this.props.badges < 8
+                ? `deRender badge-9`
+                : this.props.badges < 12
+                ? ` faded badge-9`
+                : `badge-9`
             }`}
             key={"badge9"}
           >

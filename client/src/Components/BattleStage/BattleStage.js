@@ -281,7 +281,7 @@ class BattleStage extends Component {
       );
       this.props.battleMusic.loop = true;
       this.props.battleMusic.volume = this.props.volume;
-      setTimeout(() => this.props.battleMusic.play(), 24800);
+      setTimeout(() => this.props.battleMusic.play(), 24600);
       ////////////////////////////////////////////////////////////////////////////
       ////////////////////////////////////////////////////////////////////////////
     } else {
@@ -586,6 +586,7 @@ class BattleStage extends Component {
             badgesCount += 1;
             this.props.setBadges(badgesCount);
             this.props.updateBadges(this.props.id, badgesCount);
+            $(document.querySelector(".eliteFour")).fadeOut(10);
             let badgeName = this.state.gymBadgeName;
             if (badgeName.includes("Elite")) {
               setTimeout(
