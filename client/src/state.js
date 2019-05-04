@@ -1,5 +1,3 @@
-import Sound from "react-sound";
-
 export default {
   user: {},
   allData: null,

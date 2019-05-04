@@ -39,7 +39,6 @@ class App extends Component {
     this.props.setTeamSize(6);
     this.props.setBadges(0);
     this.props.setId("");
-    window.soundManager.muteAll();
   };
 
   render() {

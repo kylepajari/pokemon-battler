@@ -44,7 +44,6 @@ import Earth_Badge from "../BadgesContainer/Badges/Earth_Badge.png";
 import Champion_Badge from "../BadgesContainer/Badges/Champion_Badge.png";
 import Elite_Four from "../BadgesContainer/Badges/Elite_Four.png";
 import { PlayLeaderOutro } from "../LeaderOutro";
-import battleTheme from "../../Sounds/battleTheme.wav";
 
 class BattleStage extends Component {
   constructor(props) {
@@ -280,19 +279,17 @@ class BattleStage extends Component {
         () => $(document.querySelector(".mainmenuButton")).fadeIn(300),
         23000
       );
-      const battleMusic = new Audio(battleTheme);
-      battleMusic.loop = true;
-      battleMusic.volume = this.props.volume;
-      setTimeout(() => battleMusic.play(), 24800);
+      this.props.battleMusic.loop = true;
+      this.props.battleMusic.volume = this.props.volume;
+      setTimeout(() => this.props.battleMusic.play(), 24800);
       ////////////////////////////////////////////////////////////////////////////
       ////////////////////////////////////////////////////////////////////////////
     } else {
       // MULTIPLAYER OR CPU VS CPU ////////////////////////////////////////////////////////////////////////////
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
-      const battleMusic = new Audio(battleTheme);
-      battleMusic.loop = true;
-      battleMusic.volume = this.props.volume;
-      battleMusic.play();
+      this.props.battleMusic.loop = true;
+      this.props.battleMusic.volume = this.props.volume;
+      this.props.battleMusic.play();
       setTimeout(() => $(document.querySelectorAll(".side")).fadeIn(100), 1000);
       setTimeout(
         () =>
@@ -399,8 +396,10 @@ class BattleStage extends Component {
   handleVolume = () => {
     if (this.props.volume === 0) {
       this.props.setVolume(0.7);
+      this.props.battleMusic.volume = 0.7;
     } else {
       this.props.setVolume(0);
+      this.props.battleMusic.volume = 0;
     }
   };
 
@@ -625,9 +624,11 @@ class BattleStage extends Component {
           }
         }
         setTimeout(() => win.pause(), 22000);
+        this.props.battleMusic.pause();
         setTimeout(() => this.props.returnToMainMenu(), 22000);
       } else {
         setTimeout(() => win.pause(), 8000);
+        this.props.battleMusic.pause();
         setTimeout(() => this.props.returnToMainMenu(), 8000);
       }
     }
@@ -738,6 +739,9 @@ class BattleStage extends Component {
       displayItems: false,
       displayTeam: false
     });
+    if (this.state.displayMoves === false) {
+      $(document.querySelector(".playerMoves")).focus();
+    }
   }
 
   //HANDLE TEAM ////////////////////////////////////////////////////////////////////////////////////////

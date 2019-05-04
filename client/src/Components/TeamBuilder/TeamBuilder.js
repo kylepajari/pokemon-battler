@@ -18,6 +18,7 @@ import Soul_Badge from "../BadgesContainer/Badges/Soul_Badge.png";
 import Volcano_Badge from "../BadgesContainer/Badges/Volcano_Badge.png";
 import Earth_Badge from "../BadgesContainer/Badges/Earth_Badge.png";
 import Champion_Badge from "../BadgesContainer/Badges/Champion_Badge.png";
+import battleTheme from "../../Sounds/battleTheme.wav";
 
 class TeamBuilder extends Component {
   constructor(props) {
@@ -44,7 +45,8 @@ class TeamBuilder extends Component {
       currentPokemonMoves: [],
       isOpen: false, //to keep track of whether pokemon dropdown is open
       isTeamOpen: false, //to keep track of whether team size dropdown is open
-      globalLevel: 50 //level to set all pokemon too, also used in formula that scales stats,
+      globalLevel: 50, //level to set all pokemon too, also used in formula that scales stats
+      battleMusic: new Audio(battleTheme)
     };
 
     this.fetchPokemon = this.fetchPokemon.bind(this);
@@ -77,6 +79,7 @@ class TeamBuilder extends Component {
     $(document.querySelector(".badgesShowcase")).fadeOut(10);
     $(document.querySelector(".teamShowcase")).fadeOut(10);
     $(document.querySelector(".mainmenuButton")).fadeIn(300);
+    $(document.querySelector(".logoutBox")).fadeOut(10);
   }
 
   multiPlayer() {
@@ -85,6 +88,7 @@ class TeamBuilder extends Component {
     $(document.querySelector("#btnCPUVSCPU")).fadeOut(10);
     $(document.querySelector(".playerTwoNameDiv")).fadeIn(300);
     $(document.querySelector(".mainmenuButton")).fadeIn(300);
+    $(document.querySelector(".logoutBox")).fadeOut(10);
     this.props.setMode("Multi");
   }
 
@@ -101,6 +105,7 @@ class TeamBuilder extends Component {
     $(document.querySelector("#btnCPUVSCPU")).fadeOut(10);
     $(document.querySelector(".teamList")).fadeIn(300);
     $(document.querySelector(".mainmenuButton")).fadeIn(300);
+    $(document.querySelector(".logoutBox")).fadeOut(10);
   }
 
   returnToMainMenu() {
@@ -135,11 +140,12 @@ class TeamBuilder extends Component {
     $(document.querySelector(".teamShowcase")).fadeIn(300);
     $(document.getElementById("BattleButton")).fadeOut(10);
     $(document.querySelector(".pokemonSheetContainer")).addClass("deRender");
+    $(document.querySelector(".logoutBox")).fadeIn(300);
+    this.state.battleMusic.pause();
   }
 
-  inputNames = (player, input) => {
+  inputNames = input => {
     if (input !== "") {
-      // this.setState({ playerTwoName: this.Capitalize(input) });
       this.props.setPlayerTwoName(this.Capitalize(input));
     }
     $(document.querySelector(".playerTwoNameDiv")).fadeOut(10);
@@ -937,10 +943,7 @@ class TeamBuilder extends Component {
           <button
             type="button"
             onClick={() =>
-              this.inputNames(
-                "P2",
-                document.getElementById("playerTwoNameBox").value
-              )
+              this.inputNames(document.getElementById("playerTwoNameBox").value)
             }
           >
             Enter
@@ -1141,6 +1144,7 @@ class TeamBuilder extends Component {
             Capitalize={this.Capitalize}
             handleFainted={this.handleFainted}
             returnToMainMenu={this.returnToMainMenu}
+            battleMusic={this.state.battleMusic}
           />
           <div className="team team2 col">
             <p className="header">{this.props.playerTwoName}:</p>
