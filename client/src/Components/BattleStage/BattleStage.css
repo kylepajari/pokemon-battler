@@ -62,11 +62,11 @@
 
 .message {
   margin-top: 5px;
-  font-size: 16px;
+  font-size: 15px;
 }
 .playermessage {
   margin-top: 5px;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .fullhp {
@@ -139,6 +139,11 @@
 }
 
 .gymLeaderDiv > img {
-  height: 400px;
-  width: 220px;
+  height: 420px;
+  width: 230px;
+}
+
+.gymBadgeDiv > img {
+  height: 250px;
+  width: 250px;
 }

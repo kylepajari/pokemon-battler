@@ -7,8 +7,6 @@ import cookie from "cookie";
 import jwt from "jsonwebtoken";
 import LoginContainer from "./Containers/LoginContainer";
 import TeamBuilderContainer from "./Containers/TeamBuilderContainer";
-import Sound from "react-sound";
-import battleTheme from "./Sounds/battleTheme.mp3";
 
 class App extends Component {
   constructor(props) {
@@ -75,16 +73,6 @@ class App extends Component {
       // if logged in, and data loaded, show team builder(main menu)
       return (
         <div className="App">
-          <Sound
-            url={battleTheme}
-            playStatus={this.props.battlePlaying}
-            playFromPosition={0 /* in milliseconds */}
-            onLoading={this.handleSongLoading}
-            onPlaying={this.handleSongPlaying}
-            onFinishedPlaying={this.handleSongFinishedPlaying}
-            volume={this.props.battleVol}
-            loop={true}
-          />
           <div className="title">
             <p>Pokémon Battler</p>
             <img className="pokeball" src={pokeball} alt="Pokeball" />

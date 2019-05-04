@@ -1,25 +1,39 @@
-.badgesContainer {
+.badgeSelectionPage {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  height: 600px;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: baseline;
+  height: 100%;
   width: 100%;
 }
 
-.badgesContainer img {
+.badgesContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100%;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.badgesContainer > button > img {
   height: 45px;
   width: 45px;
 }
 
-.badgesContainer button {
+.badgesContainer > h5 {
+  text-decoration: underline;
+}
+
+.badgesContainer > button {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   font-size: 16px;
   height: 60px;
-  width: 100%;
+  width: 500px;
   border: 1px solid black;
 }
 

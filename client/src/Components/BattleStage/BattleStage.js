@@ -20,7 +20,6 @@ import volumeIcon from "../../volume.png";
 import TeamContainer from "../../Containers/TeamContainer";
 import ItemsContainer from "../../Containers/ItemsContainer";
 import MovesContainer from "../../Containers/MovesContainer";
-import Sound from "react-sound";
 import Brock from "../../LeaderImages/Brock.png";
 import Misty from "../../LeaderImages/Misty.png";
 import LtSurge from "../../LeaderImages/LtSurge.png";
@@ -29,6 +28,23 @@ import Koga from "../../LeaderImages/Koga.png";
 import Sabrina from "../../LeaderImages/Sabrina.png";
 import Blaine from "../../LeaderImages/Blaine.png";
 import Giovanni from "../../LeaderImages/Giovanni.png";
+import Blue from "../../LeaderImages/Blue.png";
+import Lorelei from "../../LeaderImages/Lorelei.png";
+import Bruno from "../../LeaderImages/Bruno.png";
+import Agatha from "../../LeaderImages/Agatha.png";
+import Lance from "../../LeaderImages/Lance.png";
+import Boulder_Badge from "../BadgesContainer/Badges/Boulder_Badge.png";
+import Cascade_Badge from "../BadgesContainer/Badges/Cascade_Badge.png";
+import Thunder_Badge from "../BadgesContainer/Badges/Thunder_Badge.png";
+import Rainbow_Badge from "../BadgesContainer/Badges/Rainbow_Badge.png";
+import Marsh_Badge from "../BadgesContainer/Badges/Marsh_Badge.png";
+import Soul_Badge from "../BadgesContainer/Badges/Soul_Badge.png";
+import Volcano_Badge from "../BadgesContainer/Badges/Volcano_Badge.png";
+import Earth_Badge from "../BadgesContainer/Badges/Earth_Badge.png";
+import Champion_Badge from "../BadgesContainer/Badges/Champion_Badge.png";
+import Elite_Four from "../BadgesContainer/Badges/Elite_Four.png";
+import { PlayLeaderOutro } from "../LeaderOutro";
+import battleTheme from "../../Sounds/battleTheme.wav";
 
 class BattleStage extends Component {
   constructor(props) {
@@ -73,7 +89,9 @@ class BattleStage extends Component {
       spcAtkMultiplierDown2: 1,
       spcDefMultiplierDown2: 1,
 
-      gymLeaderLogo: null
+      gymLeaderLogo: null,
+      gymBadgeLogo: null,
+      gymBadgeName: null
     };
     this.switchTurns = this.switchTurns.bind(this);
     this.checkForStatusEffect = this.checkForStatusEffect.bind(this);
@@ -90,8 +108,6 @@ class BattleStage extends Component {
     this.resetMultipliers = this.resetMultipliers.bind(this);
     this.handleVolume = this.handleVolume.bind(this);
     this.checkWin = this.checkWin.bind(this);
-    this.handleBattleVol = this.handleBattleVol.bind(this);
-    this.handleBattlePlaying = this.handleBattlePlaying.bind(this);
     this.handleAIUseItems = this.handleAIUseItems.bind(this);
   }
 
@@ -108,20 +124,9 @@ class BattleStage extends Component {
       $(document.querySelector(".player1Sprite")).fadeOut(10);
       $(document.querySelector(".player2Sprite")).fadeOut(10);
       $(document.querySelector(".options")).fadeOut(10);
+      $(document.querySelector(".gymBadgeDiv")).fadeOut(10);
     }
   }
-
-  handleBattleVol = () => {
-    if (this.props.battleVol === 30) {
-      this.props.setBattleVol(0);
-    } else {
-      this.props.setBattleVol(30);
-    }
-  };
-
-  handleBattlePlaying = () => {
-    this.props.setBattlePlaying(Sound.status.PLAYING);
-  };
 
   startBattle = () => {
     $(document.querySelector(".mainmenuButton")).fadeOut(10);
@@ -132,41 +137,108 @@ class BattleStage extends Component {
       //set image src to correct gym leader
       switch (this.props.playerTwoName) {
         case "Brock":
-          this.setState({ gymLeaderLogo: Brock });
+          this.setState({
+            gymLeaderLogo: Brock,
+            gymBadgeLogo: Boulder_Badge,
+            gymBadgeName: "Boulder Badge"
+          });
           break;
         case "Misty":
-          this.setState({ gymLeaderLogo: Misty });
+          this.setState({
+            gymLeaderLogo: Misty,
+            gymBadgeLogo: Cascade_Badge,
+            gymBadgeName: "Cascade Badge"
+          });
           break;
         case "Lt. Surge":
-          this.setState({ gymLeaderLogo: LtSurge });
+          this.setState({
+            gymLeaderLogo: LtSurge,
+            gymBadgeLogo: Thunder_Badge,
+            gymBadgeName: "Thunder Badge"
+          });
           break;
         case "Erika":
-          this.setState({ gymLeaderLogo: Erika });
+          this.setState({
+            gymLeaderLogo: Erika,
+            gymBadgeLogo: Rainbow_Badge,
+            gymBadgeName: "Rainbow Badge"
+          });
           break;
         case "Koga":
-          this.setState({ gymLeaderLogo: Koga });
+          this.setState({
+            gymLeaderLogo: Koga,
+            gymBadgeLogo: Soul_Badge,
+            gymBadgeName: "Soul Badge"
+          });
           break;
         case "Sabrina":
-          this.setState({ gymLeaderLogo: Sabrina });
+          this.setState({
+            gymLeaderLogo: Sabrina,
+            gymBadgeLogo: Marsh_Badge,
+            gymBadgeName: "Marsh Badge"
+          });
           break;
         case "Blaine":
-          this.setState({ gymLeaderLogo: Blaine });
+          this.setState({
+            gymLeaderLogo: Blaine,
+            gymBadgeLogo: Volcano_Badge,
+            gymBadgeName: "Volcano Badge"
+          });
           break;
         case "Giovanni":
-          this.setState({ gymLeaderLogo: Giovanni });
+          this.setState({
+            gymLeaderLogo: Giovanni,
+            gymBadgeLogo: Earth_Badge,
+            gymBadgeName: "Earth Badge"
+          });
+          break;
+        case "Blue":
+          this.setState({
+            gymLeaderLogo: Blue,
+            gymBadgeLogo: Champion_Badge,
+            gymBadgeName: "Champion Badge"
+          });
+          break;
+        case "Lorelei":
+          this.setState({
+            gymLeaderLogo: Lorelei,
+            gymBadgeLogo: Elite_Four,
+            gymBadgeName: "Elite Four - Lorelei"
+          });
+          break;
+        case "Bruno":
+          this.setState({
+            gymLeaderLogo: Bruno,
+            gymBadgeLogo: Elite_Four,
+            gymBadgeName: "Elite Four - Bruno"
+          });
+          break;
+        case "Agatha":
+          this.setState({
+            gymLeaderLogo: Agatha,
+            gymBadgeLogo: Elite_Four,
+            gymBadgeName: "Elite Four - Agatha"
+          });
+          break;
+        case "Lance":
+          this.setState({
+            gymLeaderLogo: Lance,
+            gymBadgeLogo: Elite_Four,
+            gymBadgeName: "Elite Four - Lance"
+          });
           break;
         default:
       }
+
       //play leader intro scene
       PlayLeaderIntro(this.props.playerTwoName);
-      setTimeout(() => this.handleBattlePlaying(), 10000);
       setTimeout(
         () => $(document.querySelectorAll(".side")).fadeIn(100),
-        10000
+        14000
       );
       setTimeout(
         () => DisplayMessage(this.props.playerTwoName + " wants to fight!"),
-        10000
+        14500
       );
       setTimeout(
         () =>
@@ -176,44 +248,51 @@ class BattleStage extends Component {
               this.state.player2Team[0].name +
               "!"
           ),
-        12000
+        17000
       );
       let cry1 = null;
       let cry2 = null;
       setTimeout(
         () => $(document.querySelector(".player2Sprite")).fadeIn(500),
-        13000
+        18000
       );
       cry1 = new Audio(this.state.player2Team[0].cry);
       cry1.volume = this.props.volume;
-      setTimeout(() => cry1.play(), 13500);
+      setTimeout(() => cry1.play(), 18500);
 
       setTimeout(
         () => DisplayMessage("Go! " + this.state.player1Team[0].name + "!"),
-        14500
+        20500
       );
       setTimeout(
         () => $(document.querySelector(".player1Sprite")).fadeIn(500),
-        15500
+        21500
       );
       cry2 = new Audio(this.state.player1Team[0].cry);
       cry2.volume = this.props.volume;
-      setTimeout(() => cry2.play(), 16000);
+      setTimeout(() => cry2.play(), 22000);
 
       setTimeout(
         () => $(document.querySelector(".options")).fadeIn(300),
-        16500
+        23000
       );
       setTimeout(
         () => $(document.querySelector(".mainmenuButton")).fadeIn(300),
-        16500
+        23000
       );
+      const battleMusic = new Audio(battleTheme);
+      battleMusic.loop = true;
+      battleMusic.volume = this.props.volume;
+      setTimeout(() => battleMusic.play(), 24800);
       ////////////////////////////////////////////////////////////////////////////
       ////////////////////////////////////////////////////////////////////////////
     } else {
       // MULTIPLAYER OR CPU VS CPU ////////////////////////////////////////////////////////////////////////////
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
-      setTimeout(() => this.handleBattlePlaying(), 1000);
+      const battleMusic = new Audio(battleTheme);
+      battleMusic.loop = true;
+      battleMusic.volume = this.props.volume;
+      battleMusic.play();
       setTimeout(() => $(document.querySelectorAll(".side")).fadeIn(100), 1000);
       setTimeout(
         () =>
@@ -320,10 +399,8 @@ class BattleStage extends Component {
   handleVolume = () => {
     if (this.props.volume === 0) {
       this.props.setVolume(0.7);
-      this.handleBattleVol();
     } else {
       this.props.setVolume(0);
-      this.handleBattleVol();
     }
   };
 
@@ -413,88 +490,146 @@ class BattleStage extends Component {
           ),
         3500
       );
-
-      //badge earning
-      ////////////////////////////////////////////////////////////////
+      setTimeout(
+        () => $(document.querySelector(".playermessage")).fadeOut(100),
+        5000
+      );
       if (this.props.mode === "Single") {
-        let badge = null;
+        //if in Single Player
+        setTimeout(
+          () => $(document.querySelectorAll(".side")).fadeOut(10),
+          5000
+        );
+        setTimeout(
+          () => $(document.querySelector(".gymLeaderDiv")).fadeIn(300),
+          5000
+        );
+        setTimeout(() => PlayLeaderOutro(this.props.playerTwoName), 5000);
+
+        //badge earning
+        ////////////////////////////////////////////////////////////////
 
         //get users current badges
         let badgesCount = this.props.badges;
         //increase badge count by 1 if less than 8, give player badge
-        if (badgesCount < 8) {
+        if (badgesCount < 9) {
           let earnBadge = false;
           switch (this.props.playerTwoName) {
             case "Brock":
-              badge = "Boulder Badge";
               if (badgesCount === 0) {
                 earnBadge = true;
               }
               break;
             case "Misty":
-              badge = "Cascade Badge";
               if (badgesCount === 1) {
                 earnBadge = true;
               }
               break;
             case "Lt. Surge":
-              badge = "Thunder Badge";
               if (badgesCount === 2) {
                 earnBadge = true;
               }
               break;
             case "Erika":
-              badge = "Rainbow Badge";
               if (badgesCount === 3) {
                 earnBadge = true;
               }
               break;
             case "Koga":
-              badge = "Soul Badge";
               if (badgesCount === 4) {
                 earnBadge = true;
               }
               break;
             case "Sabrina":
-              badge = "Marsh Badge";
               if (badgesCount === 5) {
                 earnBadge = true;
               }
               break;
             case "Blaine":
-              badge = "Volcano Badge";
               if (badgesCount === 6) {
                 earnBadge = true;
               }
               break;
             case "Giovanni":
-              badge = "Earth Badge";
               if (badgesCount === 7) {
                 earnBadge = true;
               }
               break;
+            case "Lorelei":
+              if (badgesCount === 8) {
+                earnBadge = true;
+              }
+              break;
+            case "Bruno":
+              if (badgesCount === 9) {
+                earnBadge = true;
+              }
+              break;
+            case "Agatha":
+              if (badgesCount === 10) {
+                earnBadge = true;
+              }
+              break;
+            case "Lance":
+              if (badgesCount === 11) {
+                earnBadge = true;
+              }
+              break;
+            case "Blue":
+              if (badgesCount === 12) {
+                earnBadge = true;
+              }
+              break;
             default:
-              badge = "Badge";
               break;
           }
           if (earnBadge) {
             badgesCount += 1;
             this.props.setBadges(badgesCount);
             this.props.updateBadges(this.props.id, badgesCount);
+            let badgeName = this.state.gymBadgeName;
+            if (badgeName.includes("Elite")) {
+              setTimeout(
+                () =>
+                  $(
+                    DisplayMessage(
+                      this.props.playerOneName +
+                        " has beaten a member of the Elite Four!"
+                    )
+                  ),
+                17000
+              );
+            } else {
+              setTimeout(
+                () =>
+                  $(
+                    DisplayMessage(
+                      this.props.playerOneName +
+                        " earned the " +
+                        badgeName +
+                        "!"
+                    )
+                  ),
+                17000
+              );
+            }
+
             setTimeout(
-              () =>
-                $(document.querySelector(".playermessage")).text(
-                  this.props.playerOneName + " earned the " + badge + "!"
-                ),
-              5000
+              () => $(document.querySelector(".gymLeaderDiv")).fadeOut(10),
+              19000
+            );
+            setTimeout(
+              () => $(document.querySelector(".gymBadgeDiv")).fadeIn(300),
+              19000
             );
           }
         }
+        setTimeout(() => win.pause(), 22000);
+        setTimeout(() => this.props.returnToMainMenu(), 22000);
+      } else {
+        setTimeout(() => win.pause(), 8000);
+        setTimeout(() => this.props.returnToMainMenu(), 8000);
       }
-      setTimeout(
-        () => $(document.querySelector(".options")).fadeOut(300),
-        3500
-      );
     }
   };
 
@@ -926,7 +1061,7 @@ class BattleStage extends Component {
       //mode is single
       if (this.props.playersTurn === "Player One") {
         this.props.setPlayersTurn("Player Two");
-        // this.handleForceUpdate();
+        this.handleForceUpdate();
         if (this.state.player2Team[this.props.player2CurrentPokemon].hp <= 0) {
           setTimeout(
             () =>
@@ -1006,7 +1141,7 @@ class BattleStage extends Component {
     } else if (this.props.mode === "CPUVSCPU") {
       if (this.props.playersTurn === "Player One") {
         this.props.setPlayersTurn("Player Two");
-        // this.handleForceUpdate();
+        this.handleForceUpdate();
         if (this.state.player2Team[this.props.player2CurrentPokemon].hp <= 0) {
           setTimeout(
             () =>
@@ -1078,7 +1213,7 @@ class BattleStage extends Component {
         }
       } else {
         this.props.setPlayersTurn("Player One");
-        // this.handleForceUpdate();
+        this.handleForceUpdate();
         if (this.state.player1Team[this.props.player1CurrentPokemon].hp <= 0) {
           setTimeout(
             () =>
@@ -1247,7 +1382,7 @@ class BattleStage extends Component {
         );
       }
 
-      // setTimeout(() => this.handleForceUpdate(), 2000);
+      setTimeout(() => this.handleForceUpdate(), 2000);
 
       setTimeout(
         () =>
@@ -1374,7 +1509,7 @@ class BattleStage extends Component {
           );
         }
       }
-      // setTimeout(() => this.handleForceUpdate(), 2000);
+      setTimeout(() => this.handleForceUpdate(), 2000);
 
       setTimeout(
         () => DisplayMessage(PKMNuser.name + " was hit with recoil!"),
@@ -1406,7 +1541,7 @@ class BattleStage extends Component {
 
       //update health bar to reflect recovery
       setTimeout(() => UpdateHP(HPbar, updatedBarHP, this.props.volume), 2000);
-      // setTimeout(() => this.handleForceUpdate(), 2000);
+      setTimeout(() => this.handleForceUpdate(), 2000);
 
       let recover = new Audio(recoverSound);
       recover.volume = this.props.volume;
@@ -1435,7 +1570,7 @@ class BattleStage extends Component {
 
       //update health bar to reflect recovery
       setTimeout(() => UpdateHP(HPbar, updatedBarHP, this.props.volume), 2000);
-      // setTimeout(() => this.handleForceUpdate(), 2000);
+      setTimeout(() => this.handleForceUpdate(), 2000);
 
       let recover = new Audio(recoverSound);
       recover.volume = this.props.volume;
@@ -1946,6 +2081,17 @@ class BattleStage extends Component {
               <br />
               <br />
               <h5>{this.props.playerTwoName}</h5>
+            </div>
+            <div className="gymBadgeDiv">
+              <img
+                className="badge"
+                id="gymBadge"
+                src={this.state.gymBadgeLogo}
+                alt="GYM_BADGE"
+              />
+              <br />
+              <br />
+              <h5>{this.state.gymBadgeName}</h5>
             </div>
             <div className="side side1 col">
               <p className="row">

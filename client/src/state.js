@@ -27,7 +27,5 @@ export default {
   teamSize: 6, //max number of pokemon per team, adjust to allow more/less
   battleReady: false, //set when teams are picked
   battleStarted: false, //set when battle starts
-  aiItems: [{ name: "Max Potion", count: 1 }],
-  battleVol: 30,
-  battlePlaying: Sound.status.STOPPED
+  aiItems: [{ name: "Max Potion", count: 1 }]
 };

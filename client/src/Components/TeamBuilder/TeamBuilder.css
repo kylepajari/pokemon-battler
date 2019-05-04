@@ -154,7 +154,7 @@ div > img {
 
 .badgesShowcase {
   position: fixed;
-  left: 82%;
+  left: 80%;
   top: 15%;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -164,9 +164,10 @@ div > img {
     "badge-1 badge-2"
     "badge-3 badge-4"
     "badge-5 badge-6"
-    "badge-7 badge-8";
-  width: 250px;
-  height: 350px;
+    "badge-7 badge-8"
+    "badge-9 badge-9";
+  width: 280px;
+  height: 450px;
 }
 
 .badgesHeader {
@@ -199,10 +200,17 @@ div > img {
 .badge-8 {
   grid-area: badge-8;
 }
+.badge-9 {
+  grid-area: badge-9;
+}
 
 .badgesShowcase > div > img {
   height: 65px;
   width: 65px;
+}
+.badgesShowcase > .badge-9 > img {
+  height: 85px;
+  width: 85px;
 }
 
 .teamShowcase {
@@ -218,8 +226,8 @@ div > img {
     "team-3 team-4"
     "team-5 team-6"
     "teambtn teambtn";
-  width: 250px;
-  height: 300px;
+  width: 280px;
+  height: 450px;
 }
 
 .teamHeader {

@@ -239,12 +239,14 @@ const UseMove = (
                   ),
                 4500
               );
-            }
-            //if user is poisonedburned, delay switching turns
-            if (isUserPoisonedOrBurned || isUserBound) {
-              setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 4500);
             } else {
-              setTimeout(() => switchTurns(), 4500);
+              //if pokemon did not faint from damage
+              //if user is poisonedburned, delay switching turns
+              if (isUserPoisonedOrBurned || isUserBound) {
+                setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 4500);
+              } else {
+                setTimeout(() => switchTurns(), 4500);
+              }
             }
           }
         } else {

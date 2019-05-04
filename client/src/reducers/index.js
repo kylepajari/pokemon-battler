@@ -1,5 +1,4 @@
 import { combineReducers } from "redux";
-import Sound from "react-sound";
 
 function allData(state = null, action) {
   if (action.type === "SET_ALL_DATA") {
@@ -169,20 +168,6 @@ function battleStarted(state = false, action) {
   return state;
 }
 
-function battleVol(state = 0, action) {
-  if (action.type === "SET_BATTLE_VOLUME") {
-    return action.value;
-  }
-  return state;
-}
-
-function battlePlaying(state = Sound.status.STOPPED, action) {
-  if (action.type === "SET_BATTLE_PLAYING") {
-    return action.value;
-  }
-  return state;
-}
-
 function badges(state = 0, action) {
   if (action.type === "SET_BADGES") {
     return action.value;
@@ -234,8 +219,6 @@ export default combineReducers({
   teamSize,
   battleReady,
   battleStarted,
-  battleVol,
-  battlePlaying,
   badges,
   user,
   aiItems

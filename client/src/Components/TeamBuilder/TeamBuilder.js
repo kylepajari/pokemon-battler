@@ -17,6 +17,7 @@ import Marsh_Badge from "../BadgesContainer/Badges/Marsh_Badge.png";
 import Soul_Badge from "../BadgesContainer/Badges/Soul_Badge.png";
 import Volcano_Badge from "../BadgesContainer/Badges/Volcano_Badge.png";
 import Earth_Badge from "../BadgesContainer/Badges/Earth_Badge.png";
+import Champion_Badge from "../BadgesContainer/Badges/Champion_Badge.png";
 
 class TeamBuilder extends Component {
   constructor(props) {
@@ -63,7 +64,7 @@ class TeamBuilder extends Component {
     $(document.querySelector(".playerOneNameDiv")).fadeOut(10);
     $(document.querySelector(".playerTwoNameDiv")).fadeOut(10);
     $(document.querySelector(".teamsContainer")).fadeOut(10);
-    $(document.querySelector(".badgesContainer")).fadeOut(10);
+    $(document.querySelectorAll(".badgesContainer")).fadeOut(10);
     $(document.querySelector(".mainmenuButton")).fadeOut(10);
   }
 
@@ -72,7 +73,7 @@ class TeamBuilder extends Component {
     $(document.querySelector("#btnMultiPlayer")).fadeOut(10);
     $(document.querySelector("#btnCPUVSCPU")).fadeOut(10);
     this.props.setMode("Single");
-    $(document.querySelector(".badgesContainer")).fadeIn(300);
+    $(document.querySelectorAll(".badgesContainer")).fadeIn(300);
     $(document.querySelector(".badgesShowcase")).fadeOut(10);
     $(document.querySelector(".teamShowcase")).fadeOut(10);
     $(document.querySelector(".mainmenuButton")).fadeIn(300);
@@ -126,7 +127,7 @@ class TeamBuilder extends Component {
     $(document.querySelector("#btnMultiPlayer")).fadeIn(300);
     $(document.querySelector("#btnCPUVSCPU")).fadeIn(300);
     $(document.querySelector(".teamList")).fadeOut(10);
-    $(document.querySelector(".badgesContainer")).fadeOut(10);
+    $(document.querySelectorAll(".badgesContainer")).fadeOut(10);
     $(document.querySelector(".teamsContainer")).fadeOut(10);
     $(document.querySelector(".mainmenuButton")).fadeOut(10);
     $(document.querySelector(".playerTwoNameDiv")).fadeOut(10);
@@ -134,7 +135,6 @@ class TeamBuilder extends Component {
     $(document.querySelector(".teamShowcase")).fadeIn(300);
     $(document.getElementById("BattleButton")).fadeOut(10);
     $(document.querySelector(".pokemonSheetContainer")).addClass("deRender");
-    window.soundManager.muteAll();
   }
 
   inputNames = (player, input) => {
@@ -366,9 +366,9 @@ class TeamBuilder extends Component {
               } while (finalMoves[0].name === randomMove.name);
             }
             if (i === 0) {
-              // console.log(randomMove.name + " was chosen as FIRST MOVE");
+              console.log(randomMove.name + " was chosen as FIRST MOVE");
             } else {
-              // console.log(randomMove.name + " was chosen as SECOND MOVE");
+              console.log(randomMove.name + " was chosen as SECOND MOVE");
             }
 
             finalMoves.push(randomMove);
@@ -380,13 +380,13 @@ class TeamBuilder extends Component {
 
         //add single special move
         let randomMove = special[Math.floor(Math.random() * special.length)];
-        // console.log(randomMove.name + " was chosen as THIRD MOVE");
+        console.log(randomMove.name + " was chosen as THIRD MOVE");
         finalMoves.push(randomMove);
       } else {
         //more special moves than physical
         //add single physical move
         let randomMove = physical[Math.floor(Math.random() * physical.length)];
-        // console.log(randomMove.name + " was chosen as FIRST MOVE");
+        console.log(randomMove.name + " was chosen as FIRST MOVE");
         finalMoves.push(randomMove);
 
         for (let i = 0; i < 2; i++) {
@@ -402,9 +402,9 @@ class TeamBuilder extends Component {
             }
 
             if (i === 0) {
-              // console.log(randomMove.name + " was chosen as SECOND MOVE");
+              console.log(randomMove.name + " was chosen as SECOND MOVE");
             } else {
-              // console.log(randomMove.name + " was chosen as THIRD MOVE");
+              console.log(randomMove.name + " was chosen as THIRD MOVE");
             }
 
             finalMoves.push(randomMove);
@@ -418,7 +418,7 @@ class TeamBuilder extends Component {
       //add single status move
       for (let i = 0; i < 1; i++) {
         let randomMove = status[Math.floor(Math.random() * status.length)];
-        // console.log(randomMove.name + " was chosen FORTH MOVE");
+        console.log(randomMove.name + " was chosen FORTH MOVE");
         finalMoves.push(randomMove);
       }
     } else {
@@ -693,7 +693,6 @@ class TeamBuilder extends Component {
     poke2.inBattle = true;
     this.props.setBattleReady(true);
     $(document.getElementById("BattleButton")).fadeOut(300);
-    window.soundManager.unmuteAll();
   };
 
   handleFainted = (index, playersTurn, faintedFromRecoil) => {
@@ -918,6 +917,14 @@ class TeamBuilder extends Component {
             key={"badge8"}
           >
             <img src={Earth_Badge} alt="Earth Badge" />
+          </div>
+          <div
+            className={`${
+              this.props.badges < 12 ? `faded badge-9` : `badge-9`
+            }`}
+            key={"badge9"}
+          >
+            <img src={Champion_Badge} alt="Champion Badge" />
           </div>
         </div>
         <div className="playerTwoNameDiv">
