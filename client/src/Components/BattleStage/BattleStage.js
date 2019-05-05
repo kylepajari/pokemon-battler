@@ -11,6 +11,7 @@ import { RandomNumberGenerator } from "../RandomNumberGenerator";
 import { DisplayMessage } from "../DisplayMessage";
 import { HandleAI } from "../AI";
 import { PlayLeaderIntro } from "../LeaderIntro";
+import { Icon } from "semantic-ui-react";
 import Victory from "../../Sounds/victory.mp3";
 import swapSound from "../../Sounds/BattleSounds/General/SWITCHIN.wav";
 import statRise from "../../Sounds/BattleSounds/General/STATRISE.wav";
@@ -44,7 +45,6 @@ import Earth_Badge from "../BadgesContainer/Badges/Earth_Badge.png";
 import Champion_Badge from "../BadgesContainer/Badges/Champion_Badge.png";
 import Elite_Four from "../BadgesContainer/Badges/Elite_Four.png";
 import { PlayLeaderOutro } from "../LeaderOutro";
-import Missing from "../../missing.png";
 
 class BattleStage extends Component {
   constructor(props) {
@@ -2161,7 +2161,14 @@ class BattleStage extends Component {
                     this.state.player2Team[this.props.player2CurrentPokemon]
                       .frontSprite
                   }
-                  alt={Missing}
+                  alt={
+                    this.state.player2Team[this.props.player2CurrentPokemon]
+                      .name
+                  }
+                  onError={e => {
+                    e.target.onerror = null;
+                    e.target.src = <Icon name="question circle" />;
+                  }}
                 />
               </div>
             </div>
@@ -2227,7 +2234,14 @@ class BattleStage extends Component {
                     this.state.player1Team[this.props.player1CurrentPokemon]
                       .backSprite
                   }
-                  alt={Missing}
+                  alt={
+                    this.state.player1Team[this.props.player1CurrentPokemon]
+                      .name
+                  }
+                  onError={e => {
+                    e.target.onerror = null;
+                    e.target.src = <Icon name="question circle" />;
+                  }}
                 />
               </div>
             </div>
