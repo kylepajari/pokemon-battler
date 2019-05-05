@@ -80,10 +80,10 @@ const DealDamage = (
   let Type = CalcTypeAdvantage(moveType, targetType1, targetType2);
   let effectiveMessage = "";
   let Hit = null;
-  if (Type === 0.25) {
+  if (Type < 1) {
     effectiveMessage = "It's not very effective...";
     Hit = new Audio(HitSoundWeak);
-  } else if (Type === 4) {
+  } else if (Type > 1) {
     effectiveMessage = "It's super-effective!";
     Hit = new Audio(HitSoundSuper);
   } else {

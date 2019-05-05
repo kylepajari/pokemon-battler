@@ -22,7 +22,7 @@ const PlayLeaderIntro = name => {
       break;
     case "Lt. Surge":
       introMessage1 = "You think your ready for war, kid!";
-      introMessage2 = "My Electric-type Pokémon will take charge!";
+      introMessage2 = "My Electric-type Pokémon fought beside me in battle!";
       introMessage3 = "They zapped my enemies into paralysis!";
       introMessage4 = "The same as I'll do to you!";
       break;
@@ -53,7 +53,7 @@ const PlayLeaderIntro = name => {
     case "Giovanni":
       introMessage1 = "So you've managed to make it this far..";
       introMessage2 =
-        "..and you think you can challenge the leader of Team Rocket?!";
+        "..and you think you can deafeat the leader of Team Rocket?!";
       introMessage3 = "You overestimate your abilites as a trainer.";
       introMessage4 = "This is the end of the line for you!";
       break;
@@ -67,27 +67,26 @@ const PlayLeaderIntro = name => {
     case "Bruno":
       introMessage1 = "I am Bruno of the Elite Four!";
       introMessage2 = "I've lived and trained with my Fighting-type Pokémon!";
-      introMessage3 = "They are prepared face to any challenger!";
+      introMessage3 = "We are prepared face to any challenger!";
       introMessage4 = "We will grind you down with our superior power!";
       break;
     case "Agatha":
       introMessage1 = "Welcome child!";
       introMessage2 = "I am Agatha, the third member of the Elite Four.";
-      introMessage3 = "Are you afraid of the dark, dear?";
-      introMessage4 = "For my Ghost-type Pokémon will shroud you in darkness!";
+      introMessage3 = "I hope you're not afraid of the dark.";
+      introMessage4 = "Or my Ghost-type Pokémon will haunt you forever!";
       break;
     case "Lance":
       introMessage1 =
         "Greetings! I am Lance. The final member of the Elite Four.";
-      introMessage2 = "You must be very talented to make it this far..";
-      introMessage3 = "..but your journey stops here!   Are you ready?";
+      introMessage2 = "You must be very talented to make it this far.";
+      introMessage3 = "I'm looking forward to face you in battle.";
       introMessage4 = "Let's begin!";
       break;
     case "Blue":
       introMessage1 = "Hey there!  Name's Blue!";
       introMessage2 = "I'm the Pokémon League Champ!";
-      introMessage3 =
-        "You think you can beat me and take my place as Champion?";
+      introMessage3 = "You think you can beat me and take my place?";
       introMessage4 = "Bring it on!";
       break;
     default:

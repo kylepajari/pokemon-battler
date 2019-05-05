@@ -22,9 +22,9 @@ const PlayLeaderOutro = name => {
       outroMessage3 = "You've earned yourself a win, kid!";
       break;
     case "Erika":
-      outroMessage1 = "Oh!  You managed to beat my team!";
-      outroMessage2 = "Thank you for your challenge!";
-      outroMessage3 = "Good luck in future battles!";
+      outroMessage1 = "Oh my!  You managed to beat me!";
+      outroMessage2 = "What a !";
+      outroMessage3 = "Good luck in your future battles!";
       break;
     case "Koga":
       outroMessage1 = "My ultimate Poison team!";
@@ -53,9 +53,9 @@ const PlayLeaderOutro = name => {
       outroMessage3 = "Thank you for the excellent match!";
       break;
     case "Bruno":
-      outroMessage1 = "What...I lost.  Come on!";
-      outroMessage2 = "My Pokémon weren't warmed up yet!  Yeah, that's it!";
-      outroMessage3 = "Aw well, a win's a win.  Take it!";
+      outroMessage1 = "It looks like you've won!";
+      outroMessage2 = "You were a respectable opponent!";
+      outroMessage3 = "I'd be honored to face you again!";
       break;
     case "Agatha":
       outroMessage1 = "I must say I'm impressed!";
@@ -64,8 +64,8 @@ const PlayLeaderOutro = name => {
       outroMessage3 = "Hurry now child, your greatest test still awaits...";
       break;
     case "Lance":
-      outroMessage1 = "Well done!  You managed to beat us all..";
-      outroMessage2 = "..but your journey to become Champion is not over yet!";
+      outroMessage1 = "Well done!  You've managed to defeat the Elite Four!";
+      outroMessage2 = "However, your journey to become Champion is not over!";
       outroMessage3 = "There is still one who stands in your way...";
       break;
     case "Blue":
@@ -80,7 +80,7 @@ const PlayLeaderOutro = name => {
   setTimeout(() => DisplayMessage(outroMessage3, 2000), 7000);
   setTimeout(
     () => $(document.querySelector(".gymLeaderDiv")).fadeOut(1000),
-    10000
+    14000
   );
 };
 

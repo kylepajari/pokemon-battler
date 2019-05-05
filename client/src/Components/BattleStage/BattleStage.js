@@ -511,7 +511,7 @@ class BattleStage extends Component {
         //get users current badges
         let badgesCount = this.props.badges;
         //increase badge count by 1 if less than 8, give player badge
-        if (badgesCount < 9) {
+        if (badgesCount < 13) {
           let earnBadge = false;
           switch (this.props.playerTwoName) {
             case "Brock":
@@ -586,7 +586,7 @@ class BattleStage extends Component {
             badgesCount += 1;
             this.props.setBadges(badgesCount);
             this.props.updateBadges(this.props.id, badgesCount);
-            $(document.querySelector(".eliteFour")).fadeOut(10);
+            $(document.querySelector(".eliteFour")).fadeOut(1);
             let badgeName = this.state.gymBadgeName;
             if (badgeName.includes("Elite")) {
               setTimeout(
@@ -597,7 +597,7 @@ class BattleStage extends Component {
                         " has beaten a member of the Elite Four!"
                     )
                   ),
-                17000
+                16000
               );
             } else {
               setTimeout(
@@ -610,26 +610,17 @@ class BattleStage extends Component {
                         "!"
                     )
                   ),
-                17000
+                16000
               );
             }
-
-            setTimeout(
-              () => $(document.querySelector(".gymLeaderDiv")).fadeOut(10),
-              19000
-            );
-            setTimeout(
-              () => $(document.querySelector(".gymBadgeDiv")).fadeIn(300),
-              19000
-            );
           }
         }
-        setTimeout(() => win.pause(), 22000);
-        this.props.battleMusic.pause();
-        setTimeout(() => this.props.returnToMainMenu(), 22000);
+        setTimeout(() => win.pause(), 20000);
+        setTimeout(() => this.props.battleMusic.pause(), 2000);
+        setTimeout(() => this.props.returnToMainMenu(), 20000);
       } else {
         setTimeout(() => win.pause(), 8000);
-        this.props.battleMusic.pause();
+        setTimeout(() => this.props.battleMusic.pause(), 2000);
         setTimeout(() => this.props.returnToMainMenu(), 8000);
       }
     }
