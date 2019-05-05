@@ -25,7 +25,7 @@ class Login extends Component {
 
   login = e => {
     e.preventDefault();
-    if (this.Validate()) {
+    if (this.Validate("login")) {
       this.props
         .login({ ...this.state })
         .then(result => {
@@ -47,29 +47,9 @@ class Login extends Component {
     }
   };
 
-  // checkDupes = () => {
-  //   //if using signup, make sure username does not already exist
-  //   //check if user already exists
-  //   let foundExisting = false;
-  //   this.props.getAllUsers().then(res => {
-  //     res.forEach(user => {
-  //       console.log(user["username"]);
-  //       if (user["username"] === this.state.username) {
-  //         console.log("name matches");
-  //         //found existing user
-  //         foundExisting = true;
-  //         this.setState({
-  //           message: "Account exists with given Username."
-  //         });
-  //       }
-  //     });
-  //   });
-  //   return foundExisting;
-  // };
-
   signUp = e => {
     e.preventDefault();
-    if (this.Validate()) {
+    if (this.Validate("signup")) {
       this.props
         .signUp({ ...this.state })
         .then(res => {
@@ -87,7 +67,7 @@ class Login extends Component {
     }
   };
 
-  Validate = () => {
+  Validate = type => {
     let usernameValue = $(document.getElementById("username")).val();
     let passwordValue = $(document.getElementById("password")).val();
     if (usernameValue === "") {
@@ -96,9 +76,26 @@ class Login extends Component {
     } else if (passwordValue === "") {
       this.setState({ message: "Please enter a Password!" });
       return false;
+    } else {
+      if (type === "signup") {
+        //check for duplicates
+        let foundExisting = false;
+        this.props.getAllUsers().then(res => {
+          for (let i = 0; i < res.length; i++) {
+            if (res[i]["username"] === this.state.username) {
+              //found existing user
+              foundExisting = true;
+              this.setState({
+                message: "Account exists with given Username."
+              });
+            }
+            return foundExisting;
+          }
+        });
+      } else {
+        return true;
+      }
     }
-
-    return true;
   };
 
   render() {

@@ -44,6 +44,7 @@ import Earth_Badge from "../BadgesContainer/Badges/Earth_Badge.png";
 import Champion_Badge from "../BadgesContainer/Badges/Champion_Badge.png";
 import Elite_Four from "../BadgesContainer/Badges/Elite_Four.png";
 import { PlayLeaderOutro } from "../LeaderOutro";
+import Missing from "../../missing.png";
 
 class BattleStage extends Component {
   constructor(props) {
@@ -2160,10 +2161,7 @@ class BattleStage extends Component {
                     this.state.player2Team[this.props.player2CurrentPokemon]
                       .frontSprite
                   }
-                  alt={
-                    this.state.player2Team[this.props.player2CurrentPokemon]
-                      .name
-                  }
+                  alt={Missing}
                 />
               </div>
             </div>
@@ -2229,10 +2227,7 @@ class BattleStage extends Component {
                     this.state.player1Team[this.props.player1CurrentPokemon]
                       .backSprite
                   }
-                  alt={
-                    this.state.player1Team[this.props.player1CurrentPokemon]
-                      .name
-                  }
+                  alt={Missing}
                 />
               </div>
             </div>
