@@ -124,6 +124,21 @@
   height: 25px;
   width: 25px;
 }
+.typeChartButton {
+  position: absolute;
+  margin-left: 76%;
+  margin-top: -3%;
+  height: 25px;
+  width: 130px;
+  font-size: 10px;
+}
+.typeChartPopup > .modal-dialog {
+  max-width: 95vw;
+}
+.typeChart {
+  width: 94vw;
+  height: 600px;
+}
 
 .volume:hover {
   height: 30px;

@@ -45,6 +45,7 @@ import Earth_Badge from "../BadgesContainer/Badges/Earth_Badge.png";
 import Champion_Badge from "../BadgesContainer/Badges/Champion_Badge.png";
 import Elite_Four from "../BadgesContainer/Badges/Elite_Four.png";
 import { PlayLeaderOutro } from "../LeaderOutro";
+import TypeChart from "../../TypeChart.png";
 
 class BattleStage extends Component {
   constructor(props) {
@@ -456,6 +457,9 @@ class BattleStage extends Component {
           ),
         3500
       );
+      setTimeout(() => win.pause(), 6000);
+      setTimeout(() => this.props.battleMusic.pause(), 6000);
+      setTimeout(() => this.props.returnToMainMenu(), 6000);
     }
 
     if (faintedCountTeam2 === this.props.teamSize) {
@@ -2118,6 +2122,13 @@ class BattleStage extends Component {
                   this.state.player2Team[this.props.player2CurrentPokemon]
                     .isConfused
                 )}
+                <button
+                  className="btn btn-info typeChartButton"
+                  data-toggle="modal"
+                  data-target=".typeChartPopup"
+                >
+                  Type Chart
+                </button>
                 <img
                   className={` ${
                     this.props.volume === 0 ? "volume muted" : "volume"
@@ -2127,6 +2138,29 @@ class BattleStage extends Component {
                   onClick={() => this.handleVolume()}
                 />
               </p>
+              <div
+                className="modal typeChartPopup"
+                style={{ overflowY: "hidden" }}
+              >
+                <div className="modal-dialog modal-dialog-centered">
+                  <div className="modal-content">
+                    <img
+                      className="typeChart"
+                      src={TypeChart}
+                      alt="Type Chart"
+                    />
+                    <div className="modal-footer">
+                      <button
+                        type="button"
+                        className="btn btn-secondary"
+                        data-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <div className="progress">
                 HP:
