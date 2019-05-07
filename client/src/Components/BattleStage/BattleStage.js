@@ -238,7 +238,7 @@ class BattleStage extends Component {
         14000
       );
       setTimeout(
-        () => DisplayMessage(this.props.playerTwoName + " wants to fight!"),
+        () => DisplayMessage(this.props.playerTwoName + " wants to battle!"),
         14500
       );
       setTimeout(

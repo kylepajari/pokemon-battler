@@ -149,6 +149,106 @@ import Cry148 from "../Sounds/Cries/148Cry.mp3";
 import Cry149 from "../Sounds/Cries/149Cry.mp3";
 import Cry150 from "../Sounds/Cries/150Cry.mp3";
 import Cry151 from "../Sounds/Cries/151Cry.mp3";
+import Cry152 from "../Sounds/Cries/152Cry.wav";
+import Cry154 from "../Sounds/Cries/154Cry.wav";
+import Cry155 from "../Sounds/Cries/155Cry.wav";
+import Cry153 from "../Sounds/Cries/153Cry.wav";
+import Cry156 from "../Sounds/Cries/156Cry.wav";
+import Cry157 from "../Sounds/Cries/157Cry.wav";
+import Cry158 from "../Sounds/Cries/158Cry.wav";
+import Cry159 from "../Sounds/Cries/159Cry.wav";
+import Cry160 from "../Sounds/Cries/160Cry.wav";
+import Cry161 from "../Sounds/Cries/161Cry.wav";
+import Cry162 from "../Sounds/Cries/162Cry.wav";
+import Cry163 from "../Sounds/Cries/163Cry.wav";
+import Cry164 from "../Sounds/Cries/164Cry.wav";
+import Cry165 from "../Sounds/Cries/165Cry.wav";
+import Cry166 from "../Sounds/Cries/166Cry.wav";
+import Cry167 from "../Sounds/Cries/167Cry.wav";
+import Cry168 from "../Sounds/Cries/168Cry.wav";
+import Cry169 from "../Sounds/Cries/169Cry.wav";
+import Cry170 from "../Sounds/Cries/170Cry.wav";
+import Cry171 from "../Sounds/Cries/171Cry.wav";
+import Cry172 from "../Sounds/Cries/172Cry.wav";
+import Cry173 from "../Sounds/Cries/173Cry.wav";
+import Cry174 from "../Sounds/Cries/174Cry.wav";
+import Cry175 from "../Sounds/Cries/175Cry.wav";
+import Cry176 from "../Sounds/Cries/176Cry.wav";
+import Cry177 from "../Sounds/Cries/177Cry.wav";
+import Cry178 from "../Sounds/Cries/178Cry.wav";
+import Cry179 from "../Sounds/Cries/179Cry.wav";
+import Cry180 from "../Sounds/Cries/180Cry.wav";
+import Cry181 from "../Sounds/Cries/181Cry.wav";
+import Cry182 from "../Sounds/Cries/182Cry.wav";
+import Cry183 from "../Sounds/Cries/183Cry.wav";
+import Cry184 from "../Sounds/Cries/184Cry.wav";
+import Cry185 from "../Sounds/Cries/185Cry.wav";
+import Cry186 from "../Sounds/Cries/186Cry.wav";
+import Cry187 from "../Sounds/Cries/187Cry.wav";
+import Cry188 from "../Sounds/Cries/188Cry.wav";
+import Cry189 from "../Sounds/Cries/189Cry.wav";
+import Cry190 from "../Sounds/Cries/190Cry.wav";
+import Cry191 from "../Sounds/Cries/191Cry.wav";
+import Cry192 from "../Sounds/Cries/192Cry.wav";
+import Cry193 from "../Sounds/Cries/193Cry.wav";
+import Cry194 from "../Sounds/Cries/194Cry.wav";
+import Cry195 from "../Sounds/Cries/195Cry.wav";
+import Cry196 from "../Sounds/Cries/196Cry.wav";
+import Cry197 from "../Sounds/Cries/197Cry.wav";
+import Cry198 from "../Sounds/Cries/198Cry.wav";
+import Cry199 from "../Sounds/Cries/199Cry.wav";
+import Cry200 from "../Sounds/Cries/200Cry.wav";
+import Cry201 from "../Sounds/Cries/201Cry.wav";
+import Cry202 from "../Sounds/Cries/202Cry.wav";
+import Cry203 from "../Sounds/Cries/203Cry.wav";
+import Cry204 from "../Sounds/Cries/204Cry.wav";
+import Cry205 from "../Sounds/Cries/205Cry.wav";
+import Cry206 from "../Sounds/Cries/206Cry.wav";
+import Cry207 from "../Sounds/Cries/207Cry.wav";
+import Cry208 from "../Sounds/Cries/208Cry.wav";
+import Cry209 from "../Sounds/Cries/209Cry.wav";
+import Cry210 from "../Sounds/Cries/210Cry.wav";
+import Cry211 from "../Sounds/Cries/211Cry.wav";
+import Cry212 from "../Sounds/Cries/212Cry.wav";
+import Cry213 from "../Sounds/Cries/213Cry.wav";
+import Cry214 from "../Sounds/Cries/214Cry.wav";
+import Cry215 from "../Sounds/Cries/215Cry.wav";
+import Cry216 from "../Sounds/Cries/216Cry.wav";
+import Cry217 from "../Sounds/Cries/217Cry.wav";
+import Cry218 from "../Sounds/Cries/218Cry.wav";
+import Cry219 from "../Sounds/Cries/219Cry.wav";
+import Cry220 from "../Sounds/Cries/220Cry.wav";
+import Cry221 from "../Sounds/Cries/221Cry.wav";
+import Cry222 from "../Sounds/Cries/222Cry.wav";
+import Cry223 from "../Sounds/Cries/223Cry.wav";
+import Cry224 from "../Sounds/Cries/224Cry.wav";
+import Cry225 from "../Sounds/Cries/225Cry.wav";
+import Cry226 from "../Sounds/Cries/226Cry.wav";
+import Cry227 from "../Sounds/Cries/227Cry.wav";
+import Cry228 from "../Sounds/Cries/228Cry.wav";
+import Cry229 from "../Sounds/Cries/229Cry.wav";
+import Cry230 from "../Sounds/Cries/230Cry.wav";
+import Cry231 from "../Sounds/Cries/231Cry.wav";
+import Cry232 from "../Sounds/Cries/232Cry.wav";
+import Cry233 from "../Sounds/Cries/233Cry.wav";
+import Cry234 from "../Sounds/Cries/234Cry.wav";
+import Cry235 from "../Sounds/Cries/235Cry.wav";
+import Cry236 from "../Sounds/Cries/236Cry.wav";
+import Cry237 from "../Sounds/Cries/237Cry.wav";
+import Cry238 from "../Sounds/Cries/238Cry.wav";
+import Cry239 from "../Sounds/Cries/239Cry.wav";
+import Cry240 from "../Sounds/Cries/240Cry.wav";
+import Cry241 from "../Sounds/Cries/241Cry.wav";
+import Cry242 from "../Sounds/Cries/242Cry.wav";
+import Cry243 from "../Sounds/Cries/243Cry.wav";
+import Cry244 from "../Sounds/Cries/244Cry.wav";
+import Cry245 from "../Sounds/Cries/245Cry.wav";
+import Cry246 from "../Sounds/Cries/246Cry.wav";
+import Cry247 from "../Sounds/Cries/247Cry.wav";
+import Cry248 from "../Sounds/Cries/248Cry.wav";
+import Cry249 from "../Sounds/Cries/249Cry.wav";
+import Cry250 from "../Sounds/Cries/250Cry.wav";
+import Cry251 from "../Sounds/Cries/251Cry.wav";
 
 const CryAssign = name => {
   if (name === "Bulbasaur") {
@@ -453,6 +553,206 @@ const CryAssign = name => {
     return Cry150;
   } else if (name === "Mew") {
     return Cry151;
+  } else if (name === "Chikorita") {
+    return Cry152;
+  } else if (name === "Bayleef") {
+    return Cry153;
+  } else if (name === "Meganium") {
+    return Cry154;
+  } else if (name === "Cyndaquil") {
+    return Cry155;
+  } else if (name === "Quilava") {
+    return Cry156;
+  } else if (name === "Typhlosion") {
+    return Cry157;
+  } else if (name === "Totodile") {
+    return Cry158;
+  } else if (name === "Croconaw") {
+    return Cry159;
+  } else if (name === "Feraligatr") {
+    return Cry160;
+  } else if (name === "Sentret") {
+    return Cry161;
+  } else if (name === "Furret") {
+    return Cry162;
+  } else if (name === "Hoothoot") {
+    return Cry163;
+  } else if (name === "Noctowl") {
+    return Cry164;
+  } else if (name === "Ledyba") {
+    return Cry165;
+  } else if (name === "Ledian") {
+    return Cry166;
+  } else if (name === "Spinarak") {
+    return Cry167;
+  } else if (name === "Ariados") {
+    return Cry168;
+  } else if (name === "Crobat") {
+    return Cry169;
+  } else if (name === "Chinchou") {
+    return Cry170;
+  } else if (name === "Lanturn") {
+    return Cry171;
+  } else if (name === "Pichu") {
+    return Cry172;
+  } else if (name === "Cleffa") {
+    return Cry173;
+  } else if (name === "Igglybuff") {
+    return Cry174;
+  } else if (name === "Togepi") {
+    return Cry175;
+  } else if (name === "Togetic") {
+    return Cry176;
+  } else if (name === "Natu") {
+    return Cry177;
+  } else if (name === "Xatu") {
+    return Cry178;
+  } else if (name === "Mareep") {
+    return Cry179;
+  } else if (name === "Flaaffy") {
+    return Cry180;
+  } else if (name === "Ampharos") {
+    return Cry181;
+  } else if (name === "Bellossom") {
+    return Cry182;
+  } else if (name === "Marill") {
+    return Cry183;
+  } else if (name === "Azumarill") {
+    return Cry184;
+  } else if (name === "Sudowoodo") {
+    return Cry185;
+  } else if (name === "Politoed") {
+    return Cry186;
+  } else if (name === "Hoppip") {
+    return Cry187;
+  } else if (name === "Skiploom") {
+    return Cry188;
+  } else if (name === "Jumpluff") {
+    return Cry189;
+  } else if (name === "Aipom") {
+    return Cry190;
+  } else if (name === "Sunkern") {
+    return Cry191;
+  } else if (name === "Sunflora") {
+    return Cry192;
+  } else if (name === "Yanma") {
+    return Cry193;
+  } else if (name === "Wooper") {
+    return Cry194;
+  } else if (name === "Quagsire") {
+    return Cry195;
+  } else if (name === "Espeon") {
+    return Cry196;
+  } else if (name === "Umbreon") {
+    return Cry197;
+  } else if (name === "Murkrow") {
+    return Cry198;
+  } else if (name === "Slowking") {
+    return Cry199;
+  } else if (name === "Misdreavus") {
+    return Cry200;
+  } else if (name === "Unown") {
+    return Cry201;
+  } else if (name === "Wobbuffet") {
+    return Cry202;
+  } else if (name === "Girafarig") {
+    return Cry203;
+  } else if (name === "Pineco") {
+    return Cry204;
+  } else if (name === "Forretress") {
+    return Cry205;
+  } else if (name === "Dunsparce") {
+    return Cry206;
+  } else if (name === "Gligar") {
+    return Cry207;
+  } else if (name === "Steelix") {
+    return Cry208;
+  } else if (name === "Snubbull") {
+    return Cry209;
+  } else if (name === "Granbull") {
+    return Cry210;
+  } else if (name === "Qwilfish") {
+    return Cry211;
+  } else if (name === "Scizor") {
+    return Cry212;
+  } else if (name === "Shuckle") {
+    return Cry213;
+  } else if (name === "Heracross") {
+    return Cry214;
+  } else if (name === "Sneasel") {
+    return Cry215;
+  } else if (name === "Teddiursa") {
+    return Cry216;
+  } else if (name === "Ursaring") {
+    return Cry217;
+  } else if (name === "Slugma") {
+    return Cry218;
+  } else if (name === "Magcargo") {
+    return Cry219;
+  } else if (name === "Swinub") {
+    return Cry220;
+  } else if (name === "Piloswine") {
+    return Cry221;
+  } else if (name === "Corsola") {
+    return Cry222;
+  } else if (name === "Remoraid") {
+    return Cry223;
+  } else if (name === "Octillery") {
+    return Cry224;
+  } else if (name === "Delibird") {
+    return Cry225;
+  } else if (name === "Mantine") {
+    return Cry226;
+  } else if (name === "Skarmory") {
+    return Cry227;
+  } else if (name === "Houndour") {
+    return Cry228;
+  } else if (name === "Houndoom") {
+    return Cry229;
+  } else if (name === "Kingdra") {
+    return Cry230;
+  } else if (name === "Phanpy") {
+    return Cry231;
+  } else if (name === "Donphan") {
+    return Cry232;
+  } else if (name === "Porygon2") {
+    return Cry233;
+  } else if (name === "Stantler") {
+    return Cry234;
+  } else if (name === "Smeargle") {
+    return Cry235;
+  } else if (name === "Tyrogue") {
+    return Cry236;
+  } else if (name === "Hitmontop") {
+    return Cry237;
+  } else if (name === "Smoochum") {
+    return Cry238;
+  } else if (name === "Elekid") {
+    return Cry239;
+  } else if (name === "Magby") {
+    return Cry240;
+  } else if (name === "Miltank") {
+    return Cry241;
+  } else if (name === "Blissey") {
+    return Cry242;
+  } else if (name === "Raikou") {
+    return Cry243;
+  } else if (name === "Entei") {
+    return Cry244;
+  } else if (name === "Suicune") {
+    return Cry245;
+  } else if (name === "Larvitar") {
+    return Cry246;
+  } else if (name === "Pupitar") {
+    return Cry247;
+  } else if (name === "Tyranitar") {
+    return Cry248;
+  } else if (name === "Lugia") {
+    return Cry249;
+  } else if (name === "Ho-oh") {
+    return Cry250;
+  } else if (name === "Celebi") {
+    return Cry251;
   }
 };
 

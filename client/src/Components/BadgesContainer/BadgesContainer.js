@@ -273,12 +273,12 @@ class BadgesContainer extends Component {
             //create new leader in DB
             this.props.createLeader("Brock").then(() => {
               //fetch pokemon to create team
-              this.props.fetchPokemon(75, 51, "team2", "Brock"); //Graveler
-              this.props.fetchPokemon(28, 48, "team2", "Brock"); //Sandslash
-              this.props.fetchPokemon(139, 53, "team2", "Brock"); //Omastar
-              this.props.fetchPokemon(111, 51, "team2", "Brock"); //Ryhorn
-              this.props.fetchPokemon(141, 52, "team2", "Brock"); //Kabutops
-              this.props.fetchPokemon(95, 54, "team2", "Brock"); //Onix
+              this.props.fetchPokemon(75, 53, "team2", "Brock"); //Graveler
+              this.props.fetchPokemon(28, 50, "team2", "Brock"); //Sandslash
+              this.props.fetchPokemon(139, 55, "team2", "Brock"); //Omastar
+              this.props.fetchPokemon(111, 53, "team2", "Brock"); //Ryhorn
+              this.props.fetchPokemon(141, 54, "team2", "Brock"); //Kabutops
+              this.props.fetchPokemon(95, 56, "team2", "Brock"); //Onix
             });
           }
         });
@@ -301,12 +301,12 @@ class BadgesContainer extends Component {
             //create new leader in DB
             this.props.createLeader("Misty").then(() => {
               //fetch pokemon to create team
-              this.props.fetchPokemon(61, 46, "team2", "Misty"); //Polywhirl
-              this.props.fetchPokemon(55, 52, "team2", "Misty"); //Golduck
-              this.props.fetchPokemon(73, 53, "team2", "Misty"); //Tentacruel
-              this.props.fetchPokemon(117, 50, "team2", "Misty"); //Seadra
-              this.props.fetchPokemon(131, 52, "team2", "Misty"); //Lapras
-              this.props.fetchPokemon(121, 54, "team2", "Misty"); //Starmie
+              this.props.fetchPokemon(61, 48, "team2", "Misty"); //Polywhirl
+              this.props.fetchPokemon(55, 54, "team2", "Misty"); //Golduck
+              this.props.fetchPokemon(73, 55, "team2", "Misty"); //Tentacruel
+              this.props.fetchPokemon(117, 52, "team2", "Misty"); //Seadra
+              this.props.fetchPokemon(131, 54, "team2", "Misty"); //Lapras
+              this.props.fetchPokemon(121, 56, "team2", "Misty"); //Starmie
             });
           }
         });
@@ -329,12 +329,12 @@ class BadgesContainer extends Component {
             //create new leader in DB
             this.props.createLeader("Lt. Surge").then(() => {
               //fetch pokemon to create team
-              this.props.fetchPokemon(25, 45, "team2", "Lt. Surge"); //Pikachu
-              this.props.fetchPokemon(101, 47, "team2", "Lt. Surge"); //Electrode
-              this.props.fetchPokemon(125, 53, "team2", "Lt. Surge"); //Electabuzz
-              this.props.fetchPokemon(101, 47, "team2", "Lt. Surge"); //Electrode
-              this.props.fetchPokemon(82, 52, "team2", "Lt. Surge"); //Magneton
-              this.props.fetchPokemon(26, 54, "team2", "Lt. Surge"); //Raichu
+              this.props.fetchPokemon(25, 47, "team2", "Lt. Surge"); //Pikachu
+              this.props.fetchPokemon(101, 51, "team2", "Lt. Surge"); //Electrode
+              this.props.fetchPokemon(125, 55, "team2", "Lt. Surge"); //Electabuzz
+              this.props.fetchPokemon(101, 51, "team2", "Lt. Surge"); //Electrode
+              this.props.fetchPokemon(82, 54, "team2", "Lt. Surge"); //Magneton
+              this.props.fetchPokemon(26, 56, "team2", "Lt. Surge"); //Raichu
             });
           }
         });
@@ -357,12 +357,12 @@ class BadgesContainer extends Component {
             //create new leader in DB
             this.props.createLeader("Erika").then(() => {
               //fetch pokemon to create team
-              this.props.fetchPokemon(3, 49, "team2", "Erika"); //Venusaur
-              this.props.fetchPokemon(103, 50, "team2", "Erika"); //Exeggutor
-              this.props.fetchPokemon(70, 50, "team2", "Erika"); //Weepinbell
-              this.props.fetchPokemon(114, 50, "team2", "Erika"); //Tangela
-              this.props.fetchPokemon(45, 54, "team2", "Erika"); //Vileplume
-              this.props.fetchPokemon(71, 56, "team2", "Erika"); //Victreebel
+              this.props.fetchPokemon(3, 51, "team2", "Erika"); //Venusaur
+              this.props.fetchPokemon(103, 52, "team2", "Erika"); //Exeggutor
+              this.props.fetchPokemon(70, 52, "team2", "Erika"); //Weepinbell
+              this.props.fetchPokemon(114, 52, "team2", "Erika"); //Tangela
+              this.props.fetchPokemon(45, 56, "team2", "Erika"); //Vileplume
+              this.props.fetchPokemon(71, 58, "team2", "Erika"); //Victreebel
             });
           }
         });
@@ -385,12 +385,12 @@ class BadgesContainer extends Component {
             //create new leader in DB
             this.props.createLeader("Koga").then(() => {
               //fetch pokemon to create team
-              this.props.fetchPokemon(109, 48, "team2", "Koga"); //Koffing
-              this.props.fetchPokemon(24, 50, "team2", "Koga"); //Arbok
-              this.props.fetchPokemon(110, 50, "team2", "Koga"); //Weezing
-              this.props.fetchPokemon(89, 52, "team2", "Koga"); //Muk
-              this.props.fetchPokemon(94, 53, "team2", "Koga"); //Gengar
-              this.props.fetchPokemon(49, 54, "team2", "Koga"); //Venomoth
+              this.props.fetchPokemon(109, 50, "team2", "Koga"); //Koffing
+              this.props.fetchPokemon(24, 52, "team2", "Koga"); //Arbok
+              this.props.fetchPokemon(110, 52, "team2", "Koga"); //Weezing
+              this.props.fetchPokemon(89, 54, "team2", "Koga"); //Muk
+              this.props.fetchPokemon(94, 55, "team2", "Koga"); //Gengar
+              this.props.fetchPokemon(49, 56, "team2", "Koga"); //Venomoth
             });
           }
         });
@@ -413,12 +413,12 @@ class BadgesContainer extends Component {
             //create new leader in DB
             this.props.createLeader("Sabrina").then(() => {
               //fetch pokemon to create team
-              this.props.fetchPokemon(122, 53, "team2", "Sabrina"); //Mr Mime
-              this.props.fetchPokemon(64, 50, "team2", "Sabrina"); //Kadabra
-              this.props.fetchPokemon(97, 53, "team2", "Sabrina"); //Hypno
-              this.props.fetchPokemon(64, 50, "team2", "Sabrina"); //Kadabra
-              this.props.fetchPokemon(124, 52, "team2", "Sabrina"); //Jynx
-              this.props.fetchPokemon(65, 55, "team2", "Sabrina"); //Alakazam
+              this.props.fetchPokemon(122, 55, "team2", "Sabrina"); //Mr Mime
+              this.props.fetchPokemon(64, 52, "team2", "Sabrina"); //Kadabra
+              this.props.fetchPokemon(97, 55, "team2", "Sabrina"); //Hypno
+              this.props.fetchPokemon(64, 52, "team2", "Sabrina"); //Kadabra
+              this.props.fetchPokemon(124, 56, "team2", "Sabrina"); //Jynx
+              this.props.fetchPokemon(65, 58, "team2", "Sabrina"); //Alakazam
             });
           }
         });
@@ -441,12 +441,12 @@ class BadgesContainer extends Component {
             //create new leader in DB
             this.props.createLeader("Blaine").then(() => {
               //fetch pokemon to create team
-              this.props.fetchPokemon(77, 50, "team2", "Blaine"); //Ponyta
-              this.props.fetchPokemon(126, 53, "team2", "Blaine"); //Magmar
-              this.props.fetchPokemon(78, 55, "team2", "Blaine"); //Rapidash
-              this.props.fetchPokemon(38, 50, "team2", "Blaine"); //Ninetails
-              this.props.fetchPokemon(6, 52, "team2", "Blaine"); //Charizard
-              this.props.fetchPokemon(59, 56, "team2", "Blaine"); //Arcanine
+              this.props.fetchPokemon(77, 52, "team2", "Blaine"); //Ponyta
+              this.props.fetchPokemon(126, 55, "team2", "Blaine"); //Magmar
+              this.props.fetchPokemon(78, 57, "team2", "Blaine"); //Rapidash
+              this.props.fetchPokemon(38, 52, "team2", "Blaine"); //Ninetails
+              this.props.fetchPokemon(6, 54, "team2", "Blaine"); //Charizard
+              this.props.fetchPokemon(59, 58, "team2", "Blaine"); //Arcanine
             });
           }
         });
@@ -469,12 +469,12 @@ class BadgesContainer extends Component {
             //create new leader in DB
             this.props.createLeader("Giovanni").then(() => {
               //fetch pokemon to create team
-              this.props.fetchPokemon(51, 50, "team2", "Giovanni"); //Dugtrio
-              this.props.fetchPokemon(110, 50, "team2", "Giovanni"); //Weezing
-              this.props.fetchPokemon(112, 55, "team2", "Giovanni"); //Rhydon
-              this.props.fetchPokemon(53, 52, "team2", "Giovanni"); //Persian
-              this.props.fetchPokemon(31, 56, "team2", "Giovanni"); //Nidoqueen
-              this.props.fetchPokemon(34, 58, "team2", "Giovanni"); //Nidoking
+              this.props.fetchPokemon(51, 52, "team2", "Giovanni"); //Dugtrio
+              this.props.fetchPokemon(110, 52, "team2", "Giovanni"); //Weezing
+              this.props.fetchPokemon(112, 57, "team2", "Giovanni"); //Rhydon
+              this.props.fetchPokemon(53, 54, "team2", "Giovanni"); //Persian
+              this.props.fetchPokemon(31, 58, "team2", "Giovanni"); //Nidoqueen
+              this.props.fetchPokemon(34, 60, "team2", "Giovanni"); //Nidoking
             });
           }
         });
@@ -496,12 +496,12 @@ class BadgesContainer extends Component {
             //create new leader in DB
             this.props.createLeader("Lorelei").then(() => {
               //fetch pokemon to create team
-              this.props.fetchPokemon(87, 52, "team2", "Lorelei"); //Dewgong
-              this.props.fetchPokemon(91, 51, "team2", "Lorelei"); //Cloyster
-              this.props.fetchPokemon(80, 52, "team2", "Lorelei"); //Slowbro
-              this.props.fetchPokemon(124, 54, "team2", "Lorelei"); //Jynx
-              this.props.fetchPokemon(62, 54, "team2", "Lorelei"); //Poliwrath
-              this.props.fetchPokemon(131, 57, "team2", "Lorelei"); //Lapras
+              this.props.fetchPokemon(87, 54, "team2", "Lorelei"); //Dewgong
+              this.props.fetchPokemon(91, 53, "team2", "Lorelei"); //Cloyster
+              this.props.fetchPokemon(80, 54, "team2", "Lorelei"); //Slowbro
+              this.props.fetchPokemon(124, 57, "team2", "Lorelei"); //Jynx
+              this.props.fetchPokemon(62, 57, "team2", "Lorelei"); //Poliwrath
+              this.props.fetchPokemon(131, 60, "team2", "Lorelei"); //Lapras
             });
           }
         });
@@ -523,12 +523,12 @@ class BadgesContainer extends Component {
             //create new leader in DB
             this.props.createLeader("Bruno").then(() => {
               //fetch pokemon to create team
-              this.props.fetchPokemon(95, 53, "team2", "Bruno"); //Onix
-              this.props.fetchPokemon(107, 55, "team2", "Bruno"); //Hitmonchan
-              this.props.fetchPokemon(95, 53, "team2", "Bruno"); //Onix
-              this.props.fetchPokemon(106, 55, "team2", "Bruno"); //Hitmonlee
-              this.props.fetchPokemon(76, 57, "team2", "Bruno"); //Golem
-              this.props.fetchPokemon(68, 58, "team2", "Bruno"); //Machamp
+              this.props.fetchPokemon(95, 55, "team2", "Bruno"); //Onix
+              this.props.fetchPokemon(107, 57, "team2", "Bruno"); //Hitmonchan
+              this.props.fetchPokemon(95, 55, "team2", "Bruno"); //Onix
+              this.props.fetchPokemon(106, 57, "team2", "Bruno"); //Hitmonlee
+              this.props.fetchPokemon(76, 59, "team2", "Bruno"); //Golem
+              this.props.fetchPokemon(68, 61, "team2", "Bruno"); //Machamp
             });
           }
         });
@@ -550,12 +550,12 @@ class BadgesContainer extends Component {
             //create new leader in DB
             this.props.createLeader("Agatha").then(() => {
               //fetch pokemon to create team
-              this.props.fetchPokemon(93, 53, "team2", "Agatha"); //Haunter
-              this.props.fetchPokemon(42, 54, "team2", "Agatha"); //Golbat
-              this.props.fetchPokemon(94, 58, "team2", "Agatha"); //Gengar
-              this.props.fetchPokemon(93, 53, "team2", "Agatha"); //Haunter
-              this.props.fetchPokemon(24, 56, "team2", "Agatha"); //Arbok
-              this.props.fetchPokemon(94, 58, "team2", "Agatha"); //Gengar
+              this.props.fetchPokemon(93, 55, "team2", "Agatha"); //Haunter
+              this.props.fetchPokemon(42, 56, "team2", "Agatha"); //Golbat
+              this.props.fetchPokemon(94, 60, "team2", "Agatha"); //Gengar
+              this.props.fetchPokemon(93, 55, "team2", "Agatha"); //Haunter
+              this.props.fetchPokemon(24, 58, "team2", "Agatha"); //Arbok
+              this.props.fetchPokemon(94, 60, "team2", "Agatha"); //Gengar
             });
           }
         });
@@ -577,12 +577,12 @@ class BadgesContainer extends Component {
             //create new leader in DB
             this.props.createLeader("Lance").then(() => {
               //fetch pokemon to create team
-              this.props.fetchPokemon(130, 56, "team2", "Lance"); //Gyarados
-              this.props.fetchPokemon(148, 54, "team2", "Lance"); //Dragonair
-              this.props.fetchPokemon(148, 54, "team2", "Lance"); //Dragonair
-              this.props.fetchPokemon(142, 58, "team2", "Lance"); //Aerodyactl
-              this.props.fetchPokemon(149, 60, "team2", "Lance"); //Dragonite
-              this.props.fetchPokemon(149, 60, "team2", "Lance"); //Dragonite
+              this.props.fetchPokemon(130, 58, "team2", "Lance"); //Gyarados
+              this.props.fetchPokemon(148, 56, "team2", "Lance"); //Dragonair
+              this.props.fetchPokemon(148, 56, "team2", "Lance"); //Dragonair
+              this.props.fetchPokemon(142, 60, "team2", "Lance"); //Aerodyactl
+              this.props.fetchPokemon(149, 62, "team2", "Lance"); //Dragonite
+              this.props.fetchPokemon(149, 62, "team2", "Lance"); //Dragonite
             });
           }
         });
@@ -604,12 +604,12 @@ class BadgesContainer extends Component {
             //create new leader in DB
             this.props.createLeader("Blue").then(() => {
               //fetch pokemon to create team
-              this.props.fetchPokemon(18, 59, "team2", "Blue"); //Pigeot
-              this.props.fetchPokemon(65, 57, "team2", "Blue"); //Alakazam
-              this.props.fetchPokemon(112, 59, "team2", "Blue"); //Rhydon
-              this.props.fetchPokemon(103, 61, "team2", "Blue"); //Exeggutor
-              this.props.fetchPokemon(59, 59, "team2", "Blue"); //Arcanine
-              this.props.fetchPokemon(9, 63, "team2", "Blue"); //Blastoise
+              this.props.fetchPokemon(18, 61, "team2", "Blue"); //Pigeot
+              this.props.fetchPokemon(65, 59, "team2", "Blue"); //Alakazam
+              this.props.fetchPokemon(112, 61, "team2", "Blue"); //Rhydon
+              this.props.fetchPokemon(103, 63, "team2", "Blue"); //Exeggutor
+              this.props.fetchPokemon(59, 62, "team2", "Blue"); //Arcanine
+              this.props.fetchPokemon(9, 65, "team2", "Blue"); //Blastoise
             });
           }
         });

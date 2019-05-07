@@ -13,7 +13,7 @@ export const loadAllData = () => dispatch => {
     type: "LOAD_ALL_DATA",
     value: axios
       .get(
-        "https://pokeapi-215911.firebaseapp.com/api/v2/pokemon/?offset=0&limit=151"
+        "https://pokeapi-215911.firebaseapp.com/api/v2/pokemon/?offset=0&limit=251"
       )
       .then(res => dispatch(setAllData(res.data.results)))
       .catch(error => console.log("loadAllData error: ", error))

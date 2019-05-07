@@ -597,7 +597,8 @@ class TeamBuilder extends Component {
       statusCondition: "",
       turnsAsleep: 0,
       turnsConfused: 0,
-      isTransformed: false
+      isTransformed: false,
+      isRecharging: false
     };
 
     let player = null; //default to player one

@@ -148,6 +148,24 @@ const UseMove = (
         }
       }
 
+      //handle is recharging
+      let recharging = false;
+      if (PKMNuser.isRecharging === true) {
+        //user is recharging
+        recharging = true;
+        DisplayMessage(PKMNuser.name + " must recharge...");
+        //reset recharing flag
+        PKMNuser.isRecharging = false;
+
+        if (isUserPoisonedOrBurned || isUserBound) {
+          setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 2000);
+        } else {
+          setTimeout(() => switchTurns(), 2000);
+        }
+      } else if (moveName === "Hyper Beam" && PKMNuser.isRecharging === false) {
+        PKMNuser.isRecharging = true;
+      }
+
       //handle paralyze
       let paralysis = false;
       if (PKMNuser.statusCondition === "Paralyze") {
@@ -256,8 +274,15 @@ const UseMove = (
         }
       }
 
-      //if pokemon has not woken up, snapped out of confusion, hurt itself from confusion, blocked by paralysis, or frozen; skip rest of move
-      if (!wokeup && !snappedOut && !hurtitself && !paralysis && !frozen) {
+      //if pokemon has not woken up, snapped out of confusion, hurt itself from confusion, blocked by paralysis, or frozen or recharging; skip rest of move
+      if (
+        !wokeup &&
+        !snappedOut &&
+        !hurtitself &&
+        !paralysis &&
+        !frozen &&
+        !recharging
+      ) {
         if (PKMNuser.isConfused) {
           setTimeout(
             () => DisplayMessage(PKMNuser.name + " used " + moveName + "!"),
@@ -418,7 +443,8 @@ const UseMove = (
         (wokeup || snappedOut) &&
         !hurtitself &&
         !paralysis &&
-        !frozen
+        !frozen &&
+        !recharging
       ) {
         if (PlayersTurn === "Player One") {
           setTimeout(
