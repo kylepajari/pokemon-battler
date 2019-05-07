@@ -1944,7 +1944,7 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 20,
+      power: 80, //was 20
       type: "normal",
       accuracy: 100,
       pp: 15,
@@ -1957,7 +1957,7 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 10,
+      power: 50, //was 10
       type: "normal",
       accuracy: 100,
       pp: 30,
@@ -2233,7 +2233,7 @@ const CreateMoves = moveName => {
       power: 250,
       type: "normal",
       accuracy: 100,
-      pp: 35, //5
+      pp: 35, //was 5
       statusEff: "FaintsUser",
       statusProb: 1,
       sound: Explosion
@@ -2243,14 +2243,14 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 18,
+      power: 65, //was 18
       type: "normal",
       accuracy: 80,
       pp: 15,
       statusEff: "",
       statusProb: 1,
       sound: FurySwipes
-    };
+    }; //hits 2-5 times
   }
   if (moveName === "Bonemerang") {
     return {
@@ -2324,7 +2324,7 @@ const CreateMoves = moveName => {
       power: 0,
       type: "normal",
       accuracy: 100,
-      pp: 30,
+      pp: 35,
       statusEff: "",
       statusProb: 1,
       sound: Conversion
@@ -2338,10 +2338,10 @@ const CreateMoves = moveName => {
       type: "normal",
       accuracy: 100,
       pp: 10,
-      statusEff: "",
-      statusProb: 1,
+      statusEff: "TriAttack",
+      statusProb: 0.2,
       sound: TriAttack
-    };
+    }; //may cause 20% chance of either paralyze, burn, or freeze
   }
   if (moveName === "Super Fang") {
     return {
@@ -2412,23 +2412,23 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 40,
-      type: "normal",
-      accuracy: 100,
-      pp: 35,
+      power: 60, //was 10
+      type: "fighting",
+      accuracy: 90,
+      pp: 10,
       statusEff: "",
       statusProb: 1,
       sound: TripleKick
-    };
+    }; //hits 3 times increasing in power each time
   }
   if (moveName === "Thief") {
     return {
       name: moveName,
       category: "physical",
-      power: 40,
-      type: "normal",
+      power: 60,
+      type: "dark",
       accuracy: 100,
-      pp: 35,
+      pp: 25,
       statusEff: "",
       statusProb: 1,
       sound: Thief
@@ -2480,7 +2480,7 @@ const CreateMoves = moveName => {
       power: 60,
       type: "fire",
       accuracy: 100,
-      pp: 35,
+      pp: 25,
       statusEff: "Burn",
       statusProb: 0.1,
       sound: FlameWheel
@@ -2541,11 +2541,11 @@ const CreateMoves = moveName => {
   if (moveName === "Aeroblast") {
     return {
       name: moveName,
-      category: "physical",
-      power: 40,
-      type: "normal",
-      accuracy: 100,
-      pp: 35,
+      category: "special",
+      power: 100,
+      type: "flying",
+      accuracy: 95,
+      pp: 5,
       statusEff: "",
       statusProb: 1,
       sound: Aeroblast
@@ -2555,11 +2555,11 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 40,
+      power: 0,
       type: "normal",
       accuracy: 100,
-      pp: 35,
-      statusEff: "",
+      pp: 20,
+      statusEff: "lowersTargetSpd",
       statusProb: 1,
       sound: CottonSpore
     };
@@ -2597,7 +2597,7 @@ const CreateMoves = moveName => {
       power: 40,
       type: "ice",
       accuracy: 100,
-      pp: 35,
+      pp: 25,
       statusEff: "Frozen",
       statusProb: 0.1,
       sound: PowderSnow
@@ -2623,7 +2623,7 @@ const CreateMoves = moveName => {
       power: 40,
       type: "fighting",
       accuracy: 100,
-      pp: 35,
+      pp: 30,
       statusEff: "",
       statusProb: 1,
       sound: MachPunch
@@ -2636,8 +2636,8 @@ const CreateMoves = moveName => {
       power: 0,
       type: "normal",
       accuracy: 100,
-      pp: 35,
-      statusEff: "lowersTargetAtk",
+      pp: 10,
+      statusEff: "lowersTargetSpd",
       statusProb: 1,
       sound: ScaryFace
     };
@@ -2646,14 +2646,14 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 40,
-      type: "normal",
-      accuracy: 100,
-      pp: 35,
+      power: 60,
+      type: "dark",
+      accuracy: 999,
+      pp: 25,
       statusEff: "",
       statusProb: 1,
       sound: FeintAttack
-    };
+    }; //ignores accuracy and evasion
   }
   if (moveName === "Sweet Kiss") {
     return {
@@ -2662,7 +2662,7 @@ const CreateMoves = moveName => {
       power: 0,
       type: "fairy",
       accuracy: 75,
-      pp: 35,
+      pp: 10,
       statusEff: "ConfusionTarget",
       statusProb: 1,
       sound: SweetKiss
@@ -2701,10 +2701,10 @@ const CreateMoves = moveName => {
       power: 95,
       type: "poison",
       accuracy: 100,
-      pp: 35,
+      pp: 10,
       statusEff: "Poison",
-      statusProb: 0.3,
-      sound: null
+      statusProb: 0.1,
+      sound: SludgeBomb
     };
   }
   if (moveName === "Mud Slap") {
@@ -2723,13 +2723,13 @@ const CreateMoves = moveName => {
   if (moveName === "Octazooka") {
     return {
       name: moveName,
-      category: "physical",
-      power: 70,
+      category: "special",
+      power: 65,
       type: "water",
-      accuracy: 100,
-      pp: 35,
-      statusEff: "",
-      statusProb: 1,
+      accuracy: 85,
+      pp: 10,
+      statusEff: "lowersTargetAcc",
+      statusProb: 0.5,
       sound: Octazooka
     };
   }
@@ -2749,12 +2749,12 @@ const CreateMoves = moveName => {
   if (moveName === "Zap Cannon") {
     return {
       name: moveName,
-      category: "physical",
-      power: 40,
-      type: "normal",
-      accuracy: 100,
-      pp: 35,
-      statusEff: "",
+      category: "special",
+      power: 120,
+      type: "electric",
+      accuracy: 50,
+      pp: 5,
+      statusEff: "Paralyze",
       statusProb: 1,
       sound: ZapCannon
     };
@@ -2828,14 +2828,14 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 40,
-      type: "normal",
-      accuracy: 100,
-      pp: 35,
+      power: 75, //was 25
+      type: "ground",
+      accuracy: 90,
+      pp: 10,
       statusEff: "",
       statusProb: 1,
       sound: BoneRush
-    };
+    }; //hits 2-5 times
   }
   if (moveName === "Lock On") {
     return {
@@ -2854,11 +2854,11 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 40,
-      type: "normal",
+      power: 120,
+      type: "dragon",
       accuracy: 100,
-      pp: 35,
-      statusEff: "",
+      pp: 10,
+      statusEff: "ConfusionUser",
       statusProb: 1,
       sound: Outrage
     };
@@ -2919,14 +2919,14 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 40,
-      type: "normal",
-      accuracy: 100,
-      pp: 35,
+      power: 30,
+      type: "rock",
+      accuracy: 90,
+      pp: 35, //was 20
       statusEff: "",
       statusProb: 1,
       sound: Rollout
-    };
+    }; //doubles power each turn for 5 turns(30,60,120,240,480)
   }
   if (moveName === "False Swipe") {
     return {
@@ -2958,11 +2958,11 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 40,
+      power: 0,
       type: "normal",
-      accuracy: 100,
-      pp: 35,
-      statusEff: "",
+      accuracy: 999,
+      pp: 10,
+      statusEff: "recoverHP",
       statusProb: 1,
       sound: MilkDrink
     };
@@ -2974,9 +2974,9 @@ const CreateMoves = moveName => {
       power: 65,
       type: "eletric",
       accuracy: 100,
-      pp: 35,
+      pp: 10,
       statusEff: "Paralyze",
-      statusProb: 0.1,
+      statusProb: 0.3,
       sound: Spark
     };
   }
@@ -2984,14 +2984,14 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 40,
-      type: "normal",
-      accuracy: 100,
-      pp: 35,
+      power: 60,
+      type: "bug",
+      accuracy: 95,
+      pp: 20,
       statusEff: "",
       statusProb: 1,
       sound: FuryCutter
-    };
+    }; //power increases each turn
   }
   if (moveName === "Steel Wing") {
     return {
@@ -3130,7 +3130,7 @@ const CreateMoves = moveName => {
       power: 100,
       type: "fire",
       accuracy: 95,
-      pp: 35,
+      pp: 5,
       statusEff: "Burn",
       statusProb: 0.5,
       sound: SacredFire
@@ -3141,9 +3141,9 @@ const CreateMoves = moveName => {
       name: moveName,
       category: "physical",
       power: 40,
-      type: "normal",
+      type: "ground",
       accuracy: 100,
-      pp: 35,
+      pp: 30,
       statusEff: "",
       statusProb: 1,
       sound: Magnitude

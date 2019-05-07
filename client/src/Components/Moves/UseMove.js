@@ -6,6 +6,7 @@ import Confused from "../../Sounds/BattleSounds/General/CONFUSED.wav";
 import ConfusedHitSelf from "../../Sounds/BattleSounds/General/ConfusedHitSelf.wav";
 import Sleeping from "../../Sounds/BattleSounds/General/Sleeping.wav";
 import $ from "jquery";
+import { RandomNumberGenerator } from "../RandomNumberGenerator";
 
 const UseMove = (
   index,
@@ -375,37 +376,106 @@ const UseMove = (
           //does move have power, if so deal damage
           if (power > 0) {
             //if move lands, continue with deal damage
-            setTimeout(
-              () =>
-                DealDamage(
-                  power,
-                  lv,
-                  moveName,
-                  moveCategory,
-                  moveType,
-                  statusEff,
-                  statusProb,
-                  player1Team,
-                  player2Team,
-                  Player1Poke,
-                  Player2Poke,
-                  PlayersTurn,
-                  playerOneName,
-                  playerTwoName,
-                  resetMultipliers,
-                  handleTeam,
-                  handleFainted,
-                  handleForceUpdate,
-                  checkForStatusEffect,
-                  isUserPoisonedOrBurned,
-                  dealPoisonBurn,
-                  switchTurns,
-                  mode,
-                  Volume,
-                  checkWin
-                ),
-              3500
-            );
+
+            //if magnitude is used, assign random power
+            if (moveName === "Magnitude") {
+              let newPower = 0;
+              let magnitudeLevel = RandomNumberGenerator(4, 10);
+              magnitudeLevel = Math.round(magnitudeLevel);
+              switch (magnitudeLevel) {
+                case 4:
+                  newPower = 10;
+                  break;
+                case 5:
+                  newPower = 30;
+                  break;
+                case 6:
+                  newPower = 50;
+                  break;
+                case 7:
+                  newPower = 70;
+                  break;
+                case 8:
+                  newPower = 90;
+                  break;
+                case 9:
+                  newPower = 110;
+                  break;
+                case 10:
+                  newPower = 150;
+                  break;
+                default:
+                  newPower = 30;
+                  break;
+              }
+              setTimeout(
+                () => DisplayMessage("Magnitude " + magnitudeLevel + "!"),
+                2500
+              );
+              setTimeout(
+                () =>
+                  DealDamage(
+                    newPower,
+                    lv,
+                    moveName,
+                    moveCategory,
+                    moveType,
+                    statusEff,
+                    statusProb,
+                    player1Team,
+                    player2Team,
+                    Player1Poke,
+                    Player2Poke,
+                    PlayersTurn,
+                    playerOneName,
+                    playerTwoName,
+                    resetMultipliers,
+                    handleTeam,
+                    handleFainted,
+                    handleForceUpdate,
+                    checkForStatusEffect,
+                    isUserPoisonedOrBurned,
+                    dealPoisonBurn,
+                    switchTurns,
+                    mode,
+                    Volume,
+                    checkWin
+                  ),
+                4500
+              );
+            } else {
+              setTimeout(
+                () =>
+                  DealDamage(
+                    power,
+                    lv,
+                    moveName,
+                    moveCategory,
+                    moveType,
+                    statusEff,
+                    statusProb,
+                    player1Team,
+                    player2Team,
+                    Player1Poke,
+                    Player2Poke,
+                    PlayersTurn,
+                    playerOneName,
+                    playerTwoName,
+                    resetMultipliers,
+                    handleTeam,
+                    handleFainted,
+                    handleForceUpdate,
+                    checkForStatusEffect,
+                    isUserPoisonedOrBurned,
+                    dealPoisonBurn,
+                    switchTurns,
+                    mode,
+                    Volume,
+                    checkWin
+                  ),
+                3500
+              );
+            }
           } else if (power === 0 && statusEff !== "") {
             setTimeout(
               () =>

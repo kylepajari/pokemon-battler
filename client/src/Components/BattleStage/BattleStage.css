@@ -24,10 +24,14 @@
   width: 100%;
 }
 
+.teamRoster {
+  margin-right: 5px;
+}
+
 .pokeball-team {
-  height: 16px;
-  width: 16px;
-  margin-right: 4px;
+  height: 17px;
+  width: 17px;
+  margin-right: 1px;
 }
 
 .side {

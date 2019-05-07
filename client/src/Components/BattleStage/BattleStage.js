@@ -1608,12 +1608,6 @@ class BattleStage extends Component {
         ) {
           //poison and steel types not effected by poison
           //do nothing...
-          if (PKMNtarget.statusCondition !== "Poison") {
-            setTimeout(
-              () => DisplayMessage(PKMNtarget.name + " was unaffected..."),
-              2000
-            );
-          }
         } else {
           //check probability chance from move to see if hits
           if (rand < statusProb) {
@@ -1629,11 +1623,7 @@ class BattleStage extends Component {
         (PKMNtarget.statusCondition === "" ||
           PKMNtarget.statusCondition === "Frozen")
       ) {
-        if (
-          targetType1 === "fire" ||
-          targetType2 === "fire" ||
-          PKMNtarget.statusCondition === "Burn"
-        ) {
+        if (targetType1 === "fire" || targetType2 === "fire") {
           //if target is currently frozen, remove status
           if (PKMNtarget.statusCondition === "Frozen") {
             setTimeout(() => (PKMNtarget.statusCondition = ""), 2000);
@@ -1647,12 +1637,6 @@ class BattleStage extends Component {
           } else {
             //fire types not effected by burn
             //do nothing...
-            if (PKMNtarget.statusCondition !== "Burn") {
-              setTimeout(
-                () => DisplayMessage(PKMNtarget.name + " was unaffected..."),
-                2000
-              );
-            }
           }
         } else {
           //if target is currently frozen, remove status
@@ -1680,19 +1664,9 @@ class BattleStage extends Component {
         statusEff === "Paralyze" &&
         PKMNtarget.statusCondition === ""
       ) {
-        if (
-          targetType1 === "electric" ||
-          targetType2 === "electric" ||
-          PKMNtarget.statusCondition === "Paralyze"
-        ) {
-          //electric types not effected by paralyze
+        if (targetType1 === "ground" || targetType2 === "ground") {
+          //ground types not effected by paralyze
           //do nothing...
-          if (PKMNtarget.statusCondition !== "Paralyze") {
-            setTimeout(
-              () => DisplayMessage(PKMNtarget.name + " was unaffected..."),
-              2000
-            );
-          }
         } else {
           //check probability chance from move to see if hits
           if (rand < statusProb) {
@@ -1721,19 +1695,9 @@ class BattleStage extends Component {
           );
         }
       } else if (statusEff === "Frozen" && PKMNtarget.statusCondition === "") {
-        if (
-          targetType1 === "ice" ||
-          targetType2 === "ice" ||
-          PKMNtarget.statusCondition === "Frozen"
-        ) {
+        if (targetType1 === "ice" || targetType2 === "ice") {
           //ice types not effected by frozen
           //do nothing...
-          if (PKMNtarget.statusCondition !== "Frozen") {
-            setTimeout(
-              () => DisplayMessage(PKMNtarget.name + " was unaffected..."),
-              2000
-            );
-          }
         } else {
           //check probability chance from move to see if hits
           if (rand < statusProb) {
@@ -1742,6 +1706,72 @@ class BattleStage extends Component {
               () => DisplayMessage(PKMNtarget.name + " was Frozen solid!"),
               2000
             );
+          }
+        }
+      } else if (
+        statusEff === "TriAttack" &&
+        PKMNtarget.statusCondition === ""
+      ) {
+        //chooses a random status to afficlt (paralyze, burn, freeze)
+        let affliction = "";
+        let num = RandomNumberGenerator(1, 3);
+        num = Math.round(num);
+
+        switch (num) {
+          case 1:
+            affliction = "Paralyze";
+            break;
+          case 2:
+            affliction = "Burn";
+            break;
+          case 3:
+            affliction = "Frozen";
+            break;
+          default:
+            affliction = "Paralyze";
+            break;
+        }
+
+        //do nothing if type is unaffected/ or already afflicted with status
+        if (
+          (affliction === "Frozen" &&
+            (targetType1 === "ice" || targetType2 === "ice")) ||
+          (affliction === "Burn" &&
+            (targetType1 === "fire" || targetType2 === "fire")) ||
+          (affliction === "Paralyze" &&
+            (targetType1 === "ground" || targetType2 === "ground"))
+        ) {
+          //do nothing...
+        } else {
+          //check probability chance from move to see if hits
+          if (rand < statusProb) {
+            setTimeout(() => (PKMNtarget.statusCondition = affliction), 2000);
+            switch (affliction) {
+              case "Paralyze":
+                setTimeout(
+                  () => DisplayMessage(PKMNtarget.name + " was Paralyzed!"),
+                  2000
+                );
+                break;
+              case "Burn":
+                setTimeout(
+                  () => DisplayMessage(PKMNtarget.name + " was Burned!"),
+                  2000
+                );
+                break;
+              case "Frozen":
+                setTimeout(
+                  () => DisplayMessage(PKMNtarget.name + " was Frozen solid!"),
+                  2000
+                );
+                break;
+              default:
+                setTimeout(
+                  () => DisplayMessage(PKMNtarget.name + " was Paralyzed!"),
+                  2000
+                );
+                break;
+            }
           }
         }
       }
@@ -2096,7 +2126,7 @@ class BattleStage extends Component {
             </div>
             <div className="side side1 col">
               <p className="row">
-                <div className="teamRoster">
+                <span className="teamRoster">
                   {this.state.player2Team.map((item, i) => {
                     return (
                       <img
@@ -2108,7 +2138,7 @@ class BattleStage extends Component {
                       />
                     );
                   })}
-                </div>
+                </span>
 
                 {this.state.player2Team[this.props.player2CurrentPokemon].name}
                 <span className="badge badge-dark">
@@ -2210,7 +2240,7 @@ class BattleStage extends Component {
             </div>
             <div className="side side2 col">
               <p className="row">
-                <div className="teamRoster">
+                <span className="teamRoster">
                   {this.state.player1Team.map((item, i) => {
                     return (
                       <img
@@ -2222,7 +2252,7 @@ class BattleStage extends Component {
                       />
                     );
                   })}
-                </div>
+                </span>
 
                 {this.state.player1Team[this.props.player1CurrentPokemon].name}
                 <span className="badge badge-dark">
