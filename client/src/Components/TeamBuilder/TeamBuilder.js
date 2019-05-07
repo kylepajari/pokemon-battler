@@ -1027,19 +1027,44 @@ class TeamBuilder extends Component {
         <div className="pokemonSheetContainer deRender">
           <div>{playerName} - Select a Pokemon:</div>
           <div className="pokemonSheet">
+            <div>Generation I:</div>
             {this.props.allData.map((item, i) => {
-              return (
-                <button
-                  className="sheetBlock btn btn-primary"
-                  key={i}
-                  data-toggle="modal"
-                  data-target=".pokemonPopup"
-                  onClick={() => this.modalPokemon(i + 1)}
-                >
-                  {/* <img src={item.sprites.front_default} alt="" /> */}
-                  {this.Capitalize(item.name)}
-                </button>
-              );
+              if (i <= 150) {
+                return (
+                  <button
+                    className="sheetBlock btn btn-primary"
+                    key={i}
+                    data-toggle="modal"
+                    data-target=".pokemonPopup"
+                    onClick={() => this.modalPokemon(i + 1)}
+                  >
+                    {/* <img src={item.sprites.front_default} alt="" /> */}
+                    {this.Capitalize(item.name)}
+                  </button>
+                );
+              } else {
+                return null;
+              }
+            })}
+            <br />
+            <div>Generation II:</div>
+            {this.props.allData.map((item, i) => {
+              if (i >= 151 && i < 251) {
+                return (
+                  <button
+                    className="sheetBlock btn btn-success"
+                    key={i}
+                    data-toggle="modal"
+                    data-target=".pokemonPopup"
+                    onClick={() => this.modalPokemon(i + 1)}
+                  >
+                    {/* <img src={item.sprites.front_default} alt="" /> */}
+                    {this.Capitalize(item.name)}
+                  </button>
+                );
+              } else {
+                return null;
+              }
             })}
           </div>
         </div>

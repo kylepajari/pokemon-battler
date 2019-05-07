@@ -7738,6 +7738,149 @@ const CreateMoves = moveName => {
       sound: null
     };
   }
+  if (moveName === "Sticky Web") {
+    return {
+      name: moveName,
+      category: "physical",
+      power: 40,
+      type: "normal",
+      accuracy: 100,
+      pp: 35,
+      statusEff: "",
+      statusProb: 1,
+      sound: null
+    };
+  }
+  if (moveName === "Toxic Thread") {
+    return {
+      name: moveName,
+      category: "physical",
+      power: 40,
+      type: "normal",
+      accuracy: 100,
+      pp: 35,
+      statusEff: "",
+      statusProb: 1,
+      sound: null
+    };
+  }
+  if (moveName === "Lunge") {
+    return {
+      name: moveName,
+      category: "physical",
+      power: 40,
+      type: "normal",
+      accuracy: 100,
+      pp: 35,
+      statusEff: "",
+      statusProb: 1,
+      sound: null
+    };
+  }
+  if (moveName === "Ion Deluge") {
+    return {
+      name: moveName,
+      category: "physical",
+      power: 40,
+      type: "normal",
+      accuracy: 100,
+      pp: 35,
+      statusEff: "",
+      statusProb: 1,
+      sound: null
+    };
+  }
+  if (moveName === "Fairy Wind") {
+    return {
+      name: moveName,
+      category: "physical",
+      power: 40,
+      type: "normal",
+      accuracy: 100,
+      pp: 35,
+      statusEff: "",
+      statusProb: 1,
+      sound: null
+    };
+  }
+  if (moveName === "Cotton Guard") {
+    return {
+      name: moveName,
+      category: "physical",
+      power: 40,
+      type: "normal",
+      accuracy: 100,
+      pp: 35,
+      statusEff: "",
+      statusProb: 1,
+      sound: null
+    };
+  }
+  if (moveName === "Tearful Look") {
+    return {
+      name: moveName,
+      category: "physical",
+      power: 40,
+      type: "normal",
+      accuracy: 100,
+      pp: 35,
+      statusEff: "",
+      statusProb: 1,
+      sound: null
+    };
+  }
+  if (moveName === "Flower Shield") {
+    return {
+      name: moveName,
+      category: "physical",
+      power: 40,
+      type: "normal",
+      accuracy: 100,
+      pp: 35,
+      statusEff: "",
+      statusProb: 1,
+      sound: null
+    };
+  }
+  if (moveName === "Psychic Fangs") {
+    return {
+      name: moveName,
+      category: "physical",
+      power: 40,
+      type: "normal",
+      accuracy: 100,
+      pp: 35,
+      statusEff: "",
+      statusProb: 1,
+      sound: null
+    };
+  }
+  if (moveName === "Throat Chop") {
+    return {
+      name: moveName,
+      category: "physical",
+      power: 40,
+      type: "normal",
+      accuracy: 100,
+      pp: 35,
+      statusEff: "",
+      statusProb: 1,
+      sound: null
+    };
+  }
+  if (moveName === "Liquidation") {
+    return {
+      name: moveName,
+      category: "physical",
+      power: 40,
+      type: "normal",
+      accuracy: 100,
+      pp: 35,
+      statusEff: "",
+      statusProb: 1,
+      sound: null
+    };
+  }
   console.log("MOVE NOT FOUND: ", moveName);
 };
 

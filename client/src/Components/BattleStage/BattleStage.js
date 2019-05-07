@@ -2096,17 +2096,19 @@ class BattleStage extends Component {
             </div>
             <div className="side side1 col">
               <p className="row">
-                {this.state.player2Team.map((item, i) => {
-                  return (
-                    <img
-                      className="pokeball-team"
-                      id={"p2" + i}
-                      key={i}
-                      src={pokeball}
-                      alt="pokeball"
-                    />
-                  );
-                })}
+                <div className="teamRoster">
+                  {this.state.player2Team.map((item, i) => {
+                    return (
+                      <img
+                        className="pokeball-team"
+                        id={"p2" + i}
+                        key={i}
+                        src={pokeball}
+                        alt="pokeball"
+                      />
+                    );
+                  })}
+                </div>
 
                 {this.state.player2Team[this.props.player2CurrentPokemon].name}
                 <span className="badge badge-dark">
@@ -2208,17 +2210,20 @@ class BattleStage extends Component {
             </div>
             <div className="side side2 col">
               <p className="row">
-                {this.state.player1Team.map((item, i) => {
-                  return (
-                    <img
-                      className="pokeball-team"
-                      id={"p1" + i}
-                      key={i}
-                      src={pokeball}
-                      alt="pokeball"
-                    />
-                  );
-                })}
+                <div className="teamRoster">
+                  {this.state.player1Team.map((item, i) => {
+                    return (
+                      <img
+                        className="pokeball-team"
+                        id={"p1" + i}
+                        key={i}
+                        src={pokeball}
+                        alt="pokeball"
+                      />
+                    );
+                  })}
+                </div>
+
                 {this.state.player1Team[this.props.player1CurrentPokemon].name}
                 <span className="badge badge-dark">
                   Lv
