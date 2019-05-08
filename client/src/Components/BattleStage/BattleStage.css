@@ -145,6 +145,14 @@
   height: 600px;
 }
 
+.typeChartPopup > .modal-dialog > .modal-content > .modal-footer {
+  padding: 8px;
+}
+.typeChartPopup > .modal-dialog > .modal-content > .modal-footer > button {
+  font-size: 18px;
+  width: 100%;
+}
+
 .volume:hover {
   height: 30px;
   width: 30px;

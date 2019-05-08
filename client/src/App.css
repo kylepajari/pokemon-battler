@@ -6,7 +6,7 @@
 @font-face {
   font-family: "Press-Start-2P";
   font-style: normal;
-  font-weight: 200;
+  font-weight: normal;
   src: url(./PressStart2P-Regular.ttf);
 }
 
@@ -68,6 +68,12 @@
   position: fixed;
   left: 80%;
   top: 4%;
+}
+
+.btnLogout {
+  margin-left: 5px;
+  height: 40px;
+  width: 110px;
 }
 
 span {

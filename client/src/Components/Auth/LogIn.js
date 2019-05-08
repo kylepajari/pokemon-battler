@@ -1,14 +1,7 @@
 import $ from "jquery";
 import React, { Component } from "react";
-import { TextField } from "@material-ui/core";
-import styled from "styled-components";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.js";
-
-const RedSpan = styled.span`
-  font-size: 12px;
-  color: red;
-`;
+import { Input } from "semantic-ui-react";
 
 class Login extends Component {
   state = {
@@ -104,46 +97,40 @@ class Login extends Component {
         <hr />
         <div>
           Username:
-          <TextField
+          <Input
+            size="large"
+            type="text"
+            placeholder="Username"
             onChange={this.handleTextChange}
             id="username"
-            label="Username"
             value={this.state.username}
-            variant="outlined"
           />
           <br />
           Password:
-          <TextField
+          <Input
+            size="large"
             type="password"
+            placeholder="Password"
             onChange={this.handleTextChange}
             id="password"
-            label="Password"
             value={this.state.password}
-            variant="outlined"
           />
         </div>
         <hr />
         <div>
-          <button
-            type="submit"
-            variant="contained"
-            className="btn btn-dark"
-            onClick={this.login}
-          >
+          <button className="btn btn-primary" onClick={this.login}>
             Login
           </button>
           &nbsp; &nbsp;
-          <button
-            type="submit"
-            variant="contained"
-            className="btn btn-dark"
-            onClick={this.signUp}
-          >
+          <button className="btn btn-dark" onClick={this.signUp}>
             Sign Up
           </button>
         </div>
+        &nbsp;
         <div>
-          {this.state.message && <RedSpan>{this.state.message}</RedSpan>}
+          {this.state.message && (
+            <span style={{ color: "red" }}>{this.state.message}</span>
+          )}
         </div>
       </div>
     );

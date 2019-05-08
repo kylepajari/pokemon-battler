@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import pokeball from "./pokeball.png";
 import "isomorphic-fetch";
 import cookie from "cookie";

@@ -763,30 +763,33 @@ class TeamBuilder extends Component {
         >
           Main Menu
         </button>
-        <button
-          type="button"
-          className="btn btn-dark"
-          id="btnSinglePlayer"
-          onClick={this.singlePlayer}
-        >
-          Single Player (Gym Leader Challenge)
-        </button>
-        <button
-          type="button"
-          className="btn btn-dark"
-          id="btnMultiPlayer"
-          onClick={this.multiPlayer}
-        >
-          Multi-Player (Local Battle)
-        </button>
-        <button
-          type="button"
-          className="btn btn-dark"
-          id="btnCPUVSCPU"
-          onClick={this.cpuVScpu}
-        >
-          CPU vs. CPU
-        </button>
+        <div className="mainButtons">
+          <button
+            type="button"
+            className="btn btn-dark"
+            id="btnSinglePlayer"
+            onClick={this.singlePlayer}
+          >
+            Single Player (Gym Leader Challenge)
+          </button>
+          <button
+            type="button"
+            className="btn btn-dark"
+            id="btnMultiPlayer"
+            onClick={this.multiPlayer}
+          >
+            Multi-Player (Local Battle)
+          </button>
+          <button
+            type="button"
+            className="btn btn-dark"
+            id="btnCPUVSCPU"
+            onClick={this.cpuVScpu}
+          >
+            CPU vs. CPU
+          </button>
+        </div>
+
         <div className="teamShowcase">
           <p className="teamHeader">Team:</p>
           {this.props.player1Team.map((pokemon, i) => {
@@ -853,7 +856,7 @@ class TeamBuilder extends Component {
                         {this.state.currentPokemonMoves.map(move => {
                           return (
                             <li key={move.name}>
-                              {move.name.toUpperCase()}/ PP:{move.pp}/
+                              {move.name.toUpperCase()} / PP:{move.pp} /{" "}
                               {MatchIconWithType(move.type)}
                             </li>
                           );
@@ -940,12 +943,9 @@ class TeamBuilder extends Component {
         </div>
         <div className="playerTwoNameDiv">
           <p>Enter a name for Player Two:</p>
-          <input
-            type="text"
-            id="playerTwoNameBox"
-            placeholder="Player Two..."
-          />
+          <input type="text" id="playerTwoNameBox" placeholder="Player Two" />
           <button
+            className="btn btn-dark"
             type="button"
             onClick={() =>
               this.inputNames(document.getElementById("playerTwoNameBox").value)
