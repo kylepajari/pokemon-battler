@@ -842,7 +842,11 @@ class BattleStage extends Component {
                 2500
               );
             }
-            if (this.state.faintedByRecoilPoisonBurn === true) {
+            //if pokemon fainted from recoil,poison,burn or confusion switch turns
+            if (
+              this.state.faintedByRecoilPoisonBurn === true ||
+              Team[PKMN].isConfused
+            ) {
               setTimeout(() => this.switchTurns(), 4000);
             }
           }
@@ -1314,7 +1318,7 @@ class BattleStage extends Component {
     let spcAtkMultiplierDown = 0;
     let spcDefMultiplierUp = 0;
     let spcDefMultiplierDown = 0;
-    if (this.PlayersTurn === "Player One") {
+    if (this.props.playersTurn === "Player One") {
       atkMultiplierUp = this.state.atkMultiplierUp1 + 0.5;
       atkMultiplierDown = this.state.atkMultiplierDown1 - 0.12;
       defMultiplierUp = this.state.defMultiplierUp1 + 0.5;
@@ -1422,6 +1426,11 @@ class BattleStage extends Component {
             2000
           );
         }
+      } else {
+        setTimeout(
+          () => DisplayMessage(PKMNtarget.name + " is already confused."),
+          2000
+        );
       }
     }
 

@@ -36,6 +36,7 @@
 
 .side {
   padding: 5px;
+  margin-top: 5px;
 }
 
 .spriteContainer {
@@ -125,17 +126,17 @@
 .volume {
   position: absolute;
   margin-left: 99%;
-  margin-top: -3%;
+  margin-top: -4.3%;
   height: 25px;
   width: 25px;
 }
 .typeChartButton {
   position: absolute;
-  margin-left: 76%;
-  margin-top: -3%;
-  height: 25px;
-  width: 130px;
-  font-size: 10px;
+  margin-left: 80%;
+  margin-top: -4%;
+  height: 22px;
+  width: 108px;
+  font-size: 8px;
 }
 .typeChartPopup > .modal-dialog {
   max-width: 95vw;
