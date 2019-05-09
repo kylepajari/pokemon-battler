@@ -167,105 +167,105 @@ class TeamBuilder extends Component {
       //build CPU one team
       switch (num) {
         case 1:
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team1");
           ///
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team2");
           break;
         case 2:
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team1");
           ///
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team2");
           break;
         case 3:
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team1");
           ///
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team2");
           break;
         case 4:
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team1");
           ///
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team2");
           break;
         case 5:
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team1");
           ///
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team2");
           break;
         case 6:
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team1");
           ///
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 151));
+          rand = Math.round(RandomNumberGenerator(1, 251));
           this.fetchPokemon(rand, 50, "team2");
           break;
         default:
@@ -453,10 +453,16 @@ class TeamBuilder extends Component {
       );
   };
 
-  modalTeamPokemon = num => {
-    this.setState({ currentPokemon: this.props.player1Team[num] }, () =>
-      this.fillmodalTeamPokeInfo()
-    );
+  modalTeamPokemon = (team, num) => {
+    if (team === "team1") {
+      this.setState({ currentPokemon: this.props.player1Team[num] }, () =>
+        this.fillmodalTeamPokeInfo()
+      );
+    } else {
+      this.setState({ currentPokemon: this.props.player2Team[num] }, () =>
+        this.fillmodalTeamPokeInfo()
+      );
+    }
     $(".pokemonTeamPopup").modal("show");
   };
 
@@ -789,16 +795,73 @@ class TeamBuilder extends Component {
             CPU vs. CPU
           </button>
         </div>
+        <div
+          className="modal pokemonTeamPopup"
+          data-backdrop=""
+          style={{ overflowY: "hidden" }}
+        >
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">{this.state.currentPokemonName}</h5>
+                <p>Lv: {this.state.currentPokemonLevel}</p>
+              </div>
+              <div className="modal-body">
+                <img
+                  src={this.state.currentPokemonSprite}
+                  alt=""
+                  className="modalTeamSprite"
+                />
+                <div className="modalStats">
+                  <div>
+                    <ul>
+                      <li>HP: {this.state.currentPokemonHP}</li>
+                      <li>ATK: {this.state.currentPokemonAtk}</li>
+                      <li>DEF: {this.state.currentPokemonDef}</li>
+                      <li>SPD: {this.state.currentPokemonSpd}</li>
+                      <li>SPC ATK: {this.state.currentPokemonSpcAtk}</li>
+                      <li>SPC DEF: {this.state.currentPokemonSpcDef}</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="modalMoves">
+                  <div>
+                    <p>Moves:</p>
+                    <ul>
+                      {this.state.currentPokemonMoves.map(move => {
+                        return (
+                          <li key={move.name}>
+                            {move.name.toUpperCase()} / PP:{move.pp} /{" "}
+                            {MatchIconWithType(move.type)}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div className="teamShowcase">
-          <p className="teamHeader">Team:</p>
+          <p className="teamHeader">My Team:</p>
           {this.props.player1Team.map((pokemon, i) => {
             return (
               <div
                 className={`${`sprite team-${i + 1}`}`}
                 key={i}
                 data-toggle="modal"
-                onClick={() => this.modalTeamPokemon(i)}
+                onClick={() => this.modalTeamPokemon("team1", i)}
               >
                 <img src={pokemon.frontSprite} alt={pokemon.name} />
                 <span>{pokemon.name}</span>
@@ -815,68 +878,6 @@ class TeamBuilder extends Component {
           >
             Delete Team
           </button>
-          <div
-            className="modal pokemonTeamPopup"
-            data-backdrop=""
-            style={{ overflowY: "hidden" }}
-          >
-            <div
-              className="modal-dialog modal-dialog-centered"
-              style={{ overflowY: "hidden" }}
-            >
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h5 className="modal-title">
-                    {this.state.currentPokemonName}
-                  </h5>
-                  <p>Lv: {this.state.currentPokemonLevel}</p>
-                </div>
-                <div className="modal-body">
-                  <img
-                    src={this.state.currentPokemonSprite}
-                    alt=""
-                    className="modalTeamSprite"
-                  />
-                  <div className="modalStats">
-                    <div>
-                      <ul>
-                        <li>HP: {this.state.currentPokemonHP}</li>
-                        <li>ATK: {this.state.currentPokemonAtk}</li>
-                        <li>DEF: {this.state.currentPokemonDef}</li>
-                        <li>SPD: {this.state.currentPokemonSpd}</li>
-                        <li>SPC ATK: {this.state.currentPokemonSpcAtk}</li>
-                        <li>SPC DEF: {this.state.currentPokemonSpcDef}</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div className="modalMoves">
-                    <div>
-                      <p>Moves:</p>
-                      <ul>
-                        {this.state.currentPokemonMoves.map(move => {
-                          return (
-                            <li key={move.name}>
-                              {move.name.toUpperCase()} / PP:{move.pp} /{" "}
-                              {MatchIconWithType(move.type)}
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div className="modal-footer">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    data-dismiss="modal"
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
         <div className="badgesShowcase">
           <p className="badgesHeader">Badges Earned:</p>
@@ -1162,6 +1163,8 @@ class TeamBuilder extends Component {
                       : `sprite box-${i + 1}`
                   }`}
                   key={i}
+                  data-toggle="modal"
+                  onClick={() => this.modalTeamPokemon("team1", i)}
                 >
                   <img src={pokemon.frontSprite} alt={pokemon.name} />
                   <p>{pokemon.name}</p>
@@ -1187,6 +1190,8 @@ class TeamBuilder extends Component {
                       : `sprite box-${i + 1}`
                   }`}
                   key={i}
+                  data-toggle="modal"
+                  onClick={() => this.modalTeamPokemon("team2", i)}
                 >
                   <img src={pokemon.frontSprite} alt={pokemon.name} />
                   <p>{pokemon.name}</p>

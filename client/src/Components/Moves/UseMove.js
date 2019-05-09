@@ -163,8 +163,6 @@ const UseMove = (
         } else {
           setTimeout(() => switchTurns(), 2000);
         }
-      } else if (moveName === "Hyper Beam" && PKMNuser.isRecharging === false) {
-        PKMNuser.isRecharging = true;
       }
 
       //handle paralyze
@@ -373,6 +371,11 @@ const UseMove = (
             }
           }
         } else {
+          //if user move does land
+          if (moveName === "Hyper Beam" && PKMNuser.isRecharging === false) {
+            //set recharging to true if Hyper Beam lands
+            PKMNuser.isRecharging = true;
+          }
           //does move have power, if so deal damage
           if (power > 0) {
             //if move lands, continue with deal damage

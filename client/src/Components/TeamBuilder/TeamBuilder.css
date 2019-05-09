@@ -19,6 +19,10 @@
   margin-bottom: 20px;
 }
 
+.team > div > img {
+  cursor: pointer;
+}
+
 .team1 {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -287,8 +291,8 @@ div > img {
 }
 
 .teamShowcase > div > img {
-  height: 85px;
-  width: 85px;
+  height: 90px;
+  width: 90px;
 }
 
 .teamShowcase > div > span {

@@ -157,9 +157,9 @@ const DealDamage = (
       setTimeout(() => UpdateHP(TargetHP, updatedBarHP, Volume), 1500);
       if (PKMNtarget.hp <= 0) {
         //pokemon fainted
-        if (statusEff === "recoil" && PKMNuser.hp - recoilDamage <= 0) {
-          switchTurns();
-        }
+        // if (statusEff === "recoil" && PKMNuser.hp - recoilDamage <= 0) {
+        //   switchTurns();
+        // }
         setTimeout(
           () =>
             FaintPokemon(
@@ -179,9 +179,9 @@ const DealDamage = (
           3200
         );
         setTimeout(() => checkWin(), 6200);
-        if (statusEff === "recoil" && PKMNuser.hp - recoilDamage <= 0) {
-          setTimeout(() => switchTurns(), 3100);
-        }
+        // if (statusEff === "recoil" && PKMNuser.hp - recoilDamage <= 0) {
+        //   setTimeout(() => switchTurns(), 3100);
+        // }
       }
       //if critical message is shown
     } else if (critMessage !== "" && effectiveMessage === "") {
@@ -192,9 +192,9 @@ const DealDamage = (
 
       if (PKMNtarget.hp <= 0) {
         //pokemon fainted
-        if (statusEff === "recoil" && PKMNuser.hp - recoilDamage <= 0) {
-          switchTurns();
-        }
+        // if (statusEff === "recoil" && PKMNuser.hp - recoilDamage <= 0) {
+        //   switchTurns();
+        // }
         setTimeout(
           () =>
             FaintPokemon(
@@ -214,9 +214,9 @@ const DealDamage = (
           4700
         );
         setTimeout(() => checkWin(), 7700);
-        if (statusEff === "recoil" && PKMNuser.hp - recoilDamage <= 0) {
-          setTimeout(() => switchTurns(), 4600);
-        }
+        // if (statusEff === "recoil" && PKMNuser.hp - recoilDamage <= 0) {
+        //   setTimeout(() => switchTurns(), 4600);
+        // }
       }
       //if effective message is shown
     } else if (critMessage === "" && effectiveMessage !== "") {
@@ -227,9 +227,9 @@ const DealDamage = (
 
       if (PKMNtarget.hp <= 0) {
         //pokemon fainted
-        if (statusEff === "recoil" && PKMNuser.hp - recoilDamage <= 0) {
-          switchTurns();
-        }
+        // if (statusEff === "recoil" && PKMNuser.hp - recoilDamage <= 0) {
+        //   switchTurns();
+        // }
         setTimeout(
           () =>
             FaintPokemon(
@@ -249,9 +249,9 @@ const DealDamage = (
           4700
         );
         setTimeout(() => checkWin(), 7700);
-        if (statusEff === "recoil" && PKMNuser.hp - recoilDamage <= 0) {
-          setTimeout(() => switchTurns(), 4600);
-        }
+        // if (statusEff === "recoil" && PKMNuser.hp - recoilDamage <= 0) {
+        //   setTimeout(() => switchTurns(), 4600);
+        // }
       }
       //if both critical and effective messages are shown
     } else if (critMessage !== "" && effectiveMessage !== "") {
@@ -263,9 +263,9 @@ const DealDamage = (
 
       if (PKMNtarget.hp <= 0) {
         //pokemon fainted
-        if (statusEff === "recoil" && PKMNuser.hp - recoilDamage <= 0) {
-          switchTurns();
-        }
+        // if (statusEff === "recoil" && PKMNuser.hp - recoilDamage <= 0) {
+        //   switchTurns();
+        // }
         setTimeout(
           () =>
             FaintPokemon(
@@ -285,9 +285,9 @@ const DealDamage = (
           6200
         );
         setTimeout(() => checkWin(), 9200);
-        if (statusEff === "recoil" && PKMNuser.hp - recoilDamage <= 0) {
-          setTimeout(() => switchTurns(), 6100);
-        }
+        // if (statusEff === "recoil" && PKMNuser.hp - recoilDamage <= 0) {
+        //   setTimeout(() => switchTurns(), 6100);
+        // }
       }
     }
   } else {
