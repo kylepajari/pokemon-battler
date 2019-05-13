@@ -262,7 +262,7 @@ class BadgesContainer extends Component {
           if (res.data !== "") {
             //assign to team 2
             this.props.setPlayer2Team(res.data.team);
-            if (this.props.user.team.length !== 0) {
+            if (this.props.player1Team.length !== 0) {
               $(document.querySelectorAll(".dropdown")).fadeOut(100);
               $(document.querySelector(".pokemonSheetContainer")).addClass(
                 "deRender"
@@ -290,7 +290,7 @@ class BadgesContainer extends Component {
           if (res.data !== "") {
             //assign to team 2
             this.props.setPlayer2Team(res.data.team);
-            if (this.props.user.team.length !== 0) {
+            if (this.props.player1Team.length !== 0) {
               $(document.querySelectorAll(".dropdown")).fadeOut(100);
               $(document.querySelector(".pokemonSheetContainer")).addClass(
                 "deRender"
@@ -318,7 +318,7 @@ class BadgesContainer extends Component {
           if (res.data !== "") {
             //assign to team 2
             this.props.setPlayer2Team(res.data.team);
-            if (this.props.user.team.length !== 0) {
+            if (this.props.player1Team.length !== 0) {
               $(document.querySelectorAll(".dropdown")).fadeOut(100);
               $(document.querySelector(".pokemonSheetContainer")).addClass(
                 "deRender"
@@ -346,7 +346,7 @@ class BadgesContainer extends Component {
           if (res.data !== "") {
             //assign to team 2
             this.props.setPlayer2Team(res.data.team);
-            if (this.props.user.team.length !== 0) {
+            if (this.props.player1Team.length !== 0) {
               $(document.querySelectorAll(".dropdown")).fadeOut(100);
               $(document.querySelector(".pokemonSheetContainer")).addClass(
                 "deRender"
@@ -374,7 +374,7 @@ class BadgesContainer extends Component {
           if (res.data !== "") {
             //assign to team 2
             this.props.setPlayer2Team(res.data.team);
-            if (this.props.user.team.length !== 0) {
+            if (this.props.player1Team.length !== 0) {
               $(document.querySelectorAll(".dropdown")).fadeOut(100);
               $(document.querySelector(".pokemonSheetContainer")).addClass(
                 "deRender"
@@ -402,7 +402,7 @@ class BadgesContainer extends Component {
           if (res.data !== "") {
             //assign to team 2
             this.props.setPlayer2Team(res.data.team);
-            if (this.props.user.team.length !== 0) {
+            if (this.props.player1Team.length !== 0) {
               $(document.querySelectorAll(".dropdown")).fadeOut(100);
               $(document.querySelector(".pokemonSheetContainer")).addClass(
                 "deRender"
@@ -430,7 +430,7 @@ class BadgesContainer extends Component {
           if (res.data !== "") {
             //assign to team 2
             this.props.setPlayer2Team(res.data.team);
-            if (this.props.user.team.length !== 0) {
+            if (this.props.player1Team.length !== 0) {
               $(document.querySelectorAll(".dropdown")).fadeOut(100);
               $(document.querySelector(".pokemonSheetContainer")).addClass(
                 "deRender"
@@ -458,7 +458,7 @@ class BadgesContainer extends Component {
           if (res.data !== "") {
             //assign to team 2
             this.props.setPlayer2Team(res.data.team);
-            if (this.props.user.team.length !== 0) {
+            if (this.props.player1Team.length !== 0) {
               $(document.querySelectorAll(".dropdown")).fadeOut(100);
               $(document.querySelector(".pokemonSheetContainer")).addClass(
                 "deRender"
@@ -485,7 +485,7 @@ class BadgesContainer extends Component {
           if (res.data !== "") {
             //assign to team 2
             this.props.setPlayer2Team(res.data.team);
-            if (this.props.user.team.length !== 0) {
+            if (this.props.player1Team.length !== 0) {
               $(document.querySelectorAll(".dropdown")).fadeOut(100);
               $(document.querySelector(".pokemonSheetContainer")).addClass(
                 "deRender"
@@ -512,7 +512,7 @@ class BadgesContainer extends Component {
           if (res.data !== "") {
             //assign to team 2
             this.props.setPlayer2Team(res.data.team);
-            if (this.props.user.team.length !== 0) {
+            if (this.props.player1Team.length !== 0) {
               $(document.querySelectorAll(".dropdown")).fadeOut(100);
               $(document.querySelector(".pokemonSheetContainer")).addClass(
                 "deRender"
@@ -539,7 +539,7 @@ class BadgesContainer extends Component {
           if (res.data !== "") {
             //assign to team 2
             this.props.setPlayer2Team(res.data.team);
-            if (this.props.user.team.length !== 0) {
+            if (this.props.player1Team.length !== 0) {
               $(document.querySelectorAll(".dropdown")).fadeOut(100);
               $(document.querySelector(".pokemonSheetContainer")).addClass(
                 "deRender"
@@ -566,7 +566,7 @@ class BadgesContainer extends Component {
           if (res.data !== "") {
             //assign to team 2
             this.props.setPlayer2Team(res.data.team);
-            if (this.props.user.team.length !== 0) {
+            if (this.props.player1Team.length !== 0) {
               $(document.querySelectorAll(".dropdown")).fadeOut(100);
               $(document.querySelector(".pokemonSheetContainer")).addClass(
                 "deRender"
@@ -593,7 +593,7 @@ class BadgesContainer extends Component {
           if (res.data !== "") {
             //assign to team 2
             this.props.setPlayer2Team(res.data.team);
-            if (this.props.user.team.length !== 0) {
+            if (this.props.player1Team.length !== 0) {
               $(document.querySelectorAll(".dropdown")).fadeOut(100);
               $(document.querySelector(".pokemonSheetContainer")).addClass(
                 "deRender"
@@ -839,7 +839,8 @@ class BadgesContainer extends Component {
 function mapStateToProps(state) {
   return {
     badges: state.badges,
-    user: state.user
+    user: state.user,
+    player1Team: state.player1Team
   };
 }
 

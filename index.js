@@ -6,7 +6,8 @@ const UserRoutes = require("./express/routes/users");
 const LeaderRoutes = require("./express/routes/leaders");
 
 mongoose.connect(
-  "mongodb+srv://admin:admin@cluster0-1gjvo.mongodb.net/test?retryWrites=true"
+  "mongodb+srv://admin:admin@cluster0-1gjvo.mongodb.net/test?retryWrites=false",
+  { useNewUrlParser: true }
 );
 
 const port = process.env.PORT || 4001;

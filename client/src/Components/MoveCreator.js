@@ -2972,7 +2972,7 @@ const CreateMoves = moveName => {
       name: moveName,
       category: "physical",
       power: 65,
-      type: "eletric",
+      type: "electric",
       accuracy: 100,
       pp: 10,
       statusEff: "Paralyze",

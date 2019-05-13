@@ -43,6 +43,8 @@ class Login extends Component {
   signUp = e => {
     e.preventDefault();
     if (this.Validate("signup")) {
+      console.log("got through validation");
+
       this.props
         .signUp({ ...this.state })
         .then(res => {
@@ -57,6 +59,8 @@ class Login extends Component {
             message: err.response.data
           })
         );
+    } else {
+      // console.log("did not get through validation");
     }
   };
 
@@ -70,24 +74,26 @@ class Login extends Component {
       this.setState({ message: "Please enter a Password!" });
       return false;
     } else {
-      if (type === "signup") {
-        //check for duplicates
-        let foundExisting = false;
-        this.props.getAllUsers().then(res => {
-          for (let i = 0; i < res.length; i++) {
-            if (res[i]["username"] === this.state.username) {
-              //found existing user
-              foundExisting = true;
-              this.setState({
-                message: "Account exists with given Username."
-              });
-            }
-            return foundExisting;
-          }
-        });
-      } else {
-        return true;
-      }
+      // if (type === "signup") {
+      //   //check for duplicates
+      //   let foundExisting = true;
+      //   this.props.getAllUsers().then(res => {
+      //     for (let i = 0; i < res.length; i++) {
+      //       if (res[i]["username"] === this.state.username) {
+      //         //found existing user
+      //         foundExisting = false;
+      //         this.setState({
+      //           message: "Account exists with given Username."
+      //         });
+      //       }
+      //       console.log(foundExisting);
+      //       return foundExisting;
+      //     }
+      //   });
+      // } else {
+      //   return true;
+      // }
+      return true;
     }
   };
 

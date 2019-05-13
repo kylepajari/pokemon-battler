@@ -29,7 +29,6 @@ class TeamBuilder extends Component {
       currentPokemon: null,
       currentPokemonName: "",
       currentPokemonTypes: [],
-      currentPokemonTeamTypes: [],
       currentPokemonSprite: "",
       currentPokemonSpriteBack: "",
       currentPokemonHeight: 0,
@@ -284,7 +283,7 @@ class TeamBuilder extends Component {
   };
 
   calcStats = (stat, baseStat, lv) => {
-    const IV = 8; //average IV
+    const IV = Math.round(RandomNumberGenerator(0, 31)); //IV calc: number between 0 and 31, randomly chosen per pokemon
     const EV = 20000; //average EV
     if (stat === "hp") {
       //use hp formula
@@ -436,12 +435,20 @@ class TeamBuilder extends Component {
   };
 
   fetchPokemon = (num, level, team, name) => {
-    let url = "https://pokeapi.co/api/v2/pokemon/" + num;
-    fetch(url)
-      .then(response => response.json())
-      .then(data =>
-        this.setState({ data }, () => this.addPokemon(level, team, name))
-      );
+    console.log("add to team", num, level, team, name);
+    if (this.state.currentPokemon === null) {
+      let url = "https://pokeapi.co/api/v2/pokemon/" + num;
+      fetch(url)
+        .then(response => response.json())
+        .then(currentPokemon =>
+          this.setState({ currentPokemon }, () => this.fillmodalPokeInfo())
+        )
+        .then(() => {
+          this.addPokemon(level, team, name);
+        });
+    } else {
+      this.addPokemon(level, team, name);
+    }
   };
 
   modalPokemon = num => {
@@ -471,7 +478,9 @@ class TeamBuilder extends Component {
       currentPokemonName: this.state.currentPokemon.name,
       currentPokemonSprite: this.state.currentPokemon.frontSprite,
       currentPokemonSpriteBack: this.state.currentPokemon.backSprite,
-      currentPokemonTeamTypes: this.state.currentPokemon.types,
+      currentPokemonTypes: this.state.currentPokemon.types.map((item, i) => {
+        return item;
+      }),
       currentPokemonHP: this.state.currentPokemon.OrigHp,
       currentPokemonAtk: this.state.currentPokemon.OrigAttack,
       currentPokemonDef: this.state.currentPokemon.OrigDefense,
@@ -488,7 +497,10 @@ class TeamBuilder extends Component {
     this.setState({
       currentPokemonName: this.state.currentPokemon.name,
       currentPokemonSprite: this.state.currentPokemon.sprites.front_default,
-      currentPokemonTypes: this.state.currentPokemon.types,
+      currentPokemonSpriteBack: this.state.currentPokemon.sprites.back_default,
+      currentPokemonTypes: this.state.currentPokemon.types.map(item => {
+        return item.type.name;
+      }),
       currentPokemonHeight: this.state.currentPokemon.height,
       currentPokemonWeight: this.state.currentPokemon.weight,
       currentPokemonId: this.state.currentPokemon.id,
@@ -521,77 +533,39 @@ class TeamBuilder extends Component {
         "specialdefense",
         this.state.currentPokemon.stats[1].base_stat,
         level
-      )
+      ),
+      currentPokemonMoves: this.movesBuilder(this.state.currentPokemon.moves)
     });
   };
 
   addPokemon = (level, team, name) => {
     let pokemonObj = null;
-    console.log("adding pokemon", this.state.data.name);
     pokemonObj = {
-      name: this.Capitalize(this.state.data.name),
-      frontSprite: this.state.data.sprites.front_default,
-      frontSpriteShiny: this.state.data.sprites.front_shiny,
-      backSprite: this.state.data.sprites.back_default,
-      backSpriteShiny: this.state.data.sprites.back_shiny,
+      name: this.Capitalize(this.state.currentPokemon.name),
+      frontSprite: this.state.currentPokemonSprite,
+      backSprite: this.state.currentPokemonSpriteBack,
       lv: level,
-      OrigHp: this.calcStats("hp", this.state.data.stats[5].base_stat, level),
+      OrigHp: this.state.currentPokemonHP,
       // OrigHp: 3,
-      hp: this.calcStats("hp", this.state.data.stats[5].base_stat, level),
+      hp: this.state.currentPokemonHP,
       // hp: 3,
-      OrigAttack: this.calcStats(
-        "attack",
-        this.state.data.stats[4].base_stat,
-        level
-      ),
-      attack: this.calcStats(
-        "attack",
-        this.state.data.stats[4].base_stat,
-        level
-      ),
-      OrigDefense: this.calcStats(
-        "defense",
-        this.state.data.stats[3].base_stat,
-        level
-      ),
-      defense: this.calcStats(
-        "defense",
-        this.state.data.stats[3].base_stat,
-        level
-      ),
-      OrigSpeed: this.calcStats(
-        "speed",
-        this.state.data.stats[0].base_stat,
-        level
-      ),
-      speed: this.calcStats("speed", this.state.data.stats[0].base_stat, level),
-      OrigSpecialattack: this.calcStats(
-        "specialattack",
-        this.state.data.stats[2].base_stat,
-        level
-      ),
-      specialattack: this.calcStats(
-        "specialattack",
-        this.state.data.stats[2].base_stat,
-        level
-      ),
-      OrigSpecialdefense: this.calcStats(
-        "specialdefense",
-        this.state.data.stats[1].base_stat,
-        level
-      ),
-      specialdefense: this.calcStats(
-        "specialdefense",
-        this.state.data.stats[1].base_stat,
-        level
-      ),
+      OrigAttack: this.state.currentPokemonAtk,
+      attack: this.state.currentPokemonAtk,
+      OrigDefense: this.state.currentPokemonDef,
+      defense: this.state.currentPokemonDef,
+      OrigSpeed: this.state.currentPokemonSpd,
+      speed: this.state.currentPokemonSpd,
+      OrigSpecialattack: this.state.currentPokemonSpcAtk,
+      specialattack: this.state.currentPokemonSpcAtk,
+      OrigSpecialdefense: this.state.currentPokemonSpcDef,
+      specialdefense: this.state.currentPokemonSpcDef,
       types: [
-        this.state.data.types.map(item => {
+        this.state.currentPokemon.types.map(item => {
           return item.type.name;
         })
       ],
-      moves: this.movesBuilder(this.state.data.moves),
-      cry: CryAssign(this.Capitalize(this.state.data.name)),
+      moves: this.state.currentPokemonMoves,
+      cry: CryAssign(this.Capitalize(this.state.currentPokemonName)),
       accuracy: 1,
       evasion: 1,
       inBattle: false,
@@ -662,7 +636,7 @@ class TeamBuilder extends Component {
     ) {
       //update team to DB if not exist
 
-      if (this.props.user.team.length === 0 && this.props.mode === "Single") {
+      if (this.props.player1Team.length === 6 && this.props.mode === "Single") {
         this.props.updateTeam(this.props.id, this.props.player1Team);
       }
       if (this.props.mode === "Single") {
@@ -687,6 +661,8 @@ class TeamBuilder extends Component {
     } else {
       this.forceUpdate();
     }
+
+    this.setState({ currentPokemon: null });
   };
 
   toggleOpen = () => {
@@ -735,14 +711,9 @@ class TeamBuilder extends Component {
   ////////////////////////////////////////////////////////////////////////////////////////////////
   Types = array => {
     var typesList = array.map((item, i) => {
-      return MatchIconWithType(item.type.name);
-    });
-    return <span>{typesList}</span>;
-  };
-  TeamTypes = array => {
-    var typesList = array.map((item, i) => {
       return MatchIconWithType(item);
     });
+
     return <span>{typesList}</span>;
   };
 
@@ -1089,26 +1060,27 @@ class TeamBuilder extends Component {
                 <div className="modalStats">
                   <div>
                     <ul>
-                      <li>
-                        Height:{" "}
-                        {Math.round(
-                          (this.state.currentPokemonHeight / 10) * 3.281
-                        )}{" "}
-                        ft
-                      </li>
-                      <li>
-                        Weight:{" "}
-                        {Math.round(
-                          (this.state.currentPokemonWeight / 10) * 2.205
-                        )}{" "}
-                        lbs
-                      </li>
                       <li>HP: {this.state.currentPokemonHP}</li>
                       <li>ATK: {this.state.currentPokemonAtk}</li>
                       <li>DEF: {this.state.currentPokemonDef}</li>
                       <li>SPD: {this.state.currentPokemonSpd}</li>
                       <li>SPC ATK: {this.state.currentPokemonSpcAtk}</li>
                       <li>SPC DEF: {this.state.currentPokemonSpcDef}</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="modalMoves">
+                  <div>
+                    <p>Moves:</p>
+                    <ul>
+                      {this.state.currentPokemonMoves.map(move => {
+                        return (
+                          <li key={move.name}>
+                            {move.name.toUpperCase()} / PP:{move.pp} /{" "}
+                            {MatchIconWithType(move.type)}
+                          </li>
+                        );
+                      })}
                     </ul>
                   </div>
                 </div>

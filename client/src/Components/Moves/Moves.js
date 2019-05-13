@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./Moves.css";
 import { MatchIconWithType } from "../MatchTypeIcon";
 import { UseMove } from "./UseMove";
+import $ from "jquery";
 
 class Moves extends Component {
   constructor(props) {
@@ -11,6 +12,12 @@ class Moves extends Component {
     this.state = {
       displayMoves: false
     };
+  }
+
+  componentDidMount() {
+    $(function() {
+      $('[data-toggle="popover"]').popover();
+    });
   }
 
   componentWillReceiveProps(props) {
