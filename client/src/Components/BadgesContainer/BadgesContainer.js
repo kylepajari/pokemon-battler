@@ -20,6 +20,7 @@ import {
   setPlayer2Team,
   setPlayerTwoName
 } from "../../actions";
+import { RandomNumberGenerator } from "../RandomNumberGenerator";
 
 class BadgesContainer extends Component {
   constructor(props) {
@@ -615,6 +616,23 @@ class BadgesContainer extends Component {
         });
         this.props.setPlayerTwoName("Blue");
         break;
+      case "Random":
+        //fetch pokemon to create team
+        let rand = Math.round(RandomNumberGenerator(1, 251));
+        this.props.fetchPokemon(rand, 50, "team2", "CPU");
+        rand = Math.round(RandomNumberGenerator(1, 251));
+        this.props.fetchPokemon(rand, 50, "team2", "CPU");
+        rand = Math.round(RandomNumberGenerator(1, 251));
+        this.props.fetchPokemon(rand, 50, "team2", "CPU");
+        rand = Math.round(RandomNumberGenerator(1, 251));
+        this.props.fetchPokemon(rand, 50, "team2", "CPU");
+        rand = Math.round(RandomNumberGenerator(1, 251));
+        this.props.fetchPokemon(rand, 50, "team2", "CPU");
+        rand = Math.round(RandomNumberGenerator(1, 251));
+        this.props.fetchPokemon(rand, 50, "team2", "CPU");
+
+        this.props.setPlayerTwoName("CPU");
+        break;
       default:
     }
     $(document.querySelectorAll(".badgesContainer")).fadeOut(10);
@@ -700,6 +718,14 @@ class BadgesContainer extends Component {
               <img src={Earth_Badge} alt="Earth Badge" />
               Earth Badge - Giovanni
             </button>
+            <button
+              id="random"
+              type="button"
+              className="btn btn-light"
+              onClick={() => this.aiTeamBuilder("Random")}
+            >
+              Random Trainer - CPU
+            </button>
           </div>
         </div>
       );
@@ -779,6 +805,14 @@ class BadgesContainer extends Component {
             >
               <img src={Earth_Badge} alt="Earth Badge" />
               Earth Badge - Giovanni
+            </button>
+            <button
+              id="random"
+              type="button"
+              className="btn btn-light"
+              onClick={() => this.aiTeamBuilder("Random")}
+            >
+              Random Trainer - CPU
             </button>
           </div>
 
