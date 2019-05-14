@@ -132,22 +132,104 @@
 }
 .typeChartButton {
   position: absolute;
-  margin-left: 80%;
+  margin-left: 78%;
   margin-top: -4%;
   height: 22px;
-  width: 108px;
+  width: 115px;
   font-size: 8px;
 }
 .typeChartPopup > .modal-dialog {
   max-width: 95vw;
 }
+.typeChartPopup > .modal-dialog > .modal-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  /* grid-template-columns: 1fr 1fr; */
+  grid-template-rows: auto;
+  grid-template-areas:
+    "chart-1 chart-2 chart-3 chart-4"
+    "chart-5 chart-6 chart-7 chart-8"
+    "chart-9 chart-10 chart-11 chart-12"
+    "chart-13 chart-14 chart-15 chart-16"
+    "chart-f chart-f chart-f chart-f";
+  /* grid-template-areas:
+    "chart-1 chart-2"
+    "chart-3 chart-4"
+    "chart-5 chart-6"
+    "chart-7 chart-8"
+    "chart-9 chart-10"
+    "chart-11 chart-12"
+    "chart-13 chart-14"
+    "chart-15 chart-16"
+    "chart-f chart-f"; */
+  justify-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+.chart-1 {
+  grid-area: chart-1;
+}
+.chart-2 {
+  grid-area: chart-2;
+}
+.chart-3 {
+  grid-area: chart-3;
+}
+.chart-4 {
+  grid-area: chart-4;
+}
+.chart-5 {
+  grid-area: chart-5;
+}
+.chart-6 {
+  grid-area: chart-6;
+}
+.chart-7 {
+  grid-area: chart-7;
+}
+.chart-8 {
+  grid-area: chart-8;
+}
+.chart-9 {
+  grid-area: chart-9;
+}
+.chart-10 {
+  grid-area: chart-10;
+}
+.chart-11 {
+  grid-area: chart-11;
+}
+.chart-12 {
+  grid-area: chart-12;
+}
+.chart-13 {
+  grid-area: chart-13;
+}
+.chart-14 {
+  grid-area: chart-14;
+}
+.chart-15 {
+  grid-area: chart-15;
+}
+.chart-16 {
+  grid-area: chart-16;
+}
+.chart-f {
+  grid-area: chart-f;
+}
+/* .typeChart {
+  width: 720px;
+  height: 670px;
+} */
 .typeChart {
-  width: 94vw;
-  height: 600px;
+  width: 364px;
+  height: 155px;
 }
 
 .typeChartPopup > .modal-dialog > .modal-content > .modal-footer {
-  padding: 8px;
+  padding: 2px;
+  width: 100%;
 }
 .typeChartPopup > .modal-dialog > .modal-content > .modal-footer > button {
   font-size: 18px;

@@ -45,7 +45,22 @@ import Earth_Badge from "../BadgesContainer/Badges/Earth_Badge.png";
 import Champion_Badge from "../BadgesContainer/Badges/Champion_Badge.png";
 import Elite_Four from "../BadgesContainer/Badges/Elite_Four.png";
 import { PlayLeaderOutro } from "../LeaderOutro";
-import TypeChart from "../../TypeChart.png";
+import Bug from "../../TypeCharts/bug.jpg";
+import Dragon from "../../TypeCharts/dragon.jpg";
+import Electric from "../../TypeCharts/electric.jpg";
+import Fighting from "../../TypeCharts/fighting.jpg";
+import Fire from "../../TypeCharts/fire.jpg";
+import Flying from "../../TypeCharts/flying.jpg";
+import Ghost from "../../TypeCharts/ghost.jpg";
+import Grass from "../../TypeCharts/grass.jpg";
+import Ground from "../../TypeCharts/ground.jpg";
+import Ice from "../../TypeCharts/ice.jpg";
+import Normal from "../../TypeCharts/normal.jpg";
+import Poison from "../../TypeCharts/poison.jpg";
+import Psychic from "../../TypeCharts/psychic.jpg";
+import Rock from "../../TypeCharts/rock.jpg";
+import Steel from "../../TypeCharts/steel.jpg";
+import Water from "../../TypeCharts/water.jpg";
 
 class BattleStage extends Component {
   constructor(props) {
@@ -2168,7 +2183,7 @@ class BattleStage extends Component {
                   data-toggle="modal"
                   data-target=".typeChartPopup"
                 >
-                  Type Chart
+                  Type Charts
                 </button>
                 <img
                   className={` ${
@@ -2185,12 +2200,71 @@ class BattleStage extends Component {
               >
                 <div className="modal-dialog modal-dialog-centered">
                   <div className="modal-content">
+                    <img className="typeChart chart-1" src={Bug} alt="Bug" />
                     <img
-                      className="typeChart"
-                      src={TypeChart}
-                      alt="Type Chart"
+                      className="typeChart chart-2"
+                      src={Dragon}
+                      alt="Dragon"
                     />
-                    <div className="modal-footer">
+                    <img
+                      className="typeChart chart-3"
+                      src={Electric}
+                      alt="Electric"
+                    />
+                    <img
+                      className="typeChart chart-4"
+                      src={Fighting}
+                      alt="Fighting"
+                    />
+                    <img className="typeChart chart-5" src={Fire} alt="Fire" />
+                    <img
+                      className="typeChart chart-6"
+                      src={Flying}
+                      alt="Flying"
+                    />
+                    <img
+                      className="typeChart chart-7"
+                      src={Ghost}
+                      alt="Ghost"
+                    />
+                    <img
+                      className="typeChart chart-8"
+                      src={Grass}
+                      alt="Grass"
+                    />
+                    <img
+                      className="typeChart chart-9"
+                      src={Ground}
+                      alt="Ground"
+                    />
+                    <img className="typeChart chart-10" src={Ice} alt="Ice" />
+                    <img
+                      className="typeChart chart-11"
+                      src={Normal}
+                      alt="Normal"
+                    />
+                    <img
+                      className="typeChart chart-12"
+                      src={Poison}
+                      alt="Poison"
+                    />
+                    <img
+                      className="typeChart chart-13"
+                      src={Psychic}
+                      alt="Psychic"
+                    />
+                    <img className="typeChart chart-14" src={Rock} alt="Rock" />
+                    <img
+                      className="typeChart chart-15"
+                      src={Steel}
+                      alt="Steel"
+                    />
+                    <img
+                      className="typeChart chart-16"
+                      src={Water}
+                      alt="Water"
+                    />
+                    <div className="modal-footer chart-f">
                       <button
                         type="button"
                         className="btn btn-secondary"

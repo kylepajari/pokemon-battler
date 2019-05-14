@@ -384,7 +384,8 @@ class TeamBuilder extends Component {
                 type1 !== "psychic" &&
                 type1 !== "electric" &&
                 type1 !== "bug" &&
-                type1 !== "steel"
+                type1 !== "steel" &&
+                type1 !== "flying"
               ) {
                 do {
                   randomMove =
@@ -399,7 +400,10 @@ class TeamBuilder extends Component {
                 type2 !== null &&
                 type2 !== "psychic" &&
                 type2 !== "water" &&
-                type2 !== "bug"
+                type2 !== "bug" &&
+                type2 !== "poison" &&
+                type2 !== "grass" &&
+                type2 !== "steel"
               ) {
                 do {
                   randomMove =
@@ -486,7 +490,8 @@ class TeamBuilder extends Component {
                 type1 !== "flying" &&
                 type1 !== "ghost" &&
                 type1 !== "bug" &&
-                type1 !== "dragon"
+                type1 !== "dragon" &&
+                type1 !== "steel"
               ) {
                 do {
                   randomMove =
