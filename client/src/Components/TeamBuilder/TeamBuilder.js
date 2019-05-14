@@ -403,7 +403,9 @@ class TeamBuilder extends Component {
                 type2 !== "bug" &&
                 type2 !== "poison" &&
                 type2 !== "grass" &&
-                type2 !== "steel"
+                type2 !== "steel" &&
+                type2 !== "electric" &&
+                type2 !== "fire"
               ) {
                 do {
                   randomMove =
