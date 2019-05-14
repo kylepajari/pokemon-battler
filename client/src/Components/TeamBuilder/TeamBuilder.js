@@ -283,7 +283,7 @@ class TeamBuilder extends Component {
   };
 
   calcStats = (stat, baseStat, lv) => {
-    const IV = Math.round(RandomNumberGenerator(0, 31)); //IV calc: number between 0 and 31, randomly chosen per pokemon
+    const IV = Math.round(RandomNumberGenerator(10, 20)); //IV calc: number between 0 and 31, randomly chosen per pokemon
     const EV = 20000; //average EV
     if (stat === "hp") {
       //use hp formula
@@ -313,7 +313,14 @@ class TeamBuilder extends Component {
 
   //MOVES LIST BUILDER FUNCTION //////////////////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-  movesBuilder = movesToMap => {
+  movesBuilder = (movesToMap, types) => {
+    let type1 = types[0].type.name;
+    let type2 = null;
+    if (types[1] !== undefined) {
+      type2 = types[1].type.name;
+    }
+    console.log("type 1: " + type1, "type 2: " + type2);
+
     let usableMoves = [];
     //go through moves, and create new list with objects for each one
     let movesList = movesToMap.map((item, i) => {
@@ -356,20 +363,64 @@ class TeamBuilder extends Component {
     //if pokemon has more than 4 moves available
     if (physical.length + special.length + status.length > 4) {
       if (physical.length > special.length) {
+        console.log("more physical");
+
         //more physical moves than special
         for (let i = 0; i < 2; i++) {
           //add two physical moves
           if (physical.length > 2) {
+            //force at least one move to equal main type of pokemon
             let randomMove =
               physical[Math.floor(Math.random() * physical.length)];
 
-            //prevent duplicate moves
-            if (i === 1) {
-              do {
-                randomMove =
-                  physical[Math.floor(Math.random() * physical.length)];
-              } while (finalMoves[0].name === randomMove.name);
+            if (i === 0) {
+              if (
+                type1 !== "fairy" &&
+                type1 !== "poison" &&
+                type1 !== "water" &&
+                type1 !== "normal" &&
+                type1 !== "fire" &&
+                type1 !== "grass" &&
+                type1 !== "psychic" &&
+                type1 !== "electric" &&
+                type1 !== "bug" &&
+                type1 !== "steel"
+              ) {
+                do {
+                  randomMove =
+                    physical[Math.floor(Math.random() * physical.length)];
+                } while (randomMove.type !== type1);
+                console.log(
+                  "found physical move that matches type 1 ",
+                  type1,
+                  randomMove.name
+                );
+              } else if (
+                type2 !== null &&
+                type2 !== "psychic" &&
+                type2 !== "water" &&
+                type2 !== "bug"
+              ) {
+                do {
+                  randomMove =
+                    physical[Math.floor(Math.random() * physical.length)];
+                } while (randomMove.type !== type2);
+                console.log(
+                  "found physical move that matches type 2 ",
+                  type2,
+                  randomMove.name
+                );
+              }
+            } else {
+              //prevent duplicate moves
+              if (i === 1) {
+                do {
+                  randomMove =
+                    physical[Math.floor(Math.random() * physical.length)];
+                } while (finalMoves[0].name === randomMove.name);
+              }
             }
+
             if (i === 0) {
               console.log(randomMove.name + " was chosen as FIRST MOVE");
             } else {
@@ -385,10 +436,34 @@ class TeamBuilder extends Component {
 
         //add single special move
         let randomMove = special[Math.floor(Math.random() * special.length)];
+        if (
+          ((finalMoves[0].type !== type1 && finalMoves[1] !== type1) ||
+            (finalMoves[0].type !== type2 && finalMoves[1] !== type2)) &&
+          type1 !== "normal" &&
+          type1 !== "fairy" &&
+          type1 !== "ground" &&
+          type1 !== "fighting" &&
+          type1 !== "rock" &&
+          type1 !== "flying" &&
+          type1 !== "bug" &&
+          type1 !== "dark" &&
+          type1 !== "steel"
+        ) {
+          do {
+            randomMove = special[Math.floor(Math.random() * special.length)];
+          } while (randomMove.type !== type1 && randomMove.type !== type2);
+          console.log(
+            "found special move that matches type 1 or 2",
+            type1,
+            type2,
+            randomMove.name
+          );
+        }
         console.log(randomMove.name + " was chosen as THIRD MOVE");
         finalMoves.push(randomMove);
       } else {
         //more special moves than physical
+        console.log("more special");
         //add single physical move
         let randomMove = physical[Math.floor(Math.random() * physical.length)];
         console.log(randomMove.name + " was chosen as FIRST MOVE");
@@ -397,9 +472,44 @@ class TeamBuilder extends Component {
         for (let i = 0; i < 2; i++) {
           //add two special moves
           if (special.length > 2) {
+            //force at least one move to equal main type of pokemon
             let randomMove =
               special[Math.floor(Math.random() * special.length)];
-            if (i === 1) {
+
+            if (i === 0) {
+              if (
+                type1 !== "fairy" &&
+                type1 !== "fighting" &&
+                type1 !== "normal" &&
+                type1 !== "ground" &&
+                type1 !== "rock" &&
+                type1 !== "flying" &&
+                type1 !== "ghost" &&
+                type1 !== "bug" &&
+                type1 !== "dragon"
+              ) {
+                do {
+                  randomMove =
+                    special[Math.floor(Math.random() * special.length)];
+                } while (randomMove.type !== type1);
+                console.log(
+                  "found special move that matches type 1 ",
+                  type1,
+                  randomMove.name
+                );
+              } else if (type2 !== null && type2 !== "bug") {
+                do {
+                  randomMove =
+                    special[Math.floor(Math.random() * special.length)];
+                } while (randomMove.type !== type2);
+                console.log(
+                  "found special move that matches type 2 ",
+                  type2,
+                  randomMove.name
+                );
+              }
+            } else {
+              //prevent duplicate moves
               do {
                 randomMove =
                   special[Math.floor(Math.random() * special.length)];
@@ -534,7 +644,10 @@ class TeamBuilder extends Component {
         this.state.currentPokemon.stats[1].base_stat,
         level
       ),
-      currentPokemonMoves: this.movesBuilder(this.state.currentPokemon.moves)
+      currentPokemonMoves: this.movesBuilder(
+        this.state.currentPokemon.moves,
+        this.state.currentPokemon.types
+      )
     });
   };
 
@@ -1071,7 +1184,6 @@ class TeamBuilder extends Component {
                 </div>
                 <div className="modalMoves">
                   <div>
-                    <p>Moves:</p>
                     <ul>
                       {this.state.currentPokemonMoves.map(move => {
                         return (

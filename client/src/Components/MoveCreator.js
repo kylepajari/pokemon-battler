@@ -3334,11 +3334,11 @@ const CreateMoves = moveName => {
   if (moveName === "Hidden Power") {
     return {
       name: moveName,
-      category: "physical",
-      power: 40,
+      category: "special",
+      power: 60,
       type: "normal",
       accuracy: 100,
-      pp: 35,
+      pp: 15,
       statusEff: "",
       statusProb: 1,
       sound: HiddenPower
