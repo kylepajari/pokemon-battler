@@ -611,10 +611,21 @@ class TeamBuilder extends Component {
 
   fillmodalPokeInfo = () => {
     let level = this.state.globalLevel;
+    let rand = Math.random();
+    let Sprite = this.state.currentPokemon.sprites.front_default;
+    let SpriteBack = this.state.currentPokemon.sprites.back_default;
+    let Name = this.state.currentPokemon.name;
+    //10% chance of shiny
+    if (rand < 0.1) {
+      Sprite = this.state.currentPokemon.sprites.front_shiny;
+      SpriteBack = this.state.currentPokemon.sprites.back_shiny;
+      Name = this.state.currentPokemon.name + "*";
+    }
+
     this.setState({
-      currentPokemonName: this.state.currentPokemon.name,
-      currentPokemonSprite: this.state.currentPokemon.sprites.front_default,
-      currentPokemonSpriteBack: this.state.currentPokemon.sprites.back_default,
+      currentPokemonName: Name,
+      currentPokemonSprite: Sprite,
+      currentPokemonSpriteBack: SpriteBack,
       currentPokemonTypes: this.state.currentPokemon.types.map(item => {
         return item.type.name;
       }),
@@ -661,7 +672,7 @@ class TeamBuilder extends Component {
   addPokemon = (level, team, name) => {
     let pokemonObj = null;
     pokemonObj = {
-      name: this.Capitalize(this.state.currentPokemon.name),
+      name: this.Capitalize(this.state.currentPokemonName),
       frontSprite: this.state.currentPokemonSprite,
       backSprite: this.state.currentPokemonSpriteBack,
       lv: level,
@@ -685,7 +696,7 @@ class TeamBuilder extends Component {
         })
       ],
       moves: this.state.currentPokemonMoves,
-      cry: CryAssign(this.Capitalize(this.state.currentPokemonName)),
+      cry: CryAssign(this.Capitalize(this.state.currentPokemon.name)),
       accuracy: 1,
       evasion: 1,
       inBattle: false,

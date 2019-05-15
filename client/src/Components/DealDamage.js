@@ -296,9 +296,9 @@ const DealDamage = (
   }
 
   if (
-    PKMNtarget.hp > 0
-    // ||
-    // statusEff === "recoverDamage" ||
+    PKMNtarget.hp > 0 ||
+    statusEff === "recoverDamage"
+    //||
     // statusEff === "recoil"
   ) {
     //If pokemon did not faint from attack

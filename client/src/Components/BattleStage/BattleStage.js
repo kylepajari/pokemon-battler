@@ -146,7 +146,7 @@ class BattleStage extends Component {
 
   startBattle = () => {
     $(document.querySelector(".mainmenuButton")).fadeOut(10);
-    if (this.props.mode === "Single") {
+    if (this.props.mode === "Single" && this.props.playerTwoName !== "CPU") {
       //SINGLE PLAYER ////////////////////////////////////////////////////////////////////////////////////////
       ///////////////////////////////////////////////////////////////////////////////////////////////////////
       //set image src to correct gym leader
@@ -246,113 +246,59 @@ class BattleStage extends Component {
       }
 
       //play leader intro scene
-      if (this.props.playerTwoName !== "CPU") {
-        $(document.querySelector(".leader")).fadeIn(500);
-        PlayLeaderIntro(this.props.playerTwoName);
-        setTimeout(
-          () => $(document.querySelectorAll(".side")).fadeIn(100),
-          14000
-        );
-        setTimeout(
-          () => DisplayMessage(this.props.playerTwoName + " wants to battle!"),
-          14500
-        );
-        setTimeout(
-          () =>
-            DisplayMessage(
-              this.props.playerTwoName +
-                " sent out " +
-                this.state.player2Team[0].name +
-                "!"
-            ),
-          17000
-        );
-        let cry1 = null;
-        let cry2 = null;
-        setTimeout(
-          () => $(document.querySelector(".player2Sprite")).fadeIn(500),
-          18000
-        );
-        cry1 = new Audio(this.state.player2Team[0].cry);
-        cry1.volume = this.props.volume;
-        setTimeout(() => cry1.play(), 18500);
+      $(document.querySelector(".leader")).fadeIn(500);
+      PlayLeaderIntro(this.props.playerTwoName);
+      setTimeout(
+        () => $(document.querySelectorAll(".side")).fadeIn(100),
+        14000
+      );
+      setTimeout(
+        () => DisplayMessage(this.props.playerTwoName + " wants to battle!"),
+        14500
+      );
+      setTimeout(
+        () =>
+          DisplayMessage(
+            this.props.playerTwoName +
+              " sent out " +
+              this.state.player2Team[0].name +
+              "!"
+          ),
+        17000
+      );
+      let cry1 = null;
+      let cry2 = null;
+      setTimeout(
+        () => $(document.querySelector(".player2Sprite")).fadeIn(500),
+        18000
+      );
+      cry1 = new Audio(this.state.player2Team[0].cry);
+      cry1.volume = this.props.volume;
+      setTimeout(() => cry1.play(), 18500);
 
-        setTimeout(
-          () => DisplayMessage("Go! " + this.state.player1Team[0].name + "!"),
-          20500
-        );
-        setTimeout(
-          () => $(document.querySelector(".player1Sprite")).fadeIn(500),
-          21500
-        );
-        cry2 = new Audio(this.state.player1Team[0].cry);
-        cry2.volume = this.props.volume;
-        setTimeout(() => cry2.play(), 22000);
+      setTimeout(
+        () => DisplayMessage("Go! " + this.state.player1Team[0].name + "!"),
+        20500
+      );
+      setTimeout(
+        () => $(document.querySelector(".player1Sprite")).fadeIn(500),
+        21500
+      );
+      cry2 = new Audio(this.state.player1Team[0].cry);
+      cry2.volume = this.props.volume;
+      setTimeout(() => cry2.play(), 22000);
 
-        setTimeout(
-          () => $(document.querySelector(".options")).fadeIn(300),
-          23000
-        );
-        setTimeout(
-          () => $(document.querySelector(".mainmenuButton")).fadeIn(300),
-          23000
-        );
-        this.props.battleMusic.loop = true;
-        this.props.battleMusic.volume = this.props.volume;
-        setTimeout(() => this.props.battleMusic.play(), 24600);
-      } else {
-        setTimeout(
-          () => $(document.querySelectorAll(".side")).fadeIn(100),
-          500
-        );
-        setTimeout(
-          () => DisplayMessage(this.props.playerTwoName + " wants to battle!"),
-          1500
-        );
-        setTimeout(
-          () =>
-            DisplayMessage(
-              this.props.playerTwoName +
-                " sent out " +
-                this.state.player2Team[0].name +
-                "!"
-            ),
-          4000
-        );
-        let cry1 = null;
-        let cry2 = null;
-        setTimeout(
-          () => $(document.querySelector(".player2Sprite")).fadeIn(500),
-          5000
-        );
-        cry1 = new Audio(this.state.player2Team[0].cry);
-        cry1.volume = this.props.volume;
-        setTimeout(() => cry1.play(), 5500);
-
-        setTimeout(
-          () => DisplayMessage("Go! " + this.state.player1Team[0].name + "!"),
-          7500
-        );
-        setTimeout(
-          () => $(document.querySelector(".player1Sprite")).fadeIn(500),
-          8500
-        );
-        cry2 = new Audio(this.state.player1Team[0].cry);
-        cry2.volume = this.props.volume;
-        setTimeout(() => cry2.play(), 9000);
-
-        setTimeout(
-          () => $(document.querySelector(".options")).fadeIn(300),
-          10000
-        );
-        setTimeout(
-          () => $(document.querySelector(".mainmenuButton")).fadeIn(300),
-          10000
-        );
-        this.props.battleMusic.loop = true;
-        this.props.battleMusic.volume = this.props.volume;
-        this.props.battleMusic.play();
-      }
+      setTimeout(
+        () => $(document.querySelector(".options")).fadeIn(300),
+        23000
+      );
+      setTimeout(
+        () => $(document.querySelector(".mainmenuButton")).fadeIn(300),
+        23000
+      );
+      this.props.battleMusic.loop = true;
+      this.props.battleMusic.volume = this.props.volume;
+      setTimeout(() => this.props.battleMusic.play(), 24600);
 
       ////////////////////////////////////////////////////////////////////////////
       ////////////////////////////////////////////////////////////////////////////
@@ -568,7 +514,7 @@ class BattleStage extends Component {
         () => $(document.querySelector(".playermessage")).fadeOut(100),
         5000
       );
-      if (this.props.mode === "Single") {
+      if (this.props.mode === "Single" && this.props.playerTwoName !== "CPU") {
         //if in Single Player
         setTimeout(
           () => $(document.querySelectorAll(".side")).fadeOut(10),

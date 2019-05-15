@@ -533,6 +533,49 @@ const UseMove = (
             2000
           );
         }
+        if (PlayersTurn === "Player One") {
+          if (power > 0) {
+            setTimeout(
+              () =>
+                Sprite.animate({ marginLeft: "+=25" }, 50, function() {
+                  //animation complete
+                  Sprite.animate({ marginLeft: "-=25" });
+                }),
+              3400
+            );
+          } else {
+            //power is 0, animate sprite down
+            setTimeout(
+              () =>
+                Sprite.animate({ marginTop: "+=15" }, 80, function() {
+                  //animation complete
+                  Sprite.animate({ marginTop: "-=15" });
+                }),
+              3400
+            );
+          }
+        } else if (PlayersTurn === "Player Two") {
+          if (power > 0) {
+            setTimeout(
+              () =>
+                Sprite.animate({ marginLeft: "-=25" }, 50, function() {
+                  //animation complete
+                  Sprite.animate({ marginLeft: "+=25" });
+                }),
+              3400
+            );
+          } else {
+            //power is 0, animate sprite down
+            setTimeout(
+              () =>
+                Sprite.animate({ marginTop: "+=15" }, 80, function() {
+                  //animation complete
+                  Sprite.animate({ marginTop: "-=15" });
+                }),
+              3400
+            );
+          }
+        }
 
         //play move sound
         attack = new Audio(moveSound);
@@ -542,53 +585,125 @@ const UseMove = (
         let percentChance =
           (moveAcc * (PKMNuser.accuracy / PKMNtarget.evasion)) / 100;
         let rand = Math.random();
-
+        setTimeout(() => attack.play(), 3500);
         if (rand > percentChance) {
           setTimeout(
             () => DisplayMessage(PKMNuser.name + "'s attack Missed!"),
-            4000
+            7000
           );
           if (isUserPoisonedOrBurned || isUserBound) {
-            setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 6000);
+            setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 9000);
           } else {
-            setTimeout(() => switchTurns(), 6000);
+            setTimeout(() => switchTurns(), 9000);
           }
         } else {
-          setTimeout(() => attack.play(), 3500);
+          if (moveName === "Hyper Beam" && PKMNuser.isRecharging === false) {
+            //set recharging to true if Hyper Beam lands
+            PKMNuser.isRecharging = true;
+          }
           //does move have power, if so deal damage
           if (power > 0) {
             //if move lands, continue with deal damage
-            setTimeout(
-              () =>
-                DealDamage(
-                  power,
-                  lv,
-                  moveName,
-                  moveCategory,
-                  moveType,
-                  statusEff,
-                  statusProb,
-                  player1Team,
-                  player2Team,
-                  Player1Poke,
-                  Player2Poke,
-                  PlayersTurn,
-                  playerOneName,
-                  playerTwoName,
-                  resetMultipliers,
-                  handleTeam,
-                  handleFainted,
-                  handleForceUpdate,
-                  checkForStatusEffect,
-                  isUserPoisonedOrBurned,
-                  dealPoisonBurn,
-                  switchTurns,
-                  mode,
-                  Volume,
-                  checkWin
-                ),
-              5500
-            );
+
+            //if magnitude is used, assign random power
+            if (moveName === "Magnitude") {
+              let newPower = 0;
+              let magnitudeLevel = RandomNumberGenerator(4, 10);
+              magnitudeLevel = Math.round(magnitudeLevel);
+              switch (magnitudeLevel) {
+                case 4:
+                  newPower = 10;
+                  break;
+                case 5:
+                  newPower = 30;
+                  break;
+                case 6:
+                  newPower = 50;
+                  break;
+                case 7:
+                  newPower = 70;
+                  break;
+                case 8:
+                  newPower = 90;
+                  break;
+                case 9:
+                  newPower = 110;
+                  break;
+                case 10:
+                  newPower = 150;
+                  break;
+                default:
+                  newPower = 30;
+                  break;
+              }
+              setTimeout(
+                () => DisplayMessage("Magnitude " + magnitudeLevel + "!"),
+                4500
+              );
+              setTimeout(
+                () =>
+                  DealDamage(
+                    newPower,
+                    lv,
+                    moveName,
+                    moveCategory,
+                    moveType,
+                    statusEff,
+                    statusProb,
+                    player1Team,
+                    player2Team,
+                    Player1Poke,
+                    Player2Poke,
+                    PlayersTurn,
+                    playerOneName,
+                    playerTwoName,
+                    resetMultipliers,
+                    handleTeam,
+                    handleFainted,
+                    handleForceUpdate,
+                    checkForStatusEffect,
+                    isUserPoisonedOrBurned,
+                    dealPoisonBurn,
+                    switchTurns,
+                    mode,
+                    Volume,
+                    checkWin
+                  ),
+                6500
+              );
+            } else {
+              setTimeout(
+                () =>
+                  DealDamage(
+                    power,
+                    lv,
+                    moveName,
+                    moveCategory,
+                    moveType,
+                    statusEff,
+                    statusProb,
+                    player1Team,
+                    player2Team,
+                    Player1Poke,
+                    Player2Poke,
+                    PlayersTurn,
+                    playerOneName,
+                    playerTwoName,
+                    resetMultipliers,
+                    handleTeam,
+                    handleFainted,
+                    handleForceUpdate,
+                    checkForStatusEffect,
+                    isUserPoisonedOrBurned,
+                    dealPoisonBurn,
+                    switchTurns,
+                    mode,
+                    Volume,
+                    checkWin
+                  ),
+                5500
+              );
+            }
           } else if (power === 0 && statusEff !== "") {
             setTimeout(
               () =>

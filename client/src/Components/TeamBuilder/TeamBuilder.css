@@ -194,7 +194,10 @@ div > img {
     "badge-7 badge-8"
     "badge-9 badge-9";
   width: 280px;
-  height: 500px;
+  height: 530px;
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 5px;
 }
 
 .badgesHeader {
@@ -254,13 +257,16 @@ div > img {
     "team-5 team-6"
     "teambtn teambtn";
   width: 280px;
-  height: 500px;
+  height: 530px;
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 5px;
 }
 
 .teamHeader {
   grid-area: teamHeader;
   text-decoration: underline;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .teamShowcase > div > img {
@@ -291,8 +297,8 @@ div > img {
 }
 
 .teamShowcase > div > img {
-  height: 90px;
-  width: 90px;
+  height: 115px;
+  width: 115px;
 }
 
 .teamShowcase > div > span {
