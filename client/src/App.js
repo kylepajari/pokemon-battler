@@ -75,16 +75,16 @@ class App extends Component {
             <p>Pokémon Battler</p>
             <img className="pokeball" src={pokeball} alt="Pokeball" />
           </div>
+          <span className="warningText">
+            Warning: This game contains sound effects. Please keep volume at a
+            reasonable level!
+          </span>
           <div className="logoutBox">
             <span>Hi, {this.props.username}</span>
             <button className="btn btn-dark logoutbtn" onClick={this.logout}>
               Logout
             </button>
           </div>
-          <span className="warningText">
-            Warning: This game contains sound effects. Please keep volume at a
-            reasonable level!
-          </span>
           <TeamBuilderContainer />
         </div>
       );

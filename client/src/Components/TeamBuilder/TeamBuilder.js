@@ -900,17 +900,17 @@ class TeamBuilder extends Component {
             id="btnMultiPlayer"
             onClick={this.multiPlayer}
           >
-            Multi-Player -<br />
+            Multi Player -<br />
             Local Battle
           </button>
-          <button
+          {/* <button
             type="button"
             className="btn btn-dark"
             id="btnCPUVSCPU"
             onClick={this.cpuVScpu}
           >
             CPU vs. CPU
-          </button>
+          </button> */}
         </div>
         <div className="modal fade pokemonTeamPopup">
           <div className="modal-dialog modal-dialog-centered">
@@ -964,7 +964,89 @@ class TeamBuilder extends Component {
             </div>
           </div>
         </div>
-
+        <div className="playerTwoNameDiv">
+          <p>Enter a name for Player Two:</p>
+          <input type="text" id="playerTwoNameBox" placeholder="Player Two" />
+          <button
+            className="btn btn-dark"
+            type="button"
+            onClick={() =>
+              this.inputNames(document.getElementById("playerTwoNameBox").value)
+            }
+          >
+            Enter
+          </button>
+        </div>
+        <div
+          className="btn-group dropdown teamList"
+          onClick={this.toggleTeamOpen}
+        >
+          <button
+            type="button"
+            className="btn btn-dark dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            id="dropdownMenu1"
+          >
+            Select a Team Size
+          </button>
+          <div
+            className={`"dropdown-menu" ${
+              this.state.isTeamOpen ? "dropdown-menu show" : "dropdown-menu"
+            }`}
+            aria-labelledby="dropdownMenu1"
+          >
+            <a
+              className="dropdown-item"
+              key="1"
+              href="#!"
+              onClick={() => this.changeTeamSize(1)}
+            >
+              1
+            </a>
+            <a
+              className="dropdown-item"
+              key="2"
+              href="#!"
+              onClick={() => this.changeTeamSize(2)}
+            >
+              2
+            </a>
+            <a
+              className="dropdown-item"
+              key="3"
+              href="#!"
+              onClick={() => this.changeTeamSize(3)}
+            >
+              3
+            </a>
+            <a
+              className="dropdown-item"
+              key="4"
+              href="#!"
+              onClick={() => this.changeTeamSize(4)}
+            >
+              4
+            </a>
+            <a
+              className="dropdown-item"
+              key="5"
+              href="#!"
+              onClick={() => this.changeTeamSize(5)}
+            >
+              5
+            </a>
+            <a
+              className="dropdown-item"
+              key="6"
+              href="#!"
+              onClick={() => this.changeTeamSize(6)}
+            >
+              6
+            </a>
+          </div>
+        </div>
         <div className="teamShowcase">
           <p className="teamHeader">My Team:</p>
           {this.props.player1Team.map((pokemon, i) => {
@@ -1054,89 +1136,13 @@ class TeamBuilder extends Component {
             <img src={Champion_Badge} alt="Champion Badge" />
           </div>
         </div>
-        <div className="playerTwoNameDiv">
-          <p>Enter a name for Player Two:</p>
-          <input type="text" id="playerTwoNameBox" placeholder="Player Two" />
-          <button
-            className="btn btn-dark"
-            type="button"
-            onClick={() =>
-              this.inputNames(document.getElementById("playerTwoNameBox").value)
-            }
-          >
-            Enter
-          </button>
-        </div>
-        <div
-          className="btn-group dropdown teamList"
-          onClick={this.toggleTeamOpen}
-        >
-          <button
-            type="button"
-            className="btn btn-dark dropdown-toggle"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-            id="dropdownMenu1"
-          >
-            Select a Team Size
-          </button>
-          <div
-            className={`"dropdown-menu" ${
-              this.state.isTeamOpen ? "dropdown-menu show" : "dropdown-menu"
-            }`}
-            aria-labelledby="dropdownMenu1"
-          >
-            <a
-              className="dropdown-item"
-              key="1"
-              href="#!"
-              onClick={() => this.changeTeamSize(1)}
-            >
-              1
-            </a>
-            <a
-              className="dropdown-item"
-              key="2"
-              href="#!"
-              onClick={() => this.changeTeamSize(2)}
-            >
-              2
-            </a>
-            <a
-              className="dropdown-item"
-              key="3"
-              href="#!"
-              onClick={() => this.changeTeamSize(3)}
-            >
-              3
-            </a>
-            <a
-              className="dropdown-item"
-              key="4"
-              href="#!"
-              onClick={() => this.changeTeamSize(4)}
-            >
-              4
-            </a>
-            <a
-              className="dropdown-item"
-              key="5"
-              href="#!"
-              onClick={() => this.changeTeamSize(5)}
-            >
-              5
-            </a>
-            <a
-              className="dropdown-item"
-              key="6"
-              href="#!"
-              onClick={() => this.changeTeamSize(6)}
-            >
-              6
-            </a>
-          </div>
-        </div>
+        <BattleStageContainer
+          className="battleStage col"
+          Capitalize={this.Capitalize}
+          handleFainted={this.handleFainted}
+          returnToMainMenu={this.returnToMainMenu}
+          battleMusic={this.state.battleMusic}
+        />
         <div className="teamsContainer container-fluid row">
           <div className="team team1 col">
             <p className="header">{this.props.playerOneName}:</p>
@@ -1158,13 +1164,6 @@ class TeamBuilder extends Component {
               );
             })}
           </div>
-          <BattleStageContainer
-            className="battleStage col"
-            Capitalize={this.Capitalize}
-            handleFainted={this.handleFainted}
-            returnToMainMenu={this.returnToMainMenu}
-            battleMusic={this.state.battleMusic}
-          />
           <div className="team team2 col">
             <p className="header">{this.props.playerTwoName}:</p>
             {this.props.player2Team.map((pokemon, i) => {

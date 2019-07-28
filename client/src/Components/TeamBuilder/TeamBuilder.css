@@ -82,7 +82,10 @@ div > img {
 }
 
 .battlebtn {
-  margin: 5px;
+  margin-top: 80px;
+  height: 60px;
+  width: 300px;
+  font-size: 32px;
 }
 
 .pokemonSheetContainer {
@@ -347,7 +350,7 @@ div > img {
     left: 0;
     top: 0;
     width: 85vw;
-    height: 110vw;
+    height: 130vw;
   }
   .teamHeader {
     font-size: 5vw;
@@ -355,8 +358,8 @@ div > img {
   }
 
   .teamShowcase > div > img {
-    height: 23vw;
-    width: 23vw;
+    height: 28vw;
+    width: 28vw;
   }
 
   .teamShowcase > div > span {
@@ -371,7 +374,7 @@ div > img {
     left: 0;
     top: 1;
     width: 85vw;
-    height: 110vw;
+    height: 130vw;
   }
   .badgesHeader {
     font-size: 5vw;
@@ -460,5 +463,16 @@ div > img {
     height: 20vw;
     width: 70vw;
     font-size: 6vw;
+  }
+  .playerTwoNameDiv {
+    margin-top: 8vw;
+    margin-bottom: 8vw;
+  }
+  .playerTwoNameDiv > p {
+    font-size: 3vw;
+  }
+  .teamList {
+    margin-top: 7vw;
+    margin-bottom: 25vw;
   }
 }

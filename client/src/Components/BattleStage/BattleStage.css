@@ -258,3 +258,153 @@
   height: 250px;
   width: 250px;
 }
+
+@media only screen and (max-width: 720px) {
+  .battleContainer {
+    height: 88vw;
+    width: 98vw;
+    padding: 3vw;
+  }
+  .battleInputs {
+    padding: 1.5vw;
+    font-size: 3vw;
+  }
+
+  .teamRoster {
+    margin-right: 0.5vw;
+  }
+
+  .pokeball-team {
+    height: 3vw;
+    width: 3vw;
+    margin-right: 0.2vw;
+  }
+  .side {
+    padding: 1vw;
+    margin-top: 0;
+    font-size: 3vw;
+  }
+
+  .spriteContainer {
+    height: 18vw;
+    width: 18vw;
+  }
+
+  .player1Sprite {
+    margin-left: 4vw;
+  }
+
+  .player2Sprite {
+    margin-left: 60vw;
+  }
+
+  .options {
+    margin: 1vw;
+  }
+  .options > button {
+    height: 10vw;
+    width: 28vw;
+    font-size: 3vw;
+  }
+  .volume:hover {
+    height: 6vw;
+    width: 6vw;
+  }
+  .battleMessages {
+    height: 20px;
+    width: 106%;
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    align-items: center;
+  }
+
+  .message {
+    margin-top: 1vw;
+    font-size: 3vw;
+  }
+  .playermessage {
+    margin-top: 1vw;
+    font-size: 3vw;
+  }
+  .badge {
+    height: 4vw;
+    width: 10vw;
+    font-size: 2vw;
+  }
+
+  .type {
+    height: 4vw;
+    width: 12vw;
+  }
+
+  /* hp displayed in number values */
+  .smallText {
+    font-size: 3vw;
+  }
+  .smallHP {
+    margin-left: 8vw;
+  }
+
+  .volume {
+    margin-top: 0;
+    height: 6vw;
+    width: 6vw;
+  }
+  .gymLeaderDiv > img {
+    height: 420px;
+    width: 230px;
+  }
+
+  .gymBadgeDiv > img {
+    height: 250px;
+    width: 250px;
+  }
+  .typeChart {
+    width: 95vw;
+    height: 46vw;
+  }
+
+  .typeChartPopup > .modal-dialog > .modal-content > .modal-footer {
+    margin: 0.5vw;
+    width: 100%;
+  }
+  .typeChartPopup > .modal-dialog > .modal-content > .modal-footer > button {
+    font-size: 4vw;
+    width: 100%;
+  }
+  .typeChartButton {
+    margin-left: 45vw;
+    margin-top: 0;
+    height: 6vw;
+    width: 40vw;
+    font-size: 3vw;
+  }
+  .typeChartPopup > .modal-dialog {
+    max-width: 100%;
+  }
+  .typeChartPopup > .modal-dialog > .modal-content {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "chart-1"
+      "chart-2"
+      "chart-3"
+      "chart-4"
+      "chart-5"
+      "chart-6"
+      "chart-7"
+      "chart-8"
+      "chart-9"
+      "chart-10"
+      "chart-11"
+      "chart-12"
+      "chart-13"
+      "chart-14"
+      "chart-15"
+      "chart-16"
+      "chart-f";
+    width: 100%;
+    height: 90vh;
+    overflow: scroll;
+  }
+}
