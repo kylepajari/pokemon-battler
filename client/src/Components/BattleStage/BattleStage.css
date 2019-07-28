@@ -261,8 +261,8 @@
 
 @media only screen and (max-width: 720px) {
   .battleContainer {
-    height: 88vw;
-    width: 98vw;
+    height: 93vw;
+    width: 97vw;
     padding: 3vw;
   }
   .battleInputs {
@@ -280,7 +280,7 @@
     margin-right: 0.2vw;
   }
   .side {
-    padding: 1vw;
+    padding: 2vw;
     margin-top: 0;
     font-size: 3vw;
   }
@@ -311,7 +311,7 @@
     width: 6vw;
   }
   .battleMessages {
-    height: 20px;
+    height: 5vw;
     width: 106%;
     display: flex;
     flex-direction: column;
@@ -347,18 +347,18 @@
   }
 
   .volume {
-    margin-top: 0;
+    margin-left: 87vw;
     height: 6vw;
     width: 6vw;
   }
   .gymLeaderDiv > img {
-    height: 420px;
-    width: 230px;
+    height: 50vw;
+    width: 27.5vw;
   }
 
   .gymBadgeDiv > img {
-    height: 250px;
-    width: 250px;
+    height: 25vw;
+    width: 25vw;
   }
   .typeChart {
     width: 95vw;
@@ -374,11 +374,10 @@
     width: 100%;
   }
   .typeChartButton {
-    margin-left: 45vw;
-    margin-top: 0;
-    height: 6vw;
-    width: 40vw;
-    font-size: 3vw;
+    margin-left: 55vw;
+    height: 5vw;
+    width: 30vw;
+    font-size: 2vw;
   }
   .typeChartPopup > .modal-dialog {
     max-width: 100%;
