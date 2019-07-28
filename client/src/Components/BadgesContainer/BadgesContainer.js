@@ -636,6 +636,7 @@ class BadgesContainer extends Component {
       default:
     }
     $(document.querySelectorAll(".badgesContainer")).fadeOut(10);
+    $(document.querySelector(".badgeSelectionPage")).fadeOut(10);
     $(document.querySelector(".pokemonSheetContainer")).removeClass("deRender");
     $(document.querySelector(".teamsContainer")).fadeIn(300);
   };

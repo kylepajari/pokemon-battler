@@ -81,7 +81,7 @@ div > img {
   grid-area: box-6;
 }
 
-#BattleButton {
+.battlebtn {
   margin: 5px;
 }
 
@@ -328,6 +328,9 @@ div > img {
     position: relative;
     left: 0;
     top: 0;
+    height: 10vw;
+    width: 45vw;
+    font-size: 4vw;
   }
   .mainButtons {
     width: 100vw;
@@ -381,6 +384,24 @@ div > img {
     height: 20vw;
     width: 20vw;
   }
+  .modal-header {
+    display: flex;
+    flex-direction: column;
+  }
+  .modal-title {
+    font-size: 5vw;
+  }
+  .modal-header > h5 {
+    font-size: 5vw;
+  }
+  .modal-header > p {
+    font-size: 4vw;
+  }
+  .modal-header > button {
+    position: relative;
+    top: 0;
+    left: 0;
+  }
   .modalMoves > div > ul > li {
     font-size: 3vw;
   }
@@ -391,14 +412,21 @@ div > img {
   .modalStats > div > ul > li {
     font-size: 4vw;
   }
+  .modalSprite {
+    height: 40vw;
+    width: 40vw;
+  }
   .modalTeamSprite {
-    height: 45vw;
-    width: 45vw;
+    height: 40vw;
+    width: 40vw;
   }
   .pokemonSheetContainer {
     width: 100vw;
-    height: 70vw;
-    border-bottom: 2px solid black;
+    height: 80vw;
+  }
+  .pokemonSheetContainer :first-child {
+    font-size: 3.5vw;
+    margin-bottom: 2vw;
   }
   .pokemonSheet {
     grid-template-columns: 1fr 1fr;
@@ -407,24 +435,30 @@ div > img {
   .sheetBlock {
     height: 15vw;
     width: 40vw;
-    font-size: 4vw;
+    font-size: 3.5vw;
   }
   .teamsContainer {
-    height: 80vw;
+    height: 93vw;
     border-bottom: 2px solid black;
   }
   .team {
-    height: 70vw;
+    height: 90vw;
     width: 45vw;
   }
   .team > .header {
-    font-size: 4vw;
+    font-size: 3.5vw;
   }
   .team > div > p {
     font-size: 2vw;
   }
   .team > div > img {
-    height: 18vw;
-    width: 18vw;
+    height: 22vw;
+    width: 22vw;
+  }
+  .battlebtn {
+    margin-top: 10vw;
+    height: 20vw;
+    width: 70vw;
+    font-size: 6vw;
   }
 }

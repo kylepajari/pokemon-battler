@@ -95,6 +95,9 @@ span {
   .logoutbtn {
     height: 10vw;
   }
+  .loginForm {
+    margin-top: 10vw;
+  }
 }
 
 .faded {

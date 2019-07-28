@@ -101,7 +101,7 @@ class Login extends Component {
     return (
       <div>
         <hr />
-        <div style={{ marginTop: "130px" }}>
+        <div className="loginForm">
           Username:
           <Input
             size="large"

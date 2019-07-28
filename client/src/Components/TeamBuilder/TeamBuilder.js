@@ -79,6 +79,7 @@ class TeamBuilder extends Component {
     $(document.querySelector(".teamShowcase")).fadeOut(10);
     $(document.querySelector(".mainmenuButton")).fadeIn(300);
     $(document.querySelector(".logoutBox")).fadeOut(10);
+    $(document.querySelector(".badgeSelectionPage")).fadeIn(300);
   }
 
   multiPlayer() {
@@ -88,6 +89,7 @@ class TeamBuilder extends Component {
     $(document.querySelector(".playerTwoNameDiv")).fadeIn(300);
     $(document.querySelector(".mainmenuButton")).fadeIn(300);
     $(document.querySelector(".logoutBox")).fadeOut(10);
+    $(document.querySelector(".badgeSelectionPage")).fadeOut(10);
     this.props.setMode("Multi");
   }
 
@@ -105,6 +107,7 @@ class TeamBuilder extends Component {
     $(document.querySelector(".teamList")).fadeIn(300);
     $(document.querySelector(".mainmenuButton")).fadeIn(300);
     $(document.querySelector(".logoutBox")).fadeOut(10);
+    $(document.querySelector(".badgeSelectionPage")).fadeOut(10);
   }
 
   returnToMainMenu() {
@@ -842,10 +845,20 @@ class TeamBuilder extends Component {
   //TYPES FUNCTION ///////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////
   Types = array => {
-    var typesList = array.map((item, i) => {
-      return MatchIconWithType(item);
-    });
-    return <span>{typesList}</span>;
+    if (array[0] !== undefined) {
+      var typesList = [];
+      if (array[0][0].length > 2) {
+        typesList = array[0].map((item, i) => {
+          return MatchIconWithType(item);
+        });
+      } else {
+        typesList = array.map((item, i) => {
+          return MatchIconWithType(item);
+        });
+      }
+
+      return <span>{typesList}</span>;
+    }
   };
 
   //CLEAR CURRENT TEAM////////////////////////////////////////////////////////////////
@@ -899,16 +912,19 @@ class TeamBuilder extends Component {
             CPU vs. CPU
           </button>
         </div>
-        <div
-          className="modal pokemonTeamPopup"
-          data-backdrop=""
-          style={{ overflowY: "hidden" }}
-        >
+        <div className="modal fade pokemonTeamPopup">
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">{this.state.currentPokemonName}</h5>
                 <p>Lv: {this.state.currentPokemonLevel}</p>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
               </div>
               <div className="modal-body">
                 <img
@@ -944,15 +960,6 @@ class TeamBuilder extends Component {
                     </ul>
                   </div>
                 </div>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
               </div>
             </div>
           </div>
@@ -1295,7 +1302,7 @@ class TeamBuilder extends Component {
         <div>
           <button
             type="button"
-            className="btn btn-primary"
+            className="btn btn-primary battlebtn"
             id="BattleButton"
             onClick={() => this.startBattle()}
           >
