@@ -724,7 +724,7 @@ class BadgesContainer extends Component {
               className="btn btn-light"
               onClick={() => this.aiTeamBuilder("Random")}
             >
-              Random Trainer - CPU
+              Random Team Trainer
             </button>
           </div>
         </div>
@@ -812,7 +812,7 @@ class BadgesContainer extends Component {
               className="btn btn-light"
               onClick={() => this.aiTeamBuilder("Random")}
             >
-              Random Trainer - CPU
+              Random Team Trainer
             </button>
           </div>
 

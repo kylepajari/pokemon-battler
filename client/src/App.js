@@ -49,7 +49,7 @@ class App extends Component {
             <p>Pokémon Battler</p>
             <img className="pokeball" src={pokeball} alt="Pokeball" />
           </div>
-          <span style={{ fontSize: "8px", color: "red", marginTop: "5px" }}>
+          <span className="warningText">
             Warning: This game contains sound effects. Please keep volume at a
             reasonable level!
           </span>
@@ -74,14 +74,14 @@ class App extends Component {
           <div className="title">
             <p>Pokémon Battler</p>
             <img className="pokeball" src={pokeball} alt="Pokeball" />
-            <div className="logoutBox">
-              <span>Hi, {this.props.username}</span>
-              <button className="btn btn-dark" onClick={this.logout}>
-                Logout
-              </button>
-            </div>
           </div>
-          <span style={{ fontSize: "8px", color: "red", marginTop: "5px" }}>
+          <div className="logoutBox">
+            <span>Hi, {this.props.username}</span>
+            <button className="btn btn-dark logoutbtn" onClick={this.logout}>
+              Logout
+            </button>
+          </div>
+          <span className="warningText">
             Warning: This game contains sound effects. Please keep volume at a
             reasonable level!
           </span>

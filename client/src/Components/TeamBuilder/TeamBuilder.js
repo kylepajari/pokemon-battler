@@ -363,7 +363,7 @@ class TeamBuilder extends Component {
     //if pokemon has more than 4 moves available
     if (physical.length + special.length + status.length > 4) {
       if (physical.length > special.length) {
-        console.log("more physical");
+        console.log("more physical", physical, type1, type2);
 
         //more physical moves than special
         for (let i = 0; i < 2; i++) {
@@ -405,7 +405,8 @@ class TeamBuilder extends Component {
                 type2 !== "grass" &&
                 type2 !== "steel" &&
                 type2 !== "electric" &&
-                type2 !== "fire"
+                type2 !== "fire" &&
+                type2 !== "fairy"
               ) {
                 do {
                   randomMove =
@@ -615,8 +616,8 @@ class TeamBuilder extends Component {
     let Sprite = this.state.currentPokemon.sprites.front_default;
     let SpriteBack = this.state.currentPokemon.sprites.back_default;
     let Name = this.state.currentPokemon.name;
-    //10% chance of shiny
-    if (rand < 0.1) {
+    //5% chance of shiny
+    if (rand <= 0.05) {
       Sprite = this.state.currentPokemon.sprites.front_shiny;
       SpriteBack = this.state.currentPokemon.sprites.back_shiny;
       Name = this.state.currentPokemon.name + "*";
@@ -844,7 +845,6 @@ class TeamBuilder extends Component {
     var typesList = array.map((item, i) => {
       return MatchIconWithType(item);
     });
-
     return <span>{typesList}</span>;
   };
 
@@ -878,7 +878,8 @@ class TeamBuilder extends Component {
             id="btnSinglePlayer"
             onClick={this.singlePlayer}
           >
-            Single Player (Gym Leader Challenge)
+            Single Player -<br />
+            Gym Leader Challenge
           </button>
           <button
             type="button"
@@ -886,7 +887,8 @@ class TeamBuilder extends Component {
             id="btnMultiPlayer"
             onClick={this.multiPlayer}
           >
-            Multi-Player (Local Battle)
+            Multi-Player -<br />
+            Local Battle
           </button>
           <button
             type="button"
@@ -914,6 +916,7 @@ class TeamBuilder extends Component {
                   alt=""
                   className="modalTeamSprite"
                 />
+                <div>{this.Types(this.state.currentPokemonTypes)}</div>
                 <div className="modalStats">
                   <div>
                     <ul>
@@ -978,7 +981,7 @@ class TeamBuilder extends Component {
             }`}
             onClick={this.clearTeam}
           >
-            Delete Team
+            Delete
           </button>
         </div>
         <div className="badgesShowcase">
@@ -1127,6 +1130,55 @@ class TeamBuilder extends Component {
             </a>
           </div>
         </div>
+        <div className="teamsContainer container-fluid row">
+          <div className="team team1 col">
+            <p className="header">{this.props.playerOneName}:</p>
+            {this.props.player1Team.map((pokemon, i) => {
+              return (
+                <div
+                  className={`${
+                    pokemon.fainted
+                      ? `sprite faded box-${i + 1}`
+                      : `sprite box-${i + 1}`
+                  }`}
+                  key={i}
+                  data-toggle="modal"
+                  onClick={() => this.modalTeamPokemon("team1", i)}
+                >
+                  <img src={pokemon.frontSprite} alt={pokemon.name} />
+                  <p>{pokemon.name}</p>
+                </div>
+              );
+            })}
+          </div>
+          <BattleStageContainer
+            className="battleStage col"
+            Capitalize={this.Capitalize}
+            handleFainted={this.handleFainted}
+            returnToMainMenu={this.returnToMainMenu}
+            battleMusic={this.state.battleMusic}
+          />
+          <div className="team team2 col">
+            <p className="header">{this.props.playerTwoName}:</p>
+            {this.props.player2Team.map((pokemon, i) => {
+              return (
+                <div
+                  className={`${
+                    pokemon.fainted
+                      ? `sprite faded box-${i + 1}`
+                      : `sprite box-${i + 1}`
+                  }`}
+                  key={i}
+                  data-toggle="modal"
+                  onClick={() => this.modalTeamPokemon("team2", i)}
+                >
+                  <img src={pokemon.frontSprite} alt={pokemon.name} />
+                  <p>{pokemon.name}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
         <div className="pokemonSheetContainer deRender">
           <div>{playerName} - Select a Pokemon:</div>
           <div className="pokemonSheet">
@@ -1252,55 +1304,6 @@ class TeamBuilder extends Component {
         </div>
         <div>
           <BadgesContainer fetchPokemon={this.fetchPokemon} />
-        </div>
-        <div className="teamsContainer container-fluid row">
-          <div className="team team1 col">
-            <p className="header">{this.props.playerOneName}:</p>
-            {this.props.player1Team.map((pokemon, i) => {
-              return (
-                <div
-                  className={`${
-                    pokemon.fainted
-                      ? `sprite faded box-${i + 1}`
-                      : `sprite box-${i + 1}`
-                  }`}
-                  key={i}
-                  data-toggle="modal"
-                  onClick={() => this.modalTeamPokemon("team1", i)}
-                >
-                  <img src={pokemon.frontSprite} alt={pokemon.name} />
-                  <p>{pokemon.name}</p>
-                </div>
-              );
-            })}
-          </div>
-          <BattleStageContainer
-            className="battleStage col"
-            Capitalize={this.Capitalize}
-            handleFainted={this.handleFainted}
-            returnToMainMenu={this.returnToMainMenu}
-            battleMusic={this.state.battleMusic}
-          />
-          <div className="team team2 col">
-            <p className="header">{this.props.playerTwoName}:</p>
-            {this.props.player2Team.map((pokemon, i) => {
-              return (
-                <div
-                  className={`${
-                    pokemon.fainted
-                      ? `sprite faded box-${i + 1}`
-                      : `sprite box-${i + 1}`
-                  }`}
-                  key={i}
-                  data-toggle="modal"
-                  onClick={() => this.modalTeamPokemon("team2", i)}
-                >
-                  <img src={pokemon.frontSprite} alt={pokemon.name} />
-                  <p>{pokemon.name}</p>
-                </div>
-              );
-            })}
-          </div>
         </div>
       </div>
     );

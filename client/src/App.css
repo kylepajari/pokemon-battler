@@ -48,20 +48,14 @@
 .pokeball {
   margin-top: 5px;
   margin-left: 15px;
-  height: 75px;
-  width: 75px;
+  height: 5vw;
+  width: 5vw;
 }
 
-.faded {
-  filter: brightness(10%);
-}
-
-.hideMe {
-  opacity: 0;
-}
-
-.deRender {
-  display: none;
+.warningText {
+  font-size: 8px;
+  color: red;
+  margin-top: "5px";
 }
 
 .logoutBox {
@@ -79,4 +73,38 @@
 span {
   margin-right: 5px;
   font-size: 16px;
+}
+
+@media screen and (max-width: 720px) {
+  .pokeball {
+    height: 10vw;
+    width: 10vw;
+  }
+  .title > p {
+    font-size: 5vw;
+  }
+
+  .warningText {
+    font-size: 3vw;
+  }
+  .logoutBox {
+    position: relative;
+    left: 0;
+    top: 0;
+  }
+  .logoutbtn {
+    height: 10vw;
+  }
+}
+
+.faded {
+  filter: brightness(10%);
+}
+
+.hideMe {
+  opacity: 0;
+}
+
+.deRender {
+  display: none;
 }

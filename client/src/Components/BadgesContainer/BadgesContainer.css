@@ -40,3 +40,27 @@
 .deRender {
   display: none;
 }
+
+@media only screen and (max-width: 720px) {
+  .badgeSelectionPage {
+    flex-direction: column;
+    width: 85vw;
+  }
+  .badgesContainer {
+    height: 150vw;
+    width: 100vw;
+  }
+  .badgesContainer > h5 {
+    font-size: 5vw;
+  }
+  .badgesContainer > button > img {
+    height: 10vw;
+    width: 10vw;
+  }
+
+  .badgesContainer > button {
+    font-size: 4vw;
+    height: 15vw;
+    width: 80vw;
+  }
+}

@@ -14,8 +14,8 @@
 
 .mainButtons > button {
   width: 100%;
-  height: 40px;
-  font-size: 14px;
+  height: 70px;
+  font-size: 15px;
   margin-bottom: 20px;
 }
 
@@ -200,6 +200,15 @@ div > img {
   padding: 5px;
 }
 
+@media screen and (max-width: 720px) {
+  .badgesShowcase {
+    position: relative;
+    left: 0;
+    top: 2%;
+    margin-bottom: 20px;
+  }
+}
+
 .badgesHeader {
   grid-area: badgesHeader;
   text-decoration: underline;
@@ -309,4 +318,113 @@ div > img {
   position: absolute;
   left: 1%;
   top: 4%;
+}
+
+@media only screen and (max-width: 720px) {
+  .teamBuilder {
+    margin-top: 0;
+  }
+  .mainmenuButton {
+    position: relative;
+    left: 0;
+    top: 0;
+  }
+  .mainButtons {
+    width: 100vw;
+    margin-top: 0;
+  }
+  .mainButtons > button {
+    width: 90vw;
+    height: 18vw;
+    font-size: 4vw;
+    margin-bottom: 3vw;
+  }
+  .teamShowcase {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 85vw;
+    height: 110vw;
+  }
+  .teamHeader {
+    font-size: 5vw;
+    margin-bottom: 0;
+  }
+
+  .teamShowcase > div > img {
+    height: 23vw;
+    width: 23vw;
+  }
+
+  .teamShowcase > div > span {
+    font-size: 3vw;
+  }
+  .teambtn {
+    width: 81vw;
+    font-size: 4vw;
+  }
+  .badgesShowcase {
+    position: relative;
+    left: 0;
+    top: 1;
+    width: 85vw;
+    height: 110vw;
+  }
+  .badgesHeader {
+    font-size: 5vw;
+  }
+  .badgesShowcase > div > img {
+    height: 16vw;
+    width: 16vw;
+  }
+  .badgesShowcase > .badge-9 > img {
+    height: 20vw;
+    width: 20vw;
+  }
+  .modalMoves > div > ul > li {
+    font-size: 3vw;
+  }
+  .modalMoves > div > ul > li > img {
+    height: 6vw;
+    width: 15vw;
+  }
+  .modalStats > div > ul > li {
+    font-size: 4vw;
+  }
+  .modalTeamSprite {
+    height: 45vw;
+    width: 45vw;
+  }
+  .pokemonSheetContainer {
+    width: 100vw;
+    height: 70vw;
+    border-bottom: 2px solid black;
+  }
+  .pokemonSheet {
+    grid-template-columns: 1fr 1fr;
+    font-size: 3vw;
+  }
+  .sheetBlock {
+    height: 15vw;
+    width: 40vw;
+    font-size: 4vw;
+  }
+  .teamsContainer {
+    height: 80vw;
+    border-bottom: 2px solid black;
+  }
+  .team {
+    height: 70vw;
+    width: 45vw;
+  }
+  .team > .header {
+    font-size: 4vw;
+  }
+  .team > div > p {
+    font-size: 2vw;
+  }
+  .team > div > img {
+    height: 18vw;
+    width: 18vw;
+  }
 }
