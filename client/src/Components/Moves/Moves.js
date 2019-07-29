@@ -39,7 +39,7 @@ class Moves extends Component {
     if (this.state.displayMoves) {
       return (
         <div className="playerMoves">
-          <p className="pokemonName">{pokemon.name}'s Moves:</p>
+          {/* <p className="pokemonName">{pokemon.name}'s Moves:</p> */}
           {pokemon.moves.map((move, i) => {
             return (
               <button

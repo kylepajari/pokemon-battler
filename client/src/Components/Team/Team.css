@@ -23,3 +23,39 @@
   box-shadow: 0 0 3px 2px;
   cursor: pointer;
 }
+
+@media only screen and (max-width: 720px) {
+  .playerTeam {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    width: 100%;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+  }
+
+  .playerTeamSprite > p {
+    margin-bottom: 0;
+  }
+
+  .playerTeamSprite {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    justify-content: space-between;
+    height: 10vw;
+    width: 100%;
+    color: #343a40;
+    border: 1px solid #343a40;
+    border-radius: 0.25rem;
+    padding: 0.375rem 0.75rem;
+  }
+
+  .playerTeamSprite > img {
+    height: 10vw;
+    width: 10vw;
+  }
+}

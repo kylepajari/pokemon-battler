@@ -55,6 +55,9 @@
 .options {
   margin: 2px;
 }
+.options > button {
+  margin: 3px;
+}
 
 .battleMessages {
   border-top: 2px dashed black;
@@ -259,6 +262,15 @@
   width: 250px;
 }
 
+.side > p {
+  margin-bottom: 0;
+}
+
+.selected {
+  background-color: black;
+  color: white;
+}
+
 @media only screen and (max-width: 720px) {
   .battleContainer {
     height: 93vw;
@@ -280,22 +292,22 @@
     margin-right: 0.2vw;
   }
   .side {
-    padding: 2vw;
+    padding-left: 2vw;
     margin-top: 0;
     font-size: 3vw;
   }
 
   .spriteContainer {
-    height: 18vw;
-    width: 18vw;
+    height: 22vw;
+    width: 22vw;
   }
 
   .player1Sprite {
-    margin-left: 4vw;
+    margin-left: 4vw !important;
   }
 
   .player2Sprite {
-    margin-left: 60vw;
+    margin-left: 60vw !important;
   }
 
   .options {
@@ -303,15 +315,16 @@
   }
   .options > button {
     height: 10vw;
-    width: 28vw;
+    width: 30vw;
     font-size: 3vw;
+    margin: 0.5vw;
   }
   .volume:hover {
     height: 6vw;
     width: 6vw;
   }
   .battleMessages {
-    height: 5vw;
+    height: 6vw;
     width: 106%;
     display: flex;
     flex-direction: column;
@@ -320,17 +333,18 @@
   }
 
   .message {
-    margin-top: 1vw;
+    margin-top: 2vw;
     font-size: 3vw;
   }
   .playermessage {
-    margin-top: 1vw;
+    margin-top: 2vw;
     font-size: 3vw;
   }
   .badge {
     height: 4vw;
     width: 10vw;
     font-size: 2vw;
+    margin-left: 1vw;
   }
 
   .type {
@@ -348,8 +362,9 @@
 
   .volume {
     margin-left: 87vw;
-    height: 6vw;
-    width: 6vw;
+    top: 1vw;
+    height: 7vw;
+    width: 7vw;
   }
   .gymLeaderDiv > img {
     height: 50vw;
@@ -374,6 +389,7 @@
     width: 100%;
   }
   .typeChartButton {
+    top: 2vw;
     margin-left: 55vw;
     height: 5vw;
     width: 30vw;
@@ -405,5 +421,8 @@
     width: 100%;
     height: 90vh;
     overflow: scroll;
+  }
+  .side > p > span {
+    font-size: 2vw;
   }
 }

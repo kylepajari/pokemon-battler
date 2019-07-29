@@ -146,6 +146,10 @@ class BattleStage extends Component {
 
   startBattle = () => {
     $(document.querySelector(".mainmenuButton")).fadeOut(10);
+    // if ($(window).width() < 720) {
+    $(document.querySelector(".teamsContainer")).addClass("deRender");
+    //}
+
     if (this.props.mode === "Single" && this.props.playerTwoName !== "CPU") {
       //SINGLE PLAYER ////////////////////////////////////////////////////////////////////////////////////////
       ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -742,6 +746,13 @@ class BattleStage extends Component {
       displayMoves: false,
       displayTeam: false
     });
+    if (!this.state.displayItems) {
+      $(document.querySelector(".itemsButton")).addClass("selected");
+      $(document.querySelector(".fightButton")).removeClass("selected");
+      $(document.querySelector(".pkmnButton")).removeClass("selected");
+    } else {
+      $(document.querySelector(".itemsButton")).removeClass("selected");
+    }
   }
 
   //HANDLE MOVES ////////////////////////////////////////////////////////////////////////////////////////
@@ -752,6 +763,13 @@ class BattleStage extends Component {
       displayItems: false,
       displayTeam: false
     });
+    if (!this.state.displayMoves) {
+      $(document.querySelector(".fightButton")).addClass("selected");
+      $(document.querySelector(".pkmnButton")).removeClass("selected");
+      $(document.querySelector(".itemsButton")).removeClass("selected");
+    } else {
+      $(document.querySelector(".fightButton")).removeClass("selected");
+    }
     if (this.state.displayMoves === false) {
       $(document.querySelector(".playerMoves")).focus();
     }
@@ -951,6 +969,13 @@ class BattleStage extends Component {
         displayItems: false,
         displayMoves: false
       });
+      if (!this.state.displayTeam) {
+        $(document.querySelector(".pkmnButton")).addClass("selected");
+        $(document.querySelector(".fightButton")).removeClass("selected");
+        $(document.querySelector(".itemsButton")).removeClass("selected");
+      } else {
+        $(document.querySelector(".pkmnButton")).removeClass("selected");
+      }
     }
   }
 
@@ -2164,7 +2189,8 @@ class BattleStage extends Component {
                     );
                   })}
                 </span>
-
+              </p>
+              <p className="row">
                 {this.state.player2Team[this.props.player2CurrentPokemon].name}
                 <span className="badge badge-dark">
                   Lv
@@ -2337,7 +2363,8 @@ class BattleStage extends Component {
                     );
                   })}
                 </span>
-
+              </p>
+              <p className="row">
                 {this.state.player1Team[this.props.player1CurrentPokemon].name}
                 <span className="badge badge-dark">
                   Lv
