@@ -115,6 +115,7 @@ class Items extends Component {
       setTimeout(() => this.props.handleForceUpdate(), 500);
       let difference = Math.round(PKMNuser.OrigHp - PKMNuser.hp);
       $(document.querySelector(".options")).fadeOut(300);
+      $(document.querySelector(".mainmenuButton")).fadeOut(300);
       DisplayMessage(
         PKMNuser.name + " recovered by " + difference.toString() + " HP!"
       );
@@ -123,6 +124,7 @@ class Items extends Component {
       setTimeout(() => (PKMNuser.hp += healAmount), 300);
       setTimeout(() => this.props.handleForceUpdate(), 300);
       $(document.querySelector(".options")).fadeOut(300);
+      $(document.querySelector(".mainmenuButton")).fadeOut(300);
       DisplayMessage(
         PKMNuser.name + " recovered by " + healAmount.toString() + " HP!"
       );
@@ -158,6 +160,7 @@ class Items extends Component {
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
   healStatus = PKMNuser => {
     $(document.querySelector(".options")).fadeOut(300);
+    $(document.querySelector(".mainmenuButton")).fadeOut(300);
     DisplayMessage(
       PKMNuser.name + " was cured of " + PKMNuser.statusCondition + "!"
     );
@@ -246,14 +249,13 @@ class Items extends Component {
                   onClick={() => this.useItem(item.name, i)}
                   key={item.name}
                 >
+                  <p className="smallText">{item.name}</p>
                   <img
                     className="itemSprite"
                     src={item.sprite}
                     alt={item.name}
                     key={i}
                   />
-                  <p className="smallText">{item.name}</p>
-                  {/* &nbsp; &nbsp; &nbsp; */}
                   <p className="smallText">{item.count}</p>
                 </div>
               );

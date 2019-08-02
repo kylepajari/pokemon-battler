@@ -42,8 +42,9 @@ class Team extends Component {
 
     //reset stat modifiers to defaults, for new pokemon
     this.props.resetMultipliers("swap");
-    //hide options buttons while swapping
+    //hide buttons while swapping
     $(document.querySelector(".options")).hide(300);
+    $(document.querySelector(".mainmenuButton")).hide(300);
 
     //take current pokemon out of battle
     Team[PKMN].inBattle = false;
@@ -103,6 +104,10 @@ class Team extends Component {
       //update health bar to reflect damage
       setTimeout(() => UpdateHP(HPbar, updatedBarHP, this.props.volume), 2500);
     }
+    setTimeout(
+      () => $(document.querySelector(".mainmenuButton")).show(500),
+      4000
+    );
     setTimeout(() => $(document.querySelector(".options")).show(500), 4000);
     setTimeout(() => $(document.querySelector(".fightButton")).show(500), 4000);
     setTimeout(() => $(document.querySelector(".pkmnButton")).show(500), 4000);

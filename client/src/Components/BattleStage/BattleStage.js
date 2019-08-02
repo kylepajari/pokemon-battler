@@ -146,9 +146,7 @@ class BattleStage extends Component {
 
   startBattle = () => {
     $(document.querySelector(".mainmenuButton")).fadeOut(10);
-    // if ($(window).width() < 720) {
     $(document.querySelector(".teamsContainer")).addClass("deRender");
-    //}
 
     if (this.props.mode === "Single" && this.props.playerTwoName !== "CPU") {
       //SINGLE PLAYER ////////////////////////////////////////////////////////////////////////////////////////
@@ -1103,6 +1101,10 @@ class BattleStage extends Component {
         this.props.setPlayersTurn("Player One");
       }
       setTimeout(() => $(document.querySelector(".options")).fadeIn(300), 500);
+      setTimeout(
+        () => $(document.querySelector(".mainmenuButton")).fadeIn(300),
+        500
+      );
     } else if (this.props.mode === "Single") {
       //mode is single
       if (this.props.playersTurn === "Player One") {
@@ -1181,6 +1183,10 @@ class BattleStage extends Component {
         this.props.setPlayersTurn("Player One");
         setTimeout(
           () => $(document.querySelector(".options")).fadeIn(300),
+          500
+        );
+        setTimeout(
+          () => $(document.querySelector(".mainmenuButton")).fadeIn(300),
           500
         );
       }

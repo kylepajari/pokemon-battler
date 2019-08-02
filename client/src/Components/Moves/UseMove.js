@@ -42,6 +42,7 @@ const UseMove = (
   checkWin
 ) => {
   let options = $(document.querySelector(".options"));
+  let mainmenu = $(document.querySelector(".mainmenuButton"));
   let PKMNuser = null;
   let PKMNtarget = null;
   let HPbar = null;
@@ -88,6 +89,7 @@ const UseMove = (
       }
     }
     options.hide(500);
+    mainmenu.hide(500);
 
     let isUserPoisonedOrBurned = false;
     //check if user is poisoned or burned, set up for hp loss

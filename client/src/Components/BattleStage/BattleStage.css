@@ -1,7 +1,7 @@
 .battleContainer {
   background-color: white;
-  height: 570px;
-  width: 650px;
+  height: 520px;
+  width: 630px;
   border: 2px dashed black;
   border-radius: 15px;
   display: flex;
@@ -29,19 +29,18 @@
 }
 
 .pokeball-team {
-  height: 17px;
-  width: 17px;
+  height: 15px;
+  width: 15px;
   margin-right: 1px;
 }
 
 .side {
   padding: 5px;
-  margin-top: 5px;
 }
 
 .spriteContainer {
-  height: 160px;
-  width: 160px;
+  height: 130px;
+  width: 130px;
 }
 
 .player1Sprite {
@@ -62,7 +61,7 @@
 .battleMessages {
   border-top: 2px dashed black;
   height: 20px;
-  width: 106%;
+  width: 105%;
   display: flex;
   flex-direction: column;
   justify-content: baseline;
@@ -248,13 +247,9 @@
   opacity: 0.6;
 }
 
-.deRender {
-  display: none;
-}
-
 .gymLeaderDiv > img {
-  height: 420px;
-  width: 230px;
+  height: 350px;
+  width: 160px;
 }
 
 .gymBadgeDiv > img {
@@ -303,11 +298,11 @@
   }
 
   .player1Sprite {
-    margin-left: 4vw !important;
+    margin-left: 4vw;
   }
 
   .player2Sprite {
-    margin-left: 60vw !important;
+    margin-left: 60vw;
   }
 
   .options {
@@ -325,7 +320,7 @@
   }
   .battleMessages {
     height: 6vw;
-    width: 106%;
+    width: 105%;
     display: flex;
     flex-direction: column;
     justify-content: baseline;
@@ -367,8 +362,8 @@
     width: 7vw;
   }
   .gymLeaderDiv > img {
-    height: 50vw;
-    width: 27.5vw;
+    height: 60vw;
+    width: 33vw;
   }
 
   .gymBadgeDiv > img {

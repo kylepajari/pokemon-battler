@@ -288,6 +288,7 @@ class TeamBuilder extends Component {
 
       $(document.querySelector(".teamList")).fadeOut(10);
       $(document.querySelector(".pokemonSheetContainer")).addClass("deRender");
+      $(document.querySelector(".teamsContainer")).removeClass("deRender");
       $(document.querySelector(".teamsContainer")).fadeIn(300);
     }
   };
