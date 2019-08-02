@@ -205,15 +205,6 @@ div > img {
   padding: 5px;
 }
 
-@media screen and (max-width: 720px) {
-  .badgesShowcase {
-    position: relative;
-    left: 0;
-    top: 2%;
-    margin-bottom: 20px;
-  }
-}
-
 .badgesHeader {
   grid-area: badgesHeader;
   text-decoration: underline;
@@ -374,9 +365,10 @@ div > img {
   .badgesShowcase {
     position: relative;
     left: 0;
-    top: 1;
+    top: 2%;
     width: 85vw;
     height: 130vw;
+    margin-bottom: 2vw;
   }
   .badgesHeader {
     font-size: 5vw;
