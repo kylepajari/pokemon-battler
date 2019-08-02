@@ -15,7 +15,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.props.loadAllData();
     const cookies = cookie.parse(document.cookie);
     if (cookies.id_token) {
       const payload = jwt.verify(cookies.id_token, "secret");
@@ -56,18 +55,7 @@ class App extends Component {
           <LoginContainer />
         </div>
       );
-    } else if (this.props.loggedIn && this.props.allData === null) {
-      //if logged in, but no data loaded, show loading screen
-      return (
-        <div className="App">
-          <div className="title">
-            <p>Pokémon Battler</p>
-            <img className="pokeball" src={pokeball} alt="Pokeball" />
-          </div>
-          <h3>Loading Data...</h3>
-        </div>
-      );
-    } else if (this.props.allData !== null && this.props.loggedIn) {
+    } else if (this.props.loggedIn) {
       // if logged in, and data loaded, show team builder(main menu)
       return (
         <div className="App">

@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import TeamBuilder from "../Components/TeamBuilder/TeamBuilder";
 import {
+  loadAllData,
   setPlayer1Team,
   setPlayer2Team,
   setPlayerOneName,
@@ -39,6 +40,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    loadAllData: () => dispatch(loadAllData()),
     setPlayer1Team: team => dispatch(setPlayer1Team(team)),
     setPlayer2Team: team => dispatch(setPlayer2Team(team)),
     setPlayerOneName: name => dispatch(setPlayerOneName(name)),

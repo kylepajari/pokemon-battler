@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
 import App from "../App";
 import {
-  loadAllData,
   setLoggedIn,
   setPlayer1Team,
   setPlayer2Team,
@@ -34,7 +33,6 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    loadAllData: () => dispatch(loadAllData()),
     setLoggedIn: log => dispatch(setLoggedIn(log)),
     setId: id => dispatch(setId(id)),
     setPlayer1Team: team => dispatch(setPlayer1Team(team)),
