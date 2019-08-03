@@ -96,7 +96,7 @@ const PlayLeaderIntro = name => {
   setTimeout(() => DisplayMessage(introMessage3, 2000), 7000);
   setTimeout(() => DisplayMessage(introMessage4, 2000), 10000);
   const sound = new Audio(LeaderBattle);
-  sound.volume = 0.5;
+  sound.volume = 0.3;
   setTimeout(() => sound.play(), 11800);
   setTimeout(
     () => $(document.querySelector(".gymLeaderDiv")).fadeOut(1000),

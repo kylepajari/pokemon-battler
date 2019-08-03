@@ -774,9 +774,6 @@ class BattleStage extends Component {
     } else {
       $(document.querySelector(".fightButton")).removeClass("selected");
     }
-    if (this.state.displayMoves === false) {
-      $(document.querySelector(".playerMoves")).focus();
-    }
   }
 
   //HANDLE TEAM ////////////////////////////////////////////////////////////////////////////////////////
