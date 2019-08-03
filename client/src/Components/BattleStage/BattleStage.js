@@ -1844,8 +1844,6 @@ class BattleStage extends Component {
     let statDownSound = new Audio(statLower);
     statDownSound.volume = this.props.volume;
     if (statusEff === "raisesUserAtk") {
-      PKMNuser.attack = PKMNuser.OrigAttack * atkMultiplierUp;
-
       if (PKMNuser.attack >= PKMNuser.OrigAttack * 4) {
         PKMNuser.attack = PKMNuser.OrigAttack * 4;
         setTimeout(
@@ -1853,6 +1851,7 @@ class BattleStage extends Component {
           2000
         );
       } else {
+        PKMNuser.attack = PKMNuser.OrigAttack * atkMultiplierUp;
         setTimeout(() => statUpSound.play(), 2000);
         setTimeout(() => DisplayMessage(PKMNuser.name + "'s ATK rose!"), 2000);
       }
@@ -1862,8 +1861,6 @@ class BattleStage extends Component {
         this.setState({ atkMultiplierUp2: atkMultiplierUp });
       }
     } else if (statusEff === "raisesUserDef") {
-      PKMNuser.defense = PKMNuser.OrigDefense * defMultiplierUp;
-
       if (PKMNuser.defense >= PKMNuser.OrigDefense * 4) {
         PKMNuser.defense = PKMNuser.OrigDefense * 4;
         setTimeout(
@@ -1871,6 +1868,7 @@ class BattleStage extends Component {
           2000
         );
       } else {
+        PKMNuser.defense = PKMNuser.OrigDefense * defMultiplierUp;
         setTimeout(() => statUpSound.play(), 2000);
         setTimeout(() => DisplayMessage(PKMNuser.name + "'s DEF rose!"), 2000);
       }
@@ -1880,8 +1878,6 @@ class BattleStage extends Component {
         this.setState({ defMultiplierUp2: defMultiplierUp });
       }
     } else if (statusEff === "raisesUserSpd") {
-      PKMNuser.speed = PKMNuser.OrigSpeed * spdMultiplierUp;
-
       if (PKMNuser.speed >= PKMNuser.OrigSpeed * 4) {
         PKMNuser.speed = PKMNuser.OrigSpeed * 4;
         setTimeout(
@@ -1889,6 +1885,7 @@ class BattleStage extends Component {
           2000
         );
       } else {
+        PKMNuser.speed = PKMNuser.OrigSpeed * spdMultiplierUp;
         setTimeout(() => statUpSound.play(), 2000);
         setTimeout(() => DisplayMessage(PKMNuser.name + "'s SPD rose!"), 2000);
       }
@@ -1898,8 +1895,6 @@ class BattleStage extends Component {
         this.setState({ spdMultiplierUp2: spdMultiplierUp });
       }
     } else if (statusEff === "raisesUserSpcAtk") {
-      PKMNuser.specialattack = PKMNuser.OrigSpecialattack * spcAtkMultiplierUp;
-
       if (PKMNuser.specialattack >= PKMNuser.OrigSpecialattack * 4) {
         PKMNuser.specialattack = PKMNuser.OrigSpecialattack * 4;
         setTimeout(
@@ -1907,21 +1902,21 @@ class BattleStage extends Component {
           2000
         );
       } else {
+        PKMNuser.specialattack =
+          PKMNuser.OrigSpecialattack * spcAtkMultiplierUp;
         setTimeout(() => statUpSound.play(), 2000);
         setTimeout(
           () => DisplayMessage(PKMNuser.name + "'s SPC ATK rose!"),
           2000
         );
       }
+
       if (this.props.playersTurn === "Player One") {
         this.setState({ spcAtkMultiplierUp1: spcAtkMultiplierUp });
       } else {
         this.setState({ spcAtkMultiplierUp2: spcAtkMultiplierUp });
       }
     } else if (statusEff === "raisesUserSpcDef") {
-      PKMNuser.specialdefense =
-        PKMNuser.OrigSpecialdefense * spcDefMultiplierUp;
-
       if (PKMNuser.specialdefense >= PKMNuser.OrigSpecialdefense * 4) {
         PKMNuser.specialdefense = PKMNuser.OrigSpecialdefense * 4;
         setTimeout(
@@ -1929,6 +1924,8 @@ class BattleStage extends Component {
           2000
         );
       } else {
+        PKMNuser.specialdefense =
+          PKMNuser.OrigSpecialdefense * spcDefMultiplierUp;
         setTimeout(() => statUpSound.play(), 2000);
         setTimeout(
           () => DisplayMessage(PKMNuser.name + "'s SPC DEF rose!"),
@@ -1941,8 +1938,6 @@ class BattleStage extends Component {
         this.setState({ spcDefMultiplierUp2: spcDefMultiplierUp });
       }
     } else if (statusEff === "raisesUserAcc") {
-      PKMNuser.accuracy = PKMNuser.accuracy + 0.1;
-
       if (PKMNuser.accuracy > 1.5) {
         PKMNuser.accuracy = 1.5;
         setTimeout(
@@ -1950,15 +1945,14 @@ class BattleStage extends Component {
           2000
         );
       } else {
+        PKMNuser.accuracy = PKMNuser.accuracy + 0.1;
         setTimeout(() => statUpSound.play(), 2000);
         setTimeout(
-          () => DisplayMessage(PKMNuser.name + "'s ACCURACY went up!"),
+          () => DisplayMessage(PKMNuser.name + "'s ACCURACY rose!"),
           2000
         );
       }
     } else if (statusEff === "raisesUserEva") {
-      PKMNuser.evasion = PKMNuser.evasion + 0.1;
-
       if (PKMNuser.evasion > 1.5) {
         PKMNuser.evasion = 1.5;
         setTimeout(
@@ -1966,9 +1960,10 @@ class BattleStage extends Component {
           2000
         );
       } else {
+        PKMNuser.evasion = PKMNuser.evasion + 0.1;
         setTimeout(() => statUpSound.play(), 2000);
         setTimeout(
-          () => DisplayMessage(PKMNuser.name + "'s EVASION went up!"),
+          () => DisplayMessage(PKMNuser.name + "'s EVASION rose!"),
           2000
         );
       }
@@ -1976,8 +1971,6 @@ class BattleStage extends Component {
 
     //LOWERS TARGET////////////////////////////////////////////////////////////////
     if (statusEff === "lowersTargetAtk") {
-      PKMNtarget.attack = PKMNtarget.OrigAttack * atkMultiplierDown;
-
       if (PKMNtarget.attack <= PKMNtarget.OrigAttack / 4) {
         PKMNtarget.attack = PKMNtarget.OrigAttack / 4;
         setTimeout(
@@ -1985,6 +1978,7 @@ class BattleStage extends Component {
           2000
         );
       } else {
+        PKMNtarget.attack = PKMNtarget.OrigAttack * atkMultiplierDown;
         setTimeout(() => statDownSound.play(), 2000);
         setTimeout(
           () => DisplayMessage(PKMNtarget.name + "'s ATK fell!"),
@@ -1997,8 +1991,6 @@ class BattleStage extends Component {
         this.setState({ atkMultiplierDown2: atkMultiplierDown });
       }
     } else if (statusEff === "lowersTargetDef") {
-      PKMNtarget.defense = PKMNtarget.defense * defMultiplierDown;
-
       if (PKMNtarget.defense <= PKMNtarget.OrigDefense / 4) {
         PKMNtarget.defense = PKMNtarget.OrigDefense / 4;
         setTimeout(
@@ -2006,6 +1998,7 @@ class BattleStage extends Component {
           2000
         );
       } else {
+        PKMNtarget.defense = PKMNtarget.defense * defMultiplierDown;
         setTimeout(() => statDownSound.play(), 2000);
         setTimeout(
           () => DisplayMessage(PKMNtarget.name + "'s DEF fell!"),
@@ -2018,8 +2011,6 @@ class BattleStage extends Component {
         this.setState({ defMultiplierDown2: defMultiplierDown });
       }
     } else if (statusEff === "lowersTargetSpd") {
-      PKMNtarget.speed = PKMNtarget.speed * spdMultiplierDown;
-
       if (PKMNtarget.speed <= PKMNtarget.OrigSpeed / 4) {
         PKMNtarget.speed = PKMNtarget.OrigSpeed / 4;
         setTimeout(
@@ -2027,6 +2018,7 @@ class BattleStage extends Component {
           2000
         );
       } else {
+        PKMNtarget.speed = PKMNtarget.speed * spdMultiplierDown;
         setTimeout(() => statDownSound.play(), 2000);
         setTimeout(
           () => DisplayMessage(PKMNtarget.name + "'s SPD fell!"),
@@ -2039,9 +2031,6 @@ class BattleStage extends Component {
         this.setState({ spdMultiplierDown2: spdMultiplierDown });
       }
     } else if (statusEff === "lowersTargetSpcAtk") {
-      PKMNtarget.specialattack =
-        PKMNtarget.specialattack * spcAtkMultiplierDown;
-
       if (PKMNtarget.specialattack <= PKMNtarget.OrigSpecialattack / 4) {
         PKMNtarget.specialattack = PKMNtarget.OrigSpecialattack / 4;
         setTimeout(
@@ -2049,6 +2038,8 @@ class BattleStage extends Component {
           2000
         );
       } else {
+        PKMNtarget.specialattack =
+          PKMNtarget.specialattack * spcAtkMultiplierDown;
         setTimeout(() => statDownSound.play(), 2000);
         setTimeout(
           () => DisplayMessage(PKMNtarget.name + "'s SPC ATK fell!"),
@@ -2061,9 +2052,6 @@ class BattleStage extends Component {
         this.setState({ spcAtkMultiplierDown2: spcAtkMultiplierDown });
       }
     } else if (statusEff === "lowersTargetSpcDef") {
-      PKMNtarget.specialdefense =
-        PKMNtarget.specialdefense * spcDefMultiplierDown;
-
       if (PKMNtarget.specialdefense <= PKMNtarget.OrigSpecialdefense / 4) {
         PKMNtarget.specialdefense = PKMNtarget.OrigSpecialdefense / 4;
         setTimeout(
@@ -2071,6 +2059,8 @@ class BattleStage extends Component {
           2000
         );
       } else {
+        PKMNtarget.specialdefense =
+          PKMNtarget.specialdefense * spcDefMultiplierDown;
         setTimeout(() => statDownSound.play(), 2000);
         setTimeout(
           () => DisplayMessage(PKMNtarget.name + "'s SPC DEF fell!"),
@@ -2083,8 +2073,6 @@ class BattleStage extends Component {
         this.setState({ spcDefMultiplierDown2: spcDefMultiplierDown });
       }
     } else if (statusEff === "lowersTargetAcc") {
-      PKMNtarget.accuracy = PKMNtarget.accuracy - 0.1;
-
       if (PKMNtarget.accuracy < 0.5) {
         PKMNtarget.accuracy = 0.5;
         setTimeout(
@@ -2092,6 +2080,7 @@ class BattleStage extends Component {
           2000
         );
       } else {
+        PKMNtarget.accuracy = PKMNtarget.accuracy - 0.1;
         setTimeout(() => statDownSound.play(), 2000);
         setTimeout(
           () => DisplayMessage(PKMNtarget.name + "'s ACCURACY fell!"),
@@ -2099,8 +2088,6 @@ class BattleStage extends Component {
         );
       }
     } else if (statusEff === "lowersTargetEva") {
-      PKMNtarget.evasion = PKMNtarget.evasion - 0.1;
-
       if (PKMNtarget.evasion < 0.5) {
         PKMNtarget.evasion = 0.5;
         setTimeout(
@@ -2108,6 +2095,7 @@ class BattleStage extends Component {
           2000
         );
       } else {
+        PKMNtarget.evasion = PKMNtarget.evasion - 0.1;
         setTimeout(() => statDownSound.play(), 2000);
         setTimeout(
           () => DisplayMessage(PKMNtarget.name + "'s EVASION fell!"),
