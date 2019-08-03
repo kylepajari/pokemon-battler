@@ -109,5 +109,5 @@ span {
 }
 
 .deRender {
-  display: none;
+  display: none !important;
 }

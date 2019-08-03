@@ -6,7 +6,7 @@ export default {
   badges: 0,
   id: "",
   loggedIn: false,
-  volume: 0.7,
+  volume: 0.3,
   playersTurn: "Player One",
   player1Team: [],
   player2Team: [],

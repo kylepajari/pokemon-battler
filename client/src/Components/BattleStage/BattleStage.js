@@ -404,6 +404,10 @@ class BattleStage extends Component {
           () => $(document.querySelector(".options")).fadeIn(300),
           8000
         );
+        setTimeout(
+          () => $(document.querySelector(".mainmenuButton")).fadeIn(300),
+          8000
+        );
         //make 1000 to shorten
       }
     }
@@ -415,8 +419,8 @@ class BattleStage extends Component {
 
   handleVolume = () => {
     if (this.props.volume === 0) {
-      this.props.setVolume(0.7);
-      this.props.battleMusic.volume = 0.7;
+      this.props.setVolume(0.3);
+      this.props.battleMusic.volume = 0.3;
     } else {
       this.props.setVolume(0);
       this.props.battleMusic.volume = 0;
@@ -450,6 +454,7 @@ class BattleStage extends Component {
       );
       //everyone on player ones team has fainted
       $(document.querySelector(".options")).fadeOut(300);
+      $(document.querySelector(".mainmenuButton")).fadeOut(300);
       //play victory music
       let win = new Audio(Victory);
       if (this.props.volume === 0) {
@@ -487,6 +492,7 @@ class BattleStage extends Component {
       );
       //everyone on player twos team has fainted
       $(document.querySelector(".options")).fadeOut(300);
+      $(document.querySelector(".mainmenuButton")).fadeOut(300);
       //play victory music
       let win = new Audio(Victory);
       if (this.props.volume === 0) {
