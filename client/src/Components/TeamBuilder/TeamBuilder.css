@@ -186,7 +186,7 @@ div > img {
 
 .badgesShowcase {
   position: fixed;
-  left: 80%;
+  left: 79vw;
   top: 15%;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -250,7 +250,7 @@ div > img {
 
 .teamShowcase {
   position: fixed;
-  left: 2%;
+  left: 2vw;
   top: 15%;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -344,6 +344,7 @@ div > img {
     top: 0;
     width: 85vw;
     height: 130vw;
+    margin-bottom: 2vw;
   }
   .teamHeader {
     font-size: 5vw;
@@ -365,7 +366,7 @@ div > img {
   .badgesShowcase {
     position: relative;
     left: 0;
-    top: 2%;
+    top: 0;
     width: 85vw;
     height: 130vw;
     margin-bottom: 2vw;
