@@ -299,7 +299,7 @@ class BattleStage extends Component {
         23000
       );
       this.props.battleMusic.loop = true;
-      this.props.battleMusic.volume = this.props.volume;
+      this.props.battleMusic.volume = this.props.volume - 0.1;
       setTimeout(() => this.props.battleMusic.play(), 24600);
 
       ////////////////////////////////////////////////////////////////////////////
@@ -308,7 +308,7 @@ class BattleStage extends Component {
       // MULTIPLAYER OR CPU VS CPU ////////////////////////////////////////////////////////////////////////////
       ////////////////////////////////////////////////////////////////////////////////////////////////////////
       this.props.battleMusic.loop = true;
-      this.props.battleMusic.volume = this.props.volume;
+      this.props.battleMusic.volume = this.props.volume - 0.1;
       this.props.battleMusic.play();
       setTimeout(() => $(document.querySelectorAll(".side")).fadeIn(100), 1000);
       setTimeout(
@@ -420,7 +420,7 @@ class BattleStage extends Component {
   handleVolume = () => {
     if (this.props.volume === 0) {
       this.props.setVolume(0.3);
-      this.props.battleMusic.volume = 0.3;
+      this.props.battleMusic.volume = 0.2;
     } else {
       this.props.setVolume(0);
       this.props.battleMusic.volume = 0;
