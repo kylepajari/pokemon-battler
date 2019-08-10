@@ -386,6 +386,8 @@ div > img {
   .modal-header {
     display: flex;
     flex-direction: column;
+    padding-top: 1%;
+    padding-bottom: 1%;
   }
   .modal-title {
     font-size: 4vw;
@@ -395,6 +397,7 @@ div > img {
   }
   .modal-header > p {
     font-size: 3vw;
+    margin-bottom: 1%;
   }
   .modal-header > button {
     position: relative;
@@ -403,6 +406,10 @@ div > img {
     height: 10vw;
     width: 30vw;
     font-size: 4vw;
+  }
+  .modal-body {
+    padding-top: 0;
+    padding-bottom: 0;
   }
   .modalMoves > div > ul > li {
     font-size: 3vw;
@@ -419,15 +426,15 @@ div > img {
     font-size: 4vw;
   }
   .modalSprite {
-    height: 35vw;
-    width: 35vw;
+    height: 30vw;
+    width: 30vw;
   }
   .modalTeamSprite {
     height: 35vw;
     width: 35vw;
   }
   .pokemonSheetContainer {
-    height: 75vh;
+    height: 70vh;
   }
   .pokemonSheetContainer > div {
     font-size: 3.5vw;
@@ -446,7 +453,7 @@ div > img {
   }
   .teamsContainer {
     width: 100%;
-    height: 25vh;
+    height: 35vh;
   }
   .team > .header {
     font-size: 3vw;
