@@ -103,6 +103,12 @@ class Items extends Component {
     });
   }
 
+  componentDidUpdate() {
+    if (this.state.displayItems) {
+      $(document.querySelector(".playerItems").lastChild).focus();
+    }
+  }
+
   itemDoesNotApply = () => {
     //pokemon has no condition
     DisplayMessage("It won't have any effect.");

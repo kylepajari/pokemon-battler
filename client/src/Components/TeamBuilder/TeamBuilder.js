@@ -27,6 +27,7 @@ class TeamBuilder extends Component {
     this.state = {
       data: null,
       currentPokemon: null,
+      currentModalPokemon: null,
       currentPokemonName: "",
       currentPokemonTypes: [],
       currentPokemonSprite: "",
@@ -574,8 +575,11 @@ class TeamBuilder extends Component {
       let url = "https://pokeapi.co/api/v2/pokemon/" + num;
       fetch(url)
         .then(response => response.json())
-        .then(currentPokemon =>
-          this.setState({ currentPokemon }, () => this.fillmodalPokeInfo())
+        .then(currentPoke =>
+          this.setState(
+            { currentPokemon: currentPoke, currentModalPokemon: currentPoke },
+            () => this.fillmodalPokeInfo()
+          )
         )
         .then(() => {
           this.addPokemon(level, team, name);
@@ -586,21 +590,44 @@ class TeamBuilder extends Component {
   };
 
   modalPokemon = num => {
+    //clear current pokemon in state
+    this.setState({
+      currentPokemon: null,
+      currentModalPokemon: null,
+      currentPokemonName: "",
+      currentPokemonTypes: [],
+      currentPokemonSprite: "",
+      currentPokemonSpriteBack: "",
+      currentPokemonHeight: 0,
+      currentPokemonWeight: 0,
+      currentPokemonId: 0,
+      currentPokemonAtk: 0,
+      currentPokemonDef: 0,
+      currentPokemonHP: 0,
+      currentPokemonSpd: 0,
+      currentPokemonSpcAtk: 0,
+      currentPokemonSpcDef: 0,
+      currentPokemonLevel: 0,
+      currentPokemonMoves: []
+    });
     let url = "https://pokeapi.co/api/v2/pokemon/" + num;
     fetch(url)
       .then(response => response.json())
-      .then(currentPokemon =>
-        this.setState({ currentPokemon }, () => this.fillmodalPokeInfo())
+      .then(currentPoke =>
+        this.setState(
+          { currentPokemon: currentPoke, currentModalPokemon: currentPoke },
+          () => this.fillmodalPokeInfo()
+        )
       );
   };
 
   modalTeamPokemon = (team, num) => {
     if (team === "team1") {
-      this.setState({ currentPokemon: this.props.player1Team[num] }, () =>
+      this.setState({ currentModalPokemon: this.props.player1Team[num] }, () =>
         this.fillmodalTeamPokeInfo()
       );
     } else {
-      this.setState({ currentPokemon: this.props.player2Team[num] }, () =>
+      this.setState({ currentModalPokemon: this.props.player2Team[num] }, () =>
         this.fillmodalTeamPokeInfo()
       );
     }
@@ -609,79 +636,81 @@ class TeamBuilder extends Component {
 
   fillmodalTeamPokeInfo = () => {
     this.setState({
-      currentPokemonName: this.state.currentPokemon.name,
-      currentPokemonSprite: this.state.currentPokemon.frontSprite,
-      currentPokemonSpriteBack: this.state.currentPokemon.backSprite,
-      currentPokemonTypes: this.state.currentPokemon.types.map((item, i) => {
-        return item;
-      }),
-      currentPokemonHP: this.state.currentPokemon.OrigHp,
-      currentPokemonAtk: this.state.currentPokemon.OrigAttack,
-      currentPokemonDef: this.state.currentPokemon.OrigDefense,
-      currentPokemonSpd: this.state.currentPokemon.OrigSpeed,
-      currentPokemonSpcAtk: this.state.currentPokemon.OrigSpecialattack,
-      currentPokemonSpcDef: this.state.currentPokemon.OrigSpecialdefense,
-      currentPokemonLevel: this.state.currentPokemon.lv,
-      currentPokemonMoves: this.state.currentPokemon.moves
+      currentPokemonName: this.state.currentModalPokemon.name,
+      currentPokemonSprite: this.state.currentModalPokemon.frontSprite,
+      currentPokemonSpriteBack: this.state.currentModalPokemon.backSprite,
+      currentPokemonTypes: this.state.currentModalPokemon.types.map(
+        (item, i) => {
+          return item;
+        }
+      ),
+      currentPokemonHP: this.state.currentModalPokemon.OrigHp,
+      currentPokemonAtk: this.state.currentModalPokemon.OrigAttack,
+      currentPokemonDef: this.state.currentModalPokemon.OrigDefense,
+      currentPokemonSpd: this.state.currentModalPokemon.OrigSpeed,
+      currentPokemonSpcAtk: this.state.currentModalPokemon.OrigSpecialattack,
+      currentPokemonSpcDef: this.state.currentModalPokemon.OrigSpecialdefense,
+      currentPokemonLevel: this.state.currentModalPokemon.lv,
+      currentPokemonMoves: this.state.currentModalPokemon.moves
     });
   };
 
   fillmodalPokeInfo = () => {
     let level = this.state.globalLevel;
     let rand = Math.random();
-    let Sprite = this.state.currentPokemon.sprites.front_default;
-    let SpriteBack = this.state.currentPokemon.sprites.back_default;
-    let Name = this.state.currentPokemon.name;
+    let Sprite = this.state.currentModalPokemon.sprites.front_default;
+    let SpriteBack = this.state.currentModalPokemon.sprites.back_default;
+    let Name = this.state.currentModalPokemon.name;
     //5% chance of shiny
     if (rand <= 0.05) {
-      Sprite = this.state.currentPokemon.sprites.front_shiny;
-      SpriteBack = this.state.currentPokemon.sprites.back_shiny;
-      Name = this.state.currentPokemon.name + "*";
+      Sprite = this.state.currentModalPokemon.sprites.front_shiny;
+      SpriteBack = this.state.currentModalPokemon.sprites.back_shiny;
+      Name = this.state.currentModalPokemon.name + "*";
     }
 
     this.setState({
       currentPokemonName: Name,
       currentPokemonSprite: Sprite,
       currentPokemonSpriteBack: SpriteBack,
-      currentPokemonTypes: this.state.currentPokemon.types.map(item => {
+      currentPokemonTypes: this.state.currentModalPokemon.types.map(item => {
         return item.type.name;
       }),
-      currentPokemonHeight: this.state.currentPokemon.height,
-      currentPokemonWeight: this.state.currentPokemon.weight,
-      currentPokemonId: this.state.currentPokemon.id,
+      currentPokemonHeight: this.state.currentModalPokemon.height,
+      currentPokemonWeight: this.state.currentModalPokemon.weight,
+      currentPokemonId: this.state.currentModalPokemon.id,
       currentPokemonHP: this.calcStats(
         "hp",
-        this.state.currentPokemon.stats[5].base_stat,
+        this.state.currentModalPokemon.stats[5].base_stat,
         level
       ),
       currentPokemonAtk: this.calcStats(
         "attack",
-        this.state.currentPokemon.stats[4].base_stat,
+        this.state.currentModalPokemon.stats[4].base_stat,
         level
       ),
       currentPokemonDef: this.calcStats(
         "defense",
-        this.state.currentPokemon.stats[3].base_stat,
+        this.state.currentModalPokemon.stats[3].base_stat,
         level
       ),
       currentPokemonSpd: this.calcStats(
         "speed",
-        this.state.currentPokemon.stats[0].base_stat,
+        this.state.currentModalPokemon.stats[0].base_stat,
         level
       ),
       currentPokemonSpcAtk: this.calcStats(
         "specialattack",
-        this.state.currentPokemon.stats[2].base_stat,
+        this.state.currentModalPokemon.stats[2].base_stat,
         level
       ),
       currentPokemonSpcDef: this.calcStats(
         "specialdefense",
-        this.state.currentPokemon.stats[1].base_stat,
+        this.state.currentModalPokemon.stats[1].base_stat,
         level
       ),
       currentPokemonMoves: this.movesBuilder(
-        this.state.currentPokemon.moves,
-        this.state.currentPokemon.types
+        this.state.currentModalPokemon.moves,
+        this.state.currentModalPokemon.types
       )
     });
   };
@@ -709,6 +738,7 @@ class TeamBuilder extends Component {
       specialdefense: this.state.currentPokemonSpcDef,
       types: [
         this.state.currentPokemon.types.map(item => {
+          console.log(item.type);
           return item.type.name;
         })
       ],
@@ -927,14 +957,14 @@ class TeamBuilder extends Component {
               Multi Player -<br />
               Local Battle
             </button>
-            {/* <button
-            type="button"
-            className="btn btn-dark"
-            id="btnCPUVSCPU"
-            onClick={this.cpuVScpu}
-          >
-            CPU vs. CPU
-          </button> */}
+            <button
+              type="button"
+              className="btn btn-dark"
+              id="btnCPUVSCPU"
+              onClick={this.cpuVScpu}
+            >
+              CPU vs. CPU
+            </button>
           </div>
           <div className="modal fade pokemonTeamPopup">
             <div className="modal-dialog modal-dialog-centered">

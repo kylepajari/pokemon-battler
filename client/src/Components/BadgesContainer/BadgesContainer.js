@@ -617,6 +617,14 @@ class BadgesContainer extends Component {
         this.props.setPlayerTwoName("Blue");
         break;
       case "Random":
+        //if player team full, hide pokemon selection sheet
+        console.log(this.props.player1Team.length);
+        if (this.props.player1Team.length !== 0) {
+          $(document.querySelectorAll(".dropdown")).fadeOut(100);
+          $(document.querySelector(".pokemonSheetContainer")).addClass(
+            "deRender"
+          );
+        }
         //fetch pokemon to create team
         let rand = Math.round(RandomNumberGenerator(1, 251));
         this.props.fetchPokemon(rand, 50, "team2", "CPU");

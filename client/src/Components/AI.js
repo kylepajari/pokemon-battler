@@ -209,7 +209,19 @@ const HandleAI = (
       );
       moveChosen = PKMNuser.moves[rand];
       num = rand;
+      //if rest is chosen and HP is above half, choose again
+      if (
+        moveChosen.name === "Rest" &&
+        PKMNuser.Health > PKMNuser.origHealth / 2
+      ) {
+        let rand = Math.round(
+          RandomNumberGenerator(0, PKMNuser.moves.length - 1)
+        );
+        moveChosen = PKMNuser.moves[rand];
+        num = rand;
+      }
     } else {
+      //give AI 30% at choosing different move, to prevent move spam
       if (random < 0.3) {
         let rand = Math.round(
           RandomNumberGenerator(0, PKMNuser.moves.length - 1)

@@ -57,7 +57,7 @@ const DealDamage = (
   //damage formula:
   let A = PKMNuser.attack; //attack stat of attacker
   let uSA = PKMNuser.specialattack; //special attack stat of attacker
-  // let SPD = PKMNuser.speed; //speed stat of attacker
+  let SPD = PKMNuser.speed; //speed stat of attacker
   let D = PKMNtarget.defense; //defense stat of target
   let tSD = PKMNtarget.specialdefense; //special defense stat of target
   let userType1 = PKMNuser.types[0][0];
@@ -95,13 +95,18 @@ const DealDamage = (
   let critMessage = "";
   let CriticalHit = 1;
   //critical hit 'P' probability is 'baseSpeed / 512'
-  let threshold = Math.random();
-  // let P = Math.round((SPD * 100) / 512);
-  //6.25% chance of critical hit
-  if (threshold <= 0.0625) {
+  let T = RandomNumberGenerator(0, 255);
+  let P = Math.round(SPD / 512) * 100;
+  //chance of critical hit is if threshold T(between 0 and 255) is less than or equal to chance % P(SPD/512)*100
+  if (T < P) {
     CriticalHit = 2;
     critMessage = "Critical Hit!";
   }
+  //6.25% chance of critical hit
+  // if (threshold <= 0.0625) {
+  //   CriticalHit = 2;
+  //   critMessage = "Critical Hit!";
+  // }
 
   let modifier = RandomNumberGenerator(0.85, 1.0) * STAB * Type * CriticalHit; //random * STAB * Type
 
