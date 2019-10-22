@@ -153,7 +153,7 @@ const UseMove = (
 
       //handle is recharging
       let recharging = false;
-      if (PKMNuser.isRecharging === true) {
+      if (PKMNuser.isRecharging === true && PKMNuser.statusCondition === "") {
         //user is recharging
         recharging = true;
         DisplayMessage(PKMNuser.name + " must recharge...");

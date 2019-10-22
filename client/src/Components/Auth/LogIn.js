@@ -29,6 +29,8 @@ class Login extends Component {
           this.props.setId(result["_id"]);
           this.props.setPlayer1Team(result["team"]);
           this.props.setPlayerOneName(this.state.username);
+          let date = new Date();
+          this.props.updateLastLogin(result["_id"], date);
         })
         .catch(err =>
           this.setState({

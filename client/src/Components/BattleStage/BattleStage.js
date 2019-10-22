@@ -11,6 +11,7 @@ import { RandomNumberGenerator } from "../RandomNumberGenerator";
 import { DisplayMessage } from "../DisplayMessage";
 import { HandleAI } from "../AI";
 import { PlayLeaderIntro } from "../LeaderIntro";
+import { CalcTypeAdvantage } from "../TypeAdvantage";
 import { Icon } from "semantic-ui-react";
 import Victory from "../../Sounds/victory.mp3";
 import swapSound from "../../Sounds/BattleSounds/General/SWITCHIN.wav";
@@ -778,7 +779,12 @@ class BattleStage extends Component {
 
   //HANDLE TEAM ////////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////
-  handleTeam(reason) {
+  handleTeam(reason, swapTo = null) {
+    let Team = this.state.player2Team;
+    let PKMN = this.props.player2CurrentPokemon;
+    let HPbar = $(document.querySelector(".player2HP"));
+    let Sprite = $(document.querySelector(".player2Sprite"));
+    let swapPoke = null;
     if (reason === "fainted") {
       //switch turns to show list for player who lost pokemon
       if (
@@ -817,15 +823,53 @@ class BattleStage extends Component {
           $(document.querySelector(".itemsButton")).hide(500);
         } else {
           //AI's turn, only swap if current pokemon fainted
-          if (
-            this.state.player2Team[this.props.player2CurrentPokemon].hp <= 0
-          ) {
+          if (Team[PKMN].hp <= 0) {
             //increment current pokemon to send out next one
-            let Team = this.state.player2Team;
-            let PKMN = this.props.player2CurrentPokemon;
-            let HPbar = $(document.querySelector(".player2HP"));
-            let Sprite = $(document.querySelector(".player2Sprite"));
-            let swapPoke = this.props.player2CurrentPokemon + 1;
+            //scan team for type advantage
+            let PKMNtarget = "";
+            PKMNtarget = this.props.player1Team[
+              this.props.player1CurrentPokemon
+            ];
+            Team = this.props.player2Team;
+            let targetType1 = PKMNtarget.types[0][0];
+            let targetType2 = null;
+            if (PKMNtarget.types[0][1] !== null) {
+              targetType2 = PKMNtarget.types[0][1];
+            }
+            Team.forEach((poke, i) => {
+              let type1 = poke.types[0][0];
+              let type2 = null;
+              if (poke.types[0][1] !== null) {
+                type2 = poke.types[0][1];
+              }
+              let advanNum1 = CalcTypeAdvantage(targetType1, type1, type2);
+              let advanNum2 = 1;
+              if (targetType2 !== null) {
+                advanNum2 = CalcTypeAdvantage(targetType2, type1, type2);
+              }
+              console.log(
+                poke.name + "'s advan is " + advanNum1 + " and " + advanNum2
+              );
+              //if either type has advantage and pokemon is not currently out, switch
+              if (
+                ((advanNum1 <= 0.5 && advanNum2 <= 1) ||
+                  (advanNum2 <= 0.5 && advanNum1 <= 1)) &&
+                !Team[i].inBattle &&
+                !Team[i].fainted
+              ) {
+                swapPoke = i;
+              }
+            });
+
+            //if no type advantage pokemon found, swap to first non-fainted pokemon
+            if (swapPoke === null) {
+              console.log("no type advan found, using next in line...");
+
+              swapPoke = Team.findIndex(poke => {
+                return poke.fainted === false && poke.inBattle === false;
+              });
+            }
+
             this.resetMultipliers("fainted");
             //take current pokemon out of battle
             Team[PKMN].inBattle = false;
@@ -891,27 +935,70 @@ class BattleStage extends Component {
         //AI's turn, only swap if current pokemon fainted
         let Team = null;
         let PKMN = null;
+        let Team2 = null;
+        let PKMN2 = null;
         let HPbar = null;
         let Sprite = null;
-        let swapPoke = null;
         let name = null;
         if (this.props.playersTurn === "Player One") {
           name = this.props.playerOneName;
           PKMN = this.props.player1CurrentPokemon;
-          Team = this.state.player1Team;
+          Team = this.props.player1Team;
+          PKMN2 = this.props.player2CurrentPokemon;
+          Team2 = this.props.player2Team;
           HPbar = $(document.querySelector(".player1HP"));
           Sprite = $(document.querySelector(".player1Sprite"));
-          swapPoke = this.props.player1CurrentPokemon + 1;
         } else {
           name = this.props.playerTwoName;
           PKMN = this.props.player2CurrentPokemon;
-          Team = this.state.player2Team;
+          Team = this.props.player2Team;
+          PKMN2 = this.props.player1CurrentPokemon;
+          Team2 = this.props.player1Team;
           HPbar = $(document.querySelector(".player2HP"));
           Sprite = $(document.querySelector(".player2Sprite"));
-          swapPoke = this.props.player2CurrentPokemon + 1;
         }
         if (Team[PKMN].hp <= 0) {
           //increment current pokemon to send out next one
+          let PKMNtarget = Team2[PKMN2];
+          let targetType1 = PKMNtarget.types[0][0];
+          let targetType2 = null;
+          if (PKMNtarget.types[0][1] !== null) {
+            targetType2 = PKMNtarget.types[0][1];
+          }
+          Team.forEach((poke, i) => {
+            let type1 = poke.types[0][0];
+            let type2 = null;
+            if (poke.types[0][1] !== null) {
+              type2 = poke.types[0][1];
+            }
+            let advanNum1 = CalcTypeAdvantage(targetType1, type1, type2);
+            let advanNum2 = 1;
+            if (targetType2 !== null) {
+              advanNum2 = CalcTypeAdvantage(targetType2, type1, type2);
+            }
+            console.log(
+              poke.name + "'s advan is " + advanNum1 + " and " + advanNum2
+            );
+            //if either type has advantage and pokemon is not currently out, switch
+            if (
+              ((advanNum1 <= 0.5 && advanNum2 <= 1) ||
+                (advanNum2 <= 0.5 && advanNum1 <= 1)) &&
+              !Team[i].inBattle &&
+              !Team[i].fainted
+            ) {
+              swapPoke = i;
+            }
+          });
+
+          //if no type advantage pokemon found, swap to first non-fainted pokemon
+          if (swapPoke === null) {
+            console.log("no type advan found, using next in line...");
+
+            swapPoke = Team.findIndex(poke => {
+              return poke.fainted === false && poke.inBattle === false;
+            });
+          }
+
           this.resetMultipliers("fainted");
           //take current pokemon out of battle
           Team[PKMN].inBattle = false;
@@ -977,6 +1064,107 @@ class BattleStage extends Component {
       } else {
         $(document.querySelector(".pkmnButton")).removeClass("selected");
       }
+    }
+    if (reason === "swapAI") {
+      //AI's turn, swapping because of type disadvantage
+      let Team = null;
+      let PKMN = null;
+      let HPbar = null;
+      let Sprite = null;
+      let swapPoke = swapTo;
+      let name = null;
+      if (this.props.playersTurn === "Player One") {
+        name = this.props.playerOneName;
+        PKMN = this.props.player1CurrentPokemon;
+        Team = this.props.player1Team;
+        HPbar = $(document.querySelector(".player1HP"));
+        Sprite = $(document.querySelector(".player1Sprite"));
+      } else {
+        name = this.props.playerTwoName;
+        PKMN = this.props.player2CurrentPokemon;
+        Team = this.props.player2Team;
+        HPbar = $(document.querySelector(".player2HP"));
+        Sprite = $(document.querySelector(".player2Sprite"));
+      }
+      console.log("Switching to " + Team[swapTo].name);
+      //increment current pokemon to send out next one
+      this.resetMultipliers("swap");
+      //take current pokemon out of battle
+      Team[PKMN].inBattle = false;
+      //place swapped pokemon into battle
+      Team[swapPoke].inBattle = true;
+      //hide sprite
+      Sprite.fadeOut(1000);
+      setTimeout(
+        () => DisplayMessage(name + " withdrew " + Team[PKMN].name + "..."),
+        500
+      );
+      setTimeout(
+        () => DisplayMessage("...and sent out " + Team[swapPoke].name + "!"),
+        2500
+      );
+      let switchSound = new Audio(swapSound);
+      switchSound.volume = this.props.volume;
+      setTimeout(() => switchSound.play(), 1000);
+      //update current pokemon to swapped pokemon
+      setTimeout(() => this.handleSwapPokemon(swapPoke), 2500);
+
+      //play new pokemon's cry
+      let cry = new Audio(Team[swapPoke].cry);
+      cry.volume = this.props.volume;
+      setTimeout(cry.play.bind(cry), 3200);
+
+      //fade sprite back in
+      setTimeout(() => Sprite.fadeIn(1000), 3000);
+      // calculate percent difference between current poke and swap pole hp in percentage
+      let asPercentage = Team[swapPoke].hp / Team[swapPoke].OrigHp;
+      //if swapped pokemon has full hp, make bar full
+      if (Team[swapPoke].hp >= Team[swapPoke].OrigHp) {
+        setTimeout(() => HPbar.css("width", "100%"), 2500);
+        setTimeout(() => HPbar.removeClass("halfhp"), 2500);
+        setTimeout(() => HPbar.removeClass("onefifthhp"), 2500);
+        setTimeout(() => HPbar.addClass("fullhp"), 2500);
+      } else {
+        let updatedBarHP = 560 * asPercentage;
+        //update health bar to reflect damage
+        setTimeout(
+          () => UpdateHP(HPbar, updatedBarHP, this.props.volume),
+          2500
+        );
+      }
+      setTimeout(
+        () =>
+          HandleAI(
+            this.props.player1CurrentPokemon,
+            this.props.player2CurrentPokemon,
+            this.props.playersTurn,
+            this.handleMoves,
+            this.handlePoisonBurn,
+            this.dealPoisonBurn,
+            this.switchTurns,
+            this.handleForceUpdate,
+            this.state.player1Team,
+            this.state.player2Team,
+            this.props.playerOneName,
+            this.props.playerTwoName,
+            this.resetMultipliers,
+            this.handleTeam,
+            this.props.handleFainted,
+            this.props.mode,
+            this.state.isPoisonBurned,
+            this.checkForStatusEffect,
+            this.props.volume,
+            this.checkWin,
+            this.state.aiUsedMaxPotion,
+            this.state.aiUsedAntidote,
+            this.state.aiUsedBurnHeal,
+            this.state.aiUsedParalyzeHeal,
+            this.state.aiUsedAwakening,
+            this.state.aiUsedIceHeal,
+            this.handleAIUseItems
+          ),
+        4500
+      );
     }
   }
 

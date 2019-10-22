@@ -5,7 +5,8 @@ const Users = new Schema({
   username: String,
   password: String,
   team: Array,
-  badges: Number
+  badges: Number,
+  lastLogin: Date
 });
 
 const Leaders = new Schema({

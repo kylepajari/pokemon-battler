@@ -38,10 +38,13 @@ const HandleAI = (
 ) => {
   //setting up hooks
   const state = store.getState();
+  console.log("Beginning AI's turn");
 
   ////////////////////////////////////////////////
   let PKMNuser = null;
   let PKMNtarget = null;
+  let canSwap = false;
+  let usedItem = false;
 
   if (mode === "Single") {
     PKMNuser = player2Team[player2CurrentPokemon];
@@ -55,6 +58,27 @@ const HandleAI = (
       PKMNtarget = player1Team[player1CurrentPokemon];
     }
   }
+
+  //get types from target
+  let targetType1 = PKMNtarget.types[0][0];
+  let targetType2 = null;
+  if (PKMNtarget.types[0][1] !== null) {
+    targetType2 = PKMNtarget.types[0][1];
+  }
+  //get types from user
+  let userType1 = PKMNuser.types[0][0];
+  let userType2 = null;
+  if (PKMNuser.types[0][1] !== null) {
+    userType2 = PKMNuser.types[0][1];
+  }
+  //calc type advantages for current pokes out
+  let advanNum1 = CalcTypeAdvantage(targetType1, userType1, userType2);
+  let advanNum2 = 0;
+  if (targetType2 !== null) {
+    advanNum2 = CalcTypeAdvantage(targetType2, userType1, userType2);
+  }
+  console.log("First type advantage is: " + advanNum1);
+  console.log("Second type advantage is: " + advanNum2);
 
   //first, check if hp is low enough to use potion and is on either last two pokemon
   let currentPoke =
@@ -82,6 +106,7 @@ const HandleAI = (
     );
 
     handleAIUseItems("Max Potion");
+    usedItem = true;
 
     //heal hp
     //if increasing would bring them over full hp, cap hp
@@ -165,6 +190,7 @@ const HandleAI = (
         ),
       1800
     );
+    usedItem = true;
     //play heal sound
     let heal = new Audio(healSound);
     heal.volume = volume;
@@ -172,48 +198,74 @@ const HandleAI = (
     //remove status condition
     setTimeout(() => (PKMNuser.statusCondition = ""), 1900);
     setTimeout(() => switchTurns(), 3500);
-  } else {
-    // if not low hp, or afflicted, continue using move as normal
-
-    //get types from target
-    let targetType1 = PKMNtarget.types[0][0];
-    let targetType2 = null;
-    if (PKMNtarget.types[0][1] !== null) {
-      targetType2 = PKMNtarget.types[0][1];
+  }
+  //check if opponent poke has type advantage over current poke
+  else if (advanNum1 > 1 || advanNum2 > 1) {
+    let Team = null;
+    let swapPoke = null;
+    //scan team for type advantage
+    let PKMNtarget = "";
+    if (mode === "Single") {
+      PKMNtarget = player1Team[player1CurrentPokemon];
+      Team = player2Team;
+    } else if (mode === "CPUVSCPU") {
+      if (playersTurn === "Player One") {
+        PKMNtarget = player2Team[player2CurrentPokemon];
+        Team = player1Team;
+      } else {
+        PKMNtarget = player1Team[player1CurrentPokemon];
+        Team = player2Team;
+      }
     }
+    console.log(
+      "opponent " + PKMNtarget.name + " has type advan over " + PKMNuser.name
+    );
+    Team.forEach((poke, i) => {
+      let type1 = poke.types[0][0];
+      let type2 = null;
+      if (poke.types[0][1] !== null) {
+        type2 = poke.types[0][1];
+      }
+      let advanNum1 = CalcTypeAdvantage(targetType1, type1, type2);
+      let advanNum2 = 1;
+      if (targetType2 !== null) {
+        advanNum2 = CalcTypeAdvantage(targetType2, type1, type2);
+      }
+      console.log(poke.name + "'s advan is " + advanNum1 + " and " + advanNum2);
+      //if either type has advantage and pokemon is not currently out, switch
+      if (
+        ((advanNum1 <= 0.5 && advanNum2 <= 1) ||
+          (advanNum2 <= 0.5 && advanNum1 <= 1)) &&
+        !Team[i].inBattle &&
+        !Team[i].fainted
+      ) {
+        swapPoke = i;
+      }
+    });
+    if (swapPoke != null) {
+      canSwap = true;
+      console.log("switching to " + Team[swapPoke].name);
+      console.log(swapPoke);
+      setTimeout(() => handleTeam("swapAI", swapPoke), 1000);
+    }
+  }
+  if (!canSwap && !usedItem) {
     let moveChosen = null;
     let num = 0;
     let chosen4 = false;
     let random = Math.random();
-    for (let i = 0; i < PKMNuser.moves.length; i++) {
-      let advanNum = CalcTypeAdvantage(
-        PKMNuser.moves[i].type,
-        targetType1,
-        targetType2
-      );
-
-      if (advanNum === 4) {
-        //double type advan
-        num = i;
-        moveChosen = PKMNuser.moves[i];
-        chosen4 = true;
-      } else if (advanNum === 2 && !chosen4) {
-        //single type advan
-        num = i;
-        moveChosen = PKMNuser.moves[i];
+    let i = PKMNuser.moves.forEach((move, i) => {
+      if (move.name === "Rest") {
+        return i;
       }
-    }
-    if (moveChosen === null) {
-      let rand = Math.round(
-        RandomNumberGenerator(0, PKMNuser.moves.length - 1)
-      );
-      moveChosen = PKMNuser.moves[rand];
-      num = rand;
-      //if rest is chosen and HP is above half, choose again
-      if (
-        moveChosen.name === "Rest" &&
-        PKMNuser.Health > PKMNuser.origHealth / 2
-      ) {
+    });
+    //if health is below 1/4 and Rest is available, use it
+    if (PKMNuser.hp <= PKMNuser.OrigHp / 4 && i !== undefined) {
+      //find rest
+      moveChosen = PKMNuser.moves[i];
+      num = i;
+      //give AI 20% at choosing different move
+      if (random < 0.2) {
         let rand = Math.round(
           RandomNumberGenerator(0, PKMNuser.moves.length - 1)
         );
@@ -221,8 +273,51 @@ const HandleAI = (
         num = rand;
       }
     } else {
-      //give AI 30% at choosing different move, to prevent move spam
-      if (random < 0.3) {
+      // if not low hp, or afflicted, continue using move as normal
+      for (let i = 0; i < PKMNuser.moves.length; i++) {
+        let advanNum = CalcTypeAdvantage(
+          PKMNuser.moves[i].type,
+          targetType1,
+          targetType2
+        );
+
+        if (advanNum === 4) {
+          //double type advan
+          num = i;
+          moveChosen = PKMNuser.moves[i];
+          chosen4 = true;
+        } else if (advanNum === 2 && !chosen4) {
+          //single type advan
+          num = i;
+          moveChosen = PKMNuser.moves[i];
+        }
+      }
+      if (moveChosen === null) {
+        let rand = Math.round(
+          RandomNumberGenerator(0, PKMNuser.moves.length - 1)
+        );
+        moveChosen = PKMNuser.moves[rand];
+        num = rand;
+      } else {
+        //give AI 30% at choosing different move, to prevent move spam
+        if (random < 0.3) {
+          let rand = Math.round(
+            RandomNumberGenerator(0, PKMNuser.moves.length - 1)
+          );
+          moveChosen = PKMNuser.moves[rand];
+          num = rand;
+        }
+      }
+      //if rest is chosen and HP is above half, choose again
+      if (moveChosen.name === "Rest" && PKMNuser.hp > PKMNuser.OrigHp / 2) {
+        let rand = Math.round(
+          RandomNumberGenerator(0, PKMNuser.moves.length - 1)
+        );
+        moveChosen = PKMNuser.moves[rand];
+        num = rand;
+      }
+      //if confusion causing move is chosen and target is already confued, choose again
+      if (moveChosen.statusEff === "ConfusionTarget" && PKMNtarget.isConfused) {
         let rand = Math.round(
           RandomNumberGenerator(0, PKMNuser.moves.length - 1)
         );
@@ -230,6 +325,7 @@ const HandleAI = (
         num = rand;
       }
     }
+
     if (PKMNuser.hp <= 0) {
       //if current pokemon is fainted, delay using move by 4.5 seconds to allow time for new pokemon to come out
       setTimeout(

@@ -336,7 +336,7 @@ class TeamBuilder extends Component {
     if (types[1] !== undefined) {
       type2 = types[1].type.name;
     }
-    console.log("type 1: " + type1, "type 2: " + type2);
+    //console.log("type 1: " + type1, "type 2: " + type2);
 
     let usableMoves = [];
     //go through moves, and create new list with objects for each one
@@ -380,7 +380,7 @@ class TeamBuilder extends Component {
     //if pokemon has more than 4 moves available
     if (physical.length + special.length + status.length > 4) {
       if (physical.length > special.length) {
-        console.log("more physical", physical, type1, type2);
+        //console.log("more physical", physical, type1, type2);
 
         //more physical moves than special
         for (let i = 0; i < 2; i++) {
@@ -408,11 +408,11 @@ class TeamBuilder extends Component {
                   randomMove =
                     physical[Math.floor(Math.random() * physical.length)];
                 } while (randomMove.type !== type1);
-                console.log(
-                  "found physical move that matches type 1 ",
-                  type1,
-                  randomMove.name
-                );
+                // console.log(
+                //   "found physical move that matches type 1 ",
+                //   type1,
+                //   randomMove.name
+                // );
               } else if (
                 type2 !== null &&
                 type2 !== "psychic" &&
@@ -429,11 +429,11 @@ class TeamBuilder extends Component {
                   randomMove =
                     physical[Math.floor(Math.random() * physical.length)];
                 } while (randomMove.type !== type2);
-                console.log(
-                  "found physical move that matches type 2 ",
-                  type2,
-                  randomMove.name
-                );
+                // console.log(
+                //   "found physical move that matches type 2 ",
+                //   type2,
+                //   randomMove.name
+                // );
               }
             } else {
               //prevent duplicate moves
@@ -446,9 +446,9 @@ class TeamBuilder extends Component {
             }
 
             if (i === 0) {
-              console.log(randomMove.name + " was chosen as FIRST MOVE");
+              //console.log(randomMove.name + " was chosen as FIRST MOVE");
             } else {
-              console.log(randomMove.name + " was chosen as SECOND MOVE");
+              //console.log(randomMove.name + " was chosen as SECOND MOVE");
             }
 
             finalMoves.push(randomMove);
@@ -476,21 +476,21 @@ class TeamBuilder extends Component {
           do {
             randomMove = special[Math.floor(Math.random() * special.length)];
           } while (randomMove.type !== type1 && randomMove.type !== type2);
-          console.log(
-            "found special move that matches type 1 or 2",
-            type1,
-            type2,
-            randomMove.name
-          );
+          // console.log(
+          //   "found special move that matches type 1 or 2",
+          //   type1,
+          //   type2,
+          //   randomMove.name
+          // );
         }
-        console.log(randomMove.name + " was chosen as THIRD MOVE");
+        //console.log(randomMove.name + " was chosen as THIRD MOVE");
         finalMoves.push(randomMove);
       } else {
         //more special moves than physical
-        console.log("more special");
+        //console.log("more special");
         //add single physical move
         let randomMove = physical[Math.floor(Math.random() * physical.length)];
-        console.log(randomMove.name + " was chosen as FIRST MOVE");
+        //console.log(randomMove.name + " was chosen as FIRST MOVE");
         finalMoves.push(randomMove);
 
         for (let i = 0; i < 2; i++) {
@@ -517,21 +517,21 @@ class TeamBuilder extends Component {
                   randomMove =
                     special[Math.floor(Math.random() * special.length)];
                 } while (randomMove.type !== type1);
-                console.log(
-                  "found special move that matches type 1 ",
-                  type1,
-                  randomMove.name
-                );
+                // console.log(
+                //   "found special move that matches type 1 ",
+                //   type1,
+                //   randomMove.name
+                // );
               } else if (type2 !== null && type2 !== "bug") {
                 do {
                   randomMove =
                     special[Math.floor(Math.random() * special.length)];
                 } while (randomMove.type !== type2);
-                console.log(
-                  "found special move that matches type 2 ",
-                  type2,
-                  randomMove.name
-                );
+                // console.log(
+                //   "found special move that matches type 2 ",
+                //   type2,
+                //   randomMove.name
+                // );
               }
             } else {
               //prevent duplicate moves
@@ -542,9 +542,9 @@ class TeamBuilder extends Component {
             }
 
             if (i === 0) {
-              console.log(randomMove.name + " was chosen as SECOND MOVE");
+              //console.log(randomMove.name + " was chosen as SECOND MOVE");
             } else {
-              console.log(randomMove.name + " was chosen as THIRD MOVE");
+              //console.log(randomMove.name + " was chosen as THIRD MOVE");
             }
 
             finalMoves.push(randomMove);
@@ -558,7 +558,7 @@ class TeamBuilder extends Component {
       //add single status move
       for (let i = 0; i < 1; i++) {
         let randomMove = status[Math.floor(Math.random() * status.length)];
-        console.log(randomMove.name + " was chosen FORTH MOVE");
+        //console.log(randomMove.name + " was chosen FORTH MOVE");
         finalMoves.push(randomMove);
       }
     } else {
@@ -570,7 +570,7 @@ class TeamBuilder extends Component {
   };
 
   fetchPokemon = (num, level, team, name) => {
-    console.log("add to team", num, level, team, name);
+    //console.log("add to team", num, level, team, name);
     if (this.state.currentPokemon === null) {
       let url = "https://pokeapi.co/api/v2/pokemon/" + num;
       fetch(url)
@@ -738,7 +738,6 @@ class TeamBuilder extends Component {
       specialdefense: this.state.currentPokemonSpcDef,
       types: [
         this.state.currentPokemon.types.map(item => {
-          console.log(item.type);
           return item.type.name;
         })
       ],

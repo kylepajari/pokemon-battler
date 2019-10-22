@@ -196,6 +196,19 @@ export function updateBadges(id, badgesCount) {
   };
 }
 
+export function updateLastLogin(id, date) {
+  return dispatch => {
+    return axios({
+      url: "/api/updatelastlogin",
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      data: JSON.stringify({ id, date })
+    }).catch(err => Promise.reject(err));
+  };
+}
+
 export function updateTeam(id, team) {
   return dispatch => {
     return axios({

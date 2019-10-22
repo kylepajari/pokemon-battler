@@ -15,7 +15,8 @@ const createUser = user => {
     username: user.username,
     password: hash,
     team: [],
-    badges: 0
+    badges: 0,
+    lastLogin: new Date()
   });
 };
 
@@ -28,7 +29,8 @@ const updateUser = (name, updates) => {
         username: updates.username,
         password: updates.password,
         team: updates.team,
-        badges: updates.badges
+        badges: updates.badges,
+        lastLogin: updates.lastLogin
       }
     }
   );
@@ -36,6 +38,10 @@ const updateUser = (name, updates) => {
 
 const UpdateBadges = (id, badges) => {
   return UsersModel.updateOne({ _id: ObjectId(id) }, { $set: { badges } });
+};
+
+const UpdateLastLogin = (id, lastLogin) => {
+  return UsersModel.updateOne({ _id: ObjectId(id) }, { $set: { lastLogin } });
 };
 
 const UpdateTeam = (id, team) => {
@@ -63,6 +69,7 @@ module.exports = {
   createUser,
   updateUser,
   UpdateBadges,
+  UpdateLastLogin,
   UpdateTeam,
   Login,
   getUserById,

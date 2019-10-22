@@ -36,6 +36,12 @@ router.put("/updatebadges", (req, res) => {
     .catch(err => res.status(400).send(err));
 });
 
+router.put("/updatelastlogin", (req, res) => {
+  UsersController.UpdateLastLogin(req.body.id, req.body.date)
+    .then(() => res.send("Last Login updated successfully"))
+    .catch(err => res.status(400).send(err));
+});
+
 router.put("/updateteam", (req, res) => {
   UsersController.UpdateTeam(req.body.id, req.body.team)
     .then(() => res.send("Team updated successfully"))
