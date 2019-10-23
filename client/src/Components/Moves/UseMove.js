@@ -153,7 +153,11 @@ const UseMove = (
 
       //handle is recharging
       let recharging = false;
-      if (PKMNuser.isRecharging === true && PKMNuser.statusCondition === "") {
+      if (
+        PKMNuser.isRecharging === true &&
+        PKMNuser.statusCondition !== "Frozen" &&
+        PKMNuser.statusCondition !== "Sleep"
+      ) {
         //user is recharging
         recharging = true;
         DisplayMessage(PKMNuser.name + " must recharge...");
@@ -169,7 +173,7 @@ const UseMove = (
 
       //handle paralyze
       let paralysis = false;
-      if (PKMNuser.statusCondition === "Paralyze") {
+      if (PKMNuser.statusCondition === "Paralyze" && !PKMNuser.isRecharging) {
         //user is paralyzed
         let rand = Math.random();
         //25% chance of paralysis
@@ -188,7 +192,7 @@ const UseMove = (
       //handle confusion
       let snappedOut = false;
       let hurtitself = false;
-      if (PKMNuser.isConfused) {
+      if (PKMNuser.isConfused && !PKMNuser.isRecharging) {
         if (PKMNuser.turnsConfused > 0) {
           //subtract one turn from confused
           PKMNuser.turnsConfused = PKMNuser.turnsConfused - 1;

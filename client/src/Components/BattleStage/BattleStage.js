@@ -647,10 +647,26 @@ class BattleStage extends Component {
         }
         setTimeout(() => win.pause(), 20000);
         setTimeout(() => this.props.battleMusic.pause(), 2000);
+        this.setState({
+          aiUsedAwakening: false,
+          aiUsedBurnHeal: false,
+          aiUsedMaxPotion: false,
+          aiUsedParalyzeHeal: false,
+          aiUsedIceHeal: false,
+          aiUsedAntidote: false
+        });
         setTimeout(() => this.props.returnToMainMenu(), 20000);
       } else {
         setTimeout(() => win.pause(), 8000);
         setTimeout(() => this.props.battleMusic.pause(), 2000);
+        this.setState({
+          aiUsedAwakening: false,
+          aiUsedBurnHeal: false,
+          aiUsedMaxPotion: false,
+          aiUsedParalyzeHeal: false,
+          aiUsedIceHeal: false,
+          aiUsedAntidote: false
+        });
         setTimeout(() => this.props.returnToMainMenu(), 8000);
       }
     }
@@ -1714,6 +1730,8 @@ class BattleStage extends Component {
 
       //update health bar to reflect damage
       setTimeout(() => UpdateHP(HPbar, updatedBarHP, this.props.volume), 2000);
+      console.log("after recoil, hp is " + PKMNuser.hp);
+
       if (PKMNuser.hp <= 0) {
         //pokemon fainted
         if (PKMNtarget.hp <= 0) {

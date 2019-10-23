@@ -619,7 +619,7 @@ class BadgesContainer extends Component {
       case "Random":
         //if player team full, hide pokemon selection sheet
         //console.log(this.props.player1Team.length);
-        if (this.props.player1Team.length === 6) {
+        if (this.props.player1Team.length !== 0) {
           $(document.querySelectorAll(".dropdown")).fadeOut(100);
           $(document.querySelector(".pokemonSheetContainer")).addClass(
             "deRender"

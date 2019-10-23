@@ -120,8 +120,8 @@ class Items extends Component {
       setTimeout(() => (PKMNuser.hp = PKMNuser.OrigHp), 500);
       setTimeout(() => this.props.handleForceUpdate(), 500);
       let difference = Math.round(PKMNuser.OrigHp - PKMNuser.hp);
-      $(document.querySelector(".options")).fadeOut(300);
-      $(document.querySelector(".mainmenuButton")).fadeOut(300);
+      // $(document.querySelector(".options")).fadeOut(300);
+      // $(document.querySelector(".mainmenuButton")).fadeOut(300);
       DisplayMessage(
         PKMNuser.name + " recovered by " + difference.toString() + " HP!"
       );
@@ -129,8 +129,8 @@ class Items extends Component {
       //increase health by healAmount
       setTimeout(() => (PKMNuser.hp += healAmount), 300);
       setTimeout(() => this.props.handleForceUpdate(), 300);
-      $(document.querySelector(".options")).fadeOut(300);
-      $(document.querySelector(".mainmenuButton")).fadeOut(300);
+      // $(document.querySelector(".options")).fadeOut(300);
+      // $(document.querySelector(".mainmenuButton")).fadeOut(300);
       DisplayMessage(
         PKMNuser.name + " recovered by " + healAmount.toString() + " HP!"
       );
@@ -152,21 +152,22 @@ class Items extends Component {
 
     setTimeout(() => UpdateHP(HPbar, updatedBarHP, this.props.volume), 300);
     this.props.handleItems();
-    if (
-      PKMNuser.statusCondition === "Poison" ||
-      PKMNuser.statusCondition === "Burn"
-    ) {
-      setTimeout(() => this.props.dealPoisonBurn(PKMNuser, HPbar), 1500);
-    } else {
-      setTimeout(() => this.props.switchTurns(), 1500);
-    }
+    //removed switch turns to allow selection after item use
+    // if (
+    //   PKMNuser.statusCondition === "Poison" ||
+    //   PKMNuser.statusCondition === "Burn"
+    // ) {
+    //   setTimeout(() => this.props.dealPoisonBurn(PKMNuser, HPbar), 1500);
+    // } else {
+    //   setTimeout(() => this.props.switchTurns(), 1500);
+    // }
   };
 
   //HEAL STATUS FUNCTION ////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
   healStatus = PKMNuser => {
-    $(document.querySelector(".options")).fadeOut(300);
-    $(document.querySelector(".mainmenuButton")).fadeOut(300);
+    // $(document.querySelector(".options")).fadeOut(300);
+    // $(document.querySelector(".mainmenuButton")).fadeOut(300);
     DisplayMessage(
       PKMNuser.name + " was cured of " + PKMNuser.statusCondition + "!"
     );
@@ -177,7 +178,7 @@ class Items extends Component {
     //remove status condition
     setTimeout(() => (PKMNuser.statusCondition = ""), 500);
     this.props.handleItems();
-    setTimeout(() => this.props.switchTurns(), 1500);
+    //setTimeout(() => this.props.switchTurns(), 1500);
   };
 
   //USE ITEM FUNCTION ////////////////////////////////////////////////////////////////////////////////////

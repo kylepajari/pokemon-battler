@@ -661,8 +661,8 @@ class TeamBuilder extends Component {
     let Sprite = this.state.currentModalPokemon.sprites.front_default;
     let SpriteBack = this.state.currentModalPokemon.sprites.back_default;
     let Name = this.state.currentModalPokemon.name;
-    //5% chance of shiny
-    if (rand <= 0.05) {
+    //3% chance of shiny
+    if (rand <= 0.03) {
       Sprite = this.state.currentModalPokemon.sprites.front_shiny;
       SpriteBack = this.state.currentModalPokemon.sprites.back_shiny;
       Name = this.state.currentModalPokemon.name + "*";
