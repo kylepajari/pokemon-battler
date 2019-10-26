@@ -34,12 +34,13 @@ const HandleAI = (
   aiUsedParalyzeHeal,
   aiUsedAwakening,
   aiUsedIceHeal,
-  handleAIUseItems
+  handleAIUseItems,
+  handleUpdateLastMove,
+  lastMoveUsedPlayer1,
+  lastMoveUsedPlayer2
 ) => {
   //setting up hooks
   const state = store.getState();
-  console.log("Beginning AI's turn");
-
   ////////////////////////////////////////////////
   let PKMNuser = null;
   let PKMNtarget = null;
@@ -79,20 +80,29 @@ const HandleAI = (
   }
 
   //first, check if hp is low enough to use potion and is on either last two pokemon
-  let currentPoke =
-    playersTurn === "Player One"
-      ? player1CurrentPokemon
-      : player2CurrentPokemon;
   let currentTeam = playersTurn === "Player One" ? player1Team : player2Team;
+  let numFainted = 0;
+  let lastTwo = false;
+  //check how many in team are fainted
+  currentTeam.forEach(poke => {
+    if (poke.fainted) {
+      numFainted++;
+    }
+  });
+  if (currentTeam.length <= 2) {
+    //console.log("team has 2 or less pokemon");
+
+    lastTwo = true;
+  } else if (numFainted >= currentTeam.length - 2) {
+    // console.log(
+    //   "numfainted: " + numFainted + ", is greater than team length - 2"
+    // );
+    lastTwo = true;
+  }
   let currentPlayer =
     playersTurn === "Player One" ? playerOneName : playerTwoName;
 
-  if (
-    PKMNuser.hp / PKMNuser.OrigHp <= 0.25 &&
-    (currentPoke === currentTeam.length - 1 ||
-      currentPoke === currentTeam.length - 2) &&
-    !aiUsedMaxPotion
-  ) {
+  if (PKMNuser.hp / PKMNuser.OrigHp <= 0.25 && lastTwo && !aiUsedMaxPotion) {
     //pokemon has less than or equal to 25% health
     DisplayMessage(
       currentPlayer +
@@ -141,6 +151,9 @@ const HandleAI = (
     heal.play();
 
     setTimeout(() => UpdateHP(HPbar, updatedBarHP, volume), 1800);
+    setTimeout(() => {
+      handleForceUpdate();
+    }, 1800);
     // if (
     //   PKMNuser.statusCondition === "Poison" ||
     //   PKMNuser.statusCondition === "Burn"
@@ -238,7 +251,7 @@ const HandleAI = (
     });
     if (swapPoke != null) {
       canSwap = true;
-      console.log(swapPoke);
+      //console.log(swapPoke);
       if (usedItem) {
         setTimeout(() => handleTeam("swapAI", swapPoke), 4500);
       } else {
@@ -252,7 +265,7 @@ const HandleAI = (
     let chosen4 = false;
     let random = Math.random();
     let i = PKMNuser.moves.forEach((move, i) => {
-      console.log(move.name);
+      //console.log(move.name);
       if (move.name === "Rest") {
         return i;
       }
@@ -301,8 +314,8 @@ const HandleAI = (
         moveChosen = PKMNuser.moves[rand];
         num = rand;
       } else {
-        //give AI 30% at choosing different move, to prevent move spam
-        if (random < 0.3) {
+        //give AI 20% at choosing different move, to prevent move spam
+        if (random < 0.2) {
           let rand = Math.round(
             RandomNumberGenerator(0, PKMNuser.moves.length - 1)
           );
@@ -319,7 +332,11 @@ const HandleAI = (
         num = rand;
       }
       //if confusion causing move is chosen and target is already confused, choose again
-      if (moveChosen.statusEff === "ConfusionTarget" && PKMNtarget.isConfused) {
+      if (
+        moveChosen.statusEff === "ConfusionTarget" &&
+        moveChosen.power === 0 &&
+        PKMNtarget.isConfused
+      ) {
         let rand = Math.round(
           RandomNumberGenerator(0, PKMNuser.moves.length - 1)
         );
@@ -335,11 +352,11 @@ const HandleAI = (
         num = rand;
       }
     }
-    console.log(moveChosen);
-    console.log(usedItem);
+    //console.log(moveChosen);
+    //console.log(usedItem);
 
     if (PKMNuser.hp <= 0) {
-      //if current pokemon is fainted, delay using move by 4.5 seconds to allow time for new pokemon to come out
+      //if current pokemon is fainted, delay using move by 5 seconds to allow time for new pokemon to come out
       if (usedItem) {
         setTimeout(
           () =>
@@ -374,7 +391,10 @@ const HandleAI = (
               isPoisonBurned,
               checkForStatusEffect,
               volume,
-              checkWin
+              checkWin,
+              handleUpdateLastMove,
+              lastMoveUsedPlayer1,
+              lastMoveUsedPlayer2
             ),
           7000
         );
@@ -412,7 +432,10 @@ const HandleAI = (
               isPoisonBurned,
               checkForStatusEffect,
               volume,
-              checkWin
+              checkWin,
+              handleUpdateLastMove,
+              lastMoveUsedPlayer1,
+              lastMoveUsedPlayer2
             ),
           5000
         );
@@ -452,9 +475,12 @@ const HandleAI = (
               isPoisonBurned,
               checkForStatusEffect,
               volume,
-              checkWin
+              checkWin,
+              handleUpdateLastMove,
+              lastMoveUsedPlayer1,
+              lastMoveUsedPlayer2
             ),
-          5000
+          4500
         );
       } else {
         UseMove(
@@ -488,7 +514,10 @@ const HandleAI = (
           isPoisonBurned,
           checkForStatusEffect,
           volume,
-          checkWin
+          checkWin,
+          handleUpdateLastMove,
+          lastMoveUsedPlayer1,
+          lastMoveUsedPlayer2
         );
       }
     }

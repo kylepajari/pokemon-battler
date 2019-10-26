@@ -84,7 +84,7 @@ const PlayLeaderIntro = name => {
       introMessage4 = "Let's begin!";
       break;
     case "Blue":
-      introMessage1 = "Hey there!  Name's Blue!";
+      introMessage1 = "Hey there!  My name's Blue!";
       introMessage2 = "I'm the Pokémon League Champ!";
       introMessage3 = "You think you can beat me and take my place?";
       introMessage4 = "Bring it on!";

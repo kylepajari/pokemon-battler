@@ -95,10 +95,15 @@ const DealDamage = (
   let critMessage = "";
   let CriticalHit = 1;
   //critical hit 'P' probability is 'baseSpeed / 512'
-  let T = RandomNumberGenerator(0, 255);
-  let P = Math.round(SPD / 512) * 100;
-  //chance of critical hit is if threshold T(between 0 and 255) is less than or equal to chance % P(SPD/512)*100
-  if (T < P) {
+  let P = SPD / 512;
+  P = P.toFixed(2);
+
+  //Threshhold 'T' is random between 0 and 1.
+  let T = Math.random();
+  T = T.toFixed(2);
+
+  //chance of critical hit is if threshold T is less than or equal to probabilty P
+  if (T <= P) {
     CriticalHit = 2;
     critMessage = "Critical Hit!";
   }
@@ -124,6 +129,8 @@ const DealDamage = (
 
   //set up recoil/recover damage
   let recoilDamage = Math.round(Damage / 4);
+  //console.log("recoil damage is: " + recoilDamage);
+
   let recoverDamage = Math.round(Damage / 2);
   //store original bar percent
   let origHealth = parseInt(TargetHP.css("width"));

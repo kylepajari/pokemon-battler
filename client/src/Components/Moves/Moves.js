@@ -84,7 +84,10 @@ class Moves extends Component {
                     this.props.isPoisonBurned,
                     this.props.checkForStatusEffect,
                     this.props.volume,
-                    this.props.checkWin
+                    this.props.checkWin,
+                    this.props.handleUpdateLastMove,
+                    this.props.lastMoveUsedPlayer1,
+                    this.propslastMoveUsedPlayer2
                   )
                 }
               >

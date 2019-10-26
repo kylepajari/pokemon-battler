@@ -338,6 +338,7 @@ class TeamBuilder extends Component {
     }
     //console.log("type 1: " + type1, "type 2: " + type2);
 
+
     let usableMoves = [];
     //go through moves, and create new list with objects for each one
     let movesList = movesToMap.map((item, i) => {
@@ -661,8 +662,8 @@ class TeamBuilder extends Component {
     let Sprite = this.state.currentModalPokemon.sprites.front_default;
     let SpriteBack = this.state.currentModalPokemon.sprites.back_default;
     let Name = this.state.currentModalPokemon.name;
-    //3% chance of shiny
-    if (rand <= 0.03) {
+    //chance of shiny
+    if (rand <= 0.005) {
       Sprite = this.state.currentModalPokemon.sprites.front_shiny;
       SpriteBack = this.state.currentModalPokemon.sprites.back_shiny;
       Name = this.state.currentModalPokemon.name + "*";
@@ -755,7 +756,8 @@ class TeamBuilder extends Component {
       turnsAsleep: 0,
       turnsConfused: 0,
       isTransformed: false,
-      isRecharging: false
+      isRecharging: false,
+      preparingAttack: false
     };
 
     let player = null; //default to player one

@@ -39,7 +39,10 @@ const UseMove = (
   isPoisonBurned,
   checkForStatusEffect,
   Volume,
-  checkWin
+  checkWin,
+  handleUpdateLastMove,
+  lastMoveUsedPlayer1,
+  lastMoveUsedPlayer2
 ) => {
   let options = $(document.querySelector(".options"));
   let mainmenu = $(document.querySelector(".mainmenuButton"));
@@ -280,466 +283,311 @@ const UseMove = (
       }
 
       //if pokemon has not woken up, snapped out of confusion, hurt itself from confusion, blocked by paralysis, or frozen or recharging; skip rest of move
-      if (
-        !wokeup &&
-        !snappedOut &&
-        !hurtitself &&
-        !paralysis &&
-        !frozen &&
-        !recharging
-      ) {
-        if (PKMNuser.isConfused) {
-          setTimeout(
-            () => DisplayMessage(PKMNuser.name + " used " + moveName + "!"),
-            1500
-          );
-        } else {
-          DisplayMessage(PKMNuser.name + " used " + moveName + "!");
+      if (!hurtitself && !paralysis && !frozen && !recharging) {
+        let timeout = 0;
+        let timeout500 = 0;
+        if (wokeup || snappedOut) {
+          timeout = 2000;
+          timeout500 = 500;
         }
-        if (PlayersTurn === "Player One") {
-          if (power > 0) {
-            setTimeout(
-              () =>
-                Sprite.animate({ marginLeft: "+=25" }, 50, function() {
-                  //animation complete
-                  Sprite.animate({ marginLeft: "-=25" });
-                }),
-              1400
-            );
-          } else {
-            //power is 0, animate sprite down
-            setTimeout(
-              () =>
-                Sprite.animate({ marginTop: "+=15" }, 80, function() {
-                  //animation complete
-                  Sprite.animate({ marginTop: "-=15" });
-                }),
-              1400
-            );
-          }
-        } else if (PlayersTurn === "Player Two") {
-          if (power > 0) {
-            setTimeout(
-              () =>
-                Sprite.animate({ marginLeft: "-=25" }, 50, function() {
-                  //animation complete
-                  Sprite.animate({ marginLeft: "+=25" });
-                }),
-              1400
-            );
-          } else {
-            //power is 0, animate sprite down
-            setTimeout(
-              () =>
-                Sprite.animate({ marginTop: "+=15" }, 80, function() {
-                  //animation complete
-                  Sprite.animate({ marginTop: "-=15" });
-                }),
-              1400
-            );
-          }
-        }
+        //update last move used with move name
+        handleUpdateLastMove(moveName, PlayersTurn);
 
-        //if so, does move land hit (accuracy check)
-        //formula: percentChance = moveAcc * (attacker accuracy / target evasion)
-        let percentChance =
-          (moveAcc * (PKMNuser.accuracy / PKMNtarget.evasion)) / 100;
-        let rand = Math.random();
-        if (PKMNuser.isConfused) {
-          setTimeout(() => attack.play(), 3000);
-        } else {
-          setTimeout(() => attack.play(), 1500);
+        //check for two stage moves
+        let message = "";
+        if (!PKMNuser.preparingAttack) {
+          switch (moveName) {
+            case "Dig":
+              PKMNuser.preparingAttack = true;
+              message = PKMNuser.name + " dug underground!";
+              break;
+            case "Fly":
+              PKMNuser.preparingAttack = true;
+              message = PKMNuser.name + " flew up high!";
+              break;
+            case "Sky Attack":
+              PKMNuser.preparingAttack = true;
+              message = PKMNuser.name + " is glowing!";
+              break;
+            case "Skull Bash":
+              PKMNuser.preparingAttack = true;
+              message = PKMNuser.name + " lowered it's head!";
+              break;
+            case "Solar Beam":
+              PKMNuser.preparingAttack = true;
+              message = PKMNuser.name + " took in sunlight!";
+              break;
+            default:
+              break;
+          }
+          DisplayMessage(message);
+          if (moveName === "Fly" || moveName === "Dig") {
+            if (PlayersTurn === "Player One") {
+              setTimeout(
+                () => $(document.querySelector(".player1Sprite")).fadeOut(500),
+                500
+              );
+            } else {
+              setTimeout(
+                () => $(document.querySelector(".player2Sprite")).fadeOut(500),
+                500
+              );
+            }
+          }
         }
-        if (rand > percentChance) {
+        //if poke is using two stage move
+        if (PKMNuser.preparingAttack) {
+          if (PKMNuser.isConfused) {
+            setTimeout(() => switchTurns(), 2500);
+          } else {
+            setTimeout(() => switchTurns(), 2000 + timeout);
+          }
+        } else {
           if (PKMNuser.isConfused) {
             setTimeout(
-              () => DisplayMessage(PKMNuser.name + "'s attack Missed!"),
-              4500
+              () => DisplayMessage(PKMNuser.name + " used " + moveName + "!"),
+              1500 + timeout500
             );
           } else {
-            setTimeout(
-              () => DisplayMessage(PKMNuser.name + "'s attack Missed!"),
-              3000
-            );
+            DisplayMessage(PKMNuser.name + " used " + moveName + "!");
           }
-
-          if (isUserPoisonedOrBurned || isUserBound) {
-            if (PKMNuser.isConfused) {
-              setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 6500);
-            } else {
-              setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 5000);
-            }
-          } else {
-            if (PKMNuser.isConfused) {
-              setTimeout(() => switchTurns(), 6500);
-            } else {
-              setTimeout(() => switchTurns(), 5000);
-            }
-          }
-        } else {
-          //if user move does land
-          if (moveName === "Hyper Beam" && PKMNuser.isRecharging === false) {
-            //set recharging to true if Hyper Beam lands
-            PKMNuser.isRecharging = true;
-          }
-          //does move have power, if so deal damage
-          if (power > 0) {
-            //if move lands, continue with deal damage
-
-            //if magnitude is used, assign random power
-            if (moveName === "Magnitude") {
-              let newPower = 0;
-              let magnitudeLevel = RandomNumberGenerator(4, 10);
-              magnitudeLevel = Math.round(magnitudeLevel);
-              switch (magnitudeLevel) {
-                case 4:
-                  newPower = 10;
-                  break;
-                case 5:
-                  newPower = 30;
-                  break;
-                case 6:
-                  newPower = 50;
-                  break;
-                case 7:
-                  newPower = 70;
-                  break;
-                case 8:
-                  newPower = 90;
-                  break;
-                case 9:
-                  newPower = 110;
-                  break;
-                case 10:
-                  newPower = 150;
-                  break;
-                default:
-                  newPower = 30;
-                  break;
-              }
-              setTimeout(
-                () => DisplayMessage("Magnitude " + magnitudeLevel + "!"),
-                2500
-              );
+          if (PlayersTurn === "Player One") {
+            if (power > 0) {
               setTimeout(
                 () =>
-                  DealDamage(
-                    newPower,
-                    lv,
-                    moveName,
-                    moveCategory,
-                    moveType,
-                    statusEff,
-                    statusProb,
-                    player1Team,
-                    player2Team,
-                    Player1Poke,
-                    Player2Poke,
-                    PlayersTurn,
-                    playerOneName,
-                    playerTwoName,
-                    resetMultipliers,
-                    handleTeam,
-                    handleFainted,
-                    handleForceUpdate,
-                    checkForStatusEffect,
-                    isUserPoisonedOrBurned,
-                    dealPoisonBurn,
-                    switchTurns,
-                    mode,
-                    Volume,
-                    checkWin
-                  ),
+                  Sprite.animate({ marginLeft: "+=25" }, 50, function() {
+                    //animation complete
+                    Sprite.animate({ marginLeft: "-=25" });
+                  }),
+                1400 + timeout
+              );
+            } else {
+              //power is 0, animate sprite down
+              setTimeout(
+                () =>
+                  Sprite.animate({ marginTop: "+=15" }, 80, function() {
+                    //animation complete
+                    Sprite.animate({ marginTop: "-=15" });
+                  }),
+                1400 + timeout
+              );
+            }
+          } else if (PlayersTurn === "Player Two") {
+            if (power > 0) {
+              setTimeout(
+                () =>
+                  Sprite.animate({ marginLeft: "-=25" }, 50, function() {
+                    //animation complete
+                    Sprite.animate({ marginLeft: "+=25" });
+                  }),
+                1400 + timeout
+              );
+            } else {
+              //power is 0, animate sprite down
+              setTimeout(
+                () =>
+                  Sprite.animate({ marginTop: "+=15" }, 80, function() {
+                    //animation complete
+                    Sprite.animate({ marginTop: "-=15" });
+                  }),
+                1400 + timeout
+              );
+            }
+          }
+          //if so, does move land hit (accuracy check)
+          //formula: percentChance = moveAcc * (attacker accuracy / target evasion)
+          let percentChance =
+            (moveAcc * (PKMNuser.accuracy / PKMNtarget.evasion)) / 100;
+          let rand = Math.random();
+          if (PKMNuser.isConfused) {
+            setTimeout(() => attack.play(), 3000);
+          } else {
+            setTimeout(() => attack.play(), 1500 + timeout);
+          }
+          let lastMove;
+          if (PlayersTurn === "Player One") {
+            lastMove = lastMoveUsedPlayer2;
+          } else {
+            lastMove = lastMoveUsedPlayer1;
+          }
+          if (
+            rand > percentChance ||
+            (PKMNtarget.preparingAttack &&
+              (lastMove === "Dig" || lastMove === "Fly") &&
+              power > 0)
+          ) {
+            if (PKMNuser.isConfused) {
+              setTimeout(
+                () => DisplayMessage(PKMNuser.name + "'s attack Missed!"),
                 4500
               );
             } else {
               setTimeout(
-                () =>
-                  DealDamage(
-                    power,
-                    lv,
-                    moveName,
-                    moveCategory,
-                    moveType,
-                    statusEff,
-                    statusProb,
-                    player1Team,
-                    player2Team,
-                    Player1Poke,
-                    Player2Poke,
-                    PlayersTurn,
-                    playerOneName,
-                    playerTwoName,
-                    resetMultipliers,
-                    handleTeam,
-                    handleFainted,
-                    handleForceUpdate,
-                    checkForStatusEffect,
-                    isUserPoisonedOrBurned,
-                    dealPoisonBurn,
-                    switchTurns,
-                    mode,
-                    Volume,
-                    checkWin
-                  ),
-                3500
+                () => DisplayMessage(PKMNuser.name + "'s attack Missed!"),
+                3000 + timeout
               );
             }
-          } else if (power === 0 && statusEff !== "") {
-            setTimeout(
-              () =>
-                checkForStatusEffect(
-                  statusEff,
-                  statusProb,
-                  PKMNuser,
-                  PKMNtarget,
-                  targetType1,
-                  targetType2,
-                  moveName,
-                  HPbar,
-                  power,
-                  0,
-                  0,
-                  isUserPoisonedOrBurned
-                ),
-              1500
-            );
-          } else if (power === 0 && statusEff === "") {
-            //move does nothing
-            setTimeout(
-              () => DisplayMessage(moveName + " did nothing..."),
-              2000
-            );
 
             if (isUserPoisonedOrBurned || isUserBound) {
-              setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 4000);
-            } else {
-              setTimeout(() => switchTurns(), 4000);
-            }
-          }
-        }
-      } else if (
-        (wokeup || snappedOut) &&
-        !hurtitself &&
-        !paralysis &&
-        !frozen &&
-        !recharging
-      ) {
-        if (PlayersTurn === "Player One") {
-          setTimeout(
-            () => DisplayMessage(PKMNuser.name + " used " + moveName + "!"),
-            2000
-          );
-        } else {
-          setTimeout(
-            () =>
-              DisplayMessage(
-                "Enemy " + PKMNuser.name + " used " + moveName + "!"
-              ),
-            2000
-          );
-        }
-        if (PlayersTurn === "Player One") {
-          if (power > 0) {
-            setTimeout(
-              () =>
-                Sprite.animate({ marginLeft: "+=25" }, 50, function() {
-                  //animation complete
-                  Sprite.animate({ marginLeft: "-=25" });
-                }),
-              3400
-            );
-          } else {
-            //power is 0, animate sprite down
-            setTimeout(
-              () =>
-                Sprite.animate({ marginTop: "+=15" }, 80, function() {
-                  //animation complete
-                  Sprite.animate({ marginTop: "-=15" });
-                }),
-              3400
-            );
-          }
-        } else if (PlayersTurn === "Player Two") {
-          if (power > 0) {
-            setTimeout(
-              () =>
-                Sprite.animate({ marginLeft: "-=25" }, 50, function() {
-                  //animation complete
-                  Sprite.animate({ marginLeft: "+=25" });
-                }),
-              3400
-            );
-          } else {
-            //power is 0, animate sprite down
-            setTimeout(
-              () =>
-                Sprite.animate({ marginTop: "+=15" }, 80, function() {
-                  //animation complete
-                  Sprite.animate({ marginTop: "-=15" });
-                }),
-              3400
-            );
-          }
-        }
-
-        //play move sound
-        attack = new Audio(moveSound);
-        attack.volume = Volume;
-        //if so, does move land hit (accuracy check)
-        //formula: percentChance = moveAcc * (attacker accuracy / target evasion)
-        let percentChance =
-          (moveAcc * (PKMNuser.accuracy / PKMNtarget.evasion)) / 100;
-        let rand = Math.random();
-        setTimeout(() => attack.play(), 3500);
-        if (rand > percentChance) {
-          setTimeout(
-            () => DisplayMessage(PKMNuser.name + "'s attack Missed!"),
-            7000
-          );
-          if (isUserPoisonedOrBurned || isUserBound) {
-            setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 9000);
-          } else {
-            setTimeout(() => switchTurns(), 9000);
-          }
-        } else {
-          if (moveName === "Hyper Beam" && PKMNuser.isRecharging === false) {
-            //set recharging to true if Hyper Beam lands
-            PKMNuser.isRecharging = true;
-          }
-          //does move have power, if so deal damage
-          if (power > 0) {
-            //if move lands, continue with deal damage
-
-            //if magnitude is used, assign random power
-            if (moveName === "Magnitude") {
-              let newPower = 0;
-              let magnitudeLevel = RandomNumberGenerator(4, 10);
-              magnitudeLevel = Math.round(magnitudeLevel);
-              switch (magnitudeLevel) {
-                case 4:
-                  newPower = 10;
-                  break;
-                case 5:
-                  newPower = 30;
-                  break;
-                case 6:
-                  newPower = 50;
-                  break;
-                case 7:
-                  newPower = 70;
-                  break;
-                case 8:
-                  newPower = 90;
-                  break;
-                case 9:
-                  newPower = 110;
-                  break;
-                case 10:
-                  newPower = 150;
-                  break;
-                default:
-                  newPower = 30;
-                  break;
+              if (PKMNuser.isConfused) {
+                setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 6500);
+              } else {
+                setTimeout(
+                  () => dealPoisonBurn(PKMNuser, HPbar),
+                  5000 + timeout
+                );
               }
-              setTimeout(
-                () => DisplayMessage("Magnitude " + magnitudeLevel + "!"),
-                4500
-              );
-              setTimeout(
-                () =>
-                  DealDamage(
-                    newPower,
-                    lv,
-                    moveName,
-                    moveCategory,
-                    moveType,
-                    statusEff,
-                    statusProb,
-                    player1Team,
-                    player2Team,
-                    Player1Poke,
-                    Player2Poke,
-                    PlayersTurn,
-                    playerOneName,
-                    playerTwoName,
-                    resetMultipliers,
-                    handleTeam,
-                    handleFainted,
-                    handleForceUpdate,
-                    checkForStatusEffect,
-                    isUserPoisonedOrBurned,
-                    dealPoisonBurn,
-                    switchTurns,
-                    mode,
-                    Volume,
-                    checkWin
-                  ),
-                6500
-              );
             } else {
-              setTimeout(
-                () =>
-                  DealDamage(
-                    power,
-                    lv,
-                    moveName,
-                    moveCategory,
-                    moveType,
-                    statusEff,
-                    statusProb,
-                    player1Team,
-                    player2Team,
-                    Player1Poke,
-                    Player2Poke,
-                    PlayersTurn,
-                    playerOneName,
-                    playerTwoName,
-                    resetMultipliers,
-                    handleTeam,
-                    handleFainted,
-                    handleForceUpdate,
-                    checkForStatusEffect,
-                    isUserPoisonedOrBurned,
-                    dealPoisonBurn,
-                    switchTurns,
-                    mode,
-                    Volume,
-                    checkWin
-                  ),
-                5500
-              );
+              if (PKMNuser.isConfused) {
+                setTimeout(() => switchTurns(), 6500);
+              } else {
+                setTimeout(() => switchTurns(), 5000 + timeout);
+              }
             }
-          } else if (power === 0 && statusEff !== "") {
-            setTimeout(
-              () =>
-                checkForStatusEffect(
-                  statusEff,
-                  statusProb,
-                  PKMNuser,
-                  PKMNtarget,
-                  targetType1,
-                  targetType2,
-                  moveName,
-                  HPbar,
-                  power,
-                  0,
-                  0,
-                  isUserPoisonedOrBurned
-                ),
-              2000
-            );
-          } else if (power === 0 && statusEff === "") {
-            //move does nothing
-            setTimeout(
-              () => DisplayMessage(moveName + " did nothing..."),
-              4000
-            );
+          } else {
+            //if user move does land
+            //check for hyper beam
+            if (moveName === "Hyper Beam" && PKMNuser.isRecharging === false) {
+              //set recharging to true if Hyper Beam lands
+              PKMNuser.isRecharging = true;
+            }
+            //does move have power, if so deal damage
+            if (power > 0) {
+              //if move lands, continue with deal damage
 
-            if (isUserPoisonedOrBurned || isUserBound) {
-              setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 6000);
-            } else {
-              setTimeout(() => switchTurns(), 6000);
+              //if magnitude is used, assign random power
+              if (moveName === "Magnitude") {
+                let newPower = 0;
+                let magnitudeLevel = RandomNumberGenerator(4, 10);
+                magnitudeLevel = Math.round(magnitudeLevel);
+                switch (magnitudeLevel) {
+                  case 4:
+                    newPower = 10;
+                    break;
+                  case 5:
+                    newPower = 30;
+                    break;
+                  case 6:
+                    newPower = 50;
+                    break;
+                  case 7:
+                    newPower = 70;
+                    break;
+                  case 8:
+                    newPower = 90;
+                    break;
+                  case 9:
+                    newPower = 110;
+                    break;
+                  case 10:
+                    newPower = 150;
+                    break;
+                  default:
+                    newPower = 30;
+                    break;
+                }
+                setTimeout(
+                  () => DisplayMessage("Magnitude " + magnitudeLevel + "!"),
+                  2500 + timeout
+                );
+                setTimeout(
+                  () =>
+                    DealDamage(
+                      newPower,
+                      lv,
+                      moveName,
+                      moveCategory,
+                      moveType,
+                      statusEff,
+                      statusProb,
+                      player1Team,
+                      player2Team,
+                      Player1Poke,
+                      Player2Poke,
+                      PlayersTurn,
+                      playerOneName,
+                      playerTwoName,
+                      resetMultipliers,
+                      handleTeam,
+                      handleFainted,
+                      handleForceUpdate,
+                      checkForStatusEffect,
+                      isUserPoisonedOrBurned,
+                      dealPoisonBurn,
+                      switchTurns,
+                      mode,
+                      Volume,
+                      checkWin
+                    ),
+                  4500 + timeout
+                );
+              } else {
+                setTimeout(
+                  () =>
+                    DealDamage(
+                      power,
+                      lv,
+                      moveName,
+                      moveCategory,
+                      moveType,
+                      statusEff,
+                      statusProb,
+                      player1Team,
+                      player2Team,
+                      Player1Poke,
+                      Player2Poke,
+                      PlayersTurn,
+                      playerOneName,
+                      playerTwoName,
+                      resetMultipliers,
+                      handleTeam,
+                      handleFainted,
+                      handleForceUpdate,
+                      checkForStatusEffect,
+                      isUserPoisonedOrBurned,
+                      dealPoisonBurn,
+                      switchTurns,
+                      mode,
+                      Volume,
+                      checkWin
+                    ),
+                  3500 + timeout
+                );
+              }
+            } else if (power === 0 && statusEff !== "") {
+              setTimeout(
+                () =>
+                  checkForStatusEffect(
+                    statusEff,
+                    statusProb,
+                    PKMNuser,
+                    PKMNtarget,
+                    targetType1,
+                    targetType2,
+                    moveName,
+                    HPbar,
+                    power,
+                    0,
+                    0,
+                    isUserPoisonedOrBurned
+                  ),
+                1500 + timeout500
+              );
+            } else if (power === 0 && statusEff === "") {
+              //move does nothing
+              setTimeout(
+                () => DisplayMessage(moveName + " did nothing..."),
+                2000 + timeout
+              );
+
+              if (isUserPoisonedOrBurned || isUserBound) {
+                setTimeout(
+                  () => dealPoisonBurn(PKMNuser, HPbar),
+                  4000 + timeout
+                );
+              } else {
+                setTimeout(() => switchTurns(), 4000 + timeout);
+              }
             }
           }
         }

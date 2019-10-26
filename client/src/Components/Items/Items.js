@@ -152,6 +152,7 @@ class Items extends Component {
 
     setTimeout(() => UpdateHP(HPbar, updatedBarHP, this.props.volume), 300);
     this.props.handleItems();
+    this.props.handleForceUpdate();
     //removed switch turns to allow selection after item use
     // if (
     //   PKMNuser.statusCondition === "Poison" ||
@@ -178,6 +179,7 @@ class Items extends Component {
     //remove status condition
     setTimeout(() => (PKMNuser.statusCondition = ""), 500);
     this.props.handleItems();
+    this.props.handleForceUpdate();
     //setTimeout(() => this.props.switchTurns(), 1500);
   };
 

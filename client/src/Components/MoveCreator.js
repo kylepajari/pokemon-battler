@@ -2399,11 +2399,11 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 40,
+      power: 0,
       type: "normal",
-      accuracy: 100,
-      pp: 35,
-      statusEff: "",
+      accuracy: 999,
+      pp: 1,
+      statusEff: "Copy",
       statusProb: 1,
       sound: Sketch
     };
