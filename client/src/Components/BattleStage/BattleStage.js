@@ -1079,7 +1079,10 @@ class BattleStage extends Component {
               2500
             );
           }
-          if (this.state.faintedByRecoilPoisonBurn === true) {
+          if (
+            this.state.faintedByRecoilPoisonBurn === true ||
+            Team[PKMN].isConfused
+          ) {
             setTimeout(() => this.switchTurns(), 4000);
           }
         }
@@ -1201,7 +1204,7 @@ class BattleStage extends Component {
             this.state.lastMovePlayer1,
             this.state.lastMovePlayer2
           ),
-        4500
+        5000
       );
     }
   }
@@ -1371,22 +1374,27 @@ class BattleStage extends Component {
     let rand = Math.random();
     let lastMove2;
     if (this.props.playersTurn === "Player One") {
-      lastMove2 = this.state.lastMoveUsedPlayer2;
+      lastMove2 = this.state.lastMovePlayer2;
     } else {
-      lastMove2 = this.state.lastMoveUsedPlayer1;
+      lastMove2 = this.state.lastMovePlayer1;
     }
 
     if (
       rand > percentChance ||
-      (oppPoke.preparingAttack &&
-        (lastMove2 === "Dig" || lastMove2 === "Fly") &&
-        power > 0)
+      (oppPoke.preparingAttack && (lastMove2 === "Dig" || lastMove2 === "Fly"))
     ) {
-      setTimeout(
-        () => DisplayMessage(currentPoke.name + "'s attack Missed!"),
-        1500
-      );
-      setTimeout(() => this.switchTurns(), 3000);
+      if (power > 0) {
+        setTimeout(
+          () => DisplayMessage(currentPoke.name + "'s attack missed!"),
+          2000
+        );
+      } else {
+        setTimeout(
+          () => DisplayMessage(oppPoke.name + " was unaffected..."),
+          2000
+        );
+      }
+      setTimeout(() => this.switchTurns(), 4000);
     } else {
       //do move damage
       setTimeout(
@@ -1426,6 +1434,9 @@ class BattleStage extends Component {
   //SWITCH TURNS FUNCTION ////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////
   switchTurns = () => {
+    //check last turn moves
+    //console.log("switching turns...");
+
     //reset faintedByRecoilPoisonBurn
     this.handleFaintedByRecoilPoisonBurn(false);
     this.handlePoisonBurn(false);
@@ -1452,15 +1463,14 @@ class BattleStage extends Component {
         //console.log("double stage move used last turn");
         //check if pokemon is not fainted, if not, use double stage move
         let poke = null;
-        if(this.props.playersTurn === "Player One"){
-          poke = this.props.player1Team[this.props.player1CurrentPokemon]
+        if (this.props.playersTurn === "Player One") {
+          poke = this.props.player1Team[this.props.player1CurrentPokemon];
         } else {
-          poke = this.props.player2Team[this.props.player2CurrentPokemon]
+          poke = this.props.player2Team[this.props.player2CurrentPokemon];
         }
-        if(poke.hp > 0){
+        if (poke.hp > 0) {
           this.useDoubleMove(lastMove);
         }
-        
       } else {
         setTimeout(
           () => $(document.querySelector(".options")).fadeIn(300),
@@ -1486,15 +1496,53 @@ class BattleStage extends Component {
           lastMove === "Solar Beam"
         ) {
           //check if pokemon is not fainted, if not, use double stage move
-        let poke = null;
-        if(this.props.playersTurn === "Player One"){
-          poke = this.props.player1Team[this.props.player1CurrentPokemon]
-        } else {
-          poke = this.props.player2Team[this.props.player2CurrentPokemon]
-        }
-        if(poke.hp > 0){
-          this.useDoubleMove(lastMove);
-        }
+          let poke = null;
+          if (this.props.playersTurn === "Player One") {
+            poke = this.props.player1Team[this.props.player1CurrentPokemon];
+          } else {
+            poke = this.props.player2Team[this.props.player2CurrentPokemon];
+          }
+          if (poke.hp > 0) {
+            this.useDoubleMove(lastMove);
+          } else {
+            console.log("pokemon fainted before using double move");
+            setTimeout(
+              () =>
+                HandleAI(
+                  this.props.player1CurrentPokemon,
+                  this.props.player2CurrentPokemon,
+                  this.props.playersTurn,
+                  this.handleMoves,
+                  this.handlePoisonBurn,
+                  this.dealPoisonBurn,
+                  this.switchTurns,
+                  this.handleForceUpdate,
+                  this.state.player1Team,
+                  this.state.player2Team,
+                  this.props.playerOneName,
+                  this.props.playerTwoName,
+                  this.resetMultipliers,
+                  this.handleTeam,
+                  this.props.handleFainted,
+                  this.props.mode,
+                  this.state.isPoisonBurned,
+                  this.checkForStatusEffect,
+                  this.props.volume,
+                  this.checkWin,
+                  this.state.aiUsedMaxPotion,
+                  this.state.aiUsedAntidote,
+                  this.state.aiUsedBurnHeal,
+                  this.state.aiUsedParalyzeHeal,
+                  this.state.aiUsedAwakening,
+                  this.state.aiUsedIceHeal,
+                  this.handleAIUseItems,
+                  this.handleUpdateLastMove,
+                  this.state.lastMovePlayer1,
+                  this.state.lastMovePlayer2
+                ),
+              5300
+            );
+          }
         } else {
           if (
             this.state.player2Team[this.props.player2CurrentPokemon].hp <= 0
@@ -1533,7 +1581,7 @@ class BattleStage extends Component {
                   this.state.lastMovePlayer1,
                   this.state.lastMovePlayer2
                 ),
-              4500
+              5300
             );
           } else {
             setTimeout(
@@ -1586,15 +1634,15 @@ class BattleStage extends Component {
           lastMove === "Solar Beam"
         ) {
           //check if pokemon is not fainted, if not, use double stage move
-        let poke = null;
-        if(this.props.playersTurn === "Player One"){
-          poke = this.props.player1Team[this.props.player1CurrentPokemon]
-        } else {
-          poke = this.props.player2Team[this.props.player2CurrentPokemon]
-        }
-        if(poke.hp > 0){
-          this.useDoubleMove(lastMove);
-        }
+          let poke = null;
+          if (this.props.playersTurn === "Player One") {
+            poke = this.props.player1Team[this.props.player1CurrentPokemon];
+          } else {
+            poke = this.props.player2Team[this.props.player2CurrentPokemon];
+          }
+          if (poke.hp > 0) {
+            this.useDoubleMove(lastMove);
+          }
         } else {
           setTimeout(
             () => $(document.querySelector(".options")).fadeIn(300),
@@ -1620,15 +1668,53 @@ class BattleStage extends Component {
           lastMove === "Solar Beam"
         ) {
           //check if pokemon is not fainted, if not, use double stage move
-        let poke = null;
-        if(this.props.playersTurn === "Player One"){
-          poke = this.props.player1Team[this.props.player1CurrentPokemon]
-        } else {
-          poke = this.props.player2Team[this.props.player2CurrentPokemon]
-        }
-        if(poke.hp > 0){
-          this.useDoubleMove(lastMove);
-        }
+          let poke = null;
+          if (this.props.playersTurn === "Player One") {
+            poke = this.props.player1Team[this.props.player1CurrentPokemon];
+          } else {
+            poke = this.props.player2Team[this.props.player2CurrentPokemon];
+          }
+          if (poke.hp > 0) {
+            this.useDoubleMove(lastMove);
+          } else {
+            console.log("pokemon fainted before using double move");
+            setTimeout(
+              () =>
+                HandleAI(
+                  this.props.player1CurrentPokemon,
+                  this.props.player2CurrentPokemon,
+                  this.props.playersTurn,
+                  this.handleMoves,
+                  this.handlePoisonBurn,
+                  this.dealPoisonBurn,
+                  this.switchTurns,
+                  this.handleForceUpdate,
+                  this.state.player1Team,
+                  this.state.player2Team,
+                  this.props.playerOneName,
+                  this.props.playerTwoName,
+                  this.resetMultipliers,
+                  this.handleTeam,
+                  this.props.handleFainted,
+                  this.props.mode,
+                  this.state.isPoisonBurned,
+                  this.checkForStatusEffect,
+                  this.props.volume,
+                  this.checkWin,
+                  this.state.aiUsedMaxPotion,
+                  this.state.aiUsedAntidote,
+                  this.state.aiUsedBurnHeal,
+                  this.state.aiUsedParalyzeHeal,
+                  this.state.aiUsedAwakening,
+                  this.state.aiUsedIceHeal,
+                  this.handleAIUseItems,
+                  this.handleUpdateLastMove,
+                  this.state.lastMovePlayer1,
+                  this.state.lastMovePlayer2
+                ),
+              5300
+            );
+          }
         } else {
           if (
             this.state.player2Team[this.props.player2CurrentPokemon].hp <= 0
@@ -1667,7 +1753,7 @@ class BattleStage extends Component {
                   this.state.lastMovePlayer1,
                   this.state.lastMovePlayer2
                 ),
-              4500
+              5300
             );
           } else {
             setTimeout(
@@ -1721,15 +1807,55 @@ class BattleStage extends Component {
           lastMove === "Solar Beam"
         ) {
           //check if pokemon is not fainted, if not, use double stage move
-        let poke = null;
-        if(this.props.playersTurn === "Player One"){
-          poke = this.props.player1Team[this.props.player1CurrentPokemon]
-        } else {
-          poke = this.props.player2Team[this.props.player2CurrentPokemon]
-        }
-        if(poke.hp > 0){
-          this.useDoubleMove(lastMove);
-        }
+          let poke = null;
+          if (this.props.playersTurn === "Player One") {
+            poke = this.props.player1Team[this.props.player1CurrentPokemon];
+          } else {
+            poke = this.props.player2Team[this.props.player2CurrentPokemon];
+          }
+          if (poke.hp > 0) {
+            console.log("pokemon not fainted, using double move...");
+
+            this.useDoubleMove(lastMove);
+          } else {
+            console.log("pokemon fainted before using double move");
+            setTimeout(
+              () =>
+                HandleAI(
+                  this.props.player1CurrentPokemon,
+                  this.props.player2CurrentPokemon,
+                  this.props.playersTurn,
+                  this.handleMoves,
+                  this.handlePoisonBurn,
+                  this.dealPoisonBurn,
+                  this.switchTurns,
+                  this.handleForceUpdate,
+                  this.state.player1Team,
+                  this.state.player2Team,
+                  this.props.playerOneName,
+                  this.props.playerTwoName,
+                  this.resetMultipliers,
+                  this.handleTeam,
+                  this.props.handleFainted,
+                  this.props.mode,
+                  this.state.isPoisonBurned,
+                  this.checkForStatusEffect,
+                  this.props.volume,
+                  this.checkWin,
+                  this.state.aiUsedMaxPotion,
+                  this.state.aiUsedAntidote,
+                  this.state.aiUsedBurnHeal,
+                  this.state.aiUsedParalyzeHeal,
+                  this.state.aiUsedAwakening,
+                  this.state.aiUsedIceHeal,
+                  this.handleAIUseItems,
+                  this.handleUpdateLastMove,
+                  this.state.lastMovePlayer1,
+                  this.state.lastMovePlayer2
+                ),
+              5300
+            );
+          }
         } else {
           if (
             this.state.player1Team[this.props.player1CurrentPokemon].hp <= 0
@@ -1768,7 +1894,7 @@ class BattleStage extends Component {
                   this.state.lastMovePlayer1,
                   this.state.lastMovePlayer2
                 ),
-              4500
+              5300
             );
           } else {
             setTimeout(
@@ -1957,37 +2083,39 @@ class BattleStage extends Component {
 
     //COPY ///////////////////////////////////////////////////////////////////////////////////////////
     //if condition is copy, user with replace move with targets last move if used, otherwise copy targets first move in list
-    if(statusEff === "Copy"){
+    if (statusEff === "Copy") {
       //find copy move index in users move list
       let copyIndex = 0;
-      PKMNuser.moves.forEach((move,i) => {
-        if(move.statusEff === "Copy"){
+      PKMNuser.moves.forEach((move, i) => {
+        if (move.statusEff === "Copy") {
           copyIndex = i;
         }
       });
 
       //check if target used a move(not first turn)
       let lastMove = "";
-      if(this.props.playersTurn === "Player One"){
+      if (this.props.playersTurn === "Player One") {
         lastMove = this.state.lastMovePlayer2;
       } else {
         lastMove = this.state.lastMovePlayer1;
       }
       //if lastMove is valid, get move stats from target
       let targetMove = null;
-      if(lastMove !== ""){
+      if (lastMove !== "") {
         targetMove = PKMNtarget.moves.find(move => {
           return move.name === lastMove;
-        })
+        });
         //replace copy move with target last move used
         PKMNuser.moves[copyIndex] = targetMove;
       } else {
         //replace copy move with targets first move
         PKMNuser.moves[copyIndex] = PKMNtarget.moves[0];
       }
-      let copiedName = (targetMove !== null && targetMove !== undefined) ? targetMove.name : PKMNtarget.moves[0].name
+      let copiedName =
+        targetMove !== null && targetMove !== undefined
+          ? targetMove.name
+          : PKMNtarget.moves[0].name;
       DisplayMessage(PKMNuser.name + " copied " + copiedName + "!", 1500);
-
     }
 
     //BOUND/////////////////////////////////////////////////////////////
@@ -2032,9 +2160,13 @@ class BattleStage extends Component {
 
       //update health bar to reflect damage
       setTimeout(() => UpdateHP(HPbar, updatedBarHP, this.props.volume), 2000);
-      console.log("after recoil, " + PKMNuser.name + "'s HP is " + (PKMNuser.hp - Damage).toString());
-
-      if (PKMNuser.hp <= 0) {
+      console.log(
+        "after recoil, " +
+          PKMNuser.name +
+          "'s HP is " +
+          (PKMNuser.hp - Damage).toString()
+      );
+      if (PKMNuser.hp - Damage <= 0) {
         //pokemon fainted
         if (PKMNtarget.hp <= 0) {
           //if opponent pokemon is also fainted, delay fainting user until switch is done
@@ -2057,6 +2189,10 @@ class BattleStage extends Component {
             9000
           );
         } else {
+          console.log(
+            "user fainted from recoil, target did not faint this turn"
+          );
+
           setTimeout(
             () =>
               FaintPokemon(

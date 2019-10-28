@@ -169,6 +169,7 @@ class TeamBuilder extends Component {
 
   changeTeamSize = num => {
     $(document.querySelector(".teamsContainer")).fadeIn(300);
+    $(document.querySelector(".teamsContainer")).removeClass("deRender");
     $(document.querySelector(".pokemonSheetContainer")).removeClass("deRender");
     $(document.querySelector(".teamList")).fadeOut(10);
     $(document.querySelector(".badgesShowcase")).fadeOut(10);
@@ -291,6 +292,7 @@ class TeamBuilder extends Component {
       $(document.querySelector(".pokemonSheetContainer")).addClass("deRender");
       $(document.querySelector(".teamsContainer")).removeClass("deRender");
       $(document.querySelector(".teamsContainer")).fadeIn(300);
+      $(document.querySelector(".mainmenuButton")).fadeOut(10);
     }
   };
 
@@ -337,7 +339,6 @@ class TeamBuilder extends Component {
       type2 = types[1].type.name;
     }
     //console.log("type 1: " + type1, "type 2: " + type2);
-
 
     let usableMoves = [];
     //go through moves, and create new list with objects for each one
@@ -724,9 +725,9 @@ class TeamBuilder extends Component {
       backSprite: this.state.currentPokemonSpriteBack,
       lv: level,
       OrigHp: this.state.currentPokemonHP,
-      // OrigHp: 3,
+      //OrigHp: 3,
       hp: this.state.currentPokemonHP,
-      // hp: 3,
+      //hp: 3,
       OrigAttack: this.state.currentPokemonAtk,
       attack: this.state.currentPokemonAtk,
       OrigDefense: this.state.currentPokemonDef,
@@ -825,6 +826,7 @@ class TeamBuilder extends Component {
       $(document.querySelectorAll(".dropdown")).fadeOut(100);
       $(document.querySelector(".pokemonSheetContainer")).addClass("deRender");
       $(document.getElementById("BattleButton")).fadeIn(300);
+      $(document.querySelector(".mainmenuButton")).fadeIn(300);
     }
 
     if (

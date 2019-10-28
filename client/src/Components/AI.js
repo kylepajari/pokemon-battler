@@ -36,8 +36,8 @@ const HandleAI = (
   aiUsedIceHeal,
   handleAIUseItems,
   handleUpdateLastMove,
-  lastMoveUsedPlayer1,
-  lastMoveUsedPlayer2
+  lastMovePlayer1,
+  lastMovePlayer2
 ) => {
   //setting up hooks
   const state = store.getState();
@@ -393,8 +393,8 @@ const HandleAI = (
               volume,
               checkWin,
               handleUpdateLastMove,
-              lastMoveUsedPlayer1,
-              lastMoveUsedPlayer2
+              lastMovePlayer1,
+              lastMovePlayer2
             ),
           7000
         );
@@ -434,8 +434,8 @@ const HandleAI = (
               volume,
               checkWin,
               handleUpdateLastMove,
-              lastMoveUsedPlayer1,
-              lastMoveUsedPlayer2
+              lastMovePlayer1,
+              lastMovePlayer2
             ),
           5000
         );
@@ -477,8 +477,8 @@ const HandleAI = (
               volume,
               checkWin,
               handleUpdateLastMove,
-              lastMoveUsedPlayer1,
-              lastMoveUsedPlayer2
+              lastMovePlayer1,
+              lastMovePlayer2
             ),
           4500
         );
@@ -516,8 +516,8 @@ const HandleAI = (
           volume,
           checkWin,
           handleUpdateLastMove,
-          lastMoveUsedPlayer1,
-          lastMoveUsedPlayer2
+          lastMovePlayer1,
+          lastMovePlayer2
         );
       }
     }

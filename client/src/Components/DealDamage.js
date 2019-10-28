@@ -89,6 +89,9 @@ const DealDamage = (
   } else {
     Hit = new Audio(HitSound);
   }
+  if (power === 999) {
+    effectiveMessage = "One-Hit KO!";
+  }
   Hit.volume = Volume;
 
   //calc Critical hit
@@ -223,9 +226,9 @@ const DealDamage = (
               mode,
               Volume
             ),
-          4700
+          5000
         );
-        setTimeout(() => checkWin(), 7700);
+        setTimeout(() => checkWin(), 8000);
         // if (statusEff === "recoil" && PKMNuser.hp - recoilDamage <= 0) {
         //   setTimeout(() => switchTurns(), 4600);
         // }
@@ -258,9 +261,9 @@ const DealDamage = (
               mode,
               Volume
             ),
-          4700
+          5000
         );
-        setTimeout(() => checkWin(), 7700);
+        setTimeout(() => checkWin(), 8000);
         // if (statusEff === "recoil" && PKMNuser.hp - recoilDamage <= 0) {
         //   setTimeout(() => switchTurns(), 4600);
         // }
@@ -294,9 +297,9 @@ const DealDamage = (
               mode,
               Volume
             ),
-          6200
+          6500
         );
-        setTimeout(() => checkWin(), 9200);
+        setTimeout(() => checkWin(), 9500);
         // if (statusEff === "recoil" && PKMNuser.hp - recoilDamage <= 0) {
         //   setTimeout(() => switchTurns(), 6100);
         // }
@@ -331,7 +334,10 @@ const DealDamage = (
           recoverDamage,
           isPoisonBurned
         );
-      } else if (effectiveMessage !== "" && critMessage === "") {
+      } else if (
+        (effectiveMessage !== "" && critMessage === "") ||
+        (effectiveMessage === "" && critMessage !== "")
+      ) {
         setTimeout(
           () =>
             checkForStatusEffect(
@@ -348,26 +354,7 @@ const DealDamage = (
               recoverDamage,
               isPoisonBurned
             ),
-          2500
-        );
-      } else if (effectiveMessage === "" && critMessage !== "") {
-        setTimeout(
-          () =>
-            checkForStatusEffect(
-              statusEff,
-              statusProb,
-              PKMNuser,
-              PKMNtarget,
-              targetType1,
-              targetType2,
-              moveName,
-              UserHP,
-              power,
-              recoilDamage,
-              recoverDamage,
-              isPoisonBurned
-            ),
-          2500
+          3000
         );
       } else if (effectiveMessage !== "" && critMessage !== "") {
         setTimeout(
@@ -386,23 +373,23 @@ const DealDamage = (
               recoverDamage,
               isPoisonBurned
             ),
-          4000
+          4500
         );
       }
 
       if (isPoisonBurned || PKMNuser.isBound) {
         if (effectiveMessage === "" && critMessage === "") {
-          setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 2500);
+          setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 3000);
         } else {
-          setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 4000);
+          setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 4500);
         }
       }
     } else {
       if (isPoisonBurned || PKMNuser.isBound) {
         if (effectiveMessage === "" && critMessage === "") {
-          setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 2500);
+          setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 3000);
         } else {
-          setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 4000);
+          setTimeout(() => dealPoisonBurn(PKMNuser, UserHP), 4500);
         }
       } else {
         //no effect from move, switch turns

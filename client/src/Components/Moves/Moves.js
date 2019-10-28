@@ -86,8 +86,8 @@ class Moves extends Component {
                     this.props.volume,
                     this.props.checkWin,
                     this.props.handleUpdateLastMove,
-                    this.props.lastMoveUsedPlayer1,
-                    this.propslastMoveUsedPlayer2
+                    this.props.lastMovePlayer1,
+                    this.props.lastMovePlayer2
                   )
                 }
               >

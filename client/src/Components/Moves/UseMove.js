@@ -41,8 +41,8 @@ const UseMove = (
   Volume,
   checkWin,
   handleUpdateLastMove,
-  lastMoveUsedPlayer1,
-  lastMoveUsedPlayer2
+  lastMovePlayer1,
+  lastMovePlayer2
 ) => {
   let options = $(document.querySelector(".options"));
   let mainmenu = $(document.querySelector(".mainmenuButton"));
@@ -300,37 +300,41 @@ const UseMove = (
             case "Dig":
               PKMNuser.preparingAttack = true;
               message = PKMNuser.name + " dug underground!";
+              setTimeout(() => DisplayMessage(message), timeout);
               break;
             case "Fly":
               PKMNuser.preparingAttack = true;
               message = PKMNuser.name + " flew up high!";
+              setTimeout(() => DisplayMessage(message), timeout);
               break;
             case "Sky Attack":
               PKMNuser.preparingAttack = true;
               message = PKMNuser.name + " is glowing!";
+              setTimeout(() => DisplayMessage(message), timeout);
               break;
             case "Skull Bash":
               PKMNuser.preparingAttack = true;
               message = PKMNuser.name + " lowered it's head!";
+              setTimeout(() => DisplayMessage(message), timeout);
               break;
             case "Solar Beam":
               PKMNuser.preparingAttack = true;
               message = PKMNuser.name + " took in sunlight!";
+              setTimeout(() => DisplayMessage(message), timeout);
               break;
             default:
               break;
           }
-          DisplayMessage(message);
           if (moveName === "Fly" || moveName === "Dig") {
             if (PlayersTurn === "Player One") {
               setTimeout(
                 () => $(document.querySelector(".player1Sprite")).fadeOut(500),
-                500
+                500 + timeout
               );
             } else {
               setTimeout(
                 () => $(document.querySelector(".player2Sprite")).fadeOut(500),
-                500
+                500 + timeout
               );
             }
           }
@@ -338,7 +342,7 @@ const UseMove = (
         //if poke is using two stage move
         if (PKMNuser.preparingAttack) {
           if (PKMNuser.isConfused) {
-            setTimeout(() => switchTurns(), 2500);
+            setTimeout(() => switchTurns(), 2500 + timeout);
           } else {
             setTimeout(() => switchTurns(), 2000 + timeout);
           }
@@ -349,7 +353,12 @@ const UseMove = (
               1500 + timeout500
             );
           } else {
-            DisplayMessage(PKMNuser.name + " used " + moveName + "!");
+            //console.log(PKMNuser.name + " used " + moveName + "!");
+
+            setTimeout(
+              () => DisplayMessage(PKMNuser.name + " used " + moveName + "!"),
+              timeout
+            );
           }
           if (PlayersTurn === "Player One") {
             if (power > 0) {
@@ -406,10 +415,12 @@ const UseMove = (
           }
           let lastMove;
           if (PlayersTurn === "Player One") {
-            lastMove = lastMoveUsedPlayer2;
+            lastMove = lastMovePlayer2;
           } else {
-            lastMove = lastMoveUsedPlayer1;
+            lastMove = lastMovePlayer1;
           }
+          //console.log(lastMove, PKMNtarget.preparingAttack, power);
+
           if (
             rand > percentChance ||
             (PKMNtarget.preparingAttack &&
@@ -418,12 +429,12 @@ const UseMove = (
           ) {
             if (PKMNuser.isConfused) {
               setTimeout(
-                () => DisplayMessage(PKMNuser.name + "'s attack Missed!"),
+                () => DisplayMessage(PKMNuser.name + "'s attack missed!"),
                 4500
               );
             } else {
               setTimeout(
-                () => DisplayMessage(PKMNuser.name + "'s attack Missed!"),
+                () => DisplayMessage(PKMNuser.name + "'s attack missed!"),
                 3000 + timeout
               );
             }
