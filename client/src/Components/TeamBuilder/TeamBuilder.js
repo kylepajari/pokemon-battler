@@ -135,7 +135,8 @@ class TeamBuilder extends Component {
     this.props.setPlayer1CurrentPokemon(0);
     this.props.setPlayer2CurrentPokemon(0);
     if (this.props.mode === "CPUVSCPU") {
-      this.props.setPlayerOneName(this.props.user.username);
+      //this.props.setPlayerOneName(this.props.user.username);
+      this.props.setPlayerOneName(localStorage.getItem("UserName"));
     }
     this.props.setPlayerTwoName("Player Two");
     this.props.setPlayersTurn("Player One");
@@ -574,15 +575,18 @@ class TeamBuilder extends Component {
   fetchPokemon = (num, level, team, name) => {
     //console.log("add to team", num, level, team, name);
     if (this.state.currentPokemon === null) {
-      let url = "https://pokeapi.co/api/v2/pokemon/" + num;
+      //let url = "https://pokeapi.co/api/v2/pokemon/" + num;
+      //switched to local directory
+      let url = "/search/" + num;
       fetch(url)
         .then(response => response.json())
-        .then(currentPoke =>
+        .then(currentPoke => {
+          console.log(currentPoke);
           this.setState(
             { currentPokemon: currentPoke, currentModalPokemon: currentPoke },
             () => this.fillmodalPokeInfo()
-          )
-        )
+          );
+        })
         .then(() => {
           this.addPokemon(level, team, name);
         });
@@ -612,7 +616,8 @@ class TeamBuilder extends Component {
       currentPokemonLevel: 0,
       currentPokemonMoves: []
     });
-    let url = "https://pokeapi.co/api/v2/pokemon/" + num;
+    //let url = "https://pokeapi.co/api/v2/pokemon/" + num;
+    let url = "/search/" + num;
     fetch(url)
       .then(response => response.json())
       .then(currentPoke =>
@@ -725,9 +730,9 @@ class TeamBuilder extends Component {
       backSprite: this.state.currentPokemonSpriteBack,
       lv: level,
       OrigHp: this.state.currentPokemonHP,
-      //OrigHp: 3,
+      //OrigHp: 5,
       hp: this.state.currentPokemonHP,
-      //hp: 3,
+      //hp: 5,
       OrigAttack: this.state.currentPokemonAtk,
       attack: this.state.currentPokemonAtk,
       OrigDefense: this.state.currentPokemonDef,
@@ -818,6 +823,7 @@ class TeamBuilder extends Component {
 
       if (this.props.player1Team.length === 6 && this.props.mode === "Single") {
         this.props.updateTeam(this.props.id, this.props.player1Team);
+        localStorage.setItem("Team", JSON.stringify(this.props.player1Team));
       }
       if (this.props.mode === "Single") {
         this.props.updateLeaderTeam(name, this.props.player2Team);
@@ -911,6 +917,7 @@ class TeamBuilder extends Component {
   ///////////////////////////////////////////////////////////////////////
   clearTeam = () => {
     this.props.setPlayer1Team([]);
+    localStorage.setItem("Team", null);
     this.props.updateTeam(this.props.id, []);
   };
 

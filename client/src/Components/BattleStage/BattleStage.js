@@ -132,7 +132,7 @@ class BattleStage extends Component {
     this.handleUpdateLastMove = this.handleUpdateLastMove.bind(this);
   }
 
-  componentWillReceiveProps(props) {
+  UNSAFE_componentWillReceiveProps(props) {
     this.setState({
       player1Team: props.player1Team,
       player2Team: props.player2Team
@@ -635,6 +635,7 @@ class BattleStage extends Component {
             badgesCount += 1;
             this.props.setBadges(badgesCount);
             this.props.updateBadges(this.props.id, badgesCount);
+            localStorage.setItem("Badges", badgesCount);
             $(document.querySelector(".eliteFour")).fadeOut(1);
             let badgeName = this.state.gymBadgeName;
             if (badgeName.includes("Elite")) {
@@ -1262,7 +1263,7 @@ class BattleStage extends Component {
 
     //update target pokemon hp after damage dealt
     PKMNuser.hp -= damage;
-    if (PKMNuser.hp < 1) {
+    if (PKMNuser.hp - damage <= 0) {
       PKMNuser.hp = 0;
       faintedPoisonBurn = true;
       this.handleFaintedByRecoilPoisonBurn(true);
@@ -2136,11 +2137,20 @@ class BattleStage extends Component {
 
     //RECOIL/////////////////////////////////////////////////////////////
     let faintedByRecoil = false;
+    let faintedSameTurn = false;
     if (statusEff === "recoil") {
       //damage should be 1/4 damage dealt to target
       let Damage = recoilDamage;
+      //if move is self destruct or explosion, recoil is 999
+      if (moveName === "Self Destruct" || moveName === "Explosion") {
+        Damage = 999;
+      } else {
+        setTimeout(
+          () => DisplayMessage(PKMNuser.name + " was hit with recoil!"),
+          2000
+        );
+      }
 
-      // let Damage = PKMNuser.hp / RecoilAmount;
       let origHealth = parseInt(HPbar.css("width"));
       let asPercentage = Damage / PKMNuser.hp;
 
@@ -2148,7 +2158,7 @@ class BattleStage extends Component {
       if (PKMNuser.hp - Damage < 1) {
         setTimeout(() => (PKMNuser.hp = 0), 2000);
         faintedByRecoil = true;
-        this.setState({ faintedByRecoilPoisonBurn: true });
+        this.handleFaintedByRecoilPoisonBurn(true);
       } else {
         setTimeout(() => (PKMNuser.hp = PKMNuser.hp - Damage), 2000);
       }
@@ -2160,16 +2170,19 @@ class BattleStage extends Component {
 
       //update health bar to reflect damage
       setTimeout(() => UpdateHP(HPbar, updatedBarHP, this.props.volume), 2000);
-      console.log(
-        "after recoil, " +
-          PKMNuser.name +
-          "'s HP is " +
-          (PKMNuser.hp - Damage).toString()
-      );
-      if (PKMNuser.hp - Damage <= 0) {
+      // console.log(
+      //   "after recoil, " +
+      //     PKMNuser.name +
+      //     "'s HP is " +
+      //     (PKMNuser.hp - Damage).toString()
+      // );
+      if (PKMNuser.hp - Damage < 1) {
         //pokemon fainted
-        if (PKMNtarget.hp <= 0) {
-          //if opponent pokemon is also fainted, delay fainting user until switch is done
+        console.log(PKMNtarget.hp);
+
+        if (PKMNtarget.hp < 1) {
+          faintedSameTurn = true;
+          //both pokemon fainted
           setTimeout(
             () =>
               FaintPokemon(
@@ -2184,9 +2197,10 @@ class BattleStage extends Component {
                 this.handleTeam,
                 this.props.handleFainted,
                 this.props.mode,
-                this.props.volume
+                this.props.volume,
+                faintedSameTurn
               ),
-            9000
+            3500
           );
         } else {
           console.log(
@@ -2214,11 +2228,6 @@ class BattleStage extends Component {
         }
       }
       setTimeout(() => this.handleForceUpdate(), 2000);
-
-      setTimeout(
-        () => DisplayMessage(PKMNuser.name + " was hit with recoil!"),
-        2000
-      );
     }
 
     //RECOVER DAMAGE/////////////////////////////////////////////////////////////

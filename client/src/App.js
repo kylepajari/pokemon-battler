@@ -37,26 +37,33 @@ class App extends Component {
     this.props.setTeamSize(6);
     this.props.setBadges(0);
     this.props.setId("");
+    localStorage.setItem("LoggedIn", null);
+    localStorage.setItem("ID", null);
+    localStorage.setItem("Badges", null);
+    localStorage.setItem("UserName", null);
+    localStorage.setItem("Password", null);
+    localStorage.setItem("Team", null);
+    localStorage.setItem("Name", null);
+  };
+
+  fillData = () => {
+    this.props.setBadges(parseInt(localStorage.getItem("Badges")));
+    this.props.setUserName(localStorage.getItem("UserName"));
+    this.props.setPassword(localStorage.getItem("Password"));
+    this.props.setId(localStorage.getItem("ID"));
+    this.props.setPlayer1Team(JSON.parse(localStorage.getItem("Team")));
+    this.props.setPlayerOneName(localStorage.getItem("Name"));
   };
 
   render() {
-    if (!this.props.loggedIn) {
-      // if not logged in, show login form
-      return (
-        <div className="App">
-          <div className="title">
-            <p>Pokémon Battler</p>
-            <img className="pokeball" src={pokeball} alt="Pokeball" />
-          </div>
-          <span className="warningText">
-            Warning: This game contains sound effects. Please keep volume at a
-            reasonable level!
-          </span>
-          <LoginContainer />
-        </div>
-      );
-    } else if (this.props.loggedIn) {
+    let localLogged = localStorage.getItem("LoggedIn");
+    if (this.props.loggedIn || localLogged === "true") {
       // if logged in, and data loaded, show team builder(main menu)
+      //if logged in previously and data is in storage, fill variables with storage data
+      if (this.props.id === "" && localLogged === "true") {
+        this.fillData();
+      }
+
       return (
         <div className="App">
           <div className="title">
@@ -74,6 +81,21 @@ class App extends Component {
             </button>
           </div>
           <TeamBuilderContainer />
+        </div>
+      );
+    } else {
+      // if not logged in, show login form
+      return (
+        <div className="App">
+          <div className="title">
+            <p>Pokémon Battler</p>
+            <img className="pokeball" src={pokeball} alt="Pokeball" />
+          </div>
+          <span className="warningText">
+            Warning: This game contains sound effects. Please keep volume at a
+            reasonable level!
+          </span>
+          <LoginContainer />
         </div>
       );
     }

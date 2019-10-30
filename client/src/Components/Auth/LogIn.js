@@ -31,6 +31,13 @@ class Login extends Component {
           this.props.setPlayerOneName(this.state.username);
           let date = new Date();
           this.props.updateLastLogin(result["_id"], date);
+          localStorage.setItem("LoggedIn", true);
+          localStorage.setItem("ID", result["_id"]);
+          localStorage.setItem("Badges", result["badges"]);
+          localStorage.setItem("UserName", result["username"]);
+          localStorage.setItem("Password", result["password"]);
+          localStorage.setItem("Team", JSON.stringify(result["team"]));
+          localStorage.setItem("Name", this.state.username);
         })
         .catch(err =>
           this.setState({

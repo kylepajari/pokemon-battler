@@ -2,6 +2,8 @@ import { connect } from "react-redux";
 import App from "../App";
 import {
   setLoggedIn,
+  setUserName,
+  setPassword,
   setPlayer1Team,
   setPlayer2Team,
   setPlayerOneName,
@@ -34,6 +36,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     setLoggedIn: log => dispatch(setLoggedIn(log)),
+    setUserName: name => dispatch(setUserName(name)),
+    setPassword: pass => dispatch(setPassword(pass)),
     setId: id => dispatch(setId(id)),
     setPlayer1Team: team => dispatch(setPlayer1Team(team)),
     setPlayer2Team: team => dispatch(setPlayer2Team(team)),
