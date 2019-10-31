@@ -15,7 +15,7 @@ class Team extends Component {
     };
   }
 
-  componentWillReceiveProps(props) {
+  UNSAFE_componentWillReceiveProps(props) {
     this.setState({
       displayTeam: props.displayTeam
     });

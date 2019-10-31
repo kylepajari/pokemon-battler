@@ -97,7 +97,7 @@ class Items extends Component {
     };
   }
 
-  componentWillReceiveProps(props) {
+  UNSAFE_componentWillReceiveProps(props) {
     this.setState({
       displayItems: props.displayItems
     });

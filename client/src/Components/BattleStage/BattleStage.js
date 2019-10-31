@@ -1312,6 +1312,7 @@ class BattleStage extends Component {
           ),
         4500
       );
+      setTimeout(() => this.checkWin(), 7500);
     }
 
     if (!faintedPoisonBurn) {
@@ -2757,7 +2758,7 @@ class BattleStage extends Component {
       }
     }
     //if move is not a damaging one, end turn
-    if (power === 0) {
+    if (power === 0 && statusEff !== "MirrorMove") {
       //if user is poisonedburned, delay switching turns
       if (isUserPoisonedOrBurned || PKMNuser.isBound) {
         setTimeout(() => this.dealPoisonBurn(PKMNuser, HPbar), 4000);

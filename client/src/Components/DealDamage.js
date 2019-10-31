@@ -312,8 +312,9 @@ const DealDamage = (
 
   if (
     PKMNtarget.hp > 0 ||
-    statusEff === "recoverDamage" ||
-    statusEff === "recoil"
+    statusEff === "recoverDamage"
+    // ||
+    // statusEff === "recoil"
   ) {
     //If pokemon did not faint from attack
     //Check for and apply status effect after damage only if pokemon is not fainted

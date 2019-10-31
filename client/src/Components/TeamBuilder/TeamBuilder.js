@@ -581,7 +581,6 @@ class TeamBuilder extends Component {
       fetch(url)
         .then(response => response.json())
         .then(currentPoke => {
-          console.log(currentPoke);
           this.setState(
             { currentPokemon: currentPoke, currentModalPokemon: currentPoke },
             () => this.fillmodalPokeInfo()

@@ -20,7 +20,7 @@ class Moves extends Component {
     });
   }
 
-  componentWillReceiveProps(props) {
+  UNSAFE_componentWillReceiveProps(props) {
     this.setState({
       displayMoves: props.displayMoves
     });

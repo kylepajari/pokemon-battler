@@ -265,6 +265,7 @@ const UseMove = (
                   ),
                 4500
               );
+              setTimeout(() => checkWin(), 7500);
             } else {
               //if pokemon did not faint from damage
               //if user is poisonedburned, delay switching turns
@@ -566,24 +567,179 @@ const UseMove = (
                 );
               }
             } else if (power === 0 && statusEff !== "") {
-              setTimeout(
-                () =>
-                  checkForStatusEffect(
-                    statusEff,
-                    statusProb,
-                    PKMNuser,
-                    PKMNtarget,
-                    targetType1,
-                    targetType2,
-                    moveName,
-                    HPbar,
-                    power,
-                    0,
-                    0,
-                    isUserPoisonedOrBurned
-                  ),
-                1500 + timeout500
-              );
+              if (moveName === "Mirror Move") {
+                //check if target used a move(not first turn)
+                let lastMove = "";
+                if (PlayersTurn === "Player One") {
+                  lastMove = lastMovePlayer2;
+                } else {
+                  lastMove = lastMovePlayer1;
+                }
+                //if lastMove is valid, get move stats from target
+                let targetMove = null;
+                console.log(lastMove);
+                if (lastMove !== "" && lastMove !== "Mirror Move") {
+                  targetMove = PKMNtarget.moves.find(move => {
+                    return move.name === lastMove;
+                  });
+
+                  if (targetMove !== null && targetMove !== undefined) {
+                    setTimeout(
+                      () =>
+                        DisplayMessage(
+                          PKMNuser.name + " used " + targetMove.name + "!"
+                        ),
+                      3500 + timeout
+                    );
+                    let mirrorattack = new Audio(targetMove.sound);
+                    mirrorattack.volume = Volume;
+                    setTimeout(() => mirrorattack.play(), 4000 + timeout);
+                    if (PlayersTurn === "Player One") {
+                      if (targetMove.power > 0) {
+                        setTimeout(
+                          () =>
+                            Sprite.animate(
+                              { marginLeft: "+=25" },
+                              50,
+                              function() {
+                                //animation complete
+                                Sprite.animate({ marginLeft: "-=25" });
+                              }
+                            ),
+                          3500 + timeout
+                        );
+                      } else {
+                        //power is 0, animate sprite down
+                        setTimeout(
+                          () =>
+                            Sprite.animate(
+                              { marginTop: "+=15" },
+                              80,
+                              function() {
+                                //animation complete
+                                Sprite.animate({ marginTop: "-=15" });
+                              }
+                            ),
+                          3500 + timeout
+                        );
+                      }
+                    } else if (PlayersTurn === "Player Two") {
+                      if (targetMove.power > 0) {
+                        setTimeout(
+                          () =>
+                            Sprite.animate(
+                              { marginLeft: "-=25" },
+                              50,
+                              function() {
+                                //animation complete
+                                Sprite.animate({ marginLeft: "+=25" });
+                              }
+                            ),
+                          3500 + timeout
+                        );
+                      } else {
+                        //power is 0, animate sprite down
+                        setTimeout(
+                          () =>
+                            Sprite.animate(
+                              { marginTop: "+=15" },
+                              80,
+                              function() {
+                                //animation complete
+                                Sprite.animate({ marginTop: "-=15" });
+                              }
+                            ),
+                          3500 + timeout
+                        );
+                      }
+                    }
+                    if (targetMove.power > 0) {
+                      setTimeout(
+                        () =>
+                          DealDamage(
+                            targetMove.power,
+                            lv,
+                            targetMove.name,
+                            targetMove.category,
+                            targetMove.type,
+                            targetMove.statusEff,
+                            targetMove.statusProb,
+                            player1Team,
+                            player2Team,
+                            Player1Poke,
+                            Player2Poke,
+                            PlayersTurn,
+                            playerOneName,
+                            playerTwoName,
+                            resetMultipliers,
+                            handleTeam,
+                            handleFainted,
+                            handleForceUpdate,
+                            checkForStatusEffect,
+                            isUserPoisonedOrBurned,
+                            dealPoisonBurn,
+                            switchTurns,
+                            mode,
+                            Volume,
+                            checkWin
+                          ),
+                        5000 + timeout
+                      );
+                    } else {
+                      setTimeout(
+                        () =>
+                          checkForStatusEffect(
+                            targetMove.statusEff,
+                            targetMove.statusProb,
+                            PKMNuser,
+                            PKMNtarget,
+                            targetType1,
+                            targetType2,
+                            targetMove.moveName,
+                            HPbar,
+                            targetMove.power,
+                            0,
+                            0,
+                            isUserPoisonedOrBurned
+                          ),
+                        5000 + timeout500
+                      );
+                    }
+                  } else {
+                    setTimeout(
+                      () => DisplayMessage("But it failed..."),
+                      3500 + timeout
+                    );
+                    setTimeout(() => switchTurns(), 5500 + timeout);
+                  }
+                } else {
+                  //move fails if used first turn or if last move by user was also mirror move)
+                  setTimeout(
+                    () => DisplayMessage("But it failed..."),
+                    3500 + timeout
+                  );
+                  setTimeout(() => switchTurns(), 5500 + timeout);
+                }
+              } else {
+                setTimeout(
+                  () =>
+                    checkForStatusEffect(
+                      statusEff,
+                      statusProb,
+                      PKMNuser,
+                      PKMNtarget,
+                      targetType1,
+                      targetType2,
+                      moveName,
+                      HPbar,
+                      power,
+                      0,
+                      0,
+                      isUserPoisonedOrBurned
+                    ),
+                  1500 + timeout500
+                );
+              }
             } else if (power === 0 && statusEff === "") {
               //move does nothing
               setTimeout(

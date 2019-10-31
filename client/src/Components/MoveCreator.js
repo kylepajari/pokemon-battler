@@ -1788,13 +1788,13 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 40,
-      type: "normal",
+      power: 0,
+      type: "flying",
       accuracy: 100,
-      pp: 35,
-      statusEff: "",
+      pp: 20,
+      statusEff: "MirrorMove",
       statusProb: 1,
-      sound: MirrorMove
+      sound: Mimic
     };
   }
   if (moveName === "Self Destruct") {

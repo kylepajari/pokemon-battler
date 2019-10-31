@@ -87,14 +87,14 @@ const FaintPokemon = (
     //increase currentPokemon number for team to send out next in party
     //reset stat modifiers to defaults, for new pokemon
     resetMultipliers("fainted");
-    console.log(faintedSameTurn);
+    //console.log(faintedSameTurn);
     if (mode === "Multi") {
       setTimeout(
         () => DisplayMessage("Select which Pokémon to send out..."),
         3000
       );
       //display list of available pokemon that are not inbattle/fainted
-      if (!faintedSameTurn) {
+      if (faintedSameTurn === null) {
         setTimeout(() => handleTeam("fainted"), 3000);
       }
     } else if (mode === "Single") {
@@ -110,11 +110,11 @@ const FaintPokemon = (
       }
       //display list of available pokemon that are not inbattle/fainted
       //both pokemon fainted, do not handleteam yet
-      if (!faintedSameTurn) {
+      if (faintedSameTurn === null) {
         setTimeout(() => handleTeam("fainted"), 3000);
       }
     } else if (mode === "CPUVSCPU") {
-      if (!faintedSameTurn) {
+      if (faintedSameTurn === null) {
         setTimeout(() => handleTeam("fainted"), 3000);
       }
     }
