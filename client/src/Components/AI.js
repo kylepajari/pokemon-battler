@@ -351,6 +351,17 @@ const HandleAI = (
         moveChosen = PKMNuser.moves[rand];
         num = rand;
       }
+
+      //if move is disabled, choose again
+      if (moveChosen.name === "--DISABLED--") {
+        do {
+          let rand = Math.round(
+            RandomNumberGenerator(0, PKMNuser.moves.length - 1)
+          );
+          moveChosen = PKMNuser.moves[rand];
+          num = rand;
+        } while (moveChosen.name === "--DISABLED--");
+      }
     }
     //console.log(moveChosen);
     //console.log(usedItem);

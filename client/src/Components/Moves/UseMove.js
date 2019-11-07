@@ -73,11 +73,16 @@ const UseMove = (
   attack = new Audio(moveSound);
   attack.volume = Volume;
 
+  //is move disabled?
+  if (moveName === "--DISABLED--") {
+    //out of pp for move
+    DisplayMessage("This move is disabled!");
+  }
   //does move have PP remaining?
-  if (pp === 0) {
+  else if (pp === 0) {
     //out of pp for move
     DisplayMessage(moveName + " is out of PP!");
-  } else if (pp > 0) {
+  } else {
     //hide move list/ options
     if (mode === "Multi") {
       handleMoves();
@@ -467,8 +472,171 @@ const UseMove = (
             if (power > 0) {
               //if move lands, continue with deal damage
 
+              //if move hit more than once in one turn, play sound x times, deal damage x times
+              //2x
+              if (
+                moveName === "Double Kick" ||
+                moveName === "Bonemerang" ||
+                moveName === "Twineedle"
+              ) {
+                if (PKMNuser.isConfused) {
+                  setTimeout(() => attack.play(), 4000);
+                } else {
+                  setTimeout(() => attack.play(), 2500 + timeout);
+                }
+
+                let newPower = power * 2;
+                setTimeout(
+                  () =>
+                    DealDamage(
+                      newPower,
+                      lv,
+                      moveName,
+                      moveCategory,
+                      moveType,
+                      statusEff,
+                      statusProb,
+                      player1Team,
+                      player2Team,
+                      Player1Poke,
+                      Player2Poke,
+                      PlayersTurn,
+                      playerOneName,
+                      playerTwoName,
+                      resetMultipliers,
+                      handleTeam,
+                      handleFainted,
+                      handleForceUpdate,
+                      checkForStatusEffect,
+                      isUserPoisonedOrBurned,
+                      dealPoisonBurn,
+                      switchTurns,
+                      mode,
+                      Volume,
+                      checkWin
+                    ),
+                  4000 + timeout
+                );
+                setTimeout(
+                  () => DisplayMessage("Hit 2 times!"),
+                  4500 + timeout
+                );
+              }
+              //3x
+              else if (moveName === "Triple Kick") {
+                if (PKMNuser.isConfused) {
+                  setTimeout(() => attack.play(), 4000);
+                  setTimeout(() => attack.play(), 4500);
+                } else {
+                  setTimeout(() => attack.play(), 2500 + timeout);
+                  setTimeout(() => attack.play(), 3000 + timeout);
+                }
+
+                let newPower = power * 3;
+                setTimeout(
+                  () =>
+                    DealDamage(
+                      newPower,
+                      lv,
+                      moveName,
+                      moveCategory,
+                      moveType,
+                      statusEff,
+                      statusProb,
+                      player1Team,
+                      player2Team,
+                      Player1Poke,
+                      Player2Poke,
+                      PlayersTurn,
+                      playerOneName,
+                      playerTwoName,
+                      resetMultipliers,
+                      handleTeam,
+                      handleFainted,
+                      handleForceUpdate,
+                      checkForStatusEffect,
+                      isUserPoisonedOrBurned,
+                      dealPoisonBurn,
+                      switchTurns,
+                      mode,
+                      Volume,
+                      checkWin
+                    ),
+                  4000 + timeout
+                );
+                setTimeout(
+                  () => DisplayMessage("Hit 3 times!"),
+                  4500 + timeout
+                );
+              }
+              //2- 5 times
+              else if (
+                moveName === "Barrage" ||
+                moveName === "Bone Rush" ||
+                moveName === "Pin Missile" ||
+                moveName === "Fury Attack" ||
+                moveName === "Fury Swipes" ||
+                moveName === "Comet Punch" ||
+                moveName === "Spike Cannon" ||
+                moveName === "Double Slap"
+              ) {
+                let hitTimes = Math.round(RandomNumberGenerator(2, 5));
+                //console.log(hitTimes);
+
+                let spacer = 2000;
+                for (let i = 1; i < hitTimes; i++) {
+                  //console.log(i, 1500 + timeout + spacer);
+
+                  setTimeout(() => attack.play(), 1500 + timeout + spacer);
+                  spacer += 2000;
+                }
+                let newPower = power * hitTimes;
+                setTimeout(
+                  () =>
+                    DealDamage(
+                      newPower,
+                      lv,
+                      moveName,
+                      moveCategory,
+                      moveType,
+                      statusEff,
+                      statusProb,
+                      player1Team,
+                      player2Team,
+                      Player1Poke,
+                      Player2Poke,
+                      PlayersTurn,
+                      playerOneName,
+                      playerTwoName,
+                      resetMultipliers,
+                      handleTeam,
+                      handleFainted,
+                      handleForceUpdate,
+                      checkForStatusEffect,
+                      isUserPoisonedOrBurned,
+                      dealPoisonBurn,
+                      switchTurns,
+                      mode,
+                      Volume,
+                      checkWin
+                    ),
+                  5000 + timeout + (spacer - 2500)
+                );
+                //console.log(moveType, targetType1, targetType2);
+                if (
+                  (moveType === "ground" && targetType1 === "flying") ||
+                  (moveType === "ground" && targetType2 === "flying")
+                ) {
+                  //unaffected
+                } else {
+                  setTimeout(
+                    () => DisplayMessage("Hit " + hitTimes + " times!"),
+                    5500 + timeout + (spacer - 2500)
+                  );
+                }
+              }
               //if magnitude is used, assign random power
-              if (moveName === "Magnitude") {
+              else if (moveName === "Magnitude") {
                 let newPower = 0;
                 let magnitudeLevel = RandomNumberGenerator(4, 10);
                 magnitudeLevel = Math.round(magnitudeLevel);

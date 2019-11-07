@@ -77,6 +77,12 @@ class BattleStage extends Component {
       isPoisonBurned: false,
       faintedByRecoilPoisonBurn: false,
       recoilDamage: 0,
+      disabledCounterP1: 0,
+      disabledCounterP2: 0,
+      disabledMoveNameP1: "",
+      disabledMoveNameP2: "",
+      disabledPokeIndexP1: 0,
+      disabledPokeIndexP2: 0,
       aiUsedMaxPotion: false,
       aiUsedAntidote: false,
       aiUsedBurnHeal: false,
@@ -371,6 +377,11 @@ class BattleStage extends Component {
       );
 
       if (this.props.mode === "CPUVSCPU") {
+        this.setState({
+          displayMoves: false,
+          displayItems: false,
+          displayTeam: false
+        });
         setTimeout(
           () =>
             HandleAI(
@@ -500,6 +511,15 @@ class BattleStage extends Component {
           ),
         3500
       );
+      //reset ai items used
+      this.setState({
+        aiUsedMaxPotion: false,
+        aiUsedAntidote: false,
+        aiUsedAwakening: false,
+        aiUsedBurnHeal: false,
+        aiUsedIceHeal: false,
+        aiUsedParalyzeHeal: false
+      });
       setTimeout(() => win.pause(), 6000);
       setTimeout(() => this.props.battleMusic.pause(), 6000);
       setTimeout(() => this.props.returnToMainMenu(), 6000);
@@ -835,6 +855,14 @@ class BattleStage extends Component {
         //dont switch turns
       } else {
         this.switchTurns();
+      }
+      //clear lastused, disabled counters moves if poke fainted
+      if (this.props.playersTurn === "Player One") {
+        this.setState({ lastMovePlayer1: "" });
+        this.setState({ disabledCounterP1: 0 });
+      } else {
+        this.setState({ lastMovePlayer2: "" });
+        this.setState({ disabledCounterP2: 0 });
       }
 
       //show only pokemon list, hide buttons
@@ -1442,6 +1470,49 @@ class BattleStage extends Component {
     //reset faintedByRecoilPoisonBurn
     this.handleFaintedByRecoilPoisonBurn(false);
     this.handlePoisonBurn(false);
+
+    //if disabled counters have value, subtract 1 turn from them until reach zero
+    if (this.props.playersTurn === "Player One") {
+      if (this.state.disabledCounterP1 > 0) {
+        this.setState({ disabledCounterP1: this.state.disabledCounterP1 - 1 });
+        if (this.state.disabledCounterP1 - 1 === 0) {
+          DisplayMessage(
+            this.props.player1Team[this.props.player1CurrentPokemon].name +
+              " is disabled no more!"
+          );
+          let disabledIndex = this.props.player1Team[
+            this.state.disabledPokeIndexP1
+          ].moves.findIndex((move, i) => {
+            if (move.name === "--DISABLED--") {
+              return i;
+            }
+          });
+          this.props.player1Team[this.state.disabledPokeIndexP1].moves[
+            disabledIndex
+          ].name = this.state.disabledMoveNameP1;
+        }
+      }
+    } else {
+      if (this.state.disabledCounterP2 > 0) {
+        this.setState({ disabledCounterP2: this.state.disabledCounterP2 - 1 });
+        if (this.state.disabledCounterP2 - 1 === 0) {
+          DisplayMessage(
+            this.props.player2Team[this.props.player2CurrentPokemon].name +
+              " is disabled no more!"
+          );
+          let disabledIndex = this.props.player2Team[
+            this.state.disabledPokeIndexP2
+          ].moves.findIndex((move, i) => {
+            if (move.name === "--DISABLED--") {
+              return i;
+            }
+          });
+          this.props.player2Team[this.state.disabledPokeIndexP2].moves[
+            disabledIndex
+          ].name = this.state.disabledMoveNameP2;
+        }
+      }
+    }
 
     //switch to next player
     let lastMove = "";
@@ -2083,6 +2154,73 @@ class BattleStage extends Component {
       }
     }
 
+    //DISABLE ///////////////////////////////////////////////////////////////////////////////////////////
+    //if condition is disable, targets last used move is disabled for four turns
+    if (statusEff === "disable") {
+      //check if target used a move(not first turn)
+      let lastMove = "";
+      let counter = 0;
+      if (this.props.playersTurn === "Player One") {
+        lastMove = this.state.lastMovePlayer2;
+        counter = this.state.disabledCounterP2;
+      } else {
+        lastMove = this.state.lastMovePlayer1;
+        counter = this.state.disabledCounterP1;
+      }
+
+      //check if pokemon is already disabled, fail if true
+      if (counter > 0) {
+        setTimeout(() => DisplayMessage("But it failed..."), 1500);
+      } else {
+        //if lastMove is valid, get move stats from target
+        let targetMoveIndex = null;
+        if (lastMove !== "") {
+          //console.log(lastMove);
+
+          targetMoveIndex = PKMNtarget.moves.findIndex((move, i) => {
+            console.log(move.name, lastMove, i);
+
+            if (move.name === lastMove) {
+              return i;
+            }
+            return undefined;
+          });
+          //console.log(targetMoveIndex);
+
+          //set move name to disabled
+          if (
+            targetMoveIndex !== undefined &&
+            PKMNtarget.moves[targetMoveIndex].name !== undefined
+          ) {
+            if (this.props.playersTurn === "Player One") {
+              this.setState({ disabledCounterP2: 4 });
+              this.setState({
+                disabledMoveNameP2: PKMNtarget.moves[targetMoveIndex].name
+              });
+            } else {
+              this.setState({ disabledCounterP1: 4 });
+              this.setState({
+                disabledMoveNameP1: PKMNtarget.moves[targetMoveIndex].name
+              });
+            }
+            let origName = PKMNtarget.moves[targetMoveIndex].name;
+            setTimeout(
+              () =>
+                DisplayMessage(
+                  PKMNtarget.name + "'s " + origName + " was disabled!"
+                ),
+              1500
+            );
+            PKMNtarget.moves[targetMoveIndex].name = "--DISABLED--";
+          } else {
+            setTimeout(() => DisplayMessage("But it failed..."), 1500);
+          }
+        } else {
+          setTimeout(() => DisplayMessage("But it failed..."), 1500);
+        }
+      }
+    }
+
     //COPY ///////////////////////////////////////////////////////////////////////////////////////////
     //if condition is copy, user with replace move with targets last move if used, otherwise copy targets first move in list
     if (statusEff === "Copy") {
@@ -2117,7 +2255,7 @@ class BattleStage extends Component {
         targetMove !== null && targetMove !== undefined
           ? targetMove.name
           : PKMNtarget.moves[0].name;
-      DisplayMessage(PKMNuser.name + " copied " + copiedName + "!", 1500);
+      DisplayMessage(PKMNuser.name + " copied " + copiedName + "!");
     }
 
     //BOUND/////////////////////////////////////////////////////////////

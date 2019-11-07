@@ -282,7 +282,7 @@ const CreateMoves = moveName => {
       category: "physical",
       power: 15,
       type: "normal",
-      accuracy: 100,
+      accuracy: 85,
       pp: 10,
       statusEff: "",
       statusProb: 1,
@@ -295,7 +295,7 @@ const CreateMoves = moveName => {
       category: "physical",
       power: 18,
       type: "normal",
-      accuracy: 100,
+      accuracy: 85,
       pp: 15,
       statusEff: "",
       statusProb: 1,
@@ -554,7 +554,7 @@ const CreateMoves = moveName => {
       name: moveName,
       category: "physical",
       power: 30,
-      type: "normal",
+      type: "fighting",
       accuracy: 100,
       pp: 30,
       statusEff: "",
@@ -646,7 +646,7 @@ const CreateMoves = moveName => {
       category: "physical",
       power: 15,
       type: "normal",
-      accuracy: 100,
+      accuracy: 85,
       pp: 20,
       statusEff: "",
       statusProb: 1,
@@ -774,7 +774,7 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 50,
+      power: 25,
       type: "bug",
       accuracy: 100,
       pp: 20,
@@ -890,12 +890,12 @@ const CreateMoves = moveName => {
   if (moveName === "Disable") {
     return {
       name: moveName,
-      category: "physical",
+      category: "special",
       power: 0,
       type: "normal",
       accuracy: 100,
-      pp: 35,
-      statusEff: "",
+      pp: 20,
+      statusEff: "disable",
       statusProb: 1,
       sound: Disable
     }; //prevents random move from being used
@@ -1944,7 +1944,7 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 80, //was 20
+      power: 20,
       type: "normal",
       accuracy: 100,
       pp: 15,
@@ -2061,14 +2061,14 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 40,
+      power: 15,
       type: "normal",
-      accuracy: 100,
-      pp: 35,
+      accuracy: 85,
+      pp: 20,
       statusEff: "",
       statusProb: 1,
       sound: Barrage
-    };
+    }; //hits 2-5 times
   }
   if (moveName === "Leech Life") {
     return {
@@ -2192,9 +2192,9 @@ const CreateMoves = moveName => {
       name: moveName,
       category: "physical",
       power: 0,
-      type: "water",
+      type: "normal",
       accuracy: 100,
-      pp: 35,
+      pp: 40,
       statusEff: "",
       statusProb: 1,
       sound: Splash
@@ -2243,7 +2243,7 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 65, //was 18
+      power: 18,
       type: "normal",
       accuracy: 80,
       pp: 15,
@@ -2256,14 +2256,14 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 100,
+      power: 50,
       type: "ground",
       accuracy: 90,
       pp: 10,
       statusEff: "",
       statusProb: 1,
       sound: Bonemerang
-    };
+    }; //hits 2 times in one turn
   }
   if (moveName === "Rest") {
     return {
@@ -2412,7 +2412,7 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 60, //was 10
+      power: 20,
       type: "fighting",
       accuracy: 90,
       pp: 10,
@@ -2828,7 +2828,7 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 75, //was 25
+      power: 25,
       type: "ground",
       accuracy: 90,
       pp: 10,
@@ -4050,8 +4050,8 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 40,
-      type: "normal",
+      power: 15,
+      type: "fighting",
       accuracy: 100,
       pp: 35,
       statusEff: "",
@@ -4557,8 +4557,8 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 40,
-      type: "normal",
+      power: 25,
+      type: "grass",
       accuracy: 100,
       pp: 35,
       statusEff: "",
@@ -4583,7 +4583,7 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 55,
+      power: 25,
       type: "ice",
       accuracy: 100,
       pp: 35,
@@ -4804,9 +4804,9 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 40,
-      type: "normal",
-      accuracy: 100,
+      power: 25,
+      type: "rock",
+      accuracy: 90,
       pp: 35,
       statusEff: "",
       statusProb: 1,
@@ -6221,9 +6221,9 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 40,
+      power: 35,
       type: "normal",
-      accuracy: 100,
+      accuracy: 90,
       pp: 35,
       statusEff: "",
       statusProb: 1,
@@ -7300,9 +7300,9 @@ const CreateMoves = moveName => {
     return {
       name: moveName,
       category: "physical",
-      power: 30,
-      type: "fighting",
-      accuracy: 100,
+      power: 40,
+      type: "dragon",
+      accuracy: 90,
       pp: 35,
       statusEff: "",
       statusProb: 1,
