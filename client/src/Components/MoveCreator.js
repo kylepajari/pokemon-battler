@@ -116,7 +116,6 @@ import Reflect from "../Sounds/BattleSounds/Moves/Reflect.wav";
 import FocusEnergy from "../Sounds/BattleSounds/Moves/FocusEnergy.wav";
 import Bide from "../Sounds/BattleSounds/Moves/Bide.wav";
 import Metronome from "../Sounds/BattleSounds/Moves/Metronome.wav";
-import MirrorMove from "../Sounds/BattleSounds/Moves/MirrorMove.wav";
 import SelfDestruct from "../Sounds/BattleSounds/Moves/Selfdestruct.wav";
 import EggBomb from "../Sounds/BattleSounds/Moves/EggBomb.wav";
 import Lick from "../Sounds/BattleSounds/Moves/Lick.wav";

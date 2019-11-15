@@ -154,14 +154,14 @@ const HandleAI = (
     setTimeout(() => {
       handleForceUpdate();
     }, 1800);
-    // if (
-    //   PKMNuser.statusCondition === "Poison" ||
-    //   PKMNuser.statusCondition === "Burn"
-    // ) {
-    //   setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 3500);
-    // } else {
-    //   setTimeout(() => switchTurns(), 3500);
-    // }
+    if (
+      PKMNuser.statusCondition === "Poison" ||
+      PKMNuser.statusCondition === "Burn"
+    ) {
+      setTimeout(() => dealPoisonBurn(PKMNuser, HPbar), 3500);
+    } else {
+      setTimeout(() => switchTurns(), 3500);
+    }
   } else if (
     (PKMNuser.statusCondition === "Poison" && !aiUsedAntidote) ||
     (PKMNuser.statusCondition === "Paralyze" && !aiUsedParalyzeHeal) ||
@@ -208,7 +208,7 @@ const HandleAI = (
     heal.play();
     //remove status condition
     setTimeout(() => (PKMNuser.statusCondition = ""), 1900);
-    //setTimeout(() => switchTurns(), 3500);
+    setTimeout(() => switchTurns(), 3500);
   }
   //check if opponent poke has type advantage over current poke
   if (advanNum1 > 1 || advanNum2 > 1) {
@@ -259,7 +259,7 @@ const HandleAI = (
       }
     }
   }
-  if (!canSwap) {
+  if (!canSwap && !usedItem) {
     let moveChosen = null;
     let num = 0;
     let chosen4 = false;
@@ -325,11 +325,13 @@ const HandleAI = (
       }
       //if rest is chosen and HP is above half, choose again
       if (moveChosen.name === "Rest" && PKMNuser.hp > PKMNuser.OrigHp / 2) {
-        let rand = Math.round(
-          RandomNumberGenerator(0, PKMNuser.moves.length - 1)
-        );
-        moveChosen = PKMNuser.moves[rand];
-        num = rand;
+        do {
+          let rand = Math.round(
+            RandomNumberGenerator(0, PKMNuser.moves.length - 1)
+          );
+          moveChosen = PKMNuser.moves[rand];
+          num = rand;
+        } while (moveChosen.name === "Rest");
       }
       //if confusion causing move is chosen and target is already confused, choose again
       if (
@@ -364,173 +366,86 @@ const HandleAI = (
       }
     }
     //console.log(moveChosen);
-    //console.log(usedItem);
 
     if (PKMNuser.hp <= 0) {
       //if current pokemon is fainted, delay using move by 5 seconds to allow time for new pokemon to come out
-      if (usedItem) {
-        setTimeout(
-          () =>
-            UseMove(
-              num,
-              moveChosen.name,
-              moveChosen.category,
-              moveChosen.type,
-              moveChosen.power,
-              moveChosen.pp,
-              moveChosen.accuracy,
-              moveChosen.statusEff,
-              moveChosen.statusProb,
-              moveChosen.sound,
-              PKMNuser.lv,
-              player1CurrentPokemon,
-              player2CurrentPokemon,
-              playersTurn,
-              handleMoves,
-              handlePoisonBurn,
-              dealPoisonBurn,
-              switchTurns,
-              handleForceUpdate,
-              player1Team,
-              player2Team,
-              playerOneName,
-              playerTwoName,
-              resetMultipliers,
-              handleTeam,
-              handleFainted,
-              mode,
-              isPoisonBurned,
-              checkForStatusEffect,
-              volume,
-              checkWin,
-              handleUpdateLastMove,
-              lastMovePlayer1,
-              lastMovePlayer2
-            ),
-          7000
-        );
-      } else {
-        setTimeout(
-          () =>
-            UseMove(
-              num,
-              moveChosen.name,
-              moveChosen.category,
-              moveChosen.type,
-              moveChosen.power,
-              moveChosen.pp,
-              moveChosen.accuracy,
-              moveChosen.statusEff,
-              moveChosen.statusProb,
-              moveChosen.sound,
-              PKMNuser.lv,
-              player1CurrentPokemon,
-              player2CurrentPokemon,
-              playersTurn,
-              handleMoves,
-              handlePoisonBurn,
-              dealPoisonBurn,
-              switchTurns,
-              handleForceUpdate,
-              player1Team,
-              player2Team,
-              playerOneName,
-              playerTwoName,
-              resetMultipliers,
-              handleTeam,
-              handleFainted,
-              mode,
-              isPoisonBurned,
-              checkForStatusEffect,
-              volume,
-              checkWin,
-              handleUpdateLastMove,
-              lastMovePlayer1,
-              lastMovePlayer2
-            ),
-          5000
-        );
-      }
+      setTimeout(
+        () =>
+          UseMove(
+            num,
+            moveChosen.name,
+            moveChosen.category,
+            moveChosen.type,
+            moveChosen.power,
+            moveChosen.pp,
+            moveChosen.accuracy,
+            moveChosen.statusEff,
+            moveChosen.statusProb,
+            moveChosen.sound,
+            PKMNuser.lv,
+            player1CurrentPokemon,
+            player2CurrentPokemon,
+            playersTurn,
+            handleMoves,
+            handlePoisonBurn,
+            dealPoisonBurn,
+            switchTurns,
+            handleForceUpdate,
+            player1Team,
+            player2Team,
+            playerOneName,
+            playerTwoName,
+            resetMultipliers,
+            handleTeam,
+            handleFainted,
+            mode,
+            isPoisonBurned,
+            checkForStatusEffect,
+            volume,
+            checkWin,
+            handleUpdateLastMove,
+            lastMovePlayer1,
+            lastMovePlayer2
+          ),
+        5000
+      );
     } else {
-      if (usedItem) {
-        setTimeout(
-          () =>
-            UseMove(
-              num,
-              moveChosen.name,
-              moveChosen.category,
-              moveChosen.type,
-              moveChosen.power,
-              moveChosen.pp,
-              moveChosen.accuracy,
-              moveChosen.statusEff,
-              moveChosen.statusProb,
-              moveChosen.sound,
-              PKMNuser.lv,
-              player1CurrentPokemon,
-              player2CurrentPokemon,
-              playersTurn,
-              handleMoves,
-              handlePoisonBurn,
-              dealPoisonBurn,
-              switchTurns,
-              handleForceUpdate,
-              player1Team,
-              player2Team,
-              playerOneName,
-              playerTwoName,
-              resetMultipliers,
-              handleTeam,
-              handleFainted,
-              mode,
-              isPoisonBurned,
-              checkForStatusEffect,
-              volume,
-              checkWin,
-              handleUpdateLastMove,
-              lastMovePlayer1,
-              lastMovePlayer2
-            ),
-          4500
-        );
-      } else {
-        UseMove(
-          num,
-          moveChosen.name,
-          moveChosen.category,
-          moveChosen.type,
-          moveChosen.power,
-          moveChosen.pp,
-          moveChosen.accuracy,
-          moveChosen.statusEff,
-          moveChosen.statusProb,
-          moveChosen.sound,
-          PKMNuser.lv,
-          player1CurrentPokemon,
-          player2CurrentPokemon,
-          playersTurn,
-          handleMoves,
-          handlePoisonBurn,
-          dealPoisonBurn,
-          switchTurns,
-          handleForceUpdate,
-          player1Team,
-          player2Team,
-          playerOneName,
-          playerTwoName,
-          resetMultipliers,
-          handleTeam,
-          handleFainted,
-          mode,
-          isPoisonBurned,
-          checkForStatusEffect,
-          volume,
-          checkWin,
-          handleUpdateLastMove,
-          lastMovePlayer1,
-          lastMovePlayer2
-        );
-      }
+      UseMove(
+        num,
+        moveChosen.name,
+        moveChosen.category,
+        moveChosen.type,
+        moveChosen.power,
+        moveChosen.pp,
+        moveChosen.accuracy,
+        moveChosen.statusEff,
+        moveChosen.statusProb,
+        moveChosen.sound,
+        PKMNuser.lv,
+        player1CurrentPokemon,
+        player2CurrentPokemon,
+        playersTurn,
+        handleMoves,
+        handlePoisonBurn,
+        dealPoisonBurn,
+        switchTurns,
+        handleForceUpdate,
+        player1Team,
+        player2Team,
+        playerOneName,
+        playerTwoName,
+        resetMultipliers,
+        handleTeam,
+        handleFainted,
+        mode,
+        isPoisonBurned,
+        checkForStatusEffect,
+        volume,
+        checkWin,
+        handleUpdateLastMove,
+        lastMovePlayer1,
+        lastMovePlayer2
+      );
     }
   }
 };

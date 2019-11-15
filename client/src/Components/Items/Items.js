@@ -129,8 +129,8 @@ class Items extends Component {
       //increase health by healAmount
       setTimeout(() => (PKMNuser.hp += healAmount), 300);
       setTimeout(() => this.props.handleForceUpdate(), 300);
-      // $(document.querySelector(".options")).fadeOut(300);
-      // $(document.querySelector(".mainmenuButton")).fadeOut(300);
+      $(document.querySelector(".options")).fadeOut(300);
+      $(document.querySelector(".mainmenuButton")).fadeOut(300);
       DisplayMessage(
         PKMNuser.name + " recovered by " + healAmount.toString() + " HP!"
       );
@@ -154,21 +154,21 @@ class Items extends Component {
     this.props.handleItems();
     this.props.handleForceUpdate();
     //removed switch turns to allow selection after item use
-    // if (
-    //   PKMNuser.statusCondition === "Poison" ||
-    //   PKMNuser.statusCondition === "Burn"
-    // ) {
-    //   setTimeout(() => this.props.dealPoisonBurn(PKMNuser, HPbar), 1500);
-    // } else {
-    //   setTimeout(() => this.props.switchTurns(), 1500);
-    // }
+    if (
+      PKMNuser.statusCondition === "Poison" ||
+      PKMNuser.statusCondition === "Burn"
+    ) {
+      setTimeout(() => this.props.dealPoisonBurn(PKMNuser, HPbar), 1500);
+    } else {
+      setTimeout(() => this.props.switchTurns(), 1500);
+    }
   };
 
   //HEAL STATUS FUNCTION ////////////////////////////////////////////////////////////////////////////////////
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////
   healStatus = PKMNuser => {
-    // $(document.querySelector(".options")).fadeOut(300);
-    // $(document.querySelector(".mainmenuButton")).fadeOut(300);
+    $(document.querySelector(".options")).fadeOut(300);
+    $(document.querySelector(".mainmenuButton")).fadeOut(300);
     DisplayMessage(
       PKMNuser.name + " was cured of " + PKMNuser.statusCondition + "!"
     );
@@ -180,7 +180,7 @@ class Items extends Component {
     setTimeout(() => (PKMNuser.statusCondition = ""), 500);
     this.props.handleItems();
     this.props.handleForceUpdate();
-    //setTimeout(() => this.props.switchTurns(), 1500);
+    setTimeout(() => this.props.switchTurns(), 1500);
   };
 
   //USE ITEM FUNCTION ////////////////////////////////////////////////////////////////////////////////////

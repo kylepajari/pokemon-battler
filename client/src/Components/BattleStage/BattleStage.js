@@ -1486,6 +1486,7 @@ class BattleStage extends Component {
             if (move.name === "--DISABLED--") {
               return i;
             }
+            return undefined;
           });
           this.props.player1Team[this.state.disabledPokeIndexP1].moves[
             disabledIndex
@@ -1506,10 +1507,13 @@ class BattleStage extends Component {
             if (move.name === "--DISABLED--") {
               return i;
             }
+            return undefined;
           });
-          this.props.player2Team[this.state.disabledPokeIndexP2].moves[
-            disabledIndex
-          ].name = this.state.disabledMoveNameP2;
+          if (disabledIndex !== undefined) {
+            this.props.player2Team[this.state.disabledPokeIndexP2].moves[
+              disabledIndex
+            ].name = this.state.disabledMoveNameP2;
+          }
         }
       }
     }
