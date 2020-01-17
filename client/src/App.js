@@ -53,6 +53,8 @@ class App extends Component {
     this.props.setId(localStorage.getItem("ID"));
     this.props.setPlayer1Team(JSON.parse(localStorage.getItem("Team")));
     this.props.setPlayerOneName(localStorage.getItem("Name"));
+    let date = new Date();
+    this.props.updateLastLogin(localStorage.getItem("ID"), date);
   };
 
   render() {

@@ -17,7 +17,8 @@ import {
   setMode,
   setBadges,
   setId,
-  setUser
+  setUser,
+  updateLastLogin
 } from "../actions";
 
 function mapStateToProps(state) {
@@ -51,11 +52,9 @@ function mapDispatchToProps(dispatch) {
     setTeamSize: num => dispatch(setTeamSize(num)),
     setMode: mode => dispatch(setMode(mode)),
     setBadges: num => dispatch(setBadges(num)),
-    setUser: payload => dispatch(setUser(payload))
+    setUser: payload => dispatch(setUser(payload)),
+    updateLastLogin: (id, lastLogin) => dispatch(updateLastLogin(id, lastLogin))
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
