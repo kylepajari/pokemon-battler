@@ -18,7 +18,7 @@ import {
   createLeader,
   updateLeaderTeam,
   setPlayer2Team,
-  setPlayerTwoName
+  setPlayerTwoName,
 } from "../../actions";
 import { RandomNumberGenerator } from "../RandomNumberGenerator";
 
@@ -253,13 +253,13 @@ class BadgesContainer extends Component {
     }
   };
 
-  aiTeamBuilder = badge => {
+  aiTeamBuilder = (badge) => {
     switch (badge) {
       //fetch params:
       //1st: pokemon num, 2nd: pokemon level, 3rd: assigned team
       case "Boulder Badge": //Brock
         //check if leader team exists in db
-        this.props.getLeaderTeam("Brock").then(res => {
+        this.props.getLeaderTeam("Brock").then((res) => {
           if (res.data !== "") {
             //assign to team 2
             this.props.setPlayer2Team(res.data.team);
@@ -287,7 +287,7 @@ class BadgesContainer extends Component {
         break;
       case "Cascade Badge":
         //check if leader team exists in db
-        this.props.getLeaderTeam("Misty").then(res => {
+        this.props.getLeaderTeam("Misty").then((res) => {
           if (res.data !== "") {
             //assign to team 2
             this.props.setPlayer2Team(res.data.team);
@@ -315,7 +315,7 @@ class BadgesContainer extends Component {
         break;
       case "Thunder Badge":
         //check if leader team exists in db
-        this.props.getLeaderTeam("Lt. Surge").then(res => {
+        this.props.getLeaderTeam("Lt. Surge").then((res) => {
           if (res.data !== "") {
             //assign to team 2
             this.props.setPlayer2Team(res.data.team);
@@ -343,7 +343,7 @@ class BadgesContainer extends Component {
         break;
       case "Rainbow Badge":
         //check if leader team exists in db
-        this.props.getLeaderTeam("Erika").then(res => {
+        this.props.getLeaderTeam("Erika").then((res) => {
           if (res.data !== "") {
             //assign to team 2
             this.props.setPlayer2Team(res.data.team);
@@ -371,7 +371,7 @@ class BadgesContainer extends Component {
         break;
       case "Soul Badge":
         //check if leader team exists in db
-        this.props.getLeaderTeam("Koga").then(res => {
+        this.props.getLeaderTeam("Koga").then((res) => {
           if (res.data !== "") {
             //assign to team 2
             this.props.setPlayer2Team(res.data.team);
@@ -399,7 +399,7 @@ class BadgesContainer extends Component {
         break;
       case "Marsh Badge":
         //check if leader team exists in db
-        this.props.getLeaderTeam("Sabrina").then(res => {
+        this.props.getLeaderTeam("Sabrina").then((res) => {
           if (res.data !== "") {
             //assign to team 2
             this.props.setPlayer2Team(res.data.team);
@@ -427,7 +427,7 @@ class BadgesContainer extends Component {
         break;
       case "Volcano Badge":
         //check if leader team exists in db
-        this.props.getLeaderTeam("Blaine").then(res => {
+        this.props.getLeaderTeam("Blaine").then((res) => {
           if (res.data !== "") {
             //assign to team 2
             this.props.setPlayer2Team(res.data.team);
@@ -455,7 +455,7 @@ class BadgesContainer extends Component {
         break;
       case "Earth Badge":
         //check if leader team exists in db
-        this.props.getLeaderTeam("Giovanni").then(res => {
+        this.props.getLeaderTeam("Giovanni").then((res) => {
           if (res.data !== "") {
             //assign to team 2
             this.props.setPlayer2Team(res.data.team);
@@ -482,7 +482,7 @@ class BadgesContainer extends Component {
         this.props.setPlayerTwoName("Giovanni");
         break;
       case "Lorelei":
-        this.props.getLeaderTeam("Lorelei").then(res => {
+        this.props.getLeaderTeam("Lorelei").then((res) => {
           if (res.data !== "") {
             //assign to team 2
             this.props.setPlayer2Team(res.data.team);
@@ -509,7 +509,7 @@ class BadgesContainer extends Component {
         this.props.setPlayerTwoName("Lorelei");
         break;
       case "Bruno":
-        this.props.getLeaderTeam("Bruno").then(res => {
+        this.props.getLeaderTeam("Bruno").then((res) => {
           if (res.data !== "") {
             //assign to team 2
             this.props.setPlayer2Team(res.data.team);
@@ -536,7 +536,7 @@ class BadgesContainer extends Component {
         this.props.setPlayerTwoName("Bruno");
         break;
       case "Agatha":
-        this.props.getLeaderTeam("Agatha").then(res => {
+        this.props.getLeaderTeam("Agatha").then((res) => {
           if (res.data !== "") {
             //assign to team 2
             this.props.setPlayer2Team(res.data.team);
@@ -563,7 +563,7 @@ class BadgesContainer extends Component {
         this.props.setPlayerTwoName("Agatha");
         break;
       case "Lance":
-        this.props.getLeaderTeam("Lance").then(res => {
+        this.props.getLeaderTeam("Lance").then((res) => {
           if (res.data !== "") {
             //assign to team 2
             this.props.setPlayer2Team(res.data.team);
@@ -590,7 +590,7 @@ class BadgesContainer extends Component {
         this.props.setPlayerTwoName("Lance");
         break;
       case "Champion":
-        this.props.getLeaderTeam("Blue").then(res => {
+        this.props.getLeaderTeam("Blue").then((res) => {
           if (res.data !== "") {
             //assign to team 2
             this.props.setPlayer2Team(res.data.team);
@@ -643,7 +643,6 @@ class BadgesContainer extends Component {
         break;
       default:
     }
-    $(document.querySelectorAll(".badgesContainer")).fadeOut(10);
     $(document.querySelector(".badgeSelectionPage")).fadeOut(10);
     $(document.querySelector(".pokemonSheetContainer")).removeClass("deRender");
     $(document.querySelector(".teamsContainer")).removeClass("deRender");
@@ -884,17 +883,17 @@ function mapStateToProps(state) {
   return {
     badges: state.badges,
     user: state.user,
-    player1Team: state.player1Team
+    player1Team: state.player1Team,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getLeaderTeam: name => dispatch(getLeaderTeam(name)),
-    createLeader: name => dispatch(createLeader(name)),
+    getLeaderTeam: (name) => dispatch(getLeaderTeam(name)),
+    createLeader: (name) => dispatch(createLeader(name)),
     updateLeaderTeam: (name, team) => dispatch(updateLeaderTeam(name, team)),
-    setPlayer2Team: team => dispatch(setPlayer2Team(team)),
-    setPlayerTwoName: name => dispatch(setPlayerTwoName(name))
+    setPlayer2Team: (team) => dispatch(setPlayer2Team(team)),
+    setPlayerTwoName: (name) => dispatch(setPlayerTwoName(name)),
   };
 }
 

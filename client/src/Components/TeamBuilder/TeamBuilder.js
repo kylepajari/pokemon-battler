@@ -683,6 +683,12 @@ class TeamBuilder extends Component {
       Name = this.state.currentModalPokemon.name + "*";
     }
 
+    //write sprites to folder if not exist
+    console.log(this.state.currentModalPokemon.sprites.front_default);
+    console.log(this.state.currentModalPokemon.sprites.back_default);
+    console.log(this.state.currentModalPokemon.sprites.front_shiny);
+    console.log(this.state.currentModalPokemon.sprites.back_shiny);
+
     this.setState({
       currentPokemonName: Name,
       currentPokemonSprite: Sprite,
@@ -947,464 +953,477 @@ class TeamBuilder extends Component {
       if (this.state.firstLoad) {
         this.setState({ firstLoad: false });
       }
-      return (
-        <div className="teamBuilder">
-          <button
-            type="button"
-            className="btn btn-dark mainmenuButton"
-            onClick={() => this.returnToMainMenu()}
-          >
-            Main Menu
-          </button>
-          <div className="mainButtons">
-            <button
-              type="button"
-              className="btn btn-dark"
-              id="btnSinglePlayer"
-              onClick={this.singlePlayer}
-            >
-              Single Player -<br />
-              Gym Leader Challenge
-            </button>
-            <button
-              type="button"
-              className="btn btn-dark"
-              id="btnMultiPlayer"
-              onClick={this.multiPlayer}
-            >
-              Multi Player -<br />
-              Local Battle
-            </button>
-            <button
-              type="button"
-              className="btn btn-dark"
-              id="btnCPUVSCPU"
-              onClick={this.cpuVScpu}
-            >
-              CPU vs. CPU
-            </button>
+      if (this.props.player1Team === null || this.props.badges === null) {
+        //if logged in, but no data loaded, show loading screen
+        return (
+          <div>
+            <h3>Loading Data...</h3>
           </div>
-          <div className="modal fade pokemonTeamPopup">
-            <div className="modal-dialog modal-dialog-centered">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h5 className="modal-title">
-                    {this.state.currentPokemonName}
-                  </h5>
-                  <p>Lv: {this.state.currentPokemonLevel}</p>
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    data-dismiss="modal"
-                  >
-                    Close
-                  </button>
-                </div>
-                <div className="modal-body">
-                  <img
-                    src={this.state.currentPokemonSprite}
-                    alt=""
-                    className="modalTeamSprite"
-                  />
-                  <div>{this.Types(this.state.currentPokemonTypes)}</div>
-                  <div className="modalStats">
-                    <div>
-                      <ul>
-                        <li>HP: {this.state.currentPokemonHP}</li>
-                        <li>ATK: {this.state.currentPokemonAtk}</li>
-                        <li>DEF: {this.state.currentPokemonDef}</li>
-                        <li>SPD: {this.state.currentPokemonSpd}</li>
-                        <li>SPC ATK: {this.state.currentPokemonSpcAtk}</li>
-                        <li>SPC DEF: {this.state.currentPokemonSpcDef}</li>
-                      </ul>
-                    </div>
+        );
+      } else {
+        return (
+          <div className="teamBuilder">
+            <button
+              type="button"
+              className="btn btn-dark mainmenuButton"
+              onClick={() => this.returnToMainMenu()}
+            >
+              Main Menu
+            </button>
+            <div className="mainButtons">
+              <button
+                type="button"
+                className="btn btn-dark"
+                id="btnSinglePlayer"
+                onClick={this.singlePlayer}
+              >
+                Single Player -<br />
+                Gym Leader Challenge
+              </button>
+              <button
+                type="button"
+                className="btn btn-dark"
+                id="btnMultiPlayer"
+                onClick={this.multiPlayer}
+              >
+                Multi Player -<br />
+                Local Battle
+              </button>
+              <button
+                type="button"
+                className="btn btn-dark"
+                id="btnCPUVSCPU"
+                onClick={this.cpuVScpu}
+              >
+                CPU vs. CPU
+              </button>
+            </div>
+            <div className="modal fade pokemonTeamPopup">
+              <div className="modal-dialog modal-dialog-centered">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title">
+                      {this.state.currentPokemonName}
+                    </h5>
+                    <p>Lv: {this.state.currentPokemonLevel}</p>
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      data-dismiss="modal"
+                    >
+                      Close
+                    </button>
                   </div>
-                  <div className="modalMoves">
-                    <div>
-                      <p>Moves:</p>
-                      <ul>
-                        {this.state.currentPokemonMoves.map((move) => {
-                          return (
-                            <li key={move.name}>
-                              {move.name.toUpperCase()} / PP:{move.pp} /{" "}
-                              {MatchIconWithType(move.type)}
-                            </li>
-                          );
-                        })}
-                      </ul>
+                  <div className="modal-body">
+                    <img
+                      src={this.state.currentPokemonSprite}
+                      alt=""
+                      className="modalTeamSprite"
+                    />
+                    <div>{this.Types(this.state.currentPokemonTypes)}</div>
+                    <div className="modalStats">
+                      <div>
+                        <ul>
+                          <li>HP: {this.state.currentPokemonHP}</li>
+                          <li>ATK: {this.state.currentPokemonAtk}</li>
+                          <li>DEF: {this.state.currentPokemonDef}</li>
+                          <li>SPD: {this.state.currentPokemonSpd}</li>
+                          <li>SPC ATK: {this.state.currentPokemonSpcAtk}</li>
+                          <li>SPC DEF: {this.state.currentPokemonSpcDef}</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div className="modalMoves">
+                      <div>
+                        <p>Moves:</p>
+                        <ul>
+                          {this.state.currentPokemonMoves.map((move) => {
+                            return (
+                              <li key={move.name}>
+                                {move.name.toUpperCase()} / PP:{move.pp} /{" "}
+                                {MatchIconWithType(move.type)}
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="playerTwoNameDiv">
-            <p>Enter a name for Player Two:</p>
-            <input type="text" id="playerTwoNameBox" placeholder="Player Two" />
-            <button
-              className="btn btn-dark"
-              type="button"
-              onClick={() =>
-                this.inputNames(
-                  document.getElementById("playerTwoNameBox").value
-                )
-              }
-            >
-              Enter
-            </button>
-          </div>
-          <div
-            className="btn-group dropdown teamList"
-            onClick={this.toggleTeamOpen}
-          >
-            <button
-              type="button"
-              className="btn btn-dark dropdown-toggle"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-              id="dropdownMenu1"
-            >
-              Select a Team Size
-            </button>
-            <div
-              className={`"dropdown-menu" ${
-                this.state.isTeamOpen ? "dropdown-menu show" : "dropdown-menu"
-              }`}
-              aria-labelledby="dropdownMenu1"
-            >
-              <a
-                className="dropdown-item"
-                key="1"
-                href="#!"
-                onClick={() => this.changeTeamSize(1)}
+            <div className="playerTwoNameDiv">
+              <p>Enter a name for Player Two:</p>
+              <input
+                type="text"
+                id="playerTwoNameBox"
+                placeholder="Player Two"
+              />
+              <button
+                className="btn btn-dark"
+                type="button"
+                onClick={() =>
+                  this.inputNames(
+                    document.getElementById("playerTwoNameBox").value
+                  )
+                }
               >
-                1
-              </a>
-              <a
-                className="dropdown-item"
-                key="2"
-                href="#!"
-                onClick={() => this.changeTeamSize(2)}
-              >
-                2
-              </a>
-              <a
-                className="dropdown-item"
-                key="3"
-                href="#!"
-                onClick={() => this.changeTeamSize(3)}
-              >
-                3
-              </a>
-              <a
-                className="dropdown-item"
-                key="4"
-                href="#!"
-                onClick={() => this.changeTeamSize(4)}
-              >
-                4
-              </a>
-              <a
-                className="dropdown-item"
-                key="5"
-                href="#!"
-                onClick={() => this.changeTeamSize(5)}
-              >
-                5
-              </a>
-              <a
-                className="dropdown-item"
-                key="6"
-                href="#!"
-                onClick={() => this.changeTeamSize(6)}
-              >
-                6
-              </a>
+                Enter
+              </button>
             </div>
-          </div>
-          <div className="teamShowcase">
-            <p className="teamHeader">My Team:</p>
-            {this.props.player1Team.map((pokemon, i) => {
-              return (
-                <div
-                  className={`${`sprite team-${i + 1}`}`}
-                  key={i}
-                  data-toggle="modal"
-                  onClick={() => this.modalTeamPokemon("team1", i)}
+            <div
+              className="btn-group dropdown teamList"
+              onClick={this.toggleTeamOpen}
+            >
+              <button
+                type="button"
+                className="btn btn-dark dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                id="dropdownMenu1"
+              >
+                Select a Team Size
+              </button>
+              <div
+                className={`"dropdown-menu" ${
+                  this.state.isTeamOpen ? "dropdown-menu show" : "dropdown-menu"
+                }`}
+                aria-labelledby="dropdownMenu1"
+              >
+                <a
+                  className="dropdown-item"
+                  key="1"
+                  href="#!"
+                  onClick={() => this.changeTeamSize(1)}
                 >
-                  <img src={pokemon.frontSprite} alt={pokemon.name} />
-                  <span>{pokemon.name}</span>
-                </div>
-              );
-            })}
-            <button
-              className={`"teambtn btn btn-danger" ${
-                this.props.player1Team.length > 0
-                  ? "teambtn btn btn-danger"
-                  : "teambtn btn btn-danger deRender"
-              }`}
-              onClick={this.clearTeam}
-            >
-              Delete
-            </button>
-          </div>
-          <div className="badgesShowcase">
-            <p className="badgesHeader">Badges Earned:</p>
-            <div
-              className={`${
-                this.props.badges < 1 ? `faded badge-1` : `badge-1`
-              }`}
-              key={"badge1"}
-            >
-              <img src={Boulder_Badge} alt="Boulder Badge" />
+                  1
+                </a>
+                <a
+                  className="dropdown-item"
+                  key="2"
+                  href="#!"
+                  onClick={() => this.changeTeamSize(2)}
+                >
+                  2
+                </a>
+                <a
+                  className="dropdown-item"
+                  key="3"
+                  href="#!"
+                  onClick={() => this.changeTeamSize(3)}
+                >
+                  3
+                </a>
+                <a
+                  className="dropdown-item"
+                  key="4"
+                  href="#!"
+                  onClick={() => this.changeTeamSize(4)}
+                >
+                  4
+                </a>
+                <a
+                  className="dropdown-item"
+                  key="5"
+                  href="#!"
+                  onClick={() => this.changeTeamSize(5)}
+                >
+                  5
+                </a>
+                <a
+                  className="dropdown-item"
+                  key="6"
+                  href="#!"
+                  onClick={() => this.changeTeamSize(6)}
+                >
+                  6
+                </a>
+              </div>
             </div>
-            <div
-              className={`${
-                this.props.badges < 2 ? `faded badge-2` : `badge-2`
-              }`}
-              key={"badge2"}
-            >
-              <img src={Cascade_Badge} alt="Cascade Badge" />
-            </div>
-            <div
-              className={`${
-                this.props.badges < 3 ? `faded badge-3` : `badge-3`
-              }`}
-              key={"badge3"}
-            >
-              <img src={Thunder_Badge} alt="Thunder Badge" />
-            </div>
-            <div
-              className={`${
-                this.props.badges < 4 ? `faded badge-4` : `badge-4`
-              }`}
-              key={"badge4"}
-            >
-              <img src={Rainbow_Badge} alt="Rainbow Badge" />
-            </div>
-            <div
-              className={`${
-                this.props.badges < 5 ? `faded badge-5` : `badge-5`
-              }`}
-              key={"badge5"}
-            >
-              <img src={Soul_Badge} alt="Soul Badge" />
-            </div>
-            <div
-              className={`${
-                this.props.badges < 6 ? `faded badge-6` : `badge-6`
-              }`}
-              key={"badge6"}
-            >
-              <img src={Marsh_Badge} alt="Marsh Badge" />
-            </div>
-            <div
-              className={`${
-                this.props.badges < 7 ? `faded badge-7` : `badge-7`
-              }`}
-              key={"badge7"}
-            >
-              <img src={Volcano_Badge} alt="Volcano Badge" />
-            </div>
-            <div
-              className={`${
-                this.props.badges < 8 ? `faded badge-8` : `badge-8`
-              }`}
-              key={"badge8"}
-            >
-              <img src={Earth_Badge} alt="Earth Badge" />
-            </div>
-            <div
-              className={`${
-                this.props.badges < 8
-                  ? `deRender badge-9`
-                  : this.props.badges < 13
-                  ? ` faded badge-9`
-                  : `badge-9`
-              }`}
-              key={"badge9"}
-            >
-              <img src={Champion_Badge} alt="Champion Badge" />
-            </div>
-          </div>
-          <BattleStageContainer
-            className="battleStage col"
-            Capitalize={this.Capitalize}
-            handleFainted={this.handleFainted}
-            returnToMainMenu={this.returnToMainMenu}
-            battleMusic={this.state.battleMusic}
-          />
-          <div className="teamsContainer container-fluid row">
-            <div className="team team1 col">
-              <p className="header">{this.props.playerOneName}:</p>
+            <div className="teamShowcase">
+              <p className="teamHeader">My Team:</p>
               {this.props.player1Team.map((pokemon, i) => {
                 return (
                   <div
-                    className={`${
-                      pokemon.fainted
-                        ? `sprite faded box-${i + 1}`
-                        : `sprite box-${i + 1}`
-                    }`}
+                    className={`${`sprite team-${i + 1}`}`}
                     key={i}
                     data-toggle="modal"
                     onClick={() => this.modalTeamPokemon("team1", i)}
                   >
                     <img src={pokemon.frontSprite} alt={pokemon.name} />
-                    <p>{pokemon.name}</p>
+                    <span>{pokemon.name}</span>
                   </div>
                 );
               })}
+              <button
+                className={`"teambtn btn btn-danger" ${
+                  this.props.player1Team.length > 0
+                    ? "teambtn btn btn-danger"
+                    : "teambtn btn btn-danger deRender"
+                }`}
+                onClick={this.clearTeam}
+              >
+                Delete
+              </button>
             </div>
-            <div className="team team2 col">
-              <p className="header">{this.props.playerTwoName}:</p>
-              {this.props.player2Team.map((pokemon, i) => {
-                return (
-                  <div
-                    className={`${
-                      pokemon.fainted
-                        ? `sprite faded box-${i + 1}`
-                        : `sprite box-${i + 1}`
-                    }`}
-                    key={i}
-                    data-toggle="modal"
-                    onClick={() => this.modalTeamPokemon("team2", i)}
-                  >
-                    <img src={pokemon.frontSprite} alt={pokemon.name} />
-                    <p>{pokemon.name}</p>
-                  </div>
-                );
-              })}
+            <div className="badgesShowcase">
+              <p className="badgesHeader">Badges Earned:</p>
+              <div
+                className={`${
+                  this.props.badges < 1 ? `faded badge-1` : `badge-1`
+                }`}
+                key={"badge1"}
+              >
+                <img src={Boulder_Badge} alt="Boulder Badge" />
+              </div>
+              <div
+                className={`${
+                  this.props.badges < 2 ? `faded badge-2` : `badge-2`
+                }`}
+                key={"badge2"}
+              >
+                <img src={Cascade_Badge} alt="Cascade Badge" />
+              </div>
+              <div
+                className={`${
+                  this.props.badges < 3 ? `faded badge-3` : `badge-3`
+                }`}
+                key={"badge3"}
+              >
+                <img src={Thunder_Badge} alt="Thunder Badge" />
+              </div>
+              <div
+                className={`${
+                  this.props.badges < 4 ? `faded badge-4` : `badge-4`
+                }`}
+                key={"badge4"}
+              >
+                <img src={Rainbow_Badge} alt="Rainbow Badge" />
+              </div>
+              <div
+                className={`${
+                  this.props.badges < 5 ? `faded badge-5` : `badge-5`
+                }`}
+                key={"badge5"}
+              >
+                <img src={Soul_Badge} alt="Soul Badge" />
+              </div>
+              <div
+                className={`${
+                  this.props.badges < 6 ? `faded badge-6` : `badge-6`
+                }`}
+                key={"badge6"}
+              >
+                <img src={Marsh_Badge} alt="Marsh Badge" />
+              </div>
+              <div
+                className={`${
+                  this.props.badges < 7 ? `faded badge-7` : `badge-7`
+                }`}
+                key={"badge7"}
+              >
+                <img src={Volcano_Badge} alt="Volcano Badge" />
+              </div>
+              <div
+                className={`${
+                  this.props.badges < 8 ? `faded badge-8` : `badge-8`
+                }`}
+                key={"badge8"}
+              >
+                <img src={Earth_Badge} alt="Earth Badge" />
+              </div>
+              <div
+                className={`${
+                  this.props.badges < 8
+                    ? `deRender badge-9`
+                    : this.props.badges < 13
+                    ? ` faded badge-9`
+                    : `badge-9`
+                }`}
+                key={"badge9"}
+              >
+                <img src={Champion_Badge} alt="Champion Badge" />
+              </div>
             </div>
-          </div>
-          <div className="pokemonSheetContainer deRender">
-            <div>{playerName} - Select a Pokemon:</div>
-            <div className="pokemonSheet">
-              <div>Generation I:</div>
-              {this.props.allData.map((item, i) => {
-                if (i <= 150) {
+            <BattleStageContainer
+              className="battleStage col"
+              Capitalize={this.Capitalize}
+              handleFainted={this.handleFainted}
+              returnToMainMenu={this.returnToMainMenu}
+              battleMusic={this.state.battleMusic}
+            />
+            <div className="teamsContainer container-fluid row">
+              <div className="team team1 col">
+                <p className="header">{this.props.playerOneName}:</p>
+                {this.props.player1Team.map((pokemon, i) => {
                   return (
-                    <button
-                      className="sheetBlock btn btn-primary"
+                    <div
+                      className={`${
+                        pokemon.fainted
+                          ? `sprite faded box-${i + 1}`
+                          : `sprite box-${i + 1}`
+                      }`}
                       key={i}
                       data-toggle="modal"
-                      data-target=".pokemonPopup"
-                      onClick={() => this.modalPokemon(i + 1)}
+                      onClick={() => this.modalTeamPokemon("team1", i)}
                     >
-                      {/* <img src={item.sprites.front_default} alt="" /> */}
-                      {this.Capitalize(item.name)}
-                    </button>
+                      <img src={pokemon.frontSprite} alt={pokemon.name} />
+                      <p>{pokemon.name}</p>
+                    </div>
                   );
-                } else {
-                  return null;
-                }
-              })}
-              <br />
-              <div>Generation II:</div>
-              {this.props.allData.map((item, i) => {
-                if (i >= 151 && i < 251) {
+                })}
+              </div>
+              <div className="team team2 col">
+                <p className="header">{this.props.playerTwoName}:</p>
+                {this.props.player2Team.map((pokemon, i) => {
                   return (
-                    <button
-                      className="sheetBlock btn btn-success"
+                    <div
+                      className={`${
+                        pokemon.fainted
+                          ? `sprite faded box-${i + 1}`
+                          : `sprite box-${i + 1}`
+                      }`}
                       key={i}
                       data-toggle="modal"
-                      data-target=".pokemonPopup"
-                      onClick={() => this.modalPokemon(i + 1)}
+                      onClick={() => this.modalTeamPokemon("team2", i)}
                     >
-                      {/* <img src={item.sprites.front_default} alt="" /> */}
-                      {this.Capitalize(item.name)}
-                    </button>
+                      <img src={pokemon.frontSprite} alt={pokemon.name} />
+                      <p>{pokemon.name}</p>
+                    </div>
                   );
-                } else {
-                  return null;
-                }
-              })}
+                })}
+              </div>
             </div>
-          </div>
-          <div className="modal fade pokemonPopup">
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h4 className="modal-title">
-                    #{this.state.currentPokemonId}:{" "}
-                    {this.Capitalize(this.state.currentPokemonName)}
-                  </h4>
-                </div>
-                <div className="modal-body">
-                  <img
-                    src={this.state.currentPokemonSprite}
-                    alt=""
-                    className="modalSprite"
-                  />
-                  <div>{this.Types(this.state.currentPokemonTypes)}</div>
-                  <br />
-                  <div className="modalStats">
-                    <div>
-                      <ul>
-                        <li>HP: {this.state.currentPokemonHP}</li>
-                        <li>ATK: {this.state.currentPokemonAtk}</li>
-                        <li>DEF: {this.state.currentPokemonDef}</li>
-                        <li>SPD: {this.state.currentPokemonSpd}</li>
-                        <li>SPC ATK: {this.state.currentPokemonSpcAtk}</li>
-                        <li>SPC DEF: {this.state.currentPokemonSpcDef}</li>
-                      </ul>
+            <div className="pokemonSheetContainer deRender">
+              <div>{playerName} - Select a Pokemon:</div>
+              <div className="pokemonSheet">
+                <div>Generation I:</div>
+                {this.props.allData.map((item, i) => {
+                  if (i <= 150) {
+                    return (
+                      <button
+                        className="sheetBlock btn btn-primary"
+                        key={i}
+                        data-toggle="modal"
+                        data-target=".pokemonPopup"
+                        onClick={() => this.modalPokemon(i + 1)}
+                      >
+                        {/* <img src={item.sprites.front_default} alt="" /> */}
+                        {this.Capitalize(item.name)}
+                      </button>
+                    );
+                  } else {
+                    return null;
+                  }
+                })}
+                <br />
+                <div>Generation II:</div>
+                {this.props.allData.map((item, i) => {
+                  if (i >= 151 && i < 251) {
+                    return (
+                      <button
+                        className="sheetBlock btn btn-success"
+                        key={i}
+                        data-toggle="modal"
+                        data-target=".pokemonPopup"
+                        onClick={() => this.modalPokemon(i + 1)}
+                      >
+                        {/* <img src={item.sprites.front_default} alt="" /> */}
+                        {this.Capitalize(item.name)}
+                      </button>
+                    );
+                  } else {
+                    return null;
+                  }
+                })}
+              </div>
+            </div>
+            <div className="modal fade pokemonPopup">
+              <div className="modal-dialog">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h4 className="modal-title">
+                      #{this.state.currentPokemonId}:{" "}
+                      {this.Capitalize(this.state.currentPokemonName)}
+                    </h4>
+                  </div>
+                  <div className="modal-body">
+                    <img
+                      src={this.state.currentPokemonSprite}
+                      alt=""
+                      className="modalSprite"
+                    />
+                    <div>{this.Types(this.state.currentPokemonTypes)}</div>
+                    <br />
+                    <div className="modalStats">
+                      <div>
+                        <ul>
+                          <li>HP: {this.state.currentPokemonHP}</li>
+                          <li>ATK: {this.state.currentPokemonAtk}</li>
+                          <li>DEF: {this.state.currentPokemonDef}</li>
+                          <li>SPD: {this.state.currentPokemonSpd}</li>
+                          <li>SPC ATK: {this.state.currentPokemonSpcAtk}</li>
+                          <li>SPC DEF: {this.state.currentPokemonSpcDef}</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div className="modalMoves">
+                      <div>
+                        <ul>
+                          {this.state.currentPokemonMoves.map((move) => {
+                            return (
+                              <li key={move.name}>
+                                {move.name.toUpperCase()} / PP:{move.pp} /{" "}
+                                {MatchIconWithType(move.type)}
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
                     </div>
                   </div>
-                  <div className="modalMoves">
-                    <div>
-                      <ul>
-                        {this.state.currentPokemonMoves.map((move) => {
-                          return (
-                            <li key={move.name}>
-                              {move.name.toUpperCase()} / PP:{move.pp} /{" "}
-                              {MatchIconWithType(move.type)}
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </div>
+                  <div className="modal-footer">
+                    <button
+                      type="button"
+                      className="btn btn-success"
+                      data-dismiss="modal"
+                      onClick={() =>
+                        this.fetchPokemon(
+                          this.state.currentPokemonId,
+                          this.state.globalLevel
+                        )
+                      }
+                    >
+                      Add to Team
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      data-dismiss="modal"
+                    >
+                      Close
+                    </button>
                   </div>
-                </div>
-                <div className="modal-footer">
-                  <button
-                    type="button"
-                    className="btn btn-success"
-                    data-dismiss="modal"
-                    onClick={() =>
-                      this.fetchPokemon(
-                        this.state.currentPokemonId,
-                        this.state.globalLevel
-                      )
-                    }
-                  >
-                    Add to Team
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    data-dismiss="modal"
-                  >
-                    Close
-                  </button>
                 </div>
               </div>
             </div>
+            <div>
+              <button
+                type="button"
+                className="btn btn-primary battlebtn"
+                id="BattleButton"
+                onClick={() => this.startBattle()}
+              >
+                Battle!
+              </button>
+            </div>
+            <div>
+              <BadgesContainer fetchPokemon={this.fetchPokemon} />
+            </div>
           </div>
-          <div>
-            <button
-              type="button"
-              className="btn btn-primary battlebtn"
-              id="BattleButton"
-              onClick={() => this.startBattle()}
-            >
-              Battle!
-            </button>
-          </div>
-          <div>
-            <BadgesContainer fetchPokemon={this.fetchPokemon} />
-          </div>
-        </div>
-      );
+        );
+      }
     }
   }
 }
