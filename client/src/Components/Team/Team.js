@@ -110,19 +110,20 @@ class Team extends Component {
       //update health bar to reflect damage
       setTimeout(() => UpdateHP(HPbar, updatedBarHP, this.props.volume), 2500);
     }
-    setTimeout(
-      () => $(document.querySelector(".mainmenuButton")).show(500),
-      4000
-    );
-    setTimeout(() => $(document.querySelector(".options")).show(500), 4000);
-    setTimeout(() => $(document.querySelector(".fightButton")).show(500), 4000);
-    setTimeout(() => $(document.querySelector(".pkmnButton")).show(500), 4000);
-    setTimeout(() => $(document.querySelector(".itemsButton")).show(500), 4000);
+    setTimeout(() => this.props.switchTurns(), 4000);
+    // setTimeout(
+    //   () => $(document.querySelector(".mainmenuButton")).show(500),
+    //   4000
+    // );
+    // setTimeout(() => $(document.querySelector(".options")).show(500), 4000);
+    // setTimeout(() => $(document.querySelector(".fightButton")).show(500), 4000);
+    // setTimeout(() => $(document.querySelector(".pkmnButton")).show(500), 4000);
+    // setTimeout(() => $(document.querySelector(".itemsButton")).show(500), 4000);
     //hide team list
     this.props.handleTeam("swap");
-    if (this.props.faintedByRecoilPoisonBurn === true) {
-      setTimeout(() => this.props.switchTurns(), 4000);
-    }
+    // if (this.props.faintedByRecoilPoisonBurn === true) {
+    //   setTimeout(() => this.props.switchTurns(), 4000);
+    // }
   };
 
   render() {

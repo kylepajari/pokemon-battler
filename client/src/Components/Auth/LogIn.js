@@ -7,21 +7,21 @@ class Login extends Component {
   state = {
     username: "",
     password: "",
-    message: ""
+    message: "",
   };
 
-  handleTextChange = e => {
+  handleTextChange = (e) => {
     const newState = { ...this.state };
     newState[e.target.id] = e.target.value;
     this.setState(newState);
   };
 
-  login = e => {
+  login = (e) => {
     e.preventDefault();
     if (this.Validate("login")) {
       this.props
         .login({ ...this.state })
-        .then(result => {
+        .then((result) => {
           this.props.setBadges(result["badges"]);
           this.props.setLoggedIn(true);
           this.props.setUserName(result["username"]);
@@ -33,39 +33,39 @@ class Login extends Component {
           this.props.updateLastLogin(result["_id"], date);
           localStorage.setItem("LoggedIn", true);
           localStorage.setItem("ID", result["_id"]);
-          localStorage.setItem("Badges", result["badges"]);
+          //localStorage.setItem("Badges", result["badges"]);
           localStorage.setItem("UserName", result["username"]);
-          localStorage.setItem("Password", result["password"]);
-          localStorage.setItem("Team", JSON.stringify(result["team"]));
+          localStorage.setItem("Password", this.state.password);
+          //localStorage.setItem("Team", JSON.stringify(result["team"]));
           localStorage.setItem("Name", this.state.username);
         })
-        .catch(err =>
+        .catch((err) =>
           this.setState({
             username: "",
             password: "",
-            message: err.response.data
+            message: err.response.data,
           })
         );
     }
   };
 
-  signUp = e => {
+  signUp = (e) => {
     e.preventDefault();
     if (this.Validate("signup")) {
-      console.log("got through validation");
+      //console.log("got through validation");
 
       this.props
         .signUp({ ...this.state })
-        .then(res => {
+        .then((res) => {
           this.setState({
-            message: res.data
+            message: res.data,
           });
         })
-        .catch(err =>
+        .catch((err) =>
           this.setState({
             username: "",
             password: "",
-            message: err.response.data
+            message: err.response.data,
           })
         );
     } else {
@@ -73,7 +73,7 @@ class Login extends Component {
     }
   };
 
-  Validate = type => {
+  Validate = (type) => {
     let usernameValue = $(document.getElementById("username")).val();
     let passwordValue = $(document.getElementById("password")).val();
     if (usernameValue === "") {

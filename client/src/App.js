@@ -39,20 +39,30 @@ class App extends Component {
     this.props.setId("");
     localStorage.setItem("LoggedIn", null);
     localStorage.setItem("ID", null);
-    localStorage.setItem("Badges", null);
+    //localStorage.setItem("Badges", null);
     localStorage.setItem("UserName", null);
     localStorage.setItem("Password", null);
-    localStorage.setItem("Team", null);
+    //localStorage.setItem("Team", null);
     localStorage.setItem("Name", null);
   };
 
   fillData = () => {
-    this.props.setBadges(parseInt(localStorage.getItem("Badges")));
+    //Get badges and team from DB
+    var user = localStorage.getItem("UserName");
+    var pass = localStorage.getItem("Password");
+    var obj = { username: user, password: pass };
+    this.props.login(obj).then((result) => {
+      this.props.setBadges(result["badges"]);
+      this.props.setPlayer1Team(result["team"]);
+    });
+    //Set Username, password, id playername from local storage
+    //this.props.setBadges(parseInt(localStorage.getItem("Badges")));
     this.props.setUserName(localStorage.getItem("UserName"));
     this.props.setPassword(localStorage.getItem("Password"));
     this.props.setId(localStorage.getItem("ID"));
-    this.props.setPlayer1Team(JSON.parse(localStorage.getItem("Team")));
+    //this.props.setPlayer1Team(JSON.parse(localStorage.getItem("Team")));
     this.props.setPlayerOneName(localStorage.getItem("Name"));
+    //Update last login on DB with current date
     let date = new Date();
     this.props.updateLastLogin(localStorage.getItem("ID"), date);
   };

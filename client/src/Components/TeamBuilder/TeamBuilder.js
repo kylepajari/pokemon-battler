@@ -47,7 +47,7 @@ class TeamBuilder extends Component {
       isTeamOpen: false, //to keep track of whether team size dropdown is open
       globalLevel: 50, //level to set all pokemon too, also used in formula that scales stats
       battleMusic: new Audio(battleTheme),
-      firstLoad: true
+      firstLoad: true,
     };
 
     this.fetchPokemon = this.fetchPokemon.bind(this);
@@ -67,7 +67,7 @@ class TeamBuilder extends Component {
     $(document.querySelector(".teamList")).fadeOut(10);
     $(document.querySelector(".playerTwoNameDiv")).fadeOut(10);
     $(document.querySelector(".teamsContainer")).fadeOut(10);
-    $(document.querySelectorAll(".badgesContainer")).fadeOut(10);
+    $(document.querySelector(".badgeSelectionPage")).fadeOut(10);
     $(document.querySelector(".mainmenuButton")).fadeOut(10);
   }
 
@@ -77,7 +77,7 @@ class TeamBuilder extends Component {
       $(document.querySelector(".teamList")).fadeOut(10);
       $(document.querySelector(".playerTwoNameDiv")).fadeOut(10);
       $(document.querySelector(".teamsContainer")).fadeOut(10);
-      $(document.querySelectorAll(".badgesContainer")).fadeOut(10);
+      $(document.querySelector(".badgeSelectionPage")).fadeOut(10);
       $(document.querySelector(".mainmenuButton")).fadeOut(10);
     }
   }
@@ -87,7 +87,7 @@ class TeamBuilder extends Component {
     $(document.querySelector("#btnMultiPlayer")).fadeOut(10);
     $(document.querySelector("#btnCPUVSCPU")).fadeOut(10);
     this.props.setMode("Single");
-    $(document.querySelectorAll(".badgesContainer")).fadeIn(300);
+    $(document.querySelector(".badgeSelectionPage")).fadeIn(300);
     $(document.querySelector(".badgesShowcase")).fadeOut(10);
     $(document.querySelector(".teamShowcase")).fadeOut(10);
     $(document.querySelector(".mainmenuButton")).fadeIn(300);
@@ -148,7 +148,7 @@ class TeamBuilder extends Component {
     $(document.querySelector("#btnMultiPlayer")).fadeIn(300);
     $(document.querySelector("#btnCPUVSCPU")).fadeIn(300);
     $(document.querySelector(".teamList")).fadeOut(10);
-    $(document.querySelectorAll(".badgesContainer")).fadeOut(10);
+    $(document.querySelectorAll(".badgeSelectionPage")).fadeOut(10);
     $(document.querySelector(".teamsContainer")).fadeOut(10);
     $(document.querySelector(".mainmenuButton")).fadeOut(10);
     $(document.querySelector(".playerTwoNameDiv")).fadeOut(10);
@@ -160,7 +160,7 @@ class TeamBuilder extends Component {
     this.state.battleMusic.pause();
   }
 
-  inputNames = input => {
+  inputNames = (input) => {
     if (input !== "") {
       this.props.setPlayerTwoName(this.Capitalize(input));
     }
@@ -168,7 +168,7 @@ class TeamBuilder extends Component {
     $(document.querySelector(".teamList")).fadeIn(300);
   };
 
-  changeTeamSize = num => {
+  changeTeamSize = (num) => {
     $(document.querySelector(".teamsContainer")).fadeIn(300);
     $(document.querySelector(".teamsContainer")).removeClass("deRender");
     $(document.querySelector(".pokemonSheetContainer")).removeClass("deRender");
@@ -298,7 +298,7 @@ class TeamBuilder extends Component {
   };
 
   //Returns passed string with upper-case first letter
-  Capitalize = str => {
+  Capitalize = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
 
@@ -318,7 +318,7 @@ class TeamBuilder extends Component {
     }
   };
 
-  toCamelCase = str => {
+  toCamelCase = (str) => {
     return str
       .split(" ")
       .map(function(word) {
@@ -327,7 +327,7 @@ class TeamBuilder extends Component {
       .join(" ");
   };
 
-  formatName = name => {
+  formatName = (name) => {
     return this.Capitalize(this.toCamelCase(name.replace("-", " ")));
   };
 
@@ -349,7 +349,7 @@ class TeamBuilder extends Component {
     });
 
     //go through new object list, and place unwanted moves in serperate array
-    movesList.forEach(move => {
+    movesList.forEach((move) => {
       if (move.pp !== 35) {
         usableMoves.push(move);
       }
@@ -358,7 +358,7 @@ class TeamBuilder extends Component {
     let status = [];
     let damaging = [];
     //go through useable moves, and split into status/damaging arrays
-    usableMoves.forEach(move => {
+    usableMoves.forEach((move) => {
       if (move.power === 0) {
         status.push(move);
       } else {
@@ -369,7 +369,7 @@ class TeamBuilder extends Component {
     let physical = [];
     let special = [];
     //go through damaging moves, split into physical special arrays
-    damaging.forEach(move => {
+    damaging.forEach((move) => {
       if (move.category === "special") {
         special.push(move);
       } else {
@@ -588,8 +588,8 @@ class TeamBuilder extends Component {
       //switched to local directory
       let url = "/search/" + num;
       fetch(url)
-        .then(response => response.json())
-        .then(currentPoke => {
+        .then((response) => response.json())
+        .then((currentPoke) => {
           this.setState(
             { currentPokemon: currentPoke, currentModalPokemon: currentPoke },
             () => this.fillmodalPokeInfo()
@@ -603,7 +603,7 @@ class TeamBuilder extends Component {
     }
   };
 
-  modalPokemon = num => {
+  modalPokemon = (num) => {
     //clear current pokemon in state
     this.setState({
       currentPokemon: null,
@@ -622,13 +622,13 @@ class TeamBuilder extends Component {
       currentPokemonSpcAtk: 0,
       currentPokemonSpcDef: 0,
       currentPokemonLevel: 0,
-      currentPokemonMoves: []
+      currentPokemonMoves: [],
     });
     //let url = "https://pokeapi.co/api/v2/pokemon/" + num;
     let url = "/search/" + num;
     fetch(url)
-      .then(response => response.json())
-      .then(currentPoke =>
+      .then((response) => response.json())
+      .then((currentPoke) =>
         this.setState(
           { currentPokemon: currentPoke, currentModalPokemon: currentPoke },
           () => this.fillmodalPokeInfo()
@@ -666,7 +666,7 @@ class TeamBuilder extends Component {
       currentPokemonSpcAtk: this.state.currentModalPokemon.OrigSpecialattack,
       currentPokemonSpcDef: this.state.currentModalPokemon.OrigSpecialdefense,
       currentPokemonLevel: this.state.currentModalPokemon.lv,
-      currentPokemonMoves: this.state.currentModalPokemon.moves
+      currentPokemonMoves: this.state.currentModalPokemon.moves,
     });
   };
 
@@ -687,7 +687,7 @@ class TeamBuilder extends Component {
       currentPokemonName: Name,
       currentPokemonSprite: Sprite,
       currentPokemonSpriteBack: SpriteBack,
-      currentPokemonTypes: this.state.currentModalPokemon.types.map(item => {
+      currentPokemonTypes: this.state.currentModalPokemon.types.map((item) => {
         return item.type.name;
       }),
       currentPokemonHeight: this.state.currentModalPokemon.height,
@@ -726,7 +726,7 @@ class TeamBuilder extends Component {
       currentPokemonMoves: this.movesBuilder(
         this.state.currentModalPokemon.moves,
         this.state.currentModalPokemon.types
-      )
+      ),
     });
   };
 
@@ -752,9 +752,9 @@ class TeamBuilder extends Component {
       OrigSpecialdefense: this.state.currentPokemonSpcDef,
       specialdefense: this.state.currentPokemonSpcDef,
       types: [
-        this.state.currentPokemon.types.map(item => {
+        this.state.currentPokemon.types.map((item) => {
           return item.type.name;
-        })
+        }),
       ],
       moves: this.state.currentPokemonMoves,
       cry: CryAssign(this.Capitalize(this.state.currentPokemon.name)),
@@ -771,7 +771,7 @@ class TeamBuilder extends Component {
       turnsConfused: 0,
       isTransformed: false,
       isRecharging: false,
-      preparingAttack: false
+      preparingAttack: false,
     };
 
     let player = null; //default to player one
@@ -904,7 +904,7 @@ class TeamBuilder extends Component {
 
   //TYPES FUNCTION ///////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////
-  Types = array => {
+  Types = (array) => {
     if (array[0] !== undefined) {
       var typesList = [];
       if (array[0][0].length > 2) {
@@ -1023,7 +1023,7 @@ class TeamBuilder extends Component {
                     <div>
                       <p>Moves:</p>
                       <ul>
-                        {this.state.currentPokemonMoves.map(move => {
+                        {this.state.currentPokemonMoves.map((move) => {
                           return (
                             <li key={move.name}>
                               {move.name.toUpperCase()} / PP:{move.pp} /{" "}
@@ -1353,7 +1353,7 @@ class TeamBuilder extends Component {
                   <div className="modalMoves">
                     <div>
                       <ul>
-                        {this.state.currentPokemonMoves.map(move => {
+                        {this.state.currentPokemonMoves.map((move) => {
                           return (
                             <li key={move.name}>
                               {move.name.toUpperCase()} / PP:{move.pp} /{" "}

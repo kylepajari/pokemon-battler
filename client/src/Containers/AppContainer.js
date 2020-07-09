@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import App from "../App";
 import {
+  login,
   setLoggedIn,
   setUserName,
   setPassword,
@@ -36,6 +37,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    login: user => dispatch(login(user)),
     setLoggedIn: log => dispatch(setLoggedIn(log)),
     setUserName: name => dispatch(setUserName(name)),
     setPassword: pass => dispatch(setPassword(pass)),

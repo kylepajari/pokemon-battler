@@ -1199,42 +1199,43 @@ class BattleStage extends Component {
           2500
         );
       }
-      setTimeout(
-        () =>
-          HandleAI(
-            this.props.player1CurrentPokemon,
-            this.props.player2CurrentPokemon,
-            this.props.playersTurn,
-            this.handleMoves,
-            this.handlePoisonBurn,
-            this.dealPoisonBurn,
-            this.switchTurns,
-            this.handleForceUpdate,
-            this.state.player1Team,
-            this.state.player2Team,
-            this.props.playerOneName,
-            this.props.playerTwoName,
-            this.resetMultipliers,
-            this.handleTeam,
-            this.props.handleFainted,
-            this.props.mode,
-            this.state.isPoisonBurned,
-            this.checkForStatusEffect,
-            this.props.volume,
-            this.checkWin,
-            this.state.aiUsedMaxPotion,
-            this.state.aiUsedAntidote,
-            this.state.aiUsedBurnHeal,
-            this.state.aiUsedParalyzeHeal,
-            this.state.aiUsedAwakening,
-            this.state.aiUsedIceHeal,
-            this.handleAIUseItems,
-            this.handleUpdateLastMove,
-            this.state.lastMovePlayer1,
-            this.state.lastMovePlayer2
-          ),
-        5000
-      );
+      setTimeout(() => this.switchTurns(), 4000);
+      // setTimeout(
+      //   () =>
+      //     HandleAI(
+      //       this.props.player1CurrentPokemon,
+      //       this.props.player2CurrentPokemon,
+      //       this.props.playersTurn,
+      //       this.handleMoves,
+      //       this.handlePoisonBurn,
+      //       this.dealPoisonBurn,
+      //       this.switchTurns,
+      //       this.handleForceUpdate,
+      //       this.state.player1Team,
+      //       this.state.player2Team,
+      //       this.props.playerOneName,
+      //       this.props.playerTwoName,
+      //       this.resetMultipliers,
+      //       this.handleTeam,
+      //       this.props.handleFainted,
+      //       this.props.mode,
+      //       this.state.isPoisonBurned,
+      //       this.checkForStatusEffect,
+      //       this.props.volume,
+      //       this.checkWin,
+      //       this.state.aiUsedMaxPotion,
+      //       this.state.aiUsedAntidote,
+      //       this.state.aiUsedBurnHeal,
+      //       this.state.aiUsedParalyzeHeal,
+      //       this.state.aiUsedAwakening,
+      //       this.state.aiUsedIceHeal,
+      //       this.handleAIUseItems,
+      //       this.handleUpdateLastMove,
+      //       this.state.lastMovePlayer1,
+      //       this.state.lastMovePlayer2
+      //     ),
+      //   5000
+      // );
     }
   }
 
@@ -1730,6 +1731,14 @@ class BattleStage extends Component {
             500
           );
         }
+        setTimeout(
+          () => $(document.querySelector(".options")).fadeIn(300),
+          500
+        );
+        setTimeout(
+          () => $(document.querySelector(".mainmenuButton")).fadeIn(300),
+          500
+        );
       }
     } else if (this.props.mode === "CPUVSCPU") {
       if (this.props.playersTurn === "Player One") {
