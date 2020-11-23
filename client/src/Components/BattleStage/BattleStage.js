@@ -117,7 +117,7 @@ class BattleStage extends Component {
 
       gymLeaderLogo: null,
       gymBadgeLogo: null,
-      gymBadgeName: null
+      gymBadgeName: null,
     };
     this.switchTurns = this.switchTurns.bind(this);
     this.checkForStatusEffect = this.checkForStatusEffect.bind(this);
@@ -141,7 +141,7 @@ class BattleStage extends Component {
   UNSAFE_componentWillReceiveProps(props) {
     this.setState({
       player1Team: props.player1Team,
-      player2Team: props.player2Team
+      player2Team: props.player2Team,
     });
     if (props.mode !== "Single" || this.props.playerTwoName === "CPU") {
       $(document.querySelector(".gymLeaderDiv")).fadeOut(10);
@@ -168,91 +168,91 @@ class BattleStage extends Component {
           this.setState({
             gymLeaderLogo: Brock,
             gymBadgeLogo: Boulder_Badge,
-            gymBadgeName: "Boulder Badge"
+            gymBadgeName: "Boulder Badge",
           });
           break;
         case "Misty":
           this.setState({
             gymLeaderLogo: Misty,
             gymBadgeLogo: Cascade_Badge,
-            gymBadgeName: "Cascade Badge"
+            gymBadgeName: "Cascade Badge",
           });
           break;
         case "Lt. Surge":
           this.setState({
             gymLeaderLogo: LtSurge,
             gymBadgeLogo: Thunder_Badge,
-            gymBadgeName: "Thunder Badge"
+            gymBadgeName: "Thunder Badge",
           });
           break;
         case "Erika":
           this.setState({
             gymLeaderLogo: Erika,
             gymBadgeLogo: Rainbow_Badge,
-            gymBadgeName: "Rainbow Badge"
+            gymBadgeName: "Rainbow Badge",
           });
           break;
         case "Koga":
           this.setState({
             gymLeaderLogo: Koga,
             gymBadgeLogo: Soul_Badge,
-            gymBadgeName: "Soul Badge"
+            gymBadgeName: "Soul Badge",
           });
           break;
         case "Sabrina":
           this.setState({
             gymLeaderLogo: Sabrina,
             gymBadgeLogo: Marsh_Badge,
-            gymBadgeName: "Marsh Badge"
+            gymBadgeName: "Marsh Badge",
           });
           break;
         case "Blaine":
           this.setState({
             gymLeaderLogo: Blaine,
             gymBadgeLogo: Volcano_Badge,
-            gymBadgeName: "Volcano Badge"
+            gymBadgeName: "Volcano Badge",
           });
           break;
         case "Giovanni":
           this.setState({
             gymLeaderLogo: Giovanni,
             gymBadgeLogo: Earth_Badge,
-            gymBadgeName: "Earth Badge"
+            gymBadgeName: "Earth Badge",
           });
           break;
         case "Blue":
           this.setState({
             gymLeaderLogo: Blue,
             gymBadgeLogo: Champion_Badge,
-            gymBadgeName: "Champion Badge"
+            gymBadgeName: "Champion Badge",
           });
           break;
         case "Lorelei":
           this.setState({
             gymLeaderLogo: Lorelei,
             gymBadgeLogo: Elite_Four,
-            gymBadgeName: "Elite Four - Lorelei"
+            gymBadgeName: "Elite Four - Lorelei",
           });
           break;
         case "Bruno":
           this.setState({
             gymLeaderLogo: Bruno,
             gymBadgeLogo: Elite_Four,
-            gymBadgeName: "Elite Four - Bruno"
+            gymBadgeName: "Elite Four - Bruno",
           });
           break;
         case "Agatha":
           this.setState({
             gymLeaderLogo: Agatha,
             gymBadgeLogo: Elite_Four,
-            gymBadgeName: "Elite Four - Agatha"
+            gymBadgeName: "Elite Four - Agatha",
           });
           break;
         case "Lance":
           this.setState({
             gymLeaderLogo: Lance,
             gymBadgeLogo: Elite_Four,
-            gymBadgeName: "Elite Four - Lance"
+            gymBadgeName: "Elite Four - Lance",
           });
           break;
         default:
@@ -380,7 +380,7 @@ class BattleStage extends Component {
         this.setState({
           displayMoves: false,
           displayItems: false,
-          displayTeam: false
+          displayTeam: false,
         });
         setTimeout(
           () =>
@@ -467,12 +467,12 @@ class BattleStage extends Component {
   checkWin = () => {
     let faintedCountTeam1 = 0;
     let faintedCountTeam2 = 0;
-    this.state.player1Team.forEach(poke => {
+    this.state.player1Team.forEach((poke) => {
       if (poke.fainted) {
         faintedCountTeam1++;
       }
     });
-    this.state.player2Team.forEach(poke => {
+    this.state.player2Team.forEach((poke) => {
       if (poke.fainted) {
         faintedCountTeam2++;
       }
@@ -518,7 +518,7 @@ class BattleStage extends Component {
         aiUsedAwakening: false,
         aiUsedBurnHeal: false,
         aiUsedIceHeal: false,
-        aiUsedParalyzeHeal: false
+        aiUsedParalyzeHeal: false,
       });
       setTimeout(() => win.pause(), 6000);
       setTimeout(() => this.props.battleMusic.pause(), 6000);
@@ -693,7 +693,7 @@ class BattleStage extends Component {
           aiUsedMaxPotion: false,
           aiUsedParalyzeHeal: false,
           aiUsedIceHeal: false,
-          aiUsedAntidote: false
+          aiUsedAntidote: false,
         });
         setTimeout(() => this.props.returnToMainMenu(), 20000);
       } else {
@@ -705,7 +705,7 @@ class BattleStage extends Component {
           aiUsedMaxPotion: false,
           aiUsedParalyzeHeal: false,
           aiUsedIceHeal: false,
-          aiUsedAntidote: false
+          aiUsedAntidote: false,
         });
         setTimeout(() => this.props.returnToMainMenu(), 8000);
       }
@@ -727,7 +727,7 @@ class BattleStage extends Component {
           spcAtkMultiplierUp1: 1,
           spcAtkMultiplierDown1: 1,
           spcDefMultiplierUp1: 1,
-          spcDefMultiplierDown1: 1
+          spcDefMultiplierDown1: 1,
         });
       } else {
         this.setState({
@@ -740,7 +740,7 @@ class BattleStage extends Component {
           spcAtkMultiplierUp2: 1,
           spcAtkMultiplierDown2: 1,
           spcDefMultiplierUp2: 1,
-          spcDefMultiplierDown2: 1
+          spcDefMultiplierDown2: 1,
         });
       }
     } else {
@@ -756,7 +756,7 @@ class BattleStage extends Component {
           spcAtkMultiplierUp2: 1,
           spcAtkMultiplierDown2: 1,
           spcDefMultiplierUp2: 1,
-          spcDefMultiplierDown2: 1
+          spcDefMultiplierDown2: 1,
         });
       } else {
         this.setState({
@@ -769,13 +769,13 @@ class BattleStage extends Component {
           spcAtkMultiplierUp1: 1,
           spcAtkMultiplierDown1: 1,
           spcDefMultiplierUp1: 1,
-          spcDefMultiplierDown1: 1
+          spcDefMultiplierDown1: 1,
         });
       }
     }
   }
 
-  handleAIUseItems = item => {
+  handleAIUseItems = (item) => {
     switch (item) {
       case "Max Potion":
         this.setState({ aiUsedMaxPotion: true });
@@ -805,7 +805,7 @@ class BattleStage extends Component {
     this.setState({
       displayItems: !this.state.displayItems,
       displayMoves: false,
-      displayTeam: false
+      displayTeam: false,
     });
     if (!this.state.displayItems) {
       $(document.querySelector(".itemsButton")).addClass("selected");
@@ -822,7 +822,7 @@ class BattleStage extends Component {
     this.setState({
       displayMoves: !this.state.displayMoves,
       displayItems: false,
-      displayTeam: false
+      displayTeam: false,
     });
     if (!this.state.displayMoves) {
       $(document.querySelector(".fightButton")).addClass("selected");
@@ -870,7 +870,7 @@ class BattleStage extends Component {
         this.setState({
           displayTeam: !this.state.displayTeam,
           displayItems: false,
-          displayMoves: false
+          displayMoves: false,
         });
         $(document.querySelector(".fightButton")).hide(500);
         $(document.querySelector(".pkmnButton")).hide(500);
@@ -880,7 +880,7 @@ class BattleStage extends Component {
           this.setState({
             displayTeam: !this.state.displayTeam,
             displayItems: false,
-            displayMoves: false
+            displayMoves: false,
           });
           $(document.querySelector(".fightButton")).hide(500);
           $(document.querySelector(".pkmnButton")).hide(500);
@@ -929,7 +929,7 @@ class BattleStage extends Component {
             if (swapPoke === null) {
               console.log("no type advan found, using next in line...");
 
-              swapPoke = Team.findIndex(poke => {
+              swapPoke = Team.findIndex((poke) => {
                 return poke.fainted === false && poke.inBattle === false;
               });
             }
@@ -1058,7 +1058,7 @@ class BattleStage extends Component {
           if (swapPoke === null) {
             console.log("no type advan found, using next in line...");
 
-            swapPoke = Team.findIndex(poke => {
+            swapPoke = Team.findIndex((poke) => {
               return poke.fainted === false && poke.inBattle === false;
             });
           }
@@ -1122,7 +1122,7 @@ class BattleStage extends Component {
       this.setState({
         displayTeam: !this.state.displayTeam,
         displayItems: false,
-        displayMoves: false
+        displayMoves: false,
       });
       if (!this.state.displayTeam) {
         $(document.querySelector(".pkmnButton")).addClass("selected");
@@ -1351,7 +1351,7 @@ class BattleStage extends Component {
 
   //USE DOUBLE STAGE MOVE FUNCTION////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  useDoubleMove = lastMove => {
+  useDoubleMove = (lastMove) => {
     //reappear sprite
     let currentPoke = "";
     let oppPoke = "";
@@ -1381,7 +1381,7 @@ class BattleStage extends Component {
     let moveSound = "";
     let moveAcc = 0;
     //find move in pokemon moves
-    currentPoke.moves.forEach(move => {
+    currentPoke.moves.forEach((move) => {
       if (move.name === lastMove) {
         power = move.power;
         moveName = move.name;
@@ -1558,9 +1558,13 @@ class BattleStage extends Component {
           () => $(document.querySelector(".mainmenuButton")).fadeIn(300),
           500
         );
+        $(document.querySelector(".fightButton")).show(500);
+        $(document.querySelector(".pkmnButton")).show(500);
+        $(document.querySelector(".itemsButton")).show(500);
       }
     } else if (this.props.mode === "Single") {
       //mode is single
+      //console.log("mode is single player");
       if (this.props.playersTurn === "Player One") {
         this.props.setPlayersTurn("Player Two");
         lastMove = this.state.lastMovePlayer2;
@@ -1700,7 +1704,11 @@ class BattleStage extends Component {
             );
           }
         }
+        $(document.querySelector(".fightButton")).hide(500);
+        $(document.querySelector(".pkmnButton")).hide(500);
+        $(document.querySelector(".itemsButton")).hide(500);
       } else {
+        //console.log("setting turn to player one");
         this.props.setPlayersTurn("Player One");
         lastMove = this.state.lastMovePlayer1;
         this.setState({ lastMovePlayer1: "" });
@@ -1731,6 +1739,7 @@ class BattleStage extends Component {
             500
           );
         }
+        //console.log("showing options and main menu");
         setTimeout(
           () => $(document.querySelector(".options")).fadeIn(300),
           500
@@ -1739,6 +1748,9 @@ class BattleStage extends Component {
           () => $(document.querySelector(".mainmenuButton")).fadeIn(300),
           500
         );
+        $(document.querySelector(".fightButton")).show(500);
+        $(document.querySelector(".pkmnButton")).show(500);
+        $(document.querySelector(".itemsButton")).show(500);
       }
     } else if (this.props.mode === "CPUVSCPU") {
       if (this.props.playersTurn === "Player One") {
@@ -2087,10 +2099,10 @@ class BattleStage extends Component {
       let speedTarget = PKMNtarget.speed;
       let specialattackTarget = PKMNtarget.specialattack;
       let specialdefenseTarget = PKMNtarget.specialdefense;
-      let typesTarget = PKMNtarget.types.map(type => {
+      let typesTarget = PKMNtarget.types.map((type) => {
         return type;
       });
-      let movesTarget = PKMNtarget.moves.map(move => {
+      let movesTarget = PKMNtarget.moves.map((move) => {
         return move;
       });
 
@@ -2208,12 +2220,12 @@ class BattleStage extends Component {
             if (this.props.playersTurn === "Player One") {
               this.setState({ disabledCounterP2: 4 });
               this.setState({
-                disabledMoveNameP2: PKMNtarget.moves[targetMoveIndex].name
+                disabledMoveNameP2: PKMNtarget.moves[targetMoveIndex].name,
               });
             } else {
               this.setState({ disabledCounterP1: 4 });
               this.setState({
-                disabledMoveNameP1: PKMNtarget.moves[targetMoveIndex].name
+                disabledMoveNameP1: PKMNtarget.moves[targetMoveIndex].name,
               });
             }
             let origName = PKMNtarget.moves[targetMoveIndex].name;
@@ -2255,7 +2267,7 @@ class BattleStage extends Component {
       //if lastMove is valid, get move stats from target
       let targetMove = null;
       if (lastMove !== "") {
-        targetMove = PKMNtarget.moves.find(move => {
+        targetMove = PKMNtarget.moves.find((move) => {
           return move.name === lastMove;
         });
         //replace copy move with target last move used
@@ -2930,7 +2942,7 @@ class BattleStage extends Component {
 
   //TYPES FUNCTION ///////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////
-  Types = array => {
+  Types = (array) => {
     var typesList = array.map((item, i) => {
       return item.map((type, i) => {
         return MatchIconWithType(type);
@@ -3143,7 +3155,7 @@ class BattleStage extends Component {
                     this.state.player2Team[this.props.player2CurrentPokemon]
                       .name
                   }
-                  onError={e => {
+                  onError={(e) => {
                     e.target.onerror = null;
                     e.target.src = <Icon name="question circle" />;
                   }}
@@ -3220,7 +3232,7 @@ class BattleStage extends Component {
                     this.state.player1Team[this.props.player1CurrentPokemon]
                       .name
                   }
-                  onError={e => {
+                  onError={(e) => {
                     e.target.onerror = null;
                     e.target.src = <Icon name="question circle" />;
                   }}
