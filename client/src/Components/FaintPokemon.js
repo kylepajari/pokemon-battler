@@ -113,10 +113,6 @@ const FaintPokemon = (
       if (faintedSameTurn === null) {
         setTimeout(() => handleTeam("fainted"), 3000);
       }
-    } else if (mode === "CPUVSCPU") {
-      if (faintedSameTurn === null) {
-        setTimeout(() => handleTeam("fainted"), 3000);
-      }
     }
   }
 };

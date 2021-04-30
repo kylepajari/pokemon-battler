@@ -50,14 +50,6 @@ const HandleAI = (
   if (mode === "Single") {
     PKMNuser = player2Team[player2CurrentPokemon];
     PKMNtarget = player1Team[player1CurrentPokemon];
-  } else if (mode === "CPUVSCPU") {
-    if (playersTurn === "Player One") {
-      PKMNuser = player1Team[player1CurrentPokemon];
-      PKMNtarget = player2Team[player2CurrentPokemon];
-    } else {
-      PKMNuser = player2Team[player2CurrentPokemon];
-      PKMNtarget = player1Team[player1CurrentPokemon];
-    }
   }
 
   //get types from target
@@ -119,12 +111,7 @@ const HandleAI = (
     //heal hp
     //if increasing would bring them over full hp, cap hp
     let HPbar = null;
-    if (playersTurn === "Player One" && mode === "CPUVSCPU") {
-      //if CPU1's turn in CPUvsCPU mode, target player1 hp bar
-      HPbar = $(document.querySelector(".player1HP"));
-    } else {
-      HPbar = $(document.querySelector(".player2HP"));
-    }
+    HPbar = $(document.querySelector(".player2HP"));
 
     setTimeout(() => (PKMNuser.hp = PKMNuser.OrigHp), 1500);
     let difference = Math.round(PKMNuser.OrigHp - PKMNuser.hp);
@@ -215,18 +202,8 @@ const HandleAI = (
     let Team = null;
     let swapPoke = null;
     //scan team for type advantage
-    if (mode === "Single") {
-      PKMNtarget = player1Team[player1CurrentPokemon];
-      Team = player2Team;
-    } else if (mode === "CPUVSCPU") {
-      if (playersTurn === "Player One") {
-        PKMNtarget = player2Team[player2CurrentPokemon];
-        Team = player1Team;
-      } else {
-        PKMNtarget = player1Team[player1CurrentPokemon];
-        Team = player2Team;
-      }
-    }
+    PKMNtarget = player1Team[player1CurrentPokemon];
+    Team = player2Team;
     Team.forEach((poke, i) => {
       let type1 = poke.types[0][0];
       let type2 = null;

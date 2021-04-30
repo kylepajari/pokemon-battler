@@ -55,7 +55,7 @@ const PlayLeaderIntro = name => {
       introMessage2 =
         "..and you think you can deafeat the leader of Team Rocket?!";
       introMessage3 = "You overestimate your abilites as a trainer.";
-      introMessage4 = "This is the end of the line for you!";
+      introMessage4 = "This is the end of the line!";
       break;
     case "Lorelei":
       introMessage1 = "Welcome to the Pokémon League!";
@@ -73,12 +73,12 @@ const PlayLeaderIntro = name => {
     case "Agatha":
       introMessage1 = "Welcome child!";
       introMessage2 = "I am Agatha, the third member of the Elite Four.";
-      introMessage3 = "I hope you're not afraid of the dark.";
+      introMessage3 = "I hope you're not afraid of the dark...";
       introMessage4 = "Or my Ghost-type Pokémon will haunt you forever!";
       break;
     case "Lance":
       introMessage1 =
-        "Greetings! I am Lance. The final member of the Elite Four.";
+        "I am Lance. The final member of the Elite Four.";
       introMessage2 = "You must be very talented to make it this far.";
       introMessage3 = "I'm looking forward to face you in battle.";
       introMessage4 = "Let's begin!";

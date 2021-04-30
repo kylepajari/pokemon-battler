@@ -56,7 +56,6 @@ class TeamBuilder extends Component {
     this.handleFainted = this.handleFainted.bind(this);
     this.singlePlayer = this.singlePlayer.bind(this);
     this.multiPlayer = this.multiPlayer.bind(this);
-    this.cpuVScpu = this.cpuVScpu.bind(this);
     this.inputNames = this.inputNames.bind(this);
     this.returnToMainMenu = this.returnToMainMenu.bind(this);
   }
@@ -85,7 +84,6 @@ class TeamBuilder extends Component {
   singlePlayer() {
     $(document.querySelector("#btnSinglePlayer")).fadeOut(10);
     $(document.querySelector("#btnMultiPlayer")).fadeOut(10);
-    $(document.querySelector("#btnCPUVSCPU")).fadeOut(10);
     this.props.setMode("Single");
     $(document.querySelector(".badgeSelectionPage")).fadeIn(300);
     $(document.querySelector(".badgesShowcase")).fadeOut(10);
@@ -98,7 +96,6 @@ class TeamBuilder extends Component {
   multiPlayer() {
     $(document.querySelector("#btnSinglePlayer")).fadeOut(10);
     $(document.querySelector("#btnMultiPlayer")).fadeOut(10);
-    $(document.querySelector("#btnCPUVSCPU")).fadeOut(10);
     $(document.querySelector(".playerTwoNameDiv")).fadeIn(300);
     $(document.querySelector(".mainmenuButton")).fadeIn(300);
     $(document.querySelector(".logoutBox")).fadeOut(10);
@@ -106,38 +103,17 @@ class TeamBuilder extends Component {
     this.props.setMode("Multi");
   }
 
-  cpuVScpu() {
-    this.props.setMode("CPUVSCPU");
-    this.props.setPlayerOneName("CPU1");
-    this.props.setPlayerTwoName("CPU2");
-    this.props.setPlayer1Team([]);
-    this.props.setPlayer2Team([]);
-
-    //hide main menu buttons, show team list
-    $(document.querySelector("#btnSinglePlayer")).fadeOut(10);
-    $(document.querySelector("#btnMultiPlayer")).fadeOut(10);
-    $(document.querySelector("#btnCPUVSCPU")).fadeOut(10);
-    $(document.querySelector(".teamList")).fadeIn(300);
-    $(document.querySelector(".mainmenuButton")).fadeIn(300);
-    $(document.querySelector(".logoutBox")).fadeOut(10);
-    $(document.querySelector(".badgeSelectionPage")).fadeOut(10);
-  }
-
   returnToMainMenu() {
     // clear variables, reset back to main menu
     this.props.setMode("");
     this.props.setBattleReady(false);
     this.props.setBattleStarted(false);
-    if (this.props.mode === "Multi" || this.props.mode === "CPUVSCPU") {
+    if (this.props.mode === "Multi") {
       this.props.setPlayer1Team([]);
     }
     this.props.setPlayer2Team([]);
     this.props.setPlayer1CurrentPokemon(0);
     this.props.setPlayer2CurrentPokemon(0);
-    if (this.props.mode === "CPUVSCPU") {
-      //this.props.setPlayerOneName(this.props.user.username);
-      this.props.setPlayerOneName(localStorage.getItem("UserName"));
-    }
     this.props.setPlayerTwoName("Player Two");
     this.props.setPlayersTurn("Player One");
     this.props.setTeamSize(6);
@@ -146,7 +122,6 @@ class TeamBuilder extends Component {
     }
     $(document.querySelector("#btnSinglePlayer")).fadeIn(300);
     $(document.querySelector("#btnMultiPlayer")).fadeIn(300);
-    $(document.querySelector("#btnCPUVSCPU")).fadeIn(300);
     $(document.querySelector(".teamList")).fadeOut(10);
     $(document.querySelectorAll(".badgeSelectionPage")).fadeOut(10);
     $(document.querySelector(".teamsContainer")).fadeOut(10);
@@ -178,123 +153,6 @@ class TeamBuilder extends Component {
     this.props.setTeamSize(num);
     this.props.setPlayer1Team([]);
     this.props.setPlayer2Team([]);
-    if (this.props.mode === "CPUVSCPU") {
-      //build cpu teams
-      let rand = 0;
-      //build CPU one team
-      switch (num) {
-        case 1:
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team1");
-          ///
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team2");
-          break;
-        case 2:
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team1");
-          ///
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team2");
-          break;
-        case 3:
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team1");
-          ///
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team2");
-          break;
-        case 4:
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team1");
-          ///
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team2");
-          break;
-        case 5:
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team1");
-          ///
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team2");
-          break;
-        case 6:
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team1");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team1");
-          ///
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team2");
-          rand = Math.round(RandomNumberGenerator(1, 251));
-          this.fetchPokemon(rand, 50, "team2");
-          break;
-        default:
-          break;
-      }
-
-      $(document.querySelector(".teamList")).fadeOut(10);
-      $(document.querySelector(".pokemonSheetContainer")).addClass("deRender");
-      $(document.querySelector(".teamsContainer")).removeClass("deRender");
-      $(document.querySelector(".teamsContainer")).fadeIn(300);
-      $(document.querySelector(".mainmenuButton")).fadeOut(10);
-    }
   };
 
   //Returns passed string with upper-case first letter
@@ -793,12 +651,6 @@ class TeamBuilder extends Component {
       } else if (team === "team2") {
         player = this.props.player2Team;
       }
-    } else if (this.props.mode === "CPUVSCPU") {
-      if (team === "team1") {
-        player = this.props.player1Team;
-      } else if (team === "team2") {
-        player = this.props.player2Team;
-      }
     }
 
     if (player.length !== this.props.teamSize) {
@@ -812,14 +664,6 @@ class TeamBuilder extends Component {
         }
       } else if (this.props.mode === "Single") {
         if (team === undefined) {
-          this.props.player1Team.push(pokemonObj);
-          this.props.setPlayer1Team(player);
-        } else if (team === "team2") {
-          this.props.player2Team.push(pokemonObj);
-          this.props.setPlayer2Team(player);
-        }
-      } else if (this.props.mode === "CPUVSCPU") {
-        if (team === "team1") {
           this.props.player1Team.push(pokemonObj);
           this.props.setPlayer1Team(player);
         } else if (team === "team2") {
@@ -988,14 +832,6 @@ class TeamBuilder extends Component {
               >
                 Multi Player -<br />
                 Local Battle
-              </button>
-              <button
-                type="button"
-                className="btn btn-dark"
-                id="btnCPUVSCPU"
-                onClick={this.cpuVScpu}
-              >
-                CPU vs. CPU
               </button>
             </div>
             <div className="modal fade pokemonTeamPopup">
