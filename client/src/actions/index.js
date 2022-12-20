@@ -147,7 +147,6 @@ export const setId = (id) => {
 };
 
 export const login = ({ username, password }) => {
-  console.log("index login hit");
   return (dispatch) => {
     return axios({
       url: "/user/login",
