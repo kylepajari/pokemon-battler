@@ -147,9 +147,10 @@ export const setId = (id) => {
 };
 
 export const login = ({ username, password }) => {
+  console.log("index login hit");
   return (dispatch) => {
     return axios({
-      url: "/api/login",
+      url: "/user/login",
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -173,7 +174,7 @@ export const login = ({ username, password }) => {
 export const signUp = ({ username, password }) => {
   return (dispatch) => {
     return axios({
-      url: "/api/signup",
+      url: "/user/signup",
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -186,7 +187,7 @@ export const signUp = ({ username, password }) => {
 export function updateBadges(id, badgesCount) {
   return (dispatch) => {
     return axios({
-      url: "/api/updatebadges",
+      url: "/user/updatebadges",
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -199,7 +200,7 @@ export function updateBadges(id, badgesCount) {
 export function updateLastLogin(id, date) {
   return (dispatch) => {
     return axios({
-      url: "/api/updatelastlogin",
+      url: "/user/updatelastlogin",
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -212,7 +213,7 @@ export function updateLastLogin(id, date) {
 export function updateTeam(id, team) {
   return (dispatch) => {
     return axios({
-      url: "/api/updateteam",
+      url: "/user/updateteam",
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -225,7 +226,7 @@ export function updateTeam(id, team) {
 export const getTeam = (id) => {
   return (dispatch) => {
     return axios
-      .get("/api/getteam/" + id)
+      .get("/user/getteam/" + id)
       .then((res) => dispatch(setPlayer1Team(res.data.team)))
       .catch((err) => Promise.reject(err));
   };
@@ -233,7 +234,7 @@ export const getTeam = (id) => {
 
 export const getAllUsers = () => {
   return (dispatch) => {
-    return fetch("/api/users").then((res) => res.json(res));
+    return fetch("/user/users").then((res) => res.json(res));
   };
 };
 

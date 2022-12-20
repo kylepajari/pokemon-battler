@@ -273,7 +273,7 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use("/api", UserRoutes);
+app.use("/user", UserRoutes);
 app.use("/leader", LeaderRoutes);
 
 //#region pokedata search
